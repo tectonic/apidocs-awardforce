@@ -18,9 +18,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
