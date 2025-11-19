@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "api.eu.cr4ce.com"
+      "url": "https://api.cr4ce.com"
     }
   ],
   "paths": {
