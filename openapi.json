@@ -16,7 +16,16 @@
         "tags": [
           "Account"
         ],
-        "parameters": [          
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "x-api-key",
             "in": "header",
@@ -37,78 +46,34 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "Get account",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "created": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "domains": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "global_id": {
-                      "type": "string"
-                    },
-                    "languages": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "code": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "owner": {
-                      "type": "object",
-                      "properties": {
-                        "slug": {
-                          "type": "string"
-                        },
-                        "link": {
-                          "type": "string",
-                          "format": "uri"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "first_name": {
-                          "type": "string"
-                        },
-                        "last_name": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "product": {
-                      "type": "string"
-                    },
-                    "region": {
-                      "type": "string"
-                    },
-                    "slug": {
-                      "type": "string"
-                    },
-                    "timezone": {
-                      "type": "string"
-                    },
-                    "updated": {
-                      "type": "string",
-                      "format": "date-time"
+                "example": {
+                  "created": "2020-01-01T00:00:00Z",
+                  "domains": [
+                    "account-domain.awardsplatform.com"
+                  ],
+                  "global_id": "ae7dd084-f39d-4740-8b6b-cb50da1da0c3",
+                  "languages": [
+                    {
+                      "code": "en_GB"
                     }
-                  }
+                  ],
+                  "name": "Awards account",
+                  "owner": {
+                    "slug": "rnkPoEgd",
+                    "link": "https://api.cr4ce.com/user/rnkPoEgd",
+                    "name": "Test Name",
+                    "first_name": "Test",
+                    "last_name": "Name"
+                  },
+                  "product": "Pro",
+                  "region": "au",
+                  "slug": "pbaNDdMk",
+                  "timezone": "EuropeLondon",
+                  "updated": "2020-01-01T00:00:00Z"
                 }
               }
             }
@@ -233,9 +198,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -708,9 +682,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -824,9 +807,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -1277,9 +1269,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -1365,9 +1366,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -1480,9 +1490,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -1676,9 +1695,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -1958,9 +1986,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -2199,9 +2236,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -2405,9 +2451,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -2502,9 +2557,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -2750,9 +2814,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -3035,9 +3108,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -3316,9 +3398,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -3628,9 +3719,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -3914,9 +4014,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -4011,9 +4120,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -4211,9 +4329,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -4452,9 +4579,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -4632,9 +4768,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -4826,9 +4971,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -4994,9 +5148,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -5091,9 +5254,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -5291,9 +5463,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -5545,9 +5726,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -5738,9 +5928,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -5945,9 +6144,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -6126,9 +6334,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -6394,9 +6611,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -6765,9 +6991,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -7156,9 +7391,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -7598,9 +7842,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -7975,9 +8228,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -8072,9 +8334,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -8218,9 +8489,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -8610,9 +8890,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -8984,9 +9273,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -9027,9 +9325,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -9078,9 +9385,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -9121,9 +9437,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -9164,9 +9489,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -9215,9 +9549,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -9374,9 +9717,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -9647,9 +9999,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -9969,9 +10330,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -10065,9 +10435,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -10506,9 +10885,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -10871,9 +11259,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -11130,9 +11527,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -11251,9 +11657,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -11284,9 +11699,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -11381,9 +11805,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -11535,9 +11968,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -11701,9 +12143,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -11910,9 +12361,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -12135,9 +12595,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -12336,9 +12805,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -12491,9 +12969,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -12801,9 +13288,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -13068,9 +13564,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -13322,9 +13827,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -13592,9 +14106,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -13860,9 +14383,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -14030,9 +14562,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -14127,9 +14668,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -14282,9 +14832,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -14480,9 +15039,18 @@
             }
           },
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -14674,9 +15242,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -14816,9 +15393,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -14971,9 +15557,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
@@ -15101,9 +15696,18 @@
         ],
         "parameters": [
           {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Defines the response type.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Used for authentication and authorisation.",
             "schema": {
               "type": "string"
