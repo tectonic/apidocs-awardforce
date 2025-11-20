@@ -16,16 +16,7 @@
         "tags": [
           "Account"
         ],
-        "parameters": [
-          {
-            "name": "Accept",
-            "in": "header",
-            "required": true,
-            "description": "Defines the response type.",
-            "schema": {
-              "type": "string"
-            }
-          },
+        "parameters": [          
           {
             "name": "x-api-key",
             "in": "header",
