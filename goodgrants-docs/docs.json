@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "aspen",
-  "name": "Award Force",
+  "name": "Good Grants API DOCS",
   "colors": {
     "primary": "#17154B",
     "light": "#eb3700",

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "aspen",
+  "name": "Award Force API DOCS",
+  "colors": {
+    "primary": "#17154B",
+    "light": "#eb3700",
+    "dark": "#2741F1"
+  },
+  "appearance": {
+    "default": "light"
+  },
+  "background": {
+    "decoration": "gradient"
+  },
+"fonts": {
+    "heading": {
+      "family": "Montserrat",
+      "format": "woff2",
+      "weight": 400,
+      "source": "https://fonts.wp.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2"
+    },
+    "body": {
+      "family": "Montserrat",
+      "format": "woff2",
+      "weight": 400,
+      "source": "https://fonts.wp.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2"
+    }
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Getting started",
+        "pages": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "/pages/intro",
+              "/pages/authentication",
+              "/pages/requests",
+              "/pages/responses",
+              "/pages/webhooks",
+              "/pages/versioning"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "openapi": "openapi.json"
+      },
+      {
+        "tab": "Changelog",
+        "pages": ["/pages/changelog"]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Help Center",
+          "href": "https://support.awardforce.com/hc/en-us",
+          "icon": "headset"
+        },
+        {
+          "anchor": "Status",
+          "href": "https://status.awardforce.com",
+          "icon": "signal"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://awardforce.com"
+  },
+  "navbar": {
+    "links": []
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/awardforce",
+      "facebook": "https://www.facebook.com/awardforce",
+      "linkedin": "https://www.linkedin.com/company/award-force"
+    }
+  }
+}
