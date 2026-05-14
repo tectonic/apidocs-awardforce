@@ -34,7 +34,7 @@
         "tab": "New Getting started",
         "pages": [
           {
-            "group": "Getting started",
+            "group": "Getting started please",
             "pages": [
               "/pages/intro",
               "/pages/authentication",
