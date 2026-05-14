@@ -31,10 +31,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Getting started",
+        "tab": "Getting started Force",
         "pages": [
           {
-            "group": "Getting started",
+            "group": "Getting started Force",
             "pages": [
               "/pages/intro",
               "/pages/authentication",
