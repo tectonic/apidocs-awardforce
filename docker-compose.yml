@@ -1,0 +1,13 @@
+services:
+  docs:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/docs
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+
