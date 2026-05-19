@@ -1,6 +1,12 @@
 services:
-  docs:
-    build: .
+  mint:
+    build:
+      context: .
+      args:
+        USER: ${USER}
+        UID: ${UID}
+        GID: ${GID}
+    command: ./node_modules/.bin/mint dev --port 3000
     ports:
       - "3000:3000"
     volumes:
@@ -10,4 +16,15 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=development
+
+  npm:
+    build:
+      context: .
+      args:
+        USER: ${USER}
+        UID: ${UID}
+        GID: ${GID}
+    volumes:
+      - .:/docs
+    entrypoint: ["npm"]
 
