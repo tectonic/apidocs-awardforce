@@ -6,7 +6,7 @@ services:
         USER: ${USER}
         UID: ${UID}
         GID: ${GID}
-    command: ./node_modules/.bin/mint dev --port 3000
+    command: npm run dev
     ports:
       - "3000:3000"
     volumes:
