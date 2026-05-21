@@ -1,0 +1,114 @@
+---
+title: "Requests"
+description: "The request URL is api.cr4ce.com however for optimal performance we recommend using our regional endpoints. Select the region to match your account location."
+---
+
+## Regional Endpoints
+
+<Note>
+For optimal performance, use the regional endpoint that matches your account location.
+</Note>
+
+<CodeGroup>
+```text US
+api.us.cr4ce.com
+```
+
+```text EU
+api.eu.cr4ce.com
+```
+
+```text Australasia
+api.au.cr4ce.com
+```
+
+```text Canada
+api.ca.cr4ce.com
+```
+
+```text Hong Kong
+api.hk.cr4ce.com
+```
+</CodeGroup>
+
+## Request headers
+
+<ParamField header="Accept" type="string" required>
+Defines the response type.
+
+**Allowed values:**
+- `application/vnd.Creative Force.v2.3+json`
+- `application/vnd.Creative Force.v2.3+xml`
+</ParamField>
+
+<ParamField header="x-api-key" type="string" required>
+Used to authenticate and authorize the consumer. Must be a valid API key.
+</ParamField>
+
+<ParamField header="x-api-language" type="string">
+Defines the languages to include in the response.
+
+**Default:** Account default language
+
+**Allowed values:** Comma separated string with one or more of the following:
+- `all` (will override any other values present)
+- `ar_AR`, `bg_BG`, `bn_IN`, `ca_ES`, `cs_CZ`, `cy_GB`, `da_DK`, `de_DE`, `en_GB`, `en_US`, `el_GR`, `es_NN`, `es_LA`, `fa_NN`, `fi_FI`, `fr_FR`, `fr_CA`, `he_IL`, `hi_IN`, `it_IT`, `ja_JP`, `ko_KR`, `lt_LT`, `ms_MY`, `nl_NL`, `nb_NO`, `pl_PL`, `pt_BR`, `ru_RU`, `sl_SI`, `sv_SE`, `sw_NN`, `th_TH`, `uk_UA`, `vi_VN`, `zh_CN`, `zh_HK`
+</ParamField>
+
+## Request body
+
+<Info>
+POST and PUT requests expect JSON request bodies.
+</Info>
+
+### Request body parameter types
+
+| Type | Format | Empty value | Example |
+|:-----|:-------|:-----------|:--------|
+| Integer | Whole number | `null` | `1` |
+| Float | Decimal number | `null` | `1.23` |
+| String | Letters, numbers, characters wrapped in quotations | `""` | `"String"` |
+| Array | JSON array | `null` | `["Array element 1", "Array element 2"]` |
+| Boolean | `true` / `false` | `null` | `true` |
+| Slug | 8 character string | Never `null` | `"aBcDeFgH"` |
+| Date | ISO 6801 Zulu standard | `null` | `"2020-10-08"` OR `"2020-12-08T08:58:50Z"` |
+| Table | JSON object | `null` | `{"slug": {"B1": "valueB1", "C1": "valueC1", "B2": "valueB2", "C2": "valueC2"}}` |
+| Translated value | JSON object | `{"en_GB":""}` | `{"en_GB":"Translated value"}` |
+| Related resource | JSON object | `null` | `{"slug":"aBcDeFgH", "name": {"en_GB":"Translated value"}}` |
+
+### Fields expected data types
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| Checkbox | Boolean | See "Boolean" type above. |
+| Checkbox list | Array | See "Array" type above. Options must exactly match the field value (not label) including letter case |
+| Content | String | See "String" type above. |
+| Country | String | See "String" type above. Accepts the two-letter country code, per [this list](https://support.awardforce.com/hc/en-us/articles/360000237856-Two-letter-country-codes-in-fields) |
+| Currency | Float | See "Float" type above. |
+| Date | Date | See "Date" type above. |
+| Date and time | Date | See "Date" type above. |
+| Drop-down list | String | See "String" type above. Options must exactly match the field value (not label) including letter case. |
+| Email | String | See "String" type above. Must follow standard email format, i.e. [name@domain.com](mailto:name@domain.com) |
+| File upload (single) | - | See "Upload entry file" or "Upload user file" endpoints |
+| Numeric | Float | See "Float" type above. |
+| Phone number | String | See "String" type above. International format, including leading + - must be a valid phone number. |
+| Radio buttons | String | See "String" type above. Options must exactly match the field value (not label) including letter case. |
+| Table | - | See "Table" type above |
+| Text (single line) | String | See "String" type above. |
+| Text area (multi-line) | String | See "String" type above. |
+| Time | String | See "String" type above. |
+| URL | String | See "String" type above. Must begin with "https://". |
+
+## Limits and constraints
+
+### Rate limiting
+
+Rate limiting is set at **60 requests per API key per 60 seconds**. Any requests received beyond this will result in a `429` response.
+
+### File upload size limit
+
+File uploads are limited to a maximum file size of **256 MB**. Any request containing a file greater than this value will result in a `413` response.
+
+## Base64 encoding
+
+File upload endpoints accept base64 encoded strings representing the file you wish to upload. Many popular programming languages support converting files to a base64 encoded string. Alternatively if you are using an API client you can find websites online for converting an image to a base64 encoded string.

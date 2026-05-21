@@ -1,0 +1,291 @@
+---
+title: "Webhooks"
+description: "You can trigger webhooks based on some event such as new user registration or entry submission. This will let you get data or perform tasks based on actions in your program. Only program managers can create webhooks."
+---
+
+## Create a webhook
+<Steps>
+<Step title="In Award Force navigate to Settings > Integrations > Webhooks"/>
+<Step title="Click New webhook"/>
+<Step title="Enter Name"/>
+<Step title="Enter Webhook URL"/>
+<Step title="Use the auto-generated Signing key or create a new one"/>
+<Step title="Select the desired Event subscriptions"/>
+<Step title="(optional) Specify notification email addresses. Separate each address with a comma (,) or a semicolon (;)"/>
+<Step title="Click Save"/>
+</Steps>
+## Edit webhook
+<Steps>
+<Step title="In Award Force navigate to Settings > Integrations > Webhooks"/>
+<Step title="Click on the Name of the webhook you wish to edit"/>
+<Step title="Make your changes"/>
+<Step title="Click Save"/>
+</Steps>
+
+## Delete a webhook
+<Steps>
+<Step title="In Award Force navigate to Settings > Integrations > Webhooks"/>
+<Step title="Click the checkbox next to the webhook and delete it via the Action button"/>
+<Step title="Click OK in the confirmation dialog"/>
+</Steps>
+
+
+## Webhook payloads
+
+Webhook payloads are provided in JSON format and always contain the following attributes:
+
+| Name | Description |
+|:-----|:------------|
+| `event` | Enumerated string with possible values being one of the events described in the following sections |
+| `timestamp` | ISO 8601 formatted datetime value. i.e. `2020-01-01T00:00:00Z` |
+| `source` | Enumerated string with the following possible values:<br/>- `ui` (default)<br/>- `api` |
+
+### Signature
+
+You will receive a `Signature` header which you can use to validate the webhook payload.
+
+The signature value is generated with this algorithm, using the **Signing key** specified in your webhook and the JSON payload:
+
+```php PHP
+$signature = hash_hmac('sha256', $payloadJsonString, $signingKey);
+```
+
+You can do the same in your endpoint and compare the header `Signature` value with the one you generated with this algorithm.
+
+### Available event subscriptions
+
+#### Entry events
+
+- `collaborator_invited`
+- `entry_created`
+- `entry_eligible`
+- `entry_ineligible`
+- `entry_moderated`
+- `entry_resubmitted`
+- `entry_submitted`
+- `entry_tagged`
+- `entry_updated`
+- `field_value_updated`
+- `review_task_created`
+- `review_task_submitted`
+
+Below is an example of an entry created webhook payload:
+```json Entry Payload expandable
+{
+  "attachments": [
+    {
+      "token": "ugKMsghy7bqgeFUz",
+      "link": "https://api.cr4ce.com/file/ugKMsghy7bqgeFUz",
+      "name": "Attachment name",
+      "download": "",
+      "attachment_fields": [
+        {
+          "slug": "dLjGNKXD",
+          "link": "https://api.cr4ce.com/field/dLjGNKXD",
+          "label": {
+            "en_GB": "Attachment field label"
+          },
+          "value": "Attachment field value",
+          "translated": {
+            "en_GB": ""
+          }
+        }
+      ]
+    }
+  ],
+  "category": {
+    "slug": "KBvzBxvO",
+    "link": "https://api.cr4ce.com/category/KBvzBxvO",
+    "name": {
+      "en_GB": "Category name"
+    }
+  },
+  "chapter": {
+    "slug": "DjrbmvZV",
+    "link": "https://api.cr4ce.com/chapter/DjrbmvZV",
+    "name": {
+      "en_GB": "Chapter name"
+    }
+  },
+  "comments": "",
+  "contributor_count": 0,
+  "contributors": [],
+  "created": "2020-01-01T00:00:00Z",
+  "division": null,
+  "eligibility_status": "",
+  "entrant": {
+    "slug": "eBxdJaXK",
+    "link": "https://api.cr4ce.com/user/bkGLoVEL",
+    "name": "Entrant Name",
+    "first_name": "Entrant",
+    "last_name": "Name"
+  },
+  "entry_fields": [
+    {
+      "slug": "dgVDQDmM",
+      "link": "https://api.cr4ce.com/field/dgVDQDmM",
+      "label": {
+        "en_GB": "Entry field label"
+      },
+      "value": "Entry field value",
+      "translated": {
+        "en_GB": ""
+      }
+    }
+  ],
+  "files_count": 1,
+  "form": "vAyNpPvN",
+  "local_id": 19,
+  "moderation_status": "undecided",
+  "parent_category": {
+    "slug": "qLgNbaDx",
+    "link": "https://api.cr4ce.com/parent/qLgNbaDx",
+    "name": {
+      "en_GB": "Category name"
+    }
+  },
+  "payment_status": "Paid (Non-member entry fee)",
+  "plagiarism_scan_status": "",
+  "resubmitted": "",
+  "review_status": "",
+  "season": {
+    "slug": "xqrPemBy",
+    "link": "https://api.cr4ce.com/season/xqrPemBy",
+    "name": {
+      "en_GB": "Season name"
+    }
+  },
+  "slug": "bkGLoVEL",
+  "status": "submitted",
+  "submitted": "2020-01-01T00:00:00Z",
+  "tags": "",
+  "title": "Entry title",
+  "event": "Entry created",
+  "updated": "2020-01-01T00:00:00Z"
+}
+```
+
+#### User events
+
+- `role_granted`
+- `membership_registered` (User created)
+- `user_updated`
+
+Below is an example of a user event webhook payload:
+
+```json User Payload expandable
+{
+  "analytics_cookies": false,
+  "broadcast_emails": false,
+  "confirmed_at": "2020-01-01T00:00:00Z",
+  "created_at": "2020-01-01T00:00:00Z",
+  "created_by": "api",
+  "email": "no-reply@awardforce.com",
+  "first_name": "Test",
+  "last_name": "Name",
+  "marketing_cookies": false,
+  "mobile": "+393216549873",
+  "name": "Test Name",
+  "necessary_cookies": false,
+  "notification_emails": false,
+  "notification_sms": false,
+  "preferences": {
+    "broadcast_emails": false,
+    "notification_emails": false,
+    "notification_sms": false
+  },
+  "roles": [
+    {
+      "slug": "OkvJXMNd",
+      "link": "https://api.cr4ce.com/role/OkvJXMNd",
+      "name": {
+        "en_GB": "Role name"
+      }
+    }
+  ],
+  "slug": "EnDNqjlb",
+  "social_sharing": false,
+  "updated": "2020-01-01T00:00:00Z",
+  "user_fields": [
+    {
+      "slug": "ErApVaqk",
+      "link": "https://api.cr4ce.com/field/ErApVaqk",
+      "label": {
+        "en_GB": "Field label"
+      },
+      "value": "Field value",
+      "translated": {
+        "en_GB": ""
+      }
+    }
+  ],
+  "event": "User created"
+}
+```
+
+#### Order events
+
+- `payment_pending`
+- `payment_success`
+
+Below is an example of an order event webhook payload:
+
+```json Order Payload expandable
+{
+  "address": "123 Elizabeth St",
+  "city": "Sydney",
+  "comments": "Comment",
+  "company": "ABC",
+  "country": "Australia",
+  "created_at": "2020-01-01T00:00:00Z",
+  "currency": "AUD",
+  "discount": 0,
+  "discount_code": "",
+  "invoice_number": "INV-123",
+  "ip_address": "1.1.1.1",
+  "items": "1x Entry fee",
+  "member_number": "123",
+  "payment_method": "invoice",
+  "payment_status": "paid",
+  "postcode": "2000",
+  "processing_fee": 123.45,
+  "processing_fee_rate": 1.23,
+  "region": "",
+  "season": {
+    "slug": "xqrPemBy",
+    "link": "https://api.cr4ce.com/season/xqrPemBy",
+    "name": {
+      "en_GB": "Season name"
+    }
+  },
+  "slug": "dLgnMDzQ",
+  "state": "NSW",
+  "subtotal": 123.45,
+  "tax": 1.23,
+  "tax_rate": 0,
+  "tax_term": "GST",
+  "total": 123.45,
+  "transaction_date": "2020-01-01T00:00:00Z",
+  "transaction_provider": "Invoice",
+  "transaction_reference": "",
+  "transaction_status": "successful",
+  "user": {
+    "slug": "eBxdJaXK",
+    "link": "https://api.cr4ce.com/user/dLgnMDzQ",
+    "name": "Test Name",
+    "first_name": "Test",
+    "last_name": "Name",
+    "email": "no-reply@awardforce.com"
+  },
+  "vat_number": "",
+  "event": "Order payment success"
+}
+```
+
+#### Other entry management events
+
+- `assignment_completed`
+- `assignment_created`
+- `document_created`
+- `document_deleted`
+- `document_updated`

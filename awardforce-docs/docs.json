@@ -29,30 +29,66 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "tabs": [
+    "versions": [
       {
-        "tab": "Getting started",
-        "pages": [
+        "version": "2.3",
+        "default": true,
+        "tag": "Latest",
+        "tabs": [
           {
-            "group": "Getting started",
+            "tab": "Getting started",
             "pages": [
-              "/pages/intro",
-              "/pages/authentication",
-              "/pages/requests",
-              "/pages/responses",
-              "/pages/webhooks",
-              "/pages/versioning"
+              {
+                "group": "Getting started",
+                "pages": [
+                  "/pages/v2_3/intro",
+                  "/pages/v2_3/authentication",
+                  "/pages/v2_3/requests",
+                  "/pages/v2_3/responses",
+                  "/pages/v2_3/webhooks",
+                  "/pages/v2_3/versioning"
+                ]
+              }
             ]
+          },
+          {
+            "tab": "API Reference",
+            "openapi": "api-reference/openapi-v2_3.yaml"
+          },
+          {
+            "tab": "Changelog",
+            "pages": ["/pages/v2_3/changelog"]
           }
         ]
       },
       {
-        "tab": "API Reference",
-        "openapi": "api-reference/openapi.json"
-      },
-      {
-        "tab": "Changelog",
-        "pages": ["/pages/changelog"]
+        "version": "2.2",
+        "tabs": [
+          {
+            "tab": "Getting started",
+            "pages": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "/pages/v2_2/intro",
+                  "/pages/v2_2/authentication",
+                  "/pages/v2_2/requests",
+                  "/pages/v2_2/responses",
+                  "/pages/v2_2/webhooks",
+                  "/pages/v2_2/versioning"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "openapi": "api-reference/openapi-v2_2.yaml"
+          },
+          {
+            "tab": "Changelog",
+            "pages": ["/pages/v2_2/changelog"]
+          }
+        ]
       }
     ],
     "global": {
