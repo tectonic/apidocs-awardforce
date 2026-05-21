@@ -6,6 +6,7 @@
   },
   "devDependencies": {
     "@redocly/cli": "^2.31.2",
-    "mint": "^4.2.573"
+    "mint": "^4.2.573",
+    "react-dom": "^19.2.6"
   }
 }
