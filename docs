@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+# Resolve the repo root from the script location so the helper works even when
+# invoked via PATH or from another working directory.
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPT_NAME="${0##*/}"
 cd "$ROOT_DIR"
@@ -17,6 +19,7 @@ EOF
   ${SCRIPT_NAME} all [docker compose up options]
   ${SCRIPT_NAME} logs <awardforce|af|goodgrants|gg> [docker compose logs options]
   ${SCRIPT_NAME} mint <awardforce|af|goodgrants|gg> <mint args...>
+  ${SCRIPT_NAME} openapi [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} build [docker compose build options]
   ${SCRIPT_NAME} down [docker compose down options]
   ${SCRIPT_NAME} ps
@@ -30,14 +33,50 @@ Examples:
   ${SCRIPT_NAME} all --remove-orphans
   ${SCRIPT_NAME} mint awardforce analytics stats
   ${SCRIPT_NAME} mint gg status
+  ${SCRIPT_NAME} openapi
+  ${SCRIPT_NAME} openapi af
   ${SCRIPT_NAME} npm install
 EOF
 }
 
-service_name() {
+die_usage() {
+  echo "Usage: ${SCRIPT_NAME} $1" >&2
+  exit 1
+}
+
+require_vertical() {
+  local vertical="${1:-}"
+  local usage_text="$2"
+
+  if [[ -z "$vertical" ]]; then
+    die_usage "$usage_text"
+  fi
+}
+
+require_args() {
+  local usage_text="$1"
+  local arg_count="$2"
+
+  if [[ "$arg_count" -eq 0 ]]; then
+    die_usage "$usage_text"
+  fi
+}
+
+require_no_extra_args() {
+  local usage_text="$1"
+  local arg_count="$2"
+
+  if [[ "$arg_count" -gt 0 ]]; then
+    die_usage "$usage_text"
+  fi
+}
+
+# Canonicalize user-facing vertical aliases to a single slug that can be reused
+# for both Docker service names and on-disk docs directory names.
+vertical_name() {
   case "${1:-}" in
-    awardforce|af) echo "mint-awardforce" ;;
-    goodgrants|gg) echo "mint-goodgrants" ;;
+    awardforce|af) echo "awardforce" ;;
+    goodgrants|gg) echo "goodgrants" ;;
     *)
       echo "Unknown vertical: ${1:-}" >&2
       exit 1
@@ -45,40 +84,88 @@ service_name() {
   esac
 }
 
+service_name() {
+  vertical_name "$1"
+}
+
+# Docs directories follow the convention <vertical>-docs/.
+vertical_dir() {
+  printf '%s-docs\n' "$(vertical_name "$1")"
+}
+
+bundle_openapi_vertical() {
+  local vertical_path="$1"
+  local src_root="$ROOT_DIR/$vertical_path/src"
+  local -a spec_paths=()
+
+  if [[ ! -d "$src_root" ]]; then
+    echo "Missing source directory: ${vertical_path}/src" >&2
+    exit 1
+  fi
+
+  # Collect all versioned source specs up front. Running docker compose inside a
+  # while-read loop can consume the loop stdin and stop after the first match.
+  mapfile -t spec_paths < <(find "$src_root" -mindepth 2 -maxdepth 2 -type f -name 'openapi.yaml' | sort)
+
+  if [[ "${#spec_paths[@]}" -eq 0 ]]; then
+    echo "No versioned OpenAPI sources found under ${vertical_path}/src" >&2
+    exit 1
+  fi
+
+  for spec_path in "${spec_paths[@]}"; do
+    local version_dir input_path output_path
+    version_dir="$(basename "$(dirname "$spec_path")")"
+    input_path="${vertical_path}/src/${version_dir}/openapi.yaml"
+    output_path="${vertical_path}/api-reference/openapi-${version_dir}.yaml"
+
+    docker compose --progress quiet run --quiet --quiet-pull --quiet-build --rm \
+      --entrypoint /docs/node_modules/.bin/redocly npm \
+      bundle "$input_path" --output "$output_path" </dev/null
+  done
+}
+
 command="${1:-help}"
 shift || true
 
 case "$command" in
   awardforce|af)
-    docker compose up "$@" mint-awardforce
+    docker compose up "$@" awardforce
     ;;
   goodgrants|gg)
-    docker compose up "$@" mint-goodgrants
+    docker compose up "$@" goodgrants
     ;;
   all|up)
     docker compose up "$@"
     ;;
   logs)
     vertical="${1:-}"
-    if [[ -z "$vertical" ]]; then
-      echo "Usage: ${SCRIPT_NAME} logs <awardforce|af|goodgrants|gg> [docker compose logs options]" >&2
-      exit 1
-    fi
+    require_vertical "$vertical" "logs <awardforce|af|goodgrants|gg> [docker compose logs options]"
     shift
     docker compose logs "$@" "$(service_name "$vertical")"
     ;;
   mint)
     vertical="${1:-}"
-    if [[ -z "$vertical" ]]; then
-      echo "Usage: ${SCRIPT_NAME} mint <awardforce|af|goodgrants|gg> <mint args...>" >&2
-      exit 1
-    fi
+    require_vertical "$vertical" "mint <awardforce|af|goodgrants|gg> <mint args...>"
     shift
-    if [[ $# -eq 0 ]]; then
-      echo "Usage: ${SCRIPT_NAME} mint <awardforce|af|goodgrants|gg> <mint args...>" >&2
-      exit 1
-    fi
+    require_args "mint <awardforce|af|goodgrants|gg> <mint args...>" "$#"
     docker compose run --rm --entrypoint /docs/node_modules/.bin/mint "$(service_name "$vertical")" "$@"
+    ;;
+  openapi)
+    target="${1:-all}"
+    shift || true
+    require_no_extra_args "openapi [awardforce|af|goodgrants|gg|all]" "$#"
+    case "$target" in
+      all)
+        bundle_openapi_vertical "awardforce-docs"
+        bundle_openapi_vertical "goodgrants-docs"
+        ;;
+      awardforce|af|goodgrants|gg)
+        bundle_openapi_vertical "$(vertical_dir "$target")"
+        ;;
+      *)
+        die_usage "openapi [awardforce|af|goodgrants|gg|all]"
+        ;;
+    esac
     ;;
   build)
     docker compose build "$@"

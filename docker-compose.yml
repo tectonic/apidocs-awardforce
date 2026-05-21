@@ -17,14 +17,14 @@ x-mint-base: &mint-base
     - NODE_ENV=development
 
 services:
-  mint-awardforce:
+  awardforce:
     <<: *mint-base
     working_dir: /docs/awardforce-docs
     command: /docs/node_modules/.bin/mint dev --port 3000 --no-open
     ports:
       - "${MINT_PORT_AWARDFORCE:-3000}:3000"
 
-  mint-goodgrants:
+  goodgrants:
     <<: *mint-base
     working_dir: /docs/goodgrants-docs
     command: /docs/node_modules/.bin/mint dev --port 3000 --no-open
