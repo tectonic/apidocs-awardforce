@@ -15,7 +15,8 @@ EOF
   ${SCRIPT_NAME} awardforce [docker compose up options]
   ${SCRIPT_NAME} goodgrants [docker compose up options]
   ${SCRIPT_NAME} all [docker compose up options]
-  ${SCRIPT_NAME} logs <awardforce|goodgrants> [docker compose logs options]
+  ${SCRIPT_NAME} logs <awardforce|af|goodgrants|gg> [docker compose logs options]
+  ${SCRIPT_NAME} mint <awardforce|af|goodgrants|gg> <mint args...>
   ${SCRIPT_NAME} build [docker compose build options]
   ${SCRIPT_NAME} down [docker compose down options]
   ${SCRIPT_NAME} ps
@@ -23,9 +24,12 @@ EOF
 
 Examples:
   ${SCRIPT_NAME} awardforce
+  ${SCRIPT_NAME} af
   ${SCRIPT_NAME} goodgrants -d
+  ${SCRIPT_NAME} logs gg --tail=50
   ${SCRIPT_NAME} all --remove-orphans
-  ${SCRIPT_NAME} logs goodgrants --tail=50
+  ${SCRIPT_NAME} mint awardforce analytics stats
+  ${SCRIPT_NAME} mint gg status
   ${SCRIPT_NAME} npm install
 EOF
 }
@@ -57,11 +61,24 @@ case "$command" in
   logs)
     vertical="${1:-}"
     if [[ -z "$vertical" ]]; then
-      echo "Usage: ${SCRIPT_NAME} logs <awardforce|goodgrants> [docker compose logs options]" >&2
+      echo "Usage: ${SCRIPT_NAME} logs <awardforce|af|goodgrants|gg> [docker compose logs options]" >&2
       exit 1
     fi
     shift
     docker compose logs "$@" "$(service_name "$vertical")"
+    ;;
+  mint)
+    vertical="${1:-}"
+    if [[ -z "$vertical" ]]; then
+      echo "Usage: ${SCRIPT_NAME} mint <awardforce|af|goodgrants|gg> <mint args...>" >&2
+      exit 1
+    fi
+    shift
+    if [[ $# -eq 0 ]]; then
+      echo "Usage: ${SCRIPT_NAME} mint <awardforce|af|goodgrants|gg> <mint args...>" >&2
+      exit 1
+    fi
+    docker compose run --rm --entrypoint /docs/node_modules/.bin/mint "$(service_name "$vertical")" "$@"
     ;;
   build)
     docker compose build "$@"

@@ -58,18 +58,28 @@ Then you can run commands like:
 ```bash
 docs npm --version
 docs awardforce
+docs af
 docs goodgrants
+docs gg
+docs mint awardforce status
 ```
+
+The helper accepts both full names and short aliases:
+
+- `awardforce` or `af`
+- `goodgrants` or `gg`
 
 ### Start the dev servers
 
 ```bash
 # Award Force
 docs awardforce
+docs af
 docker compose up mint-awardforce
 
 # Good Grants
 docs goodgrants
+docs gg
 docker compose up mint-goodgrants
 ```
 
@@ -107,4 +117,20 @@ docker compose run --rm npm uninstall mint
 # Show npm version
 docs npm --version
 docker compose run --rm npm --version
+```
+
+### Mint CLI commands
+
+Use the helper to run arbitrary Mint commands inside a specific vertical:
+
+```bash
+# Check Mint auth/session for Award Force
+docs mint awardforce status
+docs mint af status
+docker compose run --rm --entrypoint /docs/node_modules/.bin/mint mint-awardforce status
+
+# Run analytics for Good Grants
+docs mint goodgrants analytics stats
+docs mint gg analytics stats
+docker compose run --rm --entrypoint /docs/node_modules/.bin/mint mint-goodgrants analytics stats
 ```
