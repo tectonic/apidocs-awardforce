@@ -1,29 +1,39 @@
+x-build-base: &build-base
+  build:
+    context: .
+    args:
+      USER: ${USER}
+      UID: ${UID}
+      GID: ${GID}
+
+x-mint-base: &mint-base
+  <<: *build-base
+  stdin_open: true
+  tty: true
+  restart: "no"
+  volumes:
+    - .:/docs
+  environment:
+    - NODE_ENV=development
+
 services:
-  mint:
-    build:
-      context: .
-      args:
-        USER: ${USER}
-        UID: ${UID}
-        GID: ${GID}
-    command: npm run dev
+  mint-awardforce:
+    <<: *mint-base
+    working_dir: /docs/awardforce-docs
+    command: /docs/node_modules/.bin/mint dev --port 3000 --no-open
     ports:
-      - "3000:3000"
-    volumes:
-      - .:/docs
-    stdin_open: true
-    tty: true
-    restart: unless-stopped
-    environment:
-      - NODE_ENV=development
+      - "${MINT_PORT_AWARDFORCE:-3000}:3000"
+
+  mint-goodgrants:
+    <<: *mint-base
+    working_dir: /docs/goodgrants-docs
+    command: /docs/node_modules/.bin/mint dev --port 3000 --no-open
+    ports:
+      - "${MINT_PORT_GOODGRANTS:-3001}:3000"
 
   npm:
-    build:
-      context: .
-      args:
-        USER: ${USER}
-        UID: ${UID}
-        GID: ${GID}
+    <<: *build-base
+    working_dir: /docs
     volumes:
       - .:/docs
     entrypoint: ["npm"]

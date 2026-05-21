@@ -4,9 +4,6 @@
   "engines": {
     "node": ">=20"
   },
-  "scripts": {
-    "dev": "mint dev --port 3000"
-  },
   "dependencies": {
     "mint": "^4.2.569"
   }

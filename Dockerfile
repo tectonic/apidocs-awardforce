@@ -13,7 +13,8 @@ RUN deluser --remove-home node && \
       --shell /bin/sh \
       --disabled-password ${USER}
 
-RUN apk add --no-cache git libsecret
+RUN apk add --no-cache git libsecret dbus && \
+    dbus-uuidgen > /etc/machine-id
 
 USER ${USER}
 

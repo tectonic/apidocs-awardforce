@@ -1,6 +1,6 @@
-# AwardForce API Docs
+# API docs development
 
-Local development environment for the AwardForce API documentation, powered by [Mintlify](https://mintlify.com).
+Local development environment for the Award Force and Good Grants API documentation, powered by [Mintlify](https://mintlify.com).
 
 ## Requirements
 
@@ -29,15 +29,25 @@ Local development environment for the AwardForce API documentation, powered by [
 
 ## Usage
 
-### Start the dev server
+### Start the dev servers
 
 ```bash
-docker compose up mint
+docker compose up mint-awardforce
+docker compose up mint-goodgrants
 ```
 
-The docs will be available at [http://localhost:3000](http://localhost:3000).
+The docs will be available at:
 
-> If you see an orphan container warning, run `docker compose up mint --remove-orphans` to clean it up.
+- Award Force: [http://localhost:3000](http://localhost:3000)
+- Good Grants: [http://localhost:3001](http://localhost:3001)
+
+To start both at once:
+
+```bash
+docker compose up
+```
+
+If you see an orphan container warning, run `docker compose up --remove-orphans` to clean it up.
 
 ### npm
 
@@ -53,6 +63,6 @@ docker compose run --rm npm install mint
 # Remove a package
 docker compose run --rm npm uninstall mint
 
-# Run an npm script
-docker compose run --rm npm run <script>
+# Show npm version
+docker compose run --rm npm --version
 ```
