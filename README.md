@@ -31,21 +31,27 @@ Local development environment for the Award Force and Good Grants API documentat
 
 ### Helper script
 
-Use `./docs.sh` for the common workflows. Equivalent raw `docker compose` commands are shown alongside it below.
+Use `./docs` for the common workflows. Equivalent raw `docker compose` commands are shown alongside it below.
 
-Run `./docs.sh help` to see all supported commands.
+Run `./docs help` to see all supported commands.
 
-If you want to call it as `docs` instead of `./docs.sh`, add a symlink to a directory on your `PATH`:
+If you want to call it as `docs` from anywhere, add the repo directory to your `PATH` in `.zshrc` or `.bashrc`:
 
 ```bash
-mkdir -p ~/.local/bin
-ln -sf "$(pwd)/docs.sh" ~/.local/bin/docs
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="/absolute/path/to/apidocs-awardforce:$PATH"
 ```
 
-If `~/.local/bin` is already on your `PATH`, you only need the `ln -sf ...` step.
+Replace `/absolute/path/to/apidocs-awardforce` with the path to your local clone.
 
-If you do not add the symlink, you can still use the script directly as `./docs.sh` from the repo root.
+After editing your shell config, reload it:
+
+```bash
+source ~/.zshrc
+# or
+source ~/.bashrc
+```
+
+If you do not add the repo directory to your `PATH`, you can still use the script directly as `./docs` from the repo root.
 
 Then you can run commands like:
 
