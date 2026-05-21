@@ -4,7 +4,8 @@
   "engines": {
     "node": ">=20"
   },
-  "dependencies": {
-    "mint": "^4.2.569"
+  "devDependencies": {
+    "@redocly/cli": "^2.31.2",
+    "mint": "^4.2.573"
   }
 }
