@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_NAME="${0##*/}"
+cd "$ROOT_DIR"
+
+usage() {
+  cat <<'EOF'
+Usage:
+EOF
+
+  cat <<EOF
+  ${SCRIPT_NAME} awardforce [docker compose up options]
+  ${SCRIPT_NAME} goodgrants [docker compose up options]
+  ${SCRIPT_NAME} all [docker compose up options]
+  ${SCRIPT_NAME} logs <awardforce|goodgrants> [docker compose logs options]
+  ${SCRIPT_NAME} build [docker compose build options]
+  ${SCRIPT_NAME} down [docker compose down options]
+  ${SCRIPT_NAME} ps
+  ${SCRIPT_NAME} npm <npm args...>
+
+Examples:
+  ${SCRIPT_NAME} awardforce
+  ${SCRIPT_NAME} goodgrants -d
+  ${SCRIPT_NAME} all --remove-orphans
+  ${SCRIPT_NAME} logs goodgrants --tail=50
+  ${SCRIPT_NAME} npm install
+EOF
+}
+
+service_name() {
+  case "${1:-}" in
+    awardforce|af) echo "mint-awardforce" ;;
+    goodgrants|gg) echo "mint-goodgrants" ;;
+    *)
+      echo "Unknown vertical: ${1:-}" >&2
+      exit 1
+      ;;
+  esac
+}
+
+command="${1:-help}"
+shift || true
+
+case "$command" in
+  awardforce|af)
+    docker compose up "$@" mint-awardforce
+    ;;
+  goodgrants|gg)
+    docker compose up "$@" mint-goodgrants
+    ;;
+  all|up)
+    docker compose up "$@"
+    ;;
+  logs)
+    vertical="${1:-}"
+    if [[ -z "$vertical" ]]; then
+      echo "Usage: ${SCRIPT_NAME} logs <awardforce|goodgrants> [docker compose logs options]" >&2
+      exit 1
+    fi
+    shift
+    docker compose logs "$@" "$(service_name "$vertical")"
+    ;;
+  build)
+    docker compose build "$@"
+    ;;
+  down)
+    docker compose down "$@"
+    ;;
+  ps)
+    docker compose ps
+    ;;
+  npm)
+    docker compose run --rm npm "$@"
+    ;;
+  help|-h|--help)
+    usage
+    ;;
+  *)
+    usage >&2
+    exit 1
+    ;;
+esac
