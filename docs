@@ -8,6 +8,29 @@ ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPT_NAME="${0##*/}"
 cd "$ROOT_DIR"
 
+BOLD=""
+YELLOW=""
+RED=""
+NC=""
+
+if test -t 1; then
+  ncolors=$(tput colors 2>/dev/null || true)
+
+  if test -n "$ncolors" && test "$ncolors" -ge 8; then
+    BOLD="$(tput bold)"
+    YELLOW="$(tput setaf 3)"
+    RED="$(tput setaf 1)"
+    NC="$(tput sgr0)"
+  fi
+fi
+
+# Select the available Docker Compose command once during script startup.
+if docker compose &>/dev/null; then
+  DOCKER_COMPOSE=(docker compose)
+else
+  DOCKER_COMPOSE=(docker-compose)
+fi
+
 usage() {
   cat <<'EOF'
 Usage:
@@ -40,8 +63,28 @@ EOF
 }
 
 die_usage() {
-  echo "Usage: ${SCRIPT_NAME} $1" >&2
+  echo "${BOLD}${YELLOW}Usage:${NC} ${SCRIPT_NAME} $1" >&2
   exit 1
+}
+
+die() {
+  echo "${BOLD}${RED}Error:${NC} $1" >&2
+  exit 1
+}
+
+ensure_docker_available() {
+  if ! docker info > /dev/null 2>&1; then
+    echo "${BOLD}${RED}Docker is not running.${NC}" >&2
+    echo "${YELLOW}Please start Docker and try again.${NC}" >&2
+    echo "  - ${BOLD}${YELLOW}macOS:${NC} Open Docker Desktop" >&2
+    echo "  - ${BOLD}${YELLOW}Linux:${NC} sudo systemctl start docker" >&2
+    exit 1
+  fi
+}
+
+docker_compose() {
+  ensure_docker_available
+  "${DOCKER_COMPOSE[@]}" "$@"
 }
 
 require_vertical() {
@@ -78,8 +121,7 @@ vertical_name() {
     awardforce|af) echo "awardforce" ;;
     goodgrants|gg) echo "goodgrants" ;;
     *)
-      echo "Unknown vertical: ${1:-}" >&2
-      exit 1
+      die "Unknown vertical: ${1:-}"
       ;;
   esac
 }
@@ -99,8 +141,7 @@ bundle_openapi_vertical() {
   local -a spec_paths=()
 
   if [[ ! -d "$src_root" ]]; then
-    echo "Missing source directory: ${vertical_path}/src" >&2
-    exit 1
+    die "Missing source directory: ${vertical_path}/src"
   fi
 
   # Collect all versioned source specs up front. Running docker compose inside a
@@ -108,8 +149,7 @@ bundle_openapi_vertical() {
   mapfile -t spec_paths < <(find "$src_root" -mindepth 2 -maxdepth 2 -type f -name 'openapi.yaml' | sort)
 
   if [[ "${#spec_paths[@]}" -eq 0 ]]; then
-    echo "No versioned OpenAPI sources found under ${vertical_path}/src" >&2
-    exit 1
+    die "No versioned OpenAPI sources found under ${vertical_path}/src"
   fi
 
   for spec_path in "${spec_paths[@]}"; do
@@ -118,7 +158,7 @@ bundle_openapi_vertical() {
     input_path="${vertical_path}/src/${version_dir}/openapi.yaml"
     output_path="${vertical_path}/api-reference/openapi-${version_dir}.yaml"
 
-    docker compose --progress quiet run --quiet --quiet-pull --quiet-build --rm \
+    docker_compose --progress quiet run --quiet --quiet-pull --quiet-build --rm \
       --entrypoint /docs/node_modules/.bin/redocly npm \
       bundle "$input_path" --output "$output_path" </dev/null
   done
@@ -129,26 +169,26 @@ shift || true
 
 case "$command" in
   awardforce|af)
-    docker compose up "$@" awardforce
+    docker_compose up "$@" awardforce
     ;;
   goodgrants|gg)
-    docker compose up "$@" goodgrants
+    docker_compose up "$@" goodgrants
     ;;
   all|up)
-    docker compose up "$@"
+    docker_compose up "$@"
     ;;
   logs)
     vertical="${1:-}"
     require_vertical "$vertical" "logs <awardforce|af|goodgrants|gg> [docker compose logs options]"
     shift
-    docker compose logs "$@" "$(service_name "$vertical")"
+    docker_compose logs "$@" "$(service_name "$vertical")"
     ;;
   mint)
     vertical="${1:-}"
     require_vertical "$vertical" "mint <awardforce|af|goodgrants|gg> <mint args...>"
     shift
     require_args "mint <awardforce|af|goodgrants|gg> <mint args...>" "$#"
-    docker compose run --rm --entrypoint /docs/node_modules/.bin/mint "$(service_name "$vertical")" "$@"
+    docker_compose run --rm --entrypoint /docs/node_modules/.bin/mint "$(service_name "$vertical")" "$@"
     ;;
   openapi)
     target="${1:-all}"
@@ -168,21 +208,22 @@ case "$command" in
     esac
     ;;
   build)
-    docker compose build "$@"
+    docker_compose build "$@"
     ;;
   down)
-    docker compose down "$@"
+    docker_compose down "$@"
     ;;
   ps)
-    docker compose ps
+    docker_compose ps
     ;;
   npm)
-    docker compose run --rm npm "$@"
+    docker_compose run --rm npm "$@"
     ;;
   help|-h|--help)
     usage
     ;;
   *)
+    echo "${BOLD}${RED}Error:${NC} Unknown command: ${command}" >&2
     usage >&2
     exit 1
     ;;
