@@ -1,0 +1,485 @@
+get:
+  summary: List categories
+  tags:
+    - Category
+  parameters:
+    - name: status
+      in: query
+      required: false
+      description: |-
+        - active
+        - inactive
+      schema:
+        type: string
+    - name: chapter
+      in: query
+      required: false
+      description: Chapter slug
+      schema:
+        type: string
+    - name: parent
+      in: query
+      required: false
+      description: Category slug
+      schema:
+        type: string
+    - name: season
+      in: query
+      required: false
+      description: Season slug
+      schema:
+        type: string
+    - name: deleted
+      in: query
+      required: false
+      description: |-
+        - only (show only deleted categories)
+        - included (include deleted categories)
+        - none (exclude deleted categories)
+      schema:
+        type: string
+    - name: form
+      in: query
+      required: false
+      description: Form slug
+      schema:
+        type: string
+    - name: per_page
+      in: query
+      required: false
+      description: Number between 1 and 100
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: false
+      description: Number greater than 0
+      schema:
+        type: string
+    - name: order
+      in: query
+      required: false
+      description: |-
+        Column name to order by. The following options are available:
+        - chapters
+        - created
+        - divisions
+        - entry_count
+        - name
+        - parent
+        - season
+        - shortcode
+        - status
+        - updated
+      schema:
+        type: string
+    - name: dir
+      in: query
+      required: false
+      description: |-
+        - asc
+        - desc
+      schema:
+        type: string
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+    - name: x-api-language
+      in: header
+      required: false
+      description: Defines the languages to include in the response.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: List categories
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Set-Cookie:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              current_page:
+                type: integer
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    chapter_count:
+                      type: integer
+                    created:
+                      type: string
+                      format: date-time
+                    description:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                    divisions:
+                      type: integer
+                    entry_count:
+                      type: integer
+                    form:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+                        name:
+                          type: object
+                          properties:
+                            en_GB:
+                              type: string
+                    name:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                    parent:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+                        name:
+                          type: object
+                          properties:
+                            en_GB:
+                              type: string
+                    season:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+                        name:
+                          type: object
+                          properties:
+                            en_GB:
+                              type: string
+                    shortcode:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                          format: color
+                    slug:
+                      type: string
+                    status:
+                      type: string
+                    updated:
+                      type: string
+                      format: date-time
+              first_page_url:
+                type: string
+                format: uri
+              from:
+                type: integer
+              last_page:
+                type: integer
+              last_page_url:
+                type: string
+                format: uri
+              next_page_url:
+                type: string
+              path:
+                type: string
+                format: uri
+              per_page:
+                type: integer
+              prev_page_url:
+                type: string
+              to:
+                type: integer
+              total:
+                type: integer
+  description: Returns a list of categories.
+post:
+  summary: Create category
+  tags:
+    - Category
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '201':
+      description: Create category
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        Location:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              chapters:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    name:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+              created:
+                type: string
+                format: date-time
+              description:
+                type: object
+                properties:
+                  en_GB:
+                    type: string
+              divisions:
+                type: integer
+              entrant_max_entries:
+                type: integer
+              entry_name_label:
+                type: object
+                properties:
+                  en_GB:
+                    type: string
+              fill_entry_name:
+                type: boolean
+              form:
+                type: string
+              image_heading:
+                type: object
+                properties:
+                  en_GB:
+                    type: string
+              images:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    name:
+                      type: string
+                    download:
+                      type: string
+              max_image_width:
+                type: integer
+              name:
+                type: object
+                properties:
+                  en_GB:
+                    type: string
+              packing_slip_instructions:
+                type: object
+                properties:
+                  en_GB:
+                    type: string
+              parent:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              pdf_packing_slip:
+                type: boolean
+              season:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              shortcode:
+                type: object
+                properties:
+                  en_GB:
+                    type: string
+                    format: color
+              slug:
+                type: string
+              status:
+                type: string
+              updated:
+                type: string
+                format: date-time
+  description: >-
+    Create a new category.
+
+
+    | Parameter | Required | Type | Description |
+
+    | --------- | -------- | ---- | ----------- |
+
+    | season | Yes | String | Season slug |
+
+    | status | Yes | String | One of the following values: <ul> <li>active</li>
+    <li>inactive</li> </ul> |
+
+    | translated | Yes | Array | Array of key / value pairs where keys can be
+    any of the following: <ul> <li>name (Required)</li> <li>description</li>
+    <li>entry_name_label</li> <li>image_heading</li> 
+    <li>packing_slip_instructions</li> <li>shortcode</li> </ul> Values are
+    themselves of type Array containing key / value pairs where the key can be
+    any existing and enabled language code. |
+
+    | chapters | No | Array | Array of Chapter slugs |
+
+    | divisions | No | Integer | Number of divisions |
+
+    | entrant_max_entries | No | Integer | Number of max entries per Entrant |
+
+    | fill_entry_name | No | Boolean | Determines whether to prefill the entry
+    name field on the entry from when that category is selected |
+
+    | max_image_width | No | Integer | Maximum image width |
+
+    | form | No | String | Form slug |
+
+    | parent | No | String | Parent Category slug |
+
+    | pdf_packing_slip | No | Boolean | Determines whether or not to generate a
+    PDF packing slip |

@@ -1,0 +1,505 @@
+put:
+  summary: Tag entry
+  tags:
+    - Entry
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Tag entry
+      headers:
+        Date:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              attachments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    name:
+                      type: string
+                    download:
+                      type: string
+                    attachment_fields:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          slug:
+                            type: string
+                          link:
+                            type: string
+                            format: uri
+                          label:
+                            type: object
+                            properties:
+                              en_GB:
+                                type: string
+                          value:
+                            type: string
+                          translated:
+                            type: object
+                            properties:
+                              en_GB:
+                                type: string
+              category:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              chapter:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              comments:
+                type: string
+              contributor_count:
+                type: integer
+              contributors:
+                type: array
+                items: {}
+              created:
+                type: string
+                format: date-time
+              division:
+                nullable: true
+              entrant:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+              entry_fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    label:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                    value:
+                      type: string
+                    translated:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+              files_count:
+                type: integer
+              form:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              local_id:
+                type: integer
+              moderation_status:
+                type: string
+              parent_category:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              payment_status:
+                type: string
+              plagiarism_scan_status:
+                type: string
+              resubmitted:
+                type: string
+              review_status:
+                type: string
+              season:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              slug:
+                type: string
+              status:
+                type: string
+              submitted:
+                type: string
+                format: date-time
+              tags:
+                type: string
+              title:
+                type: string
+              updated:
+                type: string
+                format: date-time
+  description: Add tags to an existing entry.
+parameters:
+  - name: slug
+    in: path
+    required: true
+    description: Entry slug
+    schema:
+      type: string
+  - name: tags
+    in: path
+    required: true
+    description: Tags to be removed from the entry, separated by comma
+    schema:
+      type: string
+delete:
+  summary: Untag entry
+  tags:
+    - Entry
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Untag entry
+      headers:
+        Date:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              attachments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    name:
+                      type: string
+                    download:
+                      type: string
+                    attachment_fields:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          slug:
+                            type: string
+                          link:
+                            type: string
+                            format: uri
+                          label:
+                            type: object
+                            properties:
+                              en_GB:
+                                type: string
+                          value:
+                            type: string
+                          translated:
+                            type: object
+                            properties:
+                              en_GB:
+                                type: string
+              category:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              chapter:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              comments:
+                type: string
+              contributor_count:
+                type: integer
+              contributors:
+                type: array
+                items: {}
+              created:
+                type: string
+                format: date-time
+              division:
+                nullable: true
+              entrant:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                  fist_name:
+                    type: string
+                  last_name:
+                    type: string
+              entry_fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    label:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                    value:
+                      type: string
+                    translated:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+              files_count:
+                type: integer
+              form:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              local_id:
+                type: integer
+              moderation_status:
+                type: string
+              parent_category:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              payment_status:
+                type: string
+              plagiarism_scan_status:
+                type: string
+              resubmitted:
+                type: string
+              review_status:
+                type: string
+              season:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              slug:
+                type: string
+              status:
+                type: string
+              submitted:
+                type: string
+                format: date-time
+              tags:
+                type: string
+              title:
+                type: string
+              updated:
+                type: string
+                format: date-time
+  description: Remove tags from an existing entry.

@@ -1,0 +1,151 @@
+get:
+  summary: Get file info
+  tags:
+    - File
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+    - name: x-api-language
+      in: header
+      required: false
+      description: Defines the languages to include in the response.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Get file info
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              download_link:
+                type: string
+              duration:
+                nullable: true
+              filename:
+                type: string
+              image_height:
+                nullable: true
+              image_width:
+                nullable: true
+              metadata:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  caption:
+                    type: string
+                  copyright:
+                    type: string
+                  created:
+                    type: string
+                  city:
+                    type: string
+                  country:
+                    type: string
+                  state:
+                    type: string
+                  camera:
+                    type: string
+                  exposure:
+                    type: string
+                  iso:
+                    type: string
+                  fstop:
+                    type: string
+                  focal_length:
+                    type: string
+                  size:
+                    type: string
+              mime:
+                type: string
+              size:
+                type: integer
+              transcoding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    basename:
+                      type: string
+                    download_link:
+                      type: string
+                    extension:
+                      type: string
+                    timestamp:
+                      type: integer
+                    size:
+                      type: integer
+                    etag:
+                      type: string
+  description: Returns file information by its token.
+parameters:
+  - name: token
+    in: path
+    required: true
+    description: File token
+    schema:
+      type: string

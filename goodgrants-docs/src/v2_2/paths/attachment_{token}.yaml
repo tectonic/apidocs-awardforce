@@ -1,0 +1,380 @@
+get:
+  summary: Get attachment
+  tags:
+    - Attachment
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Get attachment
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              entry:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  title:
+                    type: string
+              attachment_fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    label:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                    value:
+                      type: string
+                    translated:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+              created:
+                type: string
+                format: date-time
+              file:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  download:
+                    type: string
+                    format: uri
+                  filename:
+                    type: string
+              order:
+                type: integer
+              tab:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              token:
+                type: string
+              updated:
+                type: string
+                format: date-time
+  description: >-
+    Returns an attachment by its token. The response consists of all attachment
+    fields. Files include a download link.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+parameters:
+  - name: token
+    in: path
+    required: true
+    description: Attachment token
+    schema:
+      type: string
+put:
+  summary: Update attachment
+  tags:
+    - Attachment
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Update attachment
+      headers:
+        Date:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              entry:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  title:
+                    type: string
+              attachment_fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    label:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                    value:
+                      type: string
+                    translated:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+              created:
+                type: string
+                format: date-time
+              file:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  download:
+                    type: string
+                    format: uri
+                  filename:
+                    type: string
+              order:
+                type: integer
+              tab:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              token:
+                type: string
+              updated:
+                type: string
+                format: date-time
+  description: >-
+    Update an existing attachment.  
+
+    Please note that attachment fields are linked to the attachment and
+    shouldn't be confused with form fields.  
+
+    If you don't have attachment fields you can remove this object from the body
+    of your request.
+
+
+    | Parameter | Required | Type | Description |
+
+    | --- | --- | --- | --- |
+
+    | attachment_fields | No | array | Object containing key / value pairs.
+    Where the key is the Field slug. e.g. "fJkIjGmB": "Test value" |
+
+    | order | No | Integer | Attachment order |
+
+    | tab | No | Array | Tab slug |
+delete:
+  summary: Delete attachment
+  tags:
+    - Attachment
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Delete attachment
+      headers:
+        Date:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+  description: Delete an existing attachment.

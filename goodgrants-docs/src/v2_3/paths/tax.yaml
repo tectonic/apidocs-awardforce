@@ -1,0 +1,139 @@
+get:
+  summary: List taxes
+  tags:
+    - Tax
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+    - name: x-api-language
+      in: header
+      required: false
+      description: Defines the languages to include in the response.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: List taxes
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Set-Cookie:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              current_page:
+                type: integer
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    country:
+                      type: string
+                    country_name:
+                      type: string
+                    created:
+                      type: string
+                      format: date-time
+                    name:
+                      type: string
+                    rate:
+                      type: integer
+                    region:
+                      nullable: true
+                    region_name:
+                      nullable: true
+                    slug:
+                      type: string
+                    term:
+                      type: string
+                    updated:
+                      type: string
+                      format: date-time
+              first_page_url:
+                type: string
+                format: uri
+              from:
+                type: integer
+              last_page:
+                type: integer
+              last_page_url:
+                type: string
+                format: uri
+              next_page_url:
+                type: string
+              path:
+                type: string
+                format: uri
+              per_page:
+                type: integer
+              prev_page_url:
+                type: string
+              to:
+                type: integer
+              total:
+                type: integer
+  description: Returns a list of taxes.

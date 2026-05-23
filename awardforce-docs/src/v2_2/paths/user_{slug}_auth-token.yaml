@@ -1,0 +1,93 @@
+get:
+  summary: Get auth token
+  tags:
+    - User
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Get auth token
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              auth_token:
+                type: string
+  description: >-
+    Returns an auth token for a given user. The response consists of a token
+    that allows the user to log into the app using SSO. To learn more about this
+    please refer to [Creating your own SSO integration in Award
+    Force](https://support.awardforce.com/hc/en-us/articles/360002282716-Creating-your-own-SSO-integration)
+    or [Creating your own SSO integration in Good
+    Grants](https://help.goodgrants.com/hc/en-gb/articles/360002287675-Creating-your-own-SSO-integration).
+parameters:
+  - name: slug
+    in: path
+    required: true
+    description: User slug
+    schema:
+      type: string

@@ -1,0 +1,274 @@
+get:
+  summary: Get webhook
+  tags:
+    - Webhook
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Get webhook
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  type: string
+              method:
+                type: string
+              name:
+                type: string
+              slug:
+                type: string
+              signing_key:
+                type: string
+              url:
+                type: string
+                format: uri
+              updated:
+                type: string
+                format: date-time
+  description: Returns a webhook by its slug.
+parameters:
+  - name: slug
+    in: path
+    required: true
+    schema:
+      type: string
+put:
+  summary: Update webhook
+  tags:
+    - Webhook
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Update webhook
+      headers:
+        Date:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  type: string
+              method:
+                type: string
+              name:
+                type: string
+              slug:
+                type: string
+              signing_key:
+                type: string
+              url:
+                type: string
+                format: uri
+              updated:
+                type: string
+                format: date-time
+  description: >-
+    Update events, name and method of an existing webhook.
+
+
+    | Parameter | Required | Type | Description |
+
+    | --- | --- | --- | --- |
+
+    | method | No | String | HTTP supported methods ("get"/"post") |
+
+    | name | No | String | Name of the webhook |
+
+    | url | No | String | URL for the webhook |
+
+    | signing_key | No | String | Requests will be signed using this key and you
+    can use it to validate the webhook payload. |
+
+    | events | No | Array | List of events will trigger the webhook. Example:
+    \['role_granted', 'allocation_created'\] |
+delete:
+  summary: Delete webhook
+  tags:
+    - Webhook
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Delete webhook
+      headers:
+        Date:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Set-Cookie:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+  description: Delete an existing webhook.

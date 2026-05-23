@@ -1,0 +1,31 @@
+put:
+  summary: Update entry chapter
+  tags:
+    - Entry (realtime)
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    default:
+      description: Update entry chapter
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+parameters:
+  - name: slug
+    in: path
+    required: true
+    schema:
+      type: string

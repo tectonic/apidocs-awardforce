@@ -1,0 +1,361 @@
+get:
+  summary: Get assignment
+  tags:
+    - Assignment
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+    - name: x-api-language
+      in: header
+      required: false
+      description: Defines expected language.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Get assignment
+      headers:
+        Server:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        X-Powered-By:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        Date:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              category:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+                      pl_PL:
+                        type: string
+              chapter:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+                      pl_PL:
+                        type: string
+              comments:
+                type: object
+                properties:
+                  judging:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        comment:
+                          type: string
+                        created_at:
+                          type: string
+                          format: date-time
+                        updated_at:
+                          type: string
+                          format: date-time
+                        user:
+                          type: object
+                          properties:
+                            slug:
+                              type: string
+                            link:
+                              type: string
+                              format: uri
+                            name:
+                              type: string
+                            first_name:
+                              type: string
+                            last_name:
+                              type: string
+                  abstention:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        comment:
+                          type: string
+                        created_at:
+                          type: string
+                          format: date-time
+                        updated_at:
+                          type: string
+                          format: date-time
+                        user:
+                          type: object
+                          properties:
+                            slug:
+                              type: string
+                            link:
+                              type: string
+                              format: uri
+                            name:
+                              type: string
+                            first_name:
+                              type: string
+                            last_name:
+                              type: string
+                  conflict:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        comment:
+                          type: string
+                        created_at:
+                          type: string
+                          format: date-time
+                        updated_at:
+                          type: string
+                          format: date-time
+                        user:
+                          type: object
+                          properties:
+                            slug:
+                              type: string
+                            link:
+                              type: string
+                              format: uri
+                            name:
+                              type: string
+                            first_name:
+                              type: string
+                            last_name:
+                              type: string
+                  criteria:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        comments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              slug:
+                                type: string
+                              comment:
+                                type: string
+                              created_at:
+                                type: string
+                                format: date-time
+                              updated_at:
+                                type: string
+                                format: date-time
+                              user:
+                                type: object
+                                properties:
+                                  slug:
+                                    type: string
+                                  link:
+                                    type: string
+                                    format: uri
+                                  name:
+                                    type: string
+                                  first_name:
+                                    type: string
+                                  last_name:
+                                    type: string
+              created:
+                type: string
+                format: date-time
+              entry:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  title:
+                    type: string
+              form:
+                type: string
+              judge:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+              method:
+                type: string
+              panels:
+                type: array
+                items: {}
+              role:
+                nullable: true
+              rounds:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    name:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                        pl_PL:
+                          type: string
+              score_set:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+                      pl_PL:
+                        type: string
+              slug:
+                type: string
+              status:
+                type: string
+              updated:
+                type: string
+                format: date-time
+  description: Returns an assignment identified by it's slug.
+parameters:
+  - name: slug
+    in: path
+    required: true
+    schema:
+      type: string
+delete:
+  summary: Delete assignment
+  tags:
+    - Assignment
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+    - name: x-api-language
+      in: header
+      required: false
+      description: Defines expected language.
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Delete assignment
+      headers:
+        Server:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        X-Powered-By:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        Date:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+  description: Delete an existing assignment.

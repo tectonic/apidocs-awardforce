@@ -1,0 +1,81 @@
+put:
+  summary: Recuse assignment
+  tags:
+    - Assignment
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+    - name: x-api-language
+      in: header
+      required: false
+      description: Defines expected language.
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Recuse assignment
+      headers:
+        Server:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        X-Powered-By:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        Date:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+  description: |-
+    Recuse a judge from an existing assignment.
+
+    | Parameter | Required | Type | Description |
+    | --- | --- | --- | --- |
+    | judge | Yes | String | Judge slug |
+    | score_set | No | String | Score Set slug |
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            judge:
+              type: string
+            score_set:
+              type: string
+parameters:
+  - name: slug
+    in: path
+    required: true
+    schema:
+      type: string

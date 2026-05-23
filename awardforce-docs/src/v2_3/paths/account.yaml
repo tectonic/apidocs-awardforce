@@ -1,0 +1,75 @@
+get:
+  summary: Get account
+  tags:
+    - Account
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+    - name: x-api-language
+      in: header
+      required: false
+      description: Defines expected language.
+      schema:
+        type: string
+  responses:
+    default:
+      description: Get account
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              created:
+                type: string
+                format: date-time
+              domains:
+                type: array
+                items:
+                  type: string
+              global_id:
+                type: string
+              languages:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+              name:
+                type: string
+              owner:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+              product:
+                type: string
+              region:
+                type: string
+              slug:
+                type: string
+              timezone:
+                type: string
+              updated:
+                type: string
+                format: date-time
+  description: Returns the account's information based on the API key used in the header.

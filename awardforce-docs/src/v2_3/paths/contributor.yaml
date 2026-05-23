@@ -1,0 +1,355 @@
+get:
+  summary: List contributors
+  tags:
+    - Contributor
+  parameters:
+    - name: per_page
+      in: query
+      required: false
+      description: Number between 1 and 100
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: false
+      description: Number greater than 0
+      schema:
+        type: string
+    - name: order
+      in: query
+      required: false
+      description: Column name to order by
+      schema:
+        type: string
+    - name: dir
+      in: query
+      required: false
+      description: |-
+        - asc
+        - desc
+      schema:
+        type: string
+    - name: chapter
+      in: query
+      required: false
+      description: '- chapter slug -'
+      schema:
+        type: string
+    - name: category
+      in: query
+      required: false
+      description: '- category slug -'
+      schema:
+        type: string
+    - name: season
+      in: query
+      required: false
+      description: |-
+        - season slug
+        - "all" to show all seasons
+      schema:
+        type: string
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+    - name: x-api-language
+      in: header
+      required: false
+      description: Defines the languages to include in the response.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: List contributors
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Set-Cookie:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              current_page:
+                type: integer
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    entry:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+                        title:
+                          type: string
+                    created:
+                      type: string
+                      format: date-time
+                    fields:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          slug:
+                            type: string
+                          link:
+                            type: string
+                            format: uri
+                          label:
+                            type: object
+                            properties:
+                              en_GB:
+                                type: string
+                          value:
+                            type: string
+                    season:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+                        name:
+                          type: object
+                          properties:
+                            en_GB:
+                              type: string
+                              format: utc-millisec
+                    slug:
+                      type: string
+                    tab:
+                      type: array
+                      items: {}
+                    updated:
+                      type: string
+                      format: date-time
+              first_page_url:
+                type: string
+                format: uri
+              from:
+                type: integer
+              last_page:
+                type: integer
+              last_page_url:
+                type: string
+                format: uri
+              next_page_url:
+                type: string
+              path:
+                type: string
+                format: uri
+              per_page:
+                type: integer
+              prev_page_url:
+                type: string
+              to:
+                type: integer
+              total:
+                type: integer
+  description: Returns a list of contributors.
+post:
+  summary: Create contributor
+  tags:
+    - Contributor
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '201':
+      description: Create contributor
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        Location:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              entry:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  title:
+                    type: string
+              created:
+                type: string
+                format: date-time
+              fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    link:
+                      type: string
+                      format: uri
+                    label:
+                      type: object
+                      properties:
+                        en_GB:
+                          type: string
+                    value:
+                      type: string
+              season:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+                        format: utc-millisec
+              slug:
+                type: string
+              tab:
+                type: array
+                items: {}
+              updated:
+                type: string
+                format: date-time
+  description: >-
+    Create a new contributor.
+
+
+    | Parameter | Required | Type | Description |
+
+    | --------- | -------- | ---- | ----------- |
+
+    | entry | Yes | String | Entry slug |
+
+    | tab | Yes | String | Tab slug. It must be a contributor tab. |
+
+    | fields | No| Object | Object containing key / value pairs. Where the key
+    is the Field slug. e.g. "fJkIjGmB": "Test value" |

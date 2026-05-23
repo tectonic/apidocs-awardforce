@@ -1,0 +1,125 @@
+post:
+  summary: Create review task
+  tags:
+    - Review task
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    default:
+      description: Create review task
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+get:
+  summary: List review task
+  tags:
+    - Review task
+  parameters:
+    - name: action_at
+      in: query
+      required: false
+      description: |-
+        - [before]=YYYY-MM-DDTHH:MM:SSZ
+        - [after]=YYYY-MM-DDTHH:MM:SSZ
+        - [on]=YYYY-MM-DDTHH:MM:SSZ
+        - [between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]
+      schema:
+        type: string
+    - name: created_at
+      in: query
+      required: false
+      description: |-
+        - [before]=YYYY-MM-DDTHH:MM:SSZ
+        - [after]=YYYY-MM-DDTHH:MM:SSZ
+        - [on]=YYYY-MM-DDTHH:MM:SSZ
+        - [between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]
+      schema:
+        type: string
+    - name: decision
+      in: query
+      required: false
+      description: Decision name
+      schema:
+        type: string
+    - name: deleted
+      in: query
+      required: false
+      description: |-
+        - only (show only deleted review tasks)
+        - included (include deleted review tasks)
+        - none (exclude deleted review tasks)
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: false
+      description: Number greater than 0
+      schema:
+        type: string
+    - name: per_page
+      in: query
+      required: false
+      description: Number between 1 and 100
+      schema:
+        type: string
+    - name: review_stage
+      in: query
+      required: false
+      description: Review stage slug
+      schema:
+        type: string
+    - name: reviewer
+      in: query
+      required: false
+      description: Reviewer name or email
+      schema:
+        type: string
+    - name: season
+      in: query
+      required: false
+      description: Season slug
+      schema:
+        type: string
+    - name: updated_at
+      in: query
+      required: false
+      description: |-
+        - [before]=YYYY-MM-DDTHH:MM:SSZ
+        - [after]=YYYY-MM-DDTHH:MM:SSZ
+        - [on]=YYYY-MM-DDTHH:MM:SSZ
+        - [between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]
+      schema:
+        type: string
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    default:
+      description: List review task
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object

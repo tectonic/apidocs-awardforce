@@ -1,0 +1,466 @@
+get:
+  summary: Get order
+  tags:
+    - Order
+  parameters:
+    - name: deleted
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: per_page
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: order
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: dir
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Get order
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Vary:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Content-Encoding:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+              city:
+                type: string
+              comments:
+                type: string
+              company:
+                type: string
+                format: color
+              country:
+                type: string
+              created_at:
+                type: string
+                format: date-time
+              currency:
+                type: string
+              discount:
+                type: integer
+              discount_code:
+                type: string
+              invoice_number:
+                type: string
+              ip_address:
+                type: string
+                format: ip-address
+              items:
+                type: string
+              items_array:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    amount:
+                      type: string
+                      format: utc-millisec
+                    description:
+                      type: string
+                      format: style
+                    discount:
+                      type: string
+                      format: utc-millisec
+                    entry:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+                        title:
+                          type: string
+                    item_type:
+                      type: string
+                    name:
+                      type: string
+                    price:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+                        title:
+                          type: object
+                          properties:
+                            en_GB:
+                              type: string
+                    quantity:
+                      type: integer
+              member_number:
+                type: string
+                format: color
+              payment_method:
+                type: string
+              payment_status:
+                type: string
+              postcode:
+                type: string
+                format: utc-millisec
+              processing_fee:
+                type: number
+              processing_fee_rate:
+                type: number
+              region:
+                type: string
+              season:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              slug:
+                type: string
+              state:
+                type: string
+              subtotal:
+                type: number
+              tax:
+                type: number
+              tax_rate:
+                type: integer
+              tax_rate_details:
+                type: object
+                properties:
+                  country:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                  rate:
+                    type: integer
+                  region:
+                    nullable: true
+                  slug:
+                    type: string
+                  term:
+                    type: string
+              tax_term:
+                type: string
+              total:
+                type: number
+              transaction_date:
+                type: string
+                format: date-time
+              transaction_provider:
+                type: string
+              transaction_reference:
+                type: string
+              transaction_status:
+                type: string
+              user:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  email:
+                    type: string
+                    format: email
+              vat_number:
+                type: string
+  description: Returns an order by its slug.
+parameters:
+  - name: slug
+    in: path
+    required: true
+    description: Order slug
+    schema:
+      type: string
+put:
+  summary: Update order
+  tags:
+    - Order
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Update order
+      headers:
+        Date:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+              city:
+                type: string
+              comments:
+                type: string
+              company:
+                type: string
+                format: color
+              country:
+                type: string
+              created_at:
+                type: string
+                format: date-time
+              currency:
+                type: string
+              discount:
+                type: integer
+              discount_code:
+                type: string
+              invoice_number:
+                type: string
+              ip_address:
+                type: string
+                format: ip-address
+              items:
+                type: string
+              member_number:
+                type: string
+                format: color
+              payment_method:
+                type: string
+              payment_status:
+                type: string
+              postcode:
+                type: string
+                format: utc-millisec
+              processing_fee:
+                type: number
+              processing_fee_rate:
+                type: number
+              region:
+                type: string
+              season:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+              slug:
+                type: string
+              state:
+                type: string
+              subtotal:
+                type: number
+              tax:
+                type: number
+              tax_rate:
+                type: integer
+              tax_term:
+                type: string
+              total:
+                type: number
+              transaction_date:
+                type: string
+                format: date-time
+              transaction_provider:
+                type: string
+              transaction_reference:
+                type: string
+              transaction_status:
+                type: string
+              user:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  email:
+                    type: string
+                    format: email
+              vat_number:
+                type: string
+  description: >-
+    Update the billing information and the status of an existing order.
+
+
+    | Parameter | Required | Type | Description |
+
+    | --------- | -------- | ---- | ----------- |
+
+    | company | No| String | Billing information |
+
+    | address | No | String | Billing information |
+
+    | city | No | String | Billing information |
+
+    | state | No | String | Billing information |
+
+    | postcode | No | String | Billing information |
+
+    | country | No | Two-letter country code | Billing information (see
+    https://support.awardforce.com/hc/en-us/articles/360000237856-Two-letter-country-codes)
+    |
+
+    | payment_status | No | String | Status of the order. Possible values: <ul>
+    <li>paid</li> <li>awaiting_payment</li> |
+
+    | note | No | String | Annotation on the order |
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object

@@ -1,0 +1,110 @@
+post:
+  summary: Create attachment
+  tags:
+    - Attachment
+  parameters:
+    - name: Accept
+      in: header
+      required: true
+      description: Defines the response type.
+      schema:
+        type: string
+    - name: x-api-key
+      in: header
+      required: true
+      description: Used for authentication and authorisation.
+      schema:
+        type: string
+  responses:
+    '201':
+      description: Upload entry attachment
+      headers:
+        Date:
+          schema:
+            type: string
+        Transfer-Encoding:
+          schema:
+            type: string
+        Connection:
+          schema:
+            type: string
+        Cache-Control:
+          schema:
+            type: string
+        Location:
+          schema:
+            type: string
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+        ETag:
+          schema:
+            type: string
+        X-Frame-Options:
+          schema:
+            type: string
+        X-XSS-Protection:
+          schema:
+            type: integer
+        Strict-Transport-Security:
+          schema:
+            type: string
+        Feature-Policy:
+          schema:
+            type: string
+        Referrer-Policy:
+          schema:
+            type: string
+        X-Content-Type-Options:
+          schema:
+            type: string
+        Content-Security-Policy:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+              link:
+                type: string
+                format: uri
+              file:
+                type: object
+                properties:
+                  filename:
+                    type: string
+                  token:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+  description: >-
+    Upload an attachment to an entry by its tab.  
+
+    Please note that attachment fields are linked to the attachment and
+    shouldn't be confused with form fields.  
+
+    If you don't have attachment fields you can remove this object from the body
+    of your request.
+parameters:
+  - name: entry_slug
+    in: path
+    required: true
+    description: Entry slug
+    schema:
+      type: string
+  - name: tab_slug
+    in: path
+    required: true
+    description: Entry tab slug
+    schema:
+      type: string
