@@ -146,5 +146,9 @@ docs openapi-clean af
 docs openapi-clean
 ```
 
+The bundled files under `api-reference/openapi-*.yaml` are generated from `src/` and committed to git because Mintlify deploys from repository contents and `docs.json` references those bundled files directly.
+
 `docs openapi-lint` lints the generated files under `api-reference/openapi-*.yaml`.
 If those bundles do not exist yet, run `docs openapi` first.
+
+When you change OpenAPI source files under `src/`, regenerate the matching bundles with `docs openapi` and commit both the source changes and the updated `api-reference/` outputs together.
