@@ -20,16 +20,16 @@ services:
   awardforce:
     <<: *mint-base
     working_dir: /docs/awardforce-docs
-    command: /docs/node_modules/.bin/mint dev --port 3000 --no-open
+    command: /docs/node_modules/.bin/mint dev --port ${MINT_PORT_AWARDFORCE:-3000} --no-open
     ports:
-      - "${MINT_PORT_AWARDFORCE:-3000}:3000"
+      - "${MINT_PORT_AWARDFORCE:-3000}:${MINT_PORT_AWARDFORCE:-3000}"
 
   goodgrants:
     <<: *mint-base
     working_dir: /docs/goodgrants-docs
-    command: /docs/node_modules/.bin/mint dev --port 3000 --no-open
+    command: /docs/node_modules/.bin/mint dev --port ${MINT_PORT_GOODGRANTS:-3001} --no-open
     ports:
-      - "${MINT_PORT_GOODGRANTS:-3001}:3000"
+      - "${MINT_PORT_GOODGRANTS:-3001}:${MINT_PORT_GOODGRANTS:-3001}"
 
   npm:
     <<: *build-base
