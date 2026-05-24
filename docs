@@ -31,6 +31,10 @@ else
   DOCKER_COMPOSE=(docker-compose)
 fi
 
+# Canonical vertical slugs used when a command should target every docs site.
+VERTICALS=(awardforce goodgrants)
+
+# Display the available commands and example invocations.
 usage() {
   cat <<'EOF'
 Usage:
@@ -41,8 +45,9 @@ EOF
   ${SCRIPT_NAME} goodgrants [docker compose up options]
   ${SCRIPT_NAME} all [docker compose up options]
   ${SCRIPT_NAME} logs <awardforce|af|goodgrants|gg> [docker compose logs options]
-  ${SCRIPT_NAME} mint <awardforce|af|goodgrants|gg> <mint args...>
+  ${SCRIPT_NAME} validate [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} openapi [awardforce|af|goodgrants|gg|all]
+  ${SCRIPT_NAME} openapi-clean [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} build [docker compose build options]
   ${SCRIPT_NAME} down [docker compose down options]
   ${SCRIPT_NAME} ps
@@ -54,24 +59,36 @@ Examples:
   ${SCRIPT_NAME} goodgrants -d
   ${SCRIPT_NAME} logs gg --tail=50
   ${SCRIPT_NAME} all --remove-orphans
-  ${SCRIPT_NAME} mint awardforce analytics stats
-  ${SCRIPT_NAME} mint gg status
+  ${SCRIPT_NAME} validate
+  ${SCRIPT_NAME} validate gg
   ${SCRIPT_NAME} openapi
   ${SCRIPT_NAME} openapi af
+  ${SCRIPT_NAME} openapi-clean
+  ${SCRIPT_NAME} openapi-clean gg
   ${SCRIPT_NAME} npm install
 EOF
 }
 
+# Print a usage error for a specific command form and exit.
 die_usage() {
   echo "${BOLD}${YELLOW}Usage:${NC} ${SCRIPT_NAME} $1" >&2
   exit 1
 }
 
+# Print a formatted error message and exit.
 die() {
   echo "${BOLD}${RED}Error:${NC} $1" >&2
   exit 1
 }
 
+# Print an unknown-command error, then show help and exit.
+die_unknown_command() {
+  echo "${BOLD}${RED}Error:${NC} Unknown command: $1" >&2
+  usage >&2
+  exit 1
+}
+
+# Ensure the local Docker daemon is available before running Compose commands.
 ensure_docker_available() {
   if ! docker info > /dev/null 2>&1; then
     echo "${BOLD}${RED}Docker is not running.${NC}" >&2
@@ -82,11 +99,30 @@ ensure_docker_available() {
   fi
 }
 
+# Run the selected Docker Compose command after the Docker preflight check.
 docker_compose() {
   ensure_docker_available
   "${DOCKER_COMPOSE[@]}" "$@"
 }
 
+# Run the Mint CLI inside the selected vertical service container.
+run_mint_vertical() {
+  local vertical="$1"
+  shift
+  docker_compose run --rm --entrypoint /docs/node_modules/.bin/mint "$vertical" "$@"
+}
+
+# Run a shell script inside the selected vertical service for Redocly tasks.
+run_redocly_vertical() {
+  local vertical="$1"
+  local script="$2"
+  shift
+  shift
+  docker_compose run --rm \
+    --entrypoint sh "$vertical" -lc "$script" sh "$@" </dev/null
+}
+
+# Require a vertical argument for commands that target one docs site.
 require_vertical() {
   local vertical="${1:-}"
   local usage_text="$2"
@@ -96,15 +132,29 @@ require_vertical() {
   fi
 }
 
-require_args() {
-  local usage_text="$1"
-  local arg_count="$2"
+# Run a helper for one canonical vertical or for every vertical.
+run_for_target() {
+  local target="$1"
+  local usage_text="$2"
+  local handler="$3"
+  shift 3
 
-  if [[ "$arg_count" -eq 0 ]]; then
-    die_usage "$usage_text"
-  fi
+  case "$target" in
+    all)
+      for vertical in "${VERTICALS[@]}"; do
+        "$handler" "$vertical" "$@"
+      done
+      ;;
+    awardforce|af|goodgrants|gg)
+      "$handler" "$(vertical_name "$target")" "$@"
+      ;;
+    *)
+      die_usage "$usage_text"
+      ;;
+  esac
 }
 
+# Reject unexpected trailing arguments for fixed-shape commands.
 require_no_extra_args() {
   local usage_text="$1"
   local arg_count="$2"
@@ -126,19 +176,20 @@ vertical_name() {
   esac
 }
 
-service_name() {
-  vertical_name "$1"
-}
-
 # Docs directories follow the convention <vertical>-docs/.
 vertical_dir() {
   printf '%s-docs\n' "$(vertical_name "$1")"
 }
 
+# Bundle every versioned OpenAPI source for one vertical into api-reference/.
 bundle_openapi_vertical() {
-  local vertical_path="$1"
-  local src_root="$ROOT_DIR/$vertical_path/src"
-  local -a spec_paths=()
+  local vertical="$1"
+  local vertical_path
+  local src_root
+  local -a version_dirs=()
+
+  vertical_path="$(vertical_dir "$vertical")"
+  src_root="$ROOT_DIR/$vertical_path/src"
 
   if [[ ! -d "$src_root" ]]; then
     die "Missing source directory: ${vertical_path}/src"
@@ -146,34 +197,50 @@ bundle_openapi_vertical() {
 
   # Collect all versioned source specs up front. Running docker compose inside a
   # while-read loop can consume the loop stdin and stop after the first match.
-  mapfile -t spec_paths < <(find "$src_root" -mindepth 2 -maxdepth 2 -type f -name 'openapi.yaml' | sort)
+  mapfile -t version_dirs < <(find "$src_root" -mindepth 2 -maxdepth 2 -type f -name 'openapi.yaml' | sort | while read -r spec_path; do basename "$(dirname "$spec_path")"; done)
 
-  if [[ "${#spec_paths[@]}" -eq 0 ]]; then
+  if [[ "${#version_dirs[@]}" -eq 0 ]]; then
     die "No versioned OpenAPI sources found under ${vertical_path}/src"
   fi
 
-  for spec_path in "${spec_paths[@]}"; do
-    local version_dir input_path output_path
-    version_dir="$(basename "$(dirname "$spec_path")")"
-    input_path="${vertical_path}/src/${version_dir}/openapi.yaml"
-    output_path="${vertical_path}/api-reference/openapi-${version_dir}.yaml"
+  run_redocly_vertical "$vertical" '
+    for version_dir in "$@"; do
+      input_path="src/${version_dir}/openapi.yaml"
+      output_path="api-reference/openapi-${version_dir}.yaml"
+      /docs/node_modules/.bin/redocly bundle "$input_path" --output "$output_path"
+    done
+  ' "${version_dirs[@]}"
+}
 
-    docker_compose --progress quiet run --quiet --quiet-pull --quiet-build --rm \
-      --entrypoint /docs/node_modules/.bin/redocly npm \
-      bundle "$input_path" --output "$output_path" </dev/null
-  done
+# Remove generated bundled OpenAPI files for one vertical.
+clear_bundled_openapi_vertical() {
+  local vertical="$1"
+  local vertical_path
+  local output_root
+  local -a bundled_paths=()
+
+  vertical_path="$(vertical_dir "$vertical")"
+  output_root="$ROOT_DIR/$vertical_path/api-reference"
+
+  if [[ ! -d "$output_root" ]]; then
+    die "Missing api-reference directory: ${vertical_path}/api-reference"
+  fi
+
+  mapfile -t bundled_paths < <(find "$output_root" -maxdepth 1 -type f -name 'openapi-*.yaml' | sort)
+
+  if [[ "${#bundled_paths[@]}" -eq 0 ]]; then
+    echo "No bundled OpenAPI files found under ${vertical_path}/api-reference"
+    return
+  fi
+
+  rm -f "${bundled_paths[@]}"
+  echo "Removed ${#bundled_paths[@]} bundled OpenAPI file(s) from ${vertical_path}/api-reference"
 }
 
 command="${1:-help}"
 shift || true
 
 case "$command" in
-  awardforce|af)
-    docker_compose up "$@" awardforce
-    ;;
-  goodgrants|gg)
-    docker_compose up "$@" goodgrants
-    ;;
   all|up)
     docker_compose up "$@"
     ;;
@@ -181,31 +248,28 @@ case "$command" in
     vertical="${1:-}"
     require_vertical "$vertical" "logs <awardforce|af|goodgrants|gg> [docker compose logs options]"
     shift
-    docker_compose logs "$@" "$(service_name "$vertical")"
+    docker_compose logs "$@" "$(vertical_name "$vertical")"
     ;;
-  mint)
-    vertical="${1:-}"
-    require_vertical "$vertical" "mint <awardforce|af|goodgrants|gg> <mint args...>"
-    shift
-    require_args "mint <awardforce|af|goodgrants|gg> <mint args...>" "$#"
-    docker_compose run --rm --entrypoint /docs/node_modules/.bin/mint "$(service_name "$vertical")" "$@"
+  validate)
+    target="${1:-all}"
+    shift || true
+    require_no_extra_args "validate [awardforce|af|goodgrants|gg|all]" "$#"
+    run_for_target "$target" "validate [awardforce|af|goodgrants|gg|all]" run_mint_vertical validate
     ;;
   openapi)
     target="${1:-all}"
     shift || true
     require_no_extra_args "openapi [awardforce|af|goodgrants|gg|all]" "$#"
-    case "$target" in
-      all)
-        bundle_openapi_vertical "awardforce-docs"
-        bundle_openapi_vertical "goodgrants-docs"
-        ;;
-      awardforce|af|goodgrants|gg)
-        bundle_openapi_vertical "$(vertical_dir "$target")"
-        ;;
-      *)
-        die_usage "openapi [awardforce|af|goodgrants|gg|all]"
-        ;;
-    esac
+    run_for_target "$target" "openapi [awardforce|af|goodgrants|gg|all]" bundle_openapi_vertical
+    ;;
+  openapi-clean)
+    target="${1:-all}"
+    shift || true
+    require_no_extra_args "openapi-clean [awardforce|af|goodgrants|gg|all]" "$#"
+    run_for_target "$target" "openapi-clean [awardforce|af|goodgrants|gg|all]" clear_bundled_openapi_vertical
+    ;;
+  awardforce|af|goodgrants|gg)
+    docker_compose up "$@" "$(vertical_name "$command")"
     ;;
   build)
     docker_compose build "$@"
@@ -223,8 +287,6 @@ case "$command" in
     usage
     ;;
   *)
-    echo "${BOLD}${RED}Error:${NC} Unknown command: ${command}" >&2
-    usage >&2
-    exit 1
+    die_unknown_command "$command"
     ;;
 esac
