@@ -47,6 +47,7 @@ EOF
   ${SCRIPT_NAME} logs <awardforce|af|goodgrants|gg> [docker compose logs options]
   ${SCRIPT_NAME} validate [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} openapi [awardforce|af|goodgrants|gg|all]
+  ${SCRIPT_NAME} openapi-lint [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} openapi-clean [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} build [docker compose build options]
   ${SCRIPT_NAME} down [docker compose down options]
@@ -63,6 +64,8 @@ Examples:
   ${SCRIPT_NAME} validate gg
   ${SCRIPT_NAME} openapi
   ${SCRIPT_NAME} openapi af
+  ${SCRIPT_NAME} openapi-lint
+  ${SCRIPT_NAME} openapi-lint gg
   ${SCRIPT_NAME} openapi-clean
   ${SCRIPT_NAME} openapi-clean gg
   ${SCRIPT_NAME} npm install
@@ -212,6 +215,33 @@ bundle_openapi_vertical() {
   ' "${version_dirs[@]}"
 }
 
+# Lint generated bundled OpenAPI files for one vertical.
+lint_openapi_vertical() {
+  local vertical="$1"
+  local vertical_path
+  local output_root
+  local -a bundled_files=()
+
+  vertical_path="$(vertical_dir "$vertical")"
+  output_root="$ROOT_DIR/$vertical_path/api-reference"
+
+  if [[ ! -d "$output_root" ]]; then
+    die "Missing api-reference directory: ${vertical_path}/api-reference"
+  fi
+
+  mapfile -t bundled_files < <(find "$output_root" -maxdepth 1 -type f -name 'openapi-*.yaml' | sort | while read -r bundled_path; do basename "$bundled_path"; done)
+
+  if [[ "${#bundled_files[@]}" -eq 0 ]]; then
+    die "No bundled OpenAPI files found under ${vertical_path}/api-reference. Run '${SCRIPT_NAME} openapi ${vertical}' first."
+  fi
+
+  run_redocly_vertical "$vertical" '
+    for bundled_file in "$@"; do
+      /docs/node_modules/.bin/redocly lint "api-reference/${bundled_file}"
+    done
+  ' "${bundled_files[@]}"
+}
+
 # Remove generated bundled OpenAPI files for one vertical.
 clear_bundled_openapi_vertical() {
   local vertical="$1"
@@ -261,6 +291,12 @@ case "$command" in
     shift || true
     require_no_extra_args "openapi [awardforce|af|goodgrants|gg|all]" "$#"
     run_for_target "$target" "openapi [awardforce|af|goodgrants|gg|all]" bundle_openapi_vertical
+    ;;
+  openapi-lint)
+    target="${1:-all}"
+    shift || true
+    require_no_extra_args "openapi-lint [awardforce|af|goodgrants|gg|all]" "$#"
+    run_for_target "$target" "openapi-lint [awardforce|af|goodgrants|gg|all]" lint_openapi_vertical
     ;;
   openapi-clean)
     target="${1:-all}"

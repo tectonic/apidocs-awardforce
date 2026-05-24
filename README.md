@@ -61,7 +61,8 @@ docs awardforce
 docs af
 docs goodgrants
 docs gg
-docs mint awardforce status
+docs validate
+docs openapi-lint gg
 ```
 
 The helper accepts both full names and short aliases:
@@ -75,12 +76,12 @@ The helper accepts both full names and short aliases:
 # Award Force
 docs awardforce
 docs af
-docker compose up mint-awardforce
+docker compose up awardforce
 
 # Good Grants
 docs goodgrants
 docs gg
-docker compose up mint-goodgrants
+docker compose up goodgrants
 ```
 
 The docs will be available at:
@@ -119,18 +120,31 @@ docs npm --version
 docker compose run --rm npm --version
 ```
 
-### Mint CLI commands
-
-Use the helper to run arbitrary Mint commands inside a specific vertical:
+### Validate the docs build
 
 ```bash
-# Check Mint auth/session for Award Force
-docs mint awardforce status
-docs mint af status
-docker compose run --rm --entrypoint /docs/node_modules/.bin/mint mint-awardforce status
+# Validate one docs site
+docs validate af
 
-# Run analytics for Good Grants
-docs mint goodgrants analytics stats
-docs mint gg analytics stats
-docker compose run --rm --entrypoint /docs/node_modules/.bin/mint mint-goodgrants analytics stats
+# Validate both docs sites
+docs validate
 ```
+
+### OpenAPI workflows
+
+```bash
+# Rebuild bundled OpenAPI files from src/
+docs openapi af
+docs openapi
+
+# Lint generated bundled OpenAPI files with Redocly
+docs openapi-lint gg
+docs openapi-lint
+
+# Remove generated bundled OpenAPI files
+docs openapi-clean af
+docs openapi-clean
+```
+
+`docs openapi-lint` lints the generated files under `api-reference/openapi-*.yaml`.
+If those bundles do not exist yet, run `docs openapi` first.
