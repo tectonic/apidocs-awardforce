@@ -1,3 +1,3 @@
-# Keep the hook entrypoint minimal and delegate the actual docs checks to the
-# versioned repo script so the logic is easier to review and test.
-bash ./scripts/docs-pre-push.sh
+# Keep the hook entrypoint minimal and delegate to the first-class manual docs
+# quality gate so the same pipeline can be run directly outside Git hooks.
+./docs check

@@ -57,6 +57,7 @@ EOF
   ${SCRIPT_NAME} openapi [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} openapi-lint [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} openapi-clean [awardforce|af|goodgrants|gg|all]
+  ${SCRIPT_NAME} check
   ${SCRIPT_NAME} build [docker compose build options]
   ${SCRIPT_NAME} down [docker compose down options]
   ${SCRIPT_NAME} ps
@@ -76,6 +77,7 @@ Examples:
   ${SCRIPT_NAME} openapi-lint gg
   ${SCRIPT_NAME} openapi-clean
   ${SCRIPT_NAME} openapi-clean gg
+  ${SCRIPT_NAME} check
   ${SCRIPT_NAME} npm install
 EOF
 }
@@ -275,6 +277,38 @@ clear_bundled_openapi_vertical() {
   echo "Removed ${#bundled_paths[@]} bundled OpenAPI file(s) from ${vertical_path}/api-reference"
 }
 
+# Run the full docs quality gate used by the pre-push hook as a manual command.
+check_docs_pipeline() {
+  local strict_lint="${DOCS_HOOK_STRICT_LINT:-0}"
+  local -a bundle_paths=(
+    awardforce-docs/api-reference
+    goodgrants-docs/api-reference
+  )
+
+  echo "docs(check): regenerating bundled OpenAPI specs"
+  run_for_target all "check" bundle_openapi_vertical
+
+  if ! git diff --quiet -- "${bundle_paths[@]}"; then
+    echo "docs(check): bundled OpenAPI specs changed during regeneration." >&2
+    echo "Run '${SCRIPT_NAME} openapi', review the updated api-reference/openapi-*.yaml files, and commit them before continuing." >&2
+    git status --short -- "${bundle_paths[@]}" >&2
+    exit 1
+  fi
+
+  echo "docs(check): validating Mintlify docs builds"
+  run_for_target all "check" run_mint_vertical validate
+
+  echo "docs(check): linting bundled OpenAPI specs"
+  if ! run_for_target all "check" lint_openapi_vertical; then
+    if [[ "$strict_lint" == "1" ]]; then
+      echo "docs(check): Redocly lint failed and strict lint is enabled." >&2
+      exit 1
+    fi
+
+    echo "docs(check): Redocly lint is currently advisory because the existing bundled specs still have known lint failures." >&2
+  fi
+}
+
 command="${1:-help}"
 shift || true
 
@@ -311,6 +345,10 @@ case "$command" in
     shift || true
     require_no_extra_args "openapi-clean [awardforce|af|goodgrants|gg|all]" "$#"
     run_for_target "$target" "openapi-clean [awardforce|af|goodgrants|gg|all]" clear_bundled_openapi_vertical
+    ;;
+  check)
+    require_no_extra_args "check" "$#"
+    check_docs_pipeline
     ;;
   awardforce|af|goodgrants|gg)
     docker_compose up "$@" "$(vertical_name "$command")"

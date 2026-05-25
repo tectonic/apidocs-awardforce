@@ -74,6 +74,7 @@ docs af
 docs goodgrants
 docs gg
 docs validate
+docs check
 docs openapi-lint gg
 ```
 
@@ -141,6 +142,17 @@ docs validate af
 # Validate both docs sites
 docs validate
 ```
+
+### Run the full docs quality gate
+
+```bash
+# Run the same pipeline as the pre-push hook
+docs check
+```
+
+`docs check` regenerates committed OpenAPI bundles, fails if those generated
+artifacts changed, runs Mint validation for both docs sites, and then runs
+Redocly lint with the current advisory-vs-strict behavior.
 
 ### OpenAPI workflows
 
