@@ -6,8 +6,12 @@
   },
   "devDependencies": {
     "@redocly/cli": "^2.31.2",
+    "husky": "^9.1.7",
     "mint": "^4.2.573",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
+  },
+  "scripts": {
+    "prepare": "husky"
   }
 }
