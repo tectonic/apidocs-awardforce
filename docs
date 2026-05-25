@@ -24,6 +24,14 @@ if test -t 1; then
   fi
 fi
 
+# Derive the host user/group identity once so every docs-managed Compose command
+# builds containers with the calling developer's UID/GID by default. Allow
+# explicit HOST_* overrides for unusual local setups.
+HOST_USER="${HOST_USER:-$(id -un)}"
+HOST_UID="${HOST_UID:-$(id -u)}"
+HOST_GID="${HOST_GID:-$(id -g)}"
+export HOST_USER HOST_UID HOST_GID
+
 # Select the available Docker Compose command once during script startup.
 if docker compose &>/dev/null; then
   DOCKER_COMPOSE=(docker compose)

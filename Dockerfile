@@ -1,22 +1,22 @@
 FROM node:20-alpine
 
-ARG USER
-ARG GID
-ARG UID
+ARG HOST_USER
+ARG HOST_GID
+ARG HOST_UID
 
 RUN deluser --remove-home node && \
-    addgroup --gid ${GID} ${USER} && \
+    addgroup --gid ${HOST_GID} ${HOST_USER} && \
     adduser \
-      --ingroup ${USER} \
-      --gecos ${USER} \
-      --uid ${UID} \
+      --ingroup ${HOST_USER} \
+      --gecos ${HOST_USER} \
+      --uid ${HOST_UID} \
       --shell /bin/sh \
-      --disabled-password ${USER}
+      --disabled-password ${HOST_USER}
 
 RUN apk add --no-cache git libsecret dbus && \
     dbus-uuidgen > /etc/machine-id
 
-USER ${USER}
+USER ${HOST_USER}
 
 WORKDIR /docs
 

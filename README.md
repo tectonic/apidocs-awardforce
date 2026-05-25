@@ -9,22 +9,32 @@ Local development environment for the Award Force and Good Grants API documentat
 
 ## Setup
 
-1. Copy the environment file and fill in your user details:
+1. Optional: copy the environment file if you want to override the default Mint dev ports:
 
    ```bash
    cp .env.example .env
    ```
 
+   By default the `docs` helper auto-detects your host user, UID, and GID for Docker builds, so you do not need to set those values in `.env` when using `./docs`.
+
+   If you want to run raw `docker compose` commands directly instead of the helper, add these values to `.env`:
+
    | Variable | Description | Command to get value |
    |----------|-------------|----------------------|
-   | `USER`   | Your username | `whoami` |
-   | `UID`    | Your user ID  | `id -u`  |
-   | `GID`    | Your group ID | `id -g`  |
+   | `HOST_USER` | Your username | `id -un` |
+   | `HOST_UID`  | Your user ID  | `id -u`  |
+   | `HOST_GID`  | Your group ID | `id -g`  |
 
 2. Build the image:
 
    ```bash
-   docker compose build
+   ./docs build
+   ```
+
+   If you want to run raw `docker compose build` directly instead of `./docs build`, either set the `HOST_*` values in `.env` as shown above or export them inline:
+
+   ```bash
+   HOST_USER="$(id -un)" HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose build
    ```
 
 ## Usage
@@ -32,6 +42,8 @@ Local development environment for the Award Force and Good Grants API documentat
 ### Helper script
 
 Use `./docs` for the common workflows. Equivalent raw `docker compose` commands are shown alongside it below.
+
+`./docs` automatically exports `HOST_USER`, `HOST_UID`, and `HOST_GID` for Compose-based commands so container builds run as your local user by default. If you use the raw `docker compose` commands shown below instead, define those values in `.env` or export them inline first.
 
 Run `./docs help` to see all supported commands.
 

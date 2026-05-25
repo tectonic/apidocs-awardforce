@@ -2,9 +2,9 @@ x-build-base: &build-base
   build:
     context: .
     args:
-      USER: ${USER}
-      UID: ${UID}
-      GID: ${GID}
+      HOST_USER: ${HOST_USER}
+      HOST_UID: ${HOST_UID}
+      HOST_GID: ${HOST_GID}
 
 x-mint-base: &mint-base
   <<: *build-base
