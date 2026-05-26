@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:22-alpine3.22
 
 ARG HOST_USER
 ARG HOST_GID
@@ -13,12 +13,7 @@ RUN deluser --remove-home node && \
       --shell /bin/sh \
       --disabled-password ${HOST_USER}
 
-RUN apk add --no-cache git libsecret dbus && \
-    dbus-uuidgen > /etc/machine-id
-
 USER ${HOST_USER}
 
 WORKDIR /docs
-
-EXPOSE 3000
 
