@@ -15,6 +15,20 @@ When multiple phrasings are possible, prefer the one that is clearest, simplest,
 - Avoid Latin abbreviations such as `e.g.`, `i.e.`, and `etc.`. Prefer `for example`, `that is`, or `and so on`.
 - Use inclusive language.
 
+## Brand names and naming conventions
+
+- Write `Good Grants` as two words with initial capitals.
+- Never write `GoodGrants`, `good grants`, `GOOD GRANTS`, or `GG` in prose.
+- Use `goodgrants.com` in plain lowercase when referring to domains.
+- Do not add `http://`, `https://`, or `www.` unless the full URL is necessary.
+- Use official product, API, and UI terms consistently. Do not rename a term for style if the product or API uses a specific label.
+
+## Preferred terminology
+
+- Prefer `configure` over `customise` or `customize` in prose.
+- Prefer `platform` or `software` over vague terms such as `system` or `solution` when a more specific term is possible.
+- Use the product's official role and workflow names when they matter, such as `applicant`, `reviewer`, `chapter administrator`, `grant manager`, `application`, and `review suite`.
+
 ## Perspective and explicitness
 
 - Be explicit about who performs an action.
@@ -63,6 +77,12 @@ Avoid verbs such as `enable`, `allow`, `let`, `help`, and `prevent` when they as
 
 - Define uncommon acronyms on first use, then use the acronym consistently.
 - Capitalize proper nouns such as Good Grants, Award Force, OpenAPI, OAuth, and webhook names.
+
+## UI labels and procedural references
+
+- When describing a product workflow, match UI labels exactly as they appear in the product.
+- Do not normalize or rewrite a button, menu, workspace, or heading label for style.
+- In procedural docs, prefer formatting that makes UI references easy to scan, such as italics for navigation paths and bold for actions, when that matches the surrounding docs style.
 
 ## Capitalization
 
@@ -194,6 +214,7 @@ Examples:
 Use these rules for broader documentation prose around the API, such as supporting pages, examples, and explanatory notes.
 If a rule here conflicts with the API-description-specific sections above, follow the API-description-specific rule.
 
+- Prefer UK English in prose unless a literal API field, UI label, or external standard requires a different spelling.
 - Prefer imperative headings such as `Configure authentication` instead of gerund headings such as `Configuring authentication`.
 - Introduce lists with a short lead-in sentence and a colon.
 - Use numbered lists for ordered procedures and bulleted lists for unordered items.
@@ -213,3 +234,12 @@ If a rule here conflicts with the API-description-specific sections above, follo
 - Avoid ampersands in prose unless they are part of a literal name, code example, or operator.
 - Avoid em-dashes. Prefer a standard hyphen or rewrite the sentence for clarity.
 - Avoid formulaic AI-style patterns such as bold prefixes in bullets or overly mechanical prose.
+
+## Dates, times, and inclusive alternatives
+
+- In prose, prefer day-month order, such as `13 April`.
+- Do not use ordinal suffixes in dates such as `11th` or `23rd`.
+- When a 12-hour time example is appropriate, prefer forms such as `9am` and `11.30am`.
+- Prefer `allowlist` or `safelist` over `whitelist`.
+- Prefer `denylist` or `blocklist` over `blacklist`.
+- Prefer `pre-launch check` or `final check` over `sanity check`.
