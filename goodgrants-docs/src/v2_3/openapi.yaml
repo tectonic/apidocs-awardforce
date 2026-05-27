@@ -5,6 +5,12 @@ info:
   description: API version 2.3
 servers:
   - url: https://api.cr4ce.com
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      $ref: ../components/securitySchemes/ApiKeyAuth.yaml
+security:
+  - ApiKeyAuth: []
 paths:
   /account:
     $ref: paths/account.yaml

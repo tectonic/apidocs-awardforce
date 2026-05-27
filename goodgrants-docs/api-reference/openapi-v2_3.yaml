@@ -5,6 +5,8 @@ info:
   description: API version 2.3
 servers:
   - url: https://api.cr4ce.com
+security:
+  - ApiKeyAuth: []
 paths:
   /account:
     get:
@@ -10622,4 +10624,9 @@ paths:
               schema:
                 type: string
       description: Delete an existing webhook.
-components: {}
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
