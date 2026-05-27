@@ -50,11 +50,6 @@ get:
       description: Defines the response type.
       schema:
         type: string
-    - name: x-api-key
-      in: header
-      required: true
-      schema:
-        type: string
   responses:
     '200':
       description: List Rounds

@@ -34,12 +34,6 @@ get:
       description: Defines the response type.
       schema:
         type: string
-    - name: x-api-key
-      in: header
-      required: true
-      description: Used for authentication and authorisation.
-      schema:
-        type: string
   responses:
     '200':
       description: Get order
@@ -276,12 +270,6 @@ put:
       in: header
       required: true
       description: Defines the response type.
-      schema:
-        type: string
-    - name: x-api-key
-      in: header
-      required: true
-      description: Used for authentication and authorisation.
       schema:
         type: string
   responses:

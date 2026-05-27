@@ -1,3 +1,6 @@
 type: apiKey
 in: header
 name: x-api-key
+description: |-
+  API key used to authenticate and authorise every request.
+  Include it in the `x-api-key` header.

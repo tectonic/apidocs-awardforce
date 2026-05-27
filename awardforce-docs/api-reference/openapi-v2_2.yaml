@@ -20,12 +20,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
         - name: x-api-language
           in: header
           required: false
@@ -177,12 +171,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -497,12 +485,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '202':
           description: Create assignment
@@ -580,12 +562,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -884,12 +860,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
         - name: x-api-language
           in: header
           required: false
@@ -942,12 +912,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -1024,12 +988,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -1168,12 +1126,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -1357,12 +1309,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Get attachment
@@ -1515,12 +1461,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Update attachment
@@ -1661,12 +1601,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '204':
           description: Delete attachment
@@ -1724,12 +1658,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -1909,12 +1837,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -2097,12 +2019,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -2296,12 +2212,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -2502,12 +2412,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Update category
@@ -2704,12 +2608,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '204':
           description: Delete category
@@ -2767,12 +2665,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -2918,12 +2810,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -3080,12 +2966,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '201':
           description: Create chapter
@@ -3206,12 +3086,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -3336,12 +3210,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Update chapter
@@ -3457,12 +3325,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '204':
           description: Delete chapter
@@ -3520,12 +3382,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -3656,12 +3512,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -3827,12 +3677,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '201':
           description: Create contributor
@@ -3960,12 +3804,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -4099,12 +3937,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Update contributor
@@ -4223,12 +4055,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -4434,12 +4260,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -4679,12 +4499,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -4951,12 +4765,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -5249,12 +5057,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Update entry
@@ -5511,12 +5313,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '204':
           description: Delete entry
@@ -5574,12 +5370,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -5670,12 +5460,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -5931,12 +5715,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '204':
           description: Untag entry
@@ -6178,12 +5956,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         default:
           description: Update entry title
@@ -6208,12 +5980,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -6247,12 +6013,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         default:
           description: Update entry category
@@ -6279,12 +6039,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         default:
           description: Update entry chapter
@@ -6309,12 +6063,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -6346,12 +6094,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -6494,12 +6236,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -6680,12 +6416,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -6910,12 +6640,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         default:
           description: List leaderboard
@@ -6997,12 +6721,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -7293,12 +7011,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Get order
@@ -7537,12 +7249,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Update order
@@ -7722,12 +7428,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         default:
           description: Create review task
@@ -7822,12 +7522,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         default:
           description: List review task
@@ -7846,12 +7540,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -7919,11 +7607,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
           schema:
             type: string
       responses:
@@ -8027,11 +7710,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
           schema:
             type: string
       responses:
@@ -8147,12 +7825,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -8286,12 +7958,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -8445,12 +8111,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
         - name: x-api-language
           in: header
           required: false
@@ -8578,12 +8238,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Get season
@@ -8678,12 +8332,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
         - name: x-api-language
@@ -8903,12 +8551,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
         - name: x-api-language
           in: header
           required: false
@@ -9079,12 +8721,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -9261,12 +8897,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Get user by email
@@ -9437,12 +9067,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -9616,12 +9240,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Update user
@@ -9746,12 +9364,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '204':
           description: Delete user
@@ -9809,12 +9421,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -9910,12 +9516,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -10081,12 +9681,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: List webhooks
@@ -10208,12 +9802,6 @@ paths:
           in: header
           required: true
           description: Defines the response type.
-          schema:
-            type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
           schema:
             type: string
       responses:
@@ -10370,12 +9958,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Get webhook
@@ -10472,12 +10054,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '200':
           description: Update webhook
@@ -10568,12 +10144,6 @@ paths:
           description: Defines the response type.
           schema:
             type: string
-        - name: x-api-key
-          in: header
-          required: true
-          description: Used for authentication and authorisation.
-          schema:
-            type: string
       responses:
         '204':
           description: Delete webhook
@@ -10630,3 +10200,7 @@ components:
       type: apiKey
       in: header
       name: x-api-key
+      description: |-
+        API key used to authenticate and authorise every request.
+
+        Include it in the `x-api-key` header.
