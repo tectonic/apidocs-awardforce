@@ -8,7 +8,7 @@ servers:
 components:
   securitySchemes:
     ApiKeyAuth:
-      $ref: ../components/securitySchemes/ApiKeyAuth.yaml
+      $ref: components/securitySchemes/ApiKeyAuth.yaml
 security:
   - ApiKeyAuth: []
 paths:
