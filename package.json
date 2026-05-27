@@ -2,14 +2,12 @@
   "name": "apidocs-awardforce",
   "private": true,
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "devDependencies": {
-    "@redocly/cli": "^2.31.2",
+    "@redocly/cli": "^2.31.4",
     "husky": "^9.1.7",
-    "mint": "^4.2.573",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "mint": "^4.2.573"
   },
   "scripts": {
     "prepare": "husky"
