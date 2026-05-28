@@ -13,8 +13,4 @@ get:
         schema:
           type: object
 parameters:
-  - name: token
-    in: path
-    required: true
-    schema:
-      type: string
+  - $ref: ../components/parameters/token.yaml

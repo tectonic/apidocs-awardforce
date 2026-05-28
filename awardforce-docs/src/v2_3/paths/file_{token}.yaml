@@ -127,9 +127,4 @@ get:
                       type: string
   description: Returns file information by its token.
 parameters:
-  - name: token
-    in: path
-    required: true
-    description: File token
-    schema:
-      type: string
+  - $ref: ../components/parameters/token.yaml
