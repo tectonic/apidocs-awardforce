@@ -1,0 +1,64 @@
+name: x-api-language
+in: header
+required: false
+description: |-
+  Defines the languages included in the response. If omitted, the account default language is used.
+  
+  Value `all` overrides any other values present.
+style: simple
+explode: false
+schema:
+  type: array
+  items:
+    type: string
+    enum:
+      - all
+      - ar_AR
+      - bg_BG
+      - bn_IN
+      - ca_ES
+      - cs_CZ
+      - cy_GB
+      - da_DK
+      - de_DE
+      - en_GB
+      - en_US
+      - el_GR
+      - es_NN
+      - es_LA
+      - et_EE
+      - fa_NN
+      - fi_FI
+      - fr_FR
+      - fr_CA
+      - he_IL
+      - hi_IN
+      - hr_HR
+      - hu_HU
+      - hy_AM
+      - it_IT
+      - ja_JP
+      - ko_KR
+      - lt_LT
+      - ms_MY
+      - nl_NL
+      - nb_NO
+      - pl_PL
+      - pt_BR
+      - ro_RO
+      - ru_RU
+      - sk_SK
+      - sl_SI
+      - sq_AL
+      - sr_RS
+      - sv_SE
+      - sw_NN
+      - th_TH
+      - tr_TR
+      - uk_UA
+      - vi_VN
+      - zh_CN
+      - zh_HK
+example:
+  - en_GB
+  - fr_FR

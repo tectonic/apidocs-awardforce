@@ -4,12 +4,7 @@ get:
     - Account
   parameters:
     - $ref: ../components/parameters/Accept.yaml
-    - name: x-api-language
-      in: header
-      required: false
-      description: Defines expected language.
-      schema:
-        type: string
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     default:
       description: Get account

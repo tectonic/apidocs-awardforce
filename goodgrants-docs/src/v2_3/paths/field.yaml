@@ -115,12 +115,7 @@ get:
       schema:
         type: string
     - $ref: ../components/parameters/Accept.yaml
-    - name: x-api-language
-      in: header
-      required: false
-      description: Defines the languages to include in the response.
-      schema:
-        type: string
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     default:
       description: List fields
