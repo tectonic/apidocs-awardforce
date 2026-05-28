@@ -85,12 +85,7 @@ post:
     If you don't have attachment fields you can remove this object from the body
     of your request.
 parameters:
-  - name: entry_slug
-    in: path
-    required: true
-    description: Entry slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/entrySlug.yaml
   - name: tab_slug
     in: path
     required: true

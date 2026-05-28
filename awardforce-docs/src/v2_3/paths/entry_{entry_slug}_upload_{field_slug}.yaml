@@ -70,12 +70,7 @@ post:
                 format: uri
   description: Upload a file to an entry file field.
 parameters:
-  - name: entry_slug
-    in: path
-    required: true
-    description: Entry slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/entrySlug.yaml
   - name: field_slug
     in: path
     required: true
