@@ -3,12 +3,7 @@ put:
   tags:
     - Entry
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: Tag entry
@@ -256,12 +251,7 @@ delete:
   tags:
     - Entry
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
       description: Untag entry

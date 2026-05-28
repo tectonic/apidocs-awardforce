@@ -3,12 +3,7 @@ get:
   tags:
     - Chapter
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: Get chapter
@@ -125,12 +120,7 @@ put:
   tags:
     - Chapter
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: Update chapter
@@ -249,12 +239,7 @@ delete:
   tags:
     - Chapter
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
       description: Delete chapter

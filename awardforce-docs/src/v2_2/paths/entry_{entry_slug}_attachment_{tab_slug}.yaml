@@ -3,12 +3,7 @@ post:
   tags:
     - Attachment
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
       description: Upload entry attachment

@@ -1,0 +1,9 @@
+name: Accept
+in: header
+required: true
+description: Defines the response type.
+schema:
+  type: string
+  enum:
+    - application/vnd.Creative Force.v2.3+json
+    - application/vnd.Creative Force.v2.3+xml

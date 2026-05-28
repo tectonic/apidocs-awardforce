@@ -3,12 +3,7 @@ get:
   tags:
     - User
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
     - name: parameter
       in: path
       required: true
@@ -179,12 +174,7 @@ put:
   tags:
     - User
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
     - name: parameter
       in: path
       required: true
@@ -324,12 +314,7 @@ delete:
   tags:
     - User
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
     - name: parameter
       in: path
       required: true

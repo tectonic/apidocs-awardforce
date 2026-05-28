@@ -81,12 +81,7 @@ get:
         - desc
       schema:
         type: string
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
     - name: x-api-language
       in: header
       required: false
@@ -263,12 +258,7 @@ post:
   tags:
     - Category
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
       description: Create category

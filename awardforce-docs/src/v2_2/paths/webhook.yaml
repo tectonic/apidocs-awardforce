@@ -84,12 +84,7 @@ get:
         - desc
       schema:
         type: string
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: List webhooks
@@ -207,12 +202,7 @@ post:
   tags:
     - Webhook
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
       description: Create webhook

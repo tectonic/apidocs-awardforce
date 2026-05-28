@@ -3,12 +3,7 @@ post:
   tags:
     - Review task
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     default:
       description: Create review task
@@ -97,12 +92,7 @@ get:
         - [between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]
       schema:
         type: string
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     default:
       description: List review task

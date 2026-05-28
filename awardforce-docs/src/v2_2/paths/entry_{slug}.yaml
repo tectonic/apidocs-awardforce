@@ -3,12 +3,7 @@ get:
   tags:
     - Entry
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
     - name: x-api-language
       in: header
       required: false
@@ -295,12 +290,7 @@ put:
   tags:
     - Entry
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: Update entry
@@ -565,12 +555,7 @@ delete:
   tags:
     - Entry
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
       description: Delete entry

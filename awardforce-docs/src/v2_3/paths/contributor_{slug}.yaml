@@ -3,12 +3,7 @@ get:
   tags:
     - Contributor
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: Get contributor
@@ -136,12 +131,7 @@ put:
   tags:
     - Contributor
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: Update contributor
@@ -260,12 +250,7 @@ delete:
   tags:
     - Contributor
   parameters:
-    - name: Accept
-      in: header
-      required: true
-      description: Defines the response type.
-      schema:
-        type: string
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
       description: Delete contributor
