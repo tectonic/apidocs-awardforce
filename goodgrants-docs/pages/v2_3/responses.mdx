@@ -27,20 +27,55 @@ Responses are provided in JSON or XML format. Set the `Accept` header to choose 
 
 ## Paginated results
 
-| Parameter | Description |
-|:----------|:------------|
-| `current_page` | Current page in the result set. |
-| `data` | Array containing resource information. |
-| `first_page_url` | Link to retrieve first page of result set. |
-| `from` | Number of the first result in this page of the result set. |
-| `last_page` | Last page number of the result set. |
-| `last_page_url` | Link to retrieve results from the last page of the result set. |
-| `next_page_url` | Link to retrieve results from the next page of the result set. |
-| `path` | Link to this endpoint. |
-| `per_page` | Number of results being shown per page. |
-| `prev_page_url` | Link to retrieve results from the previous page of the result set. |
-| `to` | Number of the last result in this page of the result set. |
-| `total` | Total number of results in the result set. |
+Paginated responses usually include the following fields:
+
+<ResponseField name="current_page" type="integer">
+Current page in the result set.
+</ResponseField>
+
+<ResponseField name="data" type="array">
+Array containing resource information.
+</ResponseField>
+
+<ResponseField name="first_page_url" type="string">
+Link to retrieve the first page of the result set.
+</ResponseField>
+
+<ResponseField name="from" type="integer | null">
+Number of the first result in this page of the result set.
+</ResponseField>
+
+<ResponseField name="last_page" type="integer">
+Last page number of the result set.
+</ResponseField>
+
+<ResponseField name="last_page_url" type="string">
+Link to retrieve results from the last page of the result set.
+</ResponseField>
+
+<ResponseField name="next_page_url" type="string | null">
+Link to retrieve results from the next page of the result set.
+</ResponseField>
+
+<ResponseField name="path" type="string">
+Link to this endpoint.
+</ResponseField>
+
+<ResponseField name="per_page" type="integer">
+Number of results shown per page.
+</ResponseField>
+
+<ResponseField name="prev_page_url" type="string | null">
+Link to retrieve results from the previous page of the result set.
+</ResponseField>
+
+<ResponseField name="to" type="integer | null">
+Number of the last result in this page of the result set.
+</ResponseField>
+
+<ResponseField name="total" type="integer">
+Total number of results in the result set.
+</ResponseField>
 
 ## POST responses
 
@@ -48,11 +83,19 @@ Use the `Location` response header to find the new resource.
 
 ## Error responses
 
-| Parameter | Description |
-|:----------|:------------|
-| `message` | Error message |
-| `errors` | Array containing specific error information |
-| `status_code` | Error status code |
+Error responses usually include the following fields:
+
+<ResponseField name="message" type="string">
+Error message.
+</ResponseField>
+
+<ResponseField name="errors" type="array">
+Array containing specific error information.
+</ResponseField>
+
+<ResponseField name="status_code" type="integer">
+Error status code.
+</ResponseField>
 
 ## Success codes
 
