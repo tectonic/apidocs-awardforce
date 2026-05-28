@@ -240,12 +240,7 @@ parameters:
     description: Entry slug
     schema:
       type: string
-  - name: tags
-    in: path
-    required: true
-    description: Tags to be removed from the entry, separated by comma
-    schema:
-      type: string
+  - $ref: ../components/parameters/entryTags.yaml
 delete:
   summary: Untag entry
   tags:
