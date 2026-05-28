@@ -1,5 +1,5 @@
 get:
-  summary: Get user by slug
+  summary: Get user
   tags:
     - User
   parameters:
@@ -9,9 +9,19 @@ get:
       description: Defines the response type.
       schema:
         type: string
+    - name: parameter
+      in: path
+      required: true
+      description: User identifier. Accepts either a user email or an 8-letter slug.
+      schema:
+        oneOf:
+          - type: string
+            format: email
+          - type: string
+            pattern: '^[A-Za-z]{8}$'
   responses:
     '200':
-      description: Get user by slug
+      description: Get user
       headers:
         Date:
           schema:
@@ -162,15 +172,8 @@ get:
                         en_GB:
                           type: string
   description: >-
-    Returns a user by its slug. The response consists of all user fields
-    including files. Files include a download link.
-parameters:
-  - name: slug
-    in: path
-    required: true
-    description: User slug
-    schema:
-      type: string
+    Returns a user by email or by its 8-letter slug. The response consists of
+    all user fields including files. Files include a download link.
 put:
   summary: Update user
   tags:
@@ -182,6 +185,13 @@ put:
       description: Defines the response type.
       schema:
         type: string
+    - name: parameter
+      in: path
+      required: true
+      description: User slug. Must be 8 letters.
+      schema:
+        type: string
+        pattern: '^[A-Za-z]{8}$'
   responses:
     '200':
       description: Update user
@@ -320,6 +330,13 @@ delete:
       description: Defines the response type.
       schema:
         type: string
+    - name: parameter
+      in: path
+      required: true
+      description: User slug. Must be 8 letters.
+      schema:
+        type: string
+        pattern: '^[A-Za-z]{8}$'
   responses:
     '204':
       description: Delete user
