@@ -4,3 +4,7 @@ node_modules/
 *.log
 .DS_Store
 template
+
+# Generated API specs
+awardforce-docs/api-reference/
+goodgrants-docs/api-reference/
