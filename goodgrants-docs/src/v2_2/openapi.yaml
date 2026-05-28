@@ -54,16 +54,16 @@ paths:
     $ref: paths/entry_{slug}_tag_{tags}.yaml
   /entry/{slug}/update-title:
     $ref: paths/entry_{slug}_update-title.yaml
-  /entry/{slug}/update-field/{field-slug}:
-    $ref: paths/entry_{slug}_update-field_{field-slug}.yaml
+  /entry/{slug}/update-field/{fieldSlug}:
+    $ref: paths/entry_{slug}_update-field_{fieldSlug}.yaml
   /entry/{slug}/update-category:
     $ref: paths/entry_{slug}_update-category.yaml
   /entry/{slug}/update-chapter:
     $ref: paths/entry_{slug}_update-chapter.yaml
-  /attachment/{token}/update-field/{field-slug}:
-    $ref: paths/attachment_{token}_update-field_{field-slug}.yaml
-  /contributor/{slug}/update-field/{field-slug}:
-    $ref: paths/contributor_{slug}_update-field_{field-slug}.yaml
+  /attachment/{token}/update-field/{fieldSlug}:
+    $ref: paths/attachment_{token}_update-field_{fieldSlug}.yaml
+  /contributor/{slug}/update-field/{fieldSlug}:
+    $ref: paths/contributor_{slug}_update-field_{fieldSlug}.yaml
   /field:
     $ref: paths/field.yaml
   /file/{token}:

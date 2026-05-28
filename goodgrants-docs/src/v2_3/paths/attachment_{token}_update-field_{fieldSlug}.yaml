@@ -1,25 +1,21 @@
 put:
-  summary: Update entry contributor field
+  summary: Update entry attachment field
   tags:
     - Entry (realtime)
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     default:
-      description: Update entry contributor field
+      description: Update entry attachment field
   requestBody:
     content:
       application/json:
         schema:
           type: object
 parameters:
-  - name: slug
+  - name: token
     in: path
     required: true
     schema:
       type: string
-  - name: field-slug
-    in: path
-    required: true
-    schema:
-      type: string
+  - $ref: ../components/parameters/fieldSlug.yaml
