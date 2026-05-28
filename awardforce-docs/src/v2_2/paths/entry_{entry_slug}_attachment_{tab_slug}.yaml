@@ -86,9 +86,4 @@ post:
     of your request.
 parameters:
   - $ref: ../components/parameters/entrySlug.yaml
-  - name: tab_slug
-    in: path
-    required: true
-    description: Entry tab slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/tabSlug.yaml
