@@ -1,0 +1,7 @@
+name: user_slug
+in: path
+required: true
+description: User slug
+schema:
+  type: string
+  pattern: '^[A-Za-z]{8}$'
