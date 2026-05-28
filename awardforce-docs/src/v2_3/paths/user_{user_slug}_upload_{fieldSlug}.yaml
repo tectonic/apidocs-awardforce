@@ -76,9 +76,4 @@ post:
           type: object
 parameters:
   - $ref: ../components/parameters/userSlug.yaml
-  - name: field_slug
-    in: path
-    required: true
-    description: User field slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/fieldSlug.yaml

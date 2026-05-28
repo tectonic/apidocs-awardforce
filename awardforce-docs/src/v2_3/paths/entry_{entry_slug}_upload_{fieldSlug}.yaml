@@ -71,9 +71,4 @@ post:
   description: Upload a file to an entry file field.
 parameters:
   - $ref: ../components/parameters/entrySlug.yaml
-  - name: field_slug
-    in: path
-    required: true
-    description: Entry field slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/fieldSlug.yaml

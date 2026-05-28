@@ -48,8 +48,8 @@ paths:
     $ref: paths/entry.yaml
   /entry/{slug}:
     $ref: paths/entry_{slug}.yaml
-  /entry/{entry_slug}/upload/{field_slug}:
-    $ref: paths/entry_{entry_slug}_upload_{field_slug}.yaml
+  /entry/{entry_slug}/upload/{fieldSlug}:
+    $ref: paths/entry_{entry_slug}_upload_{fieldSlug}.yaml
   /entry/{slug}/tag/{tags}:
     $ref: paths/entry_{slug}_tag_{tags}.yaml
   /entry/{slug}/update-title:
@@ -96,8 +96,8 @@ paths:
     $ref: paths/user.yaml
   /user/{parameter}:
     $ref: paths/user_{parameter}.yaml
-  /user/{user_slug}/upload/{field_slug}:
-    $ref: paths/user_{user_slug}_upload_{field_slug}.yaml
+  /user/{user_slug}/upload/{fieldSlug}:
+    $ref: paths/user_{user_slug}_upload_{fieldSlug}.yaml
   /user/{slug}/auth-token:
     $ref: paths/user_{slug}_auth-token.yaml
   /webhook:

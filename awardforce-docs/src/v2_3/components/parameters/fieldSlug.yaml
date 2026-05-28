@@ -1,5 +1,6 @@
 name: fieldSlug
 in: path
 required: true
+description: Field slug
 schema:
   type: string
