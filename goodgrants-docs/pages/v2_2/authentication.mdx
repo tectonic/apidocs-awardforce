@@ -1,46 +1,47 @@
 ---
 title: "Authentication"
-description: "Access to the Award Force API is secured via API Keys. You may generate as many keys as you like yet each key belongs to the one account. The scope of the key determines the permissions of the key:"
+description: "Use API keys to authenticate Good Grants API requests. Each key belongs to one account and has either `Read only` or `Read / Write` scope."
 ---
 
-Read only - for read endpoints only  
-Read / Write - for read and write endpoints
+- `Read only`: Use for read endpoints.
+- `Read / Write`: Use for read and write endpoints.
 
-Multiple email addresses may be specified for receiving notification emails.
+Specify multiple notification email addresses if needed.
 
 ## Generate API key
 <Steps>
-<Step title="In Award Force navigate to Settings > Integrations > API Keys"/>
+<Step title="In Good Grants, go to Settings > Integrations > API Keys"/>
 <Step title="Click Generate API Key"/>
-<Step title="Enter Key name / purpose"/>
+<Step title="Enter a key name or purpose"/>
 <Step title="Select Scope">
   
-  a. Read only - for read endpoints only
+  a. `Read only`: Use for read endpoints.
 
-  b. Read / Write - for read and write endpoints
+  b. `Read / Write`: Use for read and write endpoints.
 </Step>
-<Step title="Specify notification email addresses (optional). Separate each address with a comma (,) or a semicolon (;)"/>
+<Step title="Specify notification email addresses if needed. Separate each address with a comma (,) or semicolon (;)"/>
 <Step title="Click Save"/>
 </Steps>
 
 
 ## Edit API key
 <Steps>
-<Step title="In Award Force navigate to Settings > Integrations > API Keys"/>
-<Step title="Click on the Key name / purpose of the key you wish to edit OR click on the overflow action menu of the key you wish to edit and click Edit"/>
-<Step title="Update Key name / purpose"/>
+<Step title="In Good Grants, go to Settings > Integrations > API Keys"/>
+<Step title="Select the key name or purpose, or open the overflow action menu and click Edit"/>
+<Step title="Update the key name or purpose"/>
 <Step title="Update Scope">
   
-  a. Read only - for read endpoints only
+  a. `Read only`: Use for read endpoints.
 
-  b. Read / Write - for read and write endpoints
+  b. `Read / Write`: Use for read and write endpoints.
 </Step>
-<Step title="Update notification email addresses (optional). Separate each address with a comma (,) or a semicolon (;)"/>
+<Step title="Update notification email addresses if needed. Separate each address with a comma (,) or semicolon (;)"/>
 <Step title="Click Save"/>
 </Steps>
+
 ## Revoke API key
 <Steps>
-<Step title="In Award Force navigate to Settings > Integrations > API Keys"/>
-<Step title="Click on the overflow action menu of the key you wish to edit and click Revoke"/>
-<Step title="Click OK in the confirm dialog"/>
+<Step title="In Good Grants, go to Settings > Integrations > API Keys"/>
+<Step title="Open the overflow action menu for the key and click Revoke"/>
+<Step title="Click OK in the confirmation dialog"/>
 </Steps>

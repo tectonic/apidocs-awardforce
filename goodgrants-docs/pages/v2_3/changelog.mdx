@@ -1,16 +1,16 @@
 ---
 title: "Changelog"
 rss: true
-description: "This is a list of changes to the API and the versions related to each new addition. If you want to access features in the latest version you'll need to update the version number in the accept header in your request."
+description: "Lists API changes by version and release date. Update the `Accept` header to use the version you need."
 ---
 
 <Update label="06-05-2025" description="Breaking changes - upgrade to version 2.3">
-- All `contributor` responses now return contributors as an object with their related slug, tab and contributor field objects.
-- All `attachment` responses now return a tab object for each attachment.
+- Updated all `contributor` responses to return contributors as an object with related slug, tab, and contributor field objects.
+- Updated all `attachment` responses to return a tab object for each attachment.
 </Update>
 
 <Update label="14-04-2025" description="Version 2.3">
-- Endpoint added for leaderboard search
+- Added endpoint for leaderboard search.
 </Update>
 
 <Update label="20-03-2025" description="Version 2.3">
@@ -18,63 +18,63 @@ description: "This is a list of changes to the API and the versions related to e
 </Update>
 
 <Update label="13-01-2025" description="Version 2.3">
-- Endpoints added for realtime entries
+- Added endpoints for realtime applications.
 </Update>
 
 <Update label="27-11-2024" description="Version 2.3">
-- Endpoints for listing and viewing review tasks have been added
+- Added endpoints for listing and viewing action tasks.
 </Update>
 
 <Update label="13-11-2024" description="Version 2.3">
-- A new `items_array` field has been added to the list and get order endpoints, which returns an array of order item objects
+- Added `items_array` field to list and get order endpoints. Returns an array of order item objects.
 </Update>
 
 <Update label="30-10-2024" description="Version 2.3">
-- ISO 8601 Zulu format is now accepted on all dates and date time entry, user, and contributor fields
-- Entry, user, and contributor fields are now returned in ISO 8601 Zulu format
+- ISO 8601 Zulu format is now accepted in all date and date-time application, user, and contributor fields.
+- Application, user, and contributor fields now return date and time values in ISO 8601 Zulu format.
 </Update>
 
 <Update label="03-10-2024" description="Version 2.3">
-- ISO 8601 Zulu format is now a supported date format in `date_due` and `date_paid` fields in allocation payment endpoints
-- Dates and date times are now returned in ISO 8601 Zulu format in allocation payment endpoints
-- The `reference` field now returns as `null` if it's not provided, instead of `''`
+- ISO 8601 Zulu format is now supported in `date_due` and `date_paid` fields in allocation payment endpoints.
+- Allocation payment endpoints now return dates and date times in ISO 8601 Zulu format.
+- The `reference` field now returns `null` if it is not provided, instead of `''`.
 </Update>
 
 <Update label="05-09-2024" description="Breaking changes - upgrade to version 2.2">
-- All `form` fields in responses now return as an object with the slug, name, and link fields
-- All `name` and `description` fields now return as an object with translations for the requested language
-- The `managers` field in create/update/get/list chapter endpoints have been updated to an array of manager objects with the slug, first_name, last_name, and link fields
-- Many payload and response consistency improvements in various fields that are checkbox, date, or datetime types
+- All `form` fields in responses now return as an object with `slug`, `name`, and `link` fields.
+- All `name` and `description` fields now return as an object with translations for the requested language.
+- The `managers` field in create, update, get, and list chapter endpoints now returns an array of manager objects with `slug`, `first_name`, `last_name`, and `link` fields.
+- Improved payload and response consistency for fields that use checkbox, date, or datetime types.
 </Update>
 
 <Update label="21-08-2024" description="Version 2.2">
-- Fixed `scoreset` `name` property to return translations
+- Fixed `scoreset` `name` property to return translations.
 </Update>
 
 <Update label="08-08-2024" description="Version 2.2">
-- Added `assignment` endpoints
-- Added ability to `recuse` and `unrecuse` assignments
+- Added `assignment` endpoints.
+- Added endpoints to `recuse` and `unrecuse` assignments.
 </Update>
 
 <Update label="01-08-2024" description="Version 2.2">
-- Added `custom_deadline` field in create/update/get/list entry endpoints
+- Added `custom_deadline` field in create, update, get, and list application endpoints.
 </Update>
 
 <Update label="24-07-2024" description="Version 2.2">
-- Added `Get account` endpoint
+- Added `Get account` endpoint.
 </Update>
 
 <Update label="29-05-2024" description="Version 2.2">
-- Added `list rounds` and `Get round` endpoints
+- Added `List rounds` and `Get round` endpoints.
 </Update>
 
 <Update label="18-04-2024" description="Version 2.2">
 - Added URL filter to `List webhooks` and `Get webhook` endpoints.
-- Added `signed_key` as part of webhoook endpoint responses.
+- Added `signed_key` to webhook endpoint responses.
 </Update>
 
 <Update label="31-05-2023" description="Version 2.1">
-- Contributor endpoint added to facilitate viewing, updating and deleting contributors.
+- Added contributor endpoint to support viewing, updating, and deleting contributors.
 </Update>
 
 <Update label="08-08-2022" description="Version 2.1">
@@ -83,10 +83,10 @@ description: "This is a list of changes to the API and the versions related to e
   - Response body for `Get category` endpoint
   - Request body and response body for `Create category` endpoint
   - Response body for `Update category` endpoint
-  - Query params and response body for `List entries` endpoint
-  - Response body for `Get entries` endpoint
-  - Request body and response body for `Create entries` endpoint
-  - Response body for `Update entries` endpoint
+  - Query params and response body for `List applications` endpoint
+  - Response body for `Get applications` endpoint
+  - Request body and response body for `Create applications` endpoint
+  - Response body for `Update applications` endpoint
   - Query params and response body for `List fields` endpoint
 </Update>
 
@@ -96,11 +96,11 @@ description: "This is a list of changes to the API and the versions related to e
 
 <Update label="24-06-2021" description="Breaking changes - upgrade to version 2.1">
 - Attachment endpoints added to facilitate viewing, updating and deleting attachments.
-- `name` changed to `filename` in the response body for get attachment, list attachments, update attachment, get category and get entry endpoints.
-- `name` changed to `filename` in the request body for upload entry file, upload entry attachment, upload chapter file, upload user file endpoints.
-- `filename`, `token`, `download` and `link` grouped under `file` in the response body for the upload entry attachment and get entry endpoints.
+- `name` changed to `filename` in the response body for get attachment, list attachments, update attachment, get category, and get application endpoints.
+- `name` changed to `filename` in the request body for upload application file, upload application attachment, upload chapter file, and upload user file endpoints.
+- `filename`, `token`, `download`, and `link` grouped under `file` in the response body for the upload application attachment and get application endpoints.
 </Update>
 
 <Update label="17-08-2020" description="Version 2.0">
-- Added webhooks
+- Added webhooks.
 </Update>

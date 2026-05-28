@@ -1,31 +1,31 @@
 ---
 title: "Webhooks"
-description: "You can trigger webhooks based on some event such as new user registration or entry submission. This will let you get data or perform tasks based on actions in your program. Only program managers can create webhooks."
+description: "Use webhooks to receive event notifications from Good Grants. Only grant managers can create webhooks."
 ---
 
 ## Create a webhook
 <Steps>
-<Step title="In Award Force navigate to Settings > Integrations > Webhooks"/>
+<Step title="In Good Grants, go to Settings > Integrations > Webhooks"/>
 <Step title="Click New webhook"/>
 <Step title="Enter Name"/>
 <Step title="Enter Webhook URL"/>
 <Step title="Use the auto-generated Signing key or create a new one"/>
-<Step title="Select the desired Event subscriptions"/>
-<Step title="(optional) Specify notification email addresses. Separate each address with a comma (,) or a semicolon (;)"/>
+<Step title="Select Event subscriptions"/>
+<Step title="Specify notification email addresses if needed. Separate each address with a comma (,) or semicolon (;)"/>
 <Step title="Click Save"/>
 </Steps>
 ## Edit webhook
 <Steps>
-<Step title="In Award Force navigate to Settings > Integrations > Webhooks"/>
-<Step title="Click on the Name of the webhook you wish to edit"/>
+<Step title="In Good Grants, go to Settings > Integrations > Webhooks"/>
+<Step title="Click the name of the webhook to edit"/>
 <Step title="Make your changes"/>
 <Step title="Click Save"/>
 </Steps>
 
 ## Delete a webhook
 <Steps>
-<Step title="In Award Force navigate to Settings > Integrations > Webhooks"/>
-<Step title="Click the checkbox next to the webhook and delete it via the Action button"/>
+<Step title="In Good Grants, go to Settings > Integrations > Webhooks"/>
+<Step title="Select the checkbox next to the webhook, then use the Action button to delete it"/>
 <Step title="Click OK in the confirmation dialog"/>
 </Steps>
 
@@ -37,24 +37,24 @@ Webhook payloads are provided in JSON format and always contain the following at
 | Name | Description |
 |:-----|:------------|
 | `event` | Enumerated string with possible values being one of the events described in the following sections |
-| `timestamp` | ISO 8601 formatted datetime value. i.e. `2020-01-01T00:00:00Z` |
+| `timestamp` | ISO 8601 formatted datetime value, for example `2020-01-01T00:00:00Z` |
 | `source` | Enumerated string with the following possible values:<br/>- `ui` (default)<br/>- `api` |
 
 ### Signature
 
-You will receive a `Signature` header which you can use to validate the webhook payload.
+Use the `Signature` header to validate the webhook payload.
 
-The signature value is generated with this algorithm, using the **Signing key** specified in your webhook and the JSON payload:
+The signature value is generated with this algorithm, using the **Signing key** specified in the webhook and the JSON payload:
 
 ```php PHP
 $signature = hash_hmac('sha256', $payloadJsonString, $signingKey);
 ```
 
-You can do the same in your endpoint and compare the header `Signature` value with the one you generated with this algorithm.
+Generate the same value in your endpoint and compare it with the `Signature` header value.
 
 ### Available event subscriptions
 
-#### Entry events
+#### Application events
 
 - `collaborator_invited`
 - `entry_created`
@@ -69,7 +69,7 @@ You can do the same in your endpoint and compare the header `Signature` value wi
 - `review_task_created`
 - `review_task_submitted`
 
-Below is an example of an entry created webhook payload:
+Example application created webhook payload:
 ```json Entry Payload expandable
 {
   "attachments": [
@@ -171,7 +171,7 @@ Below is an example of an entry created webhook payload:
 - `membership_registered` (User created)
 - `user_updated`
 
-Below is an example of a user event webhook payload:
+Example user event webhook payload:
 
 ```json User Payload expandable
 {
@@ -228,7 +228,7 @@ Below is an example of a user event webhook payload:
 - `payment_pending`
 - `payment_success`
 
-Below is an example of an order event webhook payload:
+Example order event webhook payload:
 
 ```json Order Payload expandable
 {
@@ -282,7 +282,7 @@ Below is an example of an order event webhook payload:
 }
 ```
 
-#### Other entry management events
+#### Other application management events
 
 - `assignment_completed`
 - `assignment_created`
