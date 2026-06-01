@@ -1,0 +1,10 @@
+name: parameter
+in: path
+required: true
+description: User identifier. Accepts either a user email or an 8-letter slug.
+schema:
+  oneOf:
+    - type: string
+      format: email
+    - type: string
+      pattern: '^[A-Za-z]{8}$'
