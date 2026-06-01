@@ -1,7 +1,10 @@
-name: parameter
+name: user_slug
 in: path
 required: true
-description: User identifier. Accepts either a user email or an 8-letter slug.
+description: |-
+  User identifier.
+
+  **Accepts either a user email or an 8-letter slug.**
 schema:
   oneOf:
     - type: string

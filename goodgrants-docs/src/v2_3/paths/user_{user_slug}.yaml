@@ -4,7 +4,7 @@ get:
     - User
   parameters:
     - $ref: ../components/parameters/Accept.yaml
-    - $ref: ../components/parameters/userLookupParameter.yaml
+    - $ref: ../components/parameters/userSlugParameter.yaml
   responses:
     '200':
       description: Get user
@@ -166,13 +166,7 @@ put:
     - User
   parameters:
     - $ref: ../components/parameters/Accept.yaml
-    - name: parameter
-      in: path
-      required: true
-      description: User slug. Must be 8 letters.
-      schema:
-        type: string
-        pattern: '^[A-Za-z]{8}$'
+    - $ref: ../components/parameters/userSlug.yaml
   responses:
     '200':
       description: Update user
@@ -306,13 +300,7 @@ delete:
     - User
   parameters:
     - $ref: ../components/parameters/Accept.yaml
-    - name: parameter
-      in: path
-      required: true
-      description: User slug. Must be 8 letters.
-      schema:
-        type: string
-        pattern: '^[A-Za-z]{8}$'
+    - $ref: ../components/parameters/userSlug.yaml
   responses:
     '204':
       description: Delete user
