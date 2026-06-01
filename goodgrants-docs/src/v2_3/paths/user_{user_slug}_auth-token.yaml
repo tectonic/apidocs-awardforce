@@ -74,9 +74,4 @@ get:
     or [Creating your own SSO integration in Good
     Grants](https://help.goodgrants.com/hc/en-gb/articles/360002287675-Creating-your-own-SSO-integration).
 parameters:
-  - name: slug
-    in: path
-    required: true
-    description: User slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/userSlug.yaml

@@ -98,8 +98,8 @@ paths:
     $ref: paths/user_{parameter}.yaml
   /user/{user_slug}/upload/{fieldSlug}:
     $ref: paths/user_{user_slug}_upload_{fieldSlug}.yaml
-  /user/{slug}/auth-token:
-    $ref: paths/user_{slug}_auth-token.yaml
+  /user/{user_slug}/auth-token:
+    $ref: paths/user_{user_slug}_auth-token.yaml
   /webhook:
     $ref: paths/webhook.yaml
   /webhook/{slug}:
