@@ -1,0 +1,164 @@
+type: object
+properties:
+  category:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+          pl_PL:
+            type: string
+  chapter:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+          pl_PL:
+            type: string
+  comments:
+    type: object
+    properties:
+      judging:
+        type: array
+        items: &commentItem
+          type: object
+          properties:
+            slug:
+              type: string
+            comment:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+            user: &commentUser
+              type: object
+              properties:
+                slug:
+                  type: string
+                link:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+      abstention:
+        type: array
+        items: *commentItem
+      conflict:
+        type: array
+        items: *commentItem
+      criteria:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            comments:
+              type: array
+              items:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  comment:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  user: *commentUser
+  created:
+    type: string
+    format: date-time
+  entry:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      title:
+        type: string
+  form:
+    type: string
+  judge:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: string
+  method:
+    type: string
+  panels:
+    type: array
+    items: {}
+  role:
+    nullable: true
+  rounds:
+    type: array
+    items: &namedLinkObject
+      type: object
+      properties:
+        slug:
+          type: string
+        link:
+          type: string
+          format: uri
+        name:
+          type: object
+          properties:
+            en_GB:
+              type: string
+            pl_PL:
+              type: string
+  score_set:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+          pl_PL:
+            type: string
+  slug:
+    type: string
+  status:
+    type: string
+  updated:
+    type: string
+    format: date-time
