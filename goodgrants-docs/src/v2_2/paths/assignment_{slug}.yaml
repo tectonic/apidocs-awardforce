@@ -1,5 +1,5 @@
 get:
-  summary: Get assignment
+  summary: Retrieve an assignment
   tags:
     - Assignment
   parameters:
@@ -7,7 +7,7 @@ get:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
-      description: Get assignment
+      description: Assignment retrieved.
       headers:
         Server:
           schema:
@@ -277,7 +277,7 @@ get:
               updated:
                 type: string
                 format: date-time
-  description: Returns an assignment identified by it's slug.
+  description: Retrieves an assignment identified by the specified slug.
 parameters:
   - name: slug
     in: path
@@ -285,7 +285,7 @@ parameters:
     schema:
       type: string
 delete:
-  summary: Delete assignment
+  summary: Delete an assignment
   tags:
     - Assignment
   parameters:
@@ -293,7 +293,7 @@ delete:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '204':
-      description: Delete assignment
+      description: Assignment deleted.
       headers:
         Server:
           schema:
@@ -326,4 +326,4 @@ delete:
         application/json:
           schema:
             type: object
-  description: Delete an existing assignment.
+  description: Deletes an existing assignment.

@@ -1,5 +1,5 @@
 get:
-  summary: List assignments
+  summary: Retrieve assignments
   tags:
     - Assignment
   parameters:
@@ -90,7 +90,7 @@ get:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
-      description: List assignments
+      description: Assignments retrieved.
       headers:
         Server:
           schema:
@@ -382,16 +382,16 @@ get:
                 type: integer
               total:
                 type: integer
-  description: List all assignments.
+  description: Retrieves assignments that match the specified filters.
 post:
-  summary: Create assignment
+  summary: Create an assignment
   tags:
     - Assignment
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '202':
-      description: Create assignment
+      description: Assignment creation accepted.
       headers:
         Server:
           schema:
@@ -428,7 +428,7 @@ post:
           schema:
             type: object
   description: |-
-    Create a new assignment.
+    Creates a new assignment.
 
     | Parameter | Required | Type | Description |
     | --- | --- | --- | --- |
