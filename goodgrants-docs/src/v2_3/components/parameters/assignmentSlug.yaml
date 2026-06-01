@@ -1,0 +1,7 @@
+name: assignment_slug
+in: path
+required: true
+description: Slug of the assignment.
+schema:
+  type: string
+  pattern: '^[A-Za-z0-9]{24}[JR]$'

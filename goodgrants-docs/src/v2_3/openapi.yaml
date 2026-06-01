@@ -16,8 +16,8 @@ paths:
     $ref: paths/account.yaml
   /assignment:
     $ref: paths/assignment.yaml
-  /assignment/{slug}:
-    $ref: paths/assignment_{slug}.yaml
+  /assignment/{assignment_slug}:
+    $ref: paths/assignment_{assignment_slug}.yaml
   /entry/{slug}/recuse:
     $ref: paths/entry_{slug}_recuse.yaml
   /entry/{slug}/unrecuse:

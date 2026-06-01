@@ -277,13 +277,9 @@ get:
               updated:
                 type: string
                 format: date-time
-  description: Retrieves an assignment identified by the specified slug.
+  description: Retrieves an assignment identified by the specified assignment slug.
 parameters:
-  - name: slug
-    in: path
-    required: true
-    schema:
-      type: string
+  - $ref: ../components/parameters/assignmentSlug.yaml
 delete:
   summary: Delete an assignment
   tags:
