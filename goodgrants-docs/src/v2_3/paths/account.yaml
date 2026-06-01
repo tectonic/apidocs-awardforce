@@ -7,53 +7,9 @@ get:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     default:
-      description: Get account
+      description: Account retrieved.
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              created:
-                type: string
-                format: date-time
-              domains:
-                type: array
-                items:
-                  type: string
-              global_id:
-                type: string
-              languages:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    code:
-                      type: string
-              name:
-                type: string
-              owner:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                  first_name:
-                    type: string
-                  last_name:
-                    type: string
-              product:
-                type: string
-              region:
-                type: string
-              slug:
-                type: string
-              timezone:
-                type: string
-              updated:
-                type: string
-                format: date-time
-  description: Returns the account's information based on the API key used in the header.
+            $ref: ../components/schemas/Account.yaml
+  description: Retrieves account information for the account associated with the API key in the request header.
