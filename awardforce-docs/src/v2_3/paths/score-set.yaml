@@ -44,53 +44,37 @@ get:
       description: List scoresets
       headers:
         Date:
-          schema:
-            type: string
+          $ref: ../components/headers/Date.yaml
         Content-Length:
-          schema:
-            type: integer
+          $ref: ../components/headers/Content-Length.yaml
         Connection:
-          schema:
-            type: string
+          $ref: ../components/headers/Connection.yaml
         X-DataDome:
-          schema:
-            type: string
+          $ref: ../components/headers/X-DataDome.yaml
         Accept-CH:
-          schema:
-            type: string
+          $ref: ../components/headers/Accept-CH.yaml
         Set-Cookie:
-          schema:
-            type: string
+          $ref: ../components/headers/Set-Cookie.yaml
         Cache-Control:
-          schema:
-            type: string
+          $ref: ../components/headers/Cache-Control.yaml
         X-Ratelimit-Limit:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-Ratelimit-Limit.yaml
         X-Ratelimit-Remaining:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-Ratelimit-Remaining.yaml
         X-Ratelimit-Reset:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-Ratelimit-Reset.yaml
         Etag:
-          schema:
-            type: string
+          $ref: ../components/headers/Etag.yaml
         Content-Encoding:
-          schema:
-            type: string
+          $ref: ../components/headers/Content-Encoding.yaml
         X-Frame-Options:
-          schema:
-            type: string
+          $ref: ../components/headers/X-Frame-Options.yaml
         X-XSS-Protection:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-XSS-Protection.yaml
         Strict-Transport-Security:
-          schema:
-            type: string
+          $ref: ../components/headers/Strict-Transport-Security.yaml
         Content-Security-Policy:
-          schema:
-            type: string
+          $ref: ../components/headers/Content-Security-Policy.yaml
       content:
         application/json:
           schema:
