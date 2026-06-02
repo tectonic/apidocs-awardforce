@@ -57,14 +57,14 @@ get:
           $ref: ../components/headers/Set-Cookie.yaml
         Cache-Control:
           $ref: ../components/headers/Cache-Control.yaml
-        X-Ratelimit-Limit:
-          $ref: ../components/headers/X-Ratelimit-Limit.yaml
-        X-Ratelimit-Remaining:
-          $ref: ../components/headers/X-Ratelimit-Remaining.yaml
-        X-Ratelimit-Reset:
-          $ref: ../components/headers/X-Ratelimit-Reset.yaml
-        Etag:
-          $ref: ../components/headers/Etag.yaml
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
+        ETag:
+          $ref: ../components/headers/ETag.yaml
         Content-Encoding:
           $ref: ../components/headers/Content-Encoding.yaml
         X-Frame-Options:
