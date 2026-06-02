@@ -1,4 +1,4 @@
-name: fieldSlug
+name: field_slug
 in: path
 required: true
 description: Field slug
