@@ -157,30 +157,33 @@ post:
             type: object
   description: |-
     Creates a new assignment.
-
-    | Parameter | Required | Type | Description |
-    | --- | --- | --- | --- |
-    | score_set | Yes | String | Score Set slug |
-    | entries | Yes | Array | List of Entry slugs |
-    | judges | Yes | Array | List of Judge slugs |
-    | rounds | Yes | Array | List of Round slugs |
   requestBody:
+    required: true
     content:
       application/json:
         schema:
           type: object
+          required:
+            - score_set
+            - entries
+            - judges
+            - rounds
           properties:
             score_set:
               type: string
+              description: Slug of the score set.
             entries:
               type: array
+              description: List of entry slugs.
               items:
                 type: string
             judges:
               type: array
+              description: List of judge slugs.
               items:
                 type: string
             rounds:
               type: array
+              description: List of round slugs.
               items:
                 type: string
