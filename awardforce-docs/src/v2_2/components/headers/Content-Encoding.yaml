@@ -1,2 +1,3 @@
+description: Content codings applied to the response body.
 schema:
   type: string

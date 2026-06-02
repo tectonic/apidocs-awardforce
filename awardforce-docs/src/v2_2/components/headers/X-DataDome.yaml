@@ -1,2 +1,3 @@
+description: DataDome protection metadata returned with the response.
 schema:
   type: string

@@ -1,2 +1,3 @@
+description: Content Security Policy directives returned with the response.
 schema:
   type: string
