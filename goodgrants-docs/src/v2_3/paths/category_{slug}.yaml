@@ -1,3 +1,10 @@
+parameters:
+  - name: slug
+    in: path
+    required: true
+    description: Category slug
+    schema:
+      type: string
 get:
   summary: Get category
   tags:
@@ -169,13 +176,6 @@ get:
   description: >-
     Returns a category by its slug. The response consists of all category
     fields. Images include a download link.
-parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Category slug
-    schema:
-      type: string
 put:
   summary: Update category
   tags:

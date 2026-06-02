@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../components/parameters/token.yaml
 get:
   summary: Get attachment
   tags:
@@ -123,8 +125,6 @@ get:
       application/json:
         schema:
           type: object
-parameters:
-  - $ref: ../components/parameters/token.yaml
 put:
   summary: Update attachment
   tags:

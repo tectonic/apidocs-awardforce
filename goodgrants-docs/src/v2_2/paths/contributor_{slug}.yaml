@@ -1,3 +1,10 @@
+parameters:
+  - name: slug
+    in: path
+    required: true
+    description: Contributor slug
+    schema:
+      type: string
 get:
   summary: Get contributor
   tags:
@@ -102,13 +109,6 @@ get:
   description: >-
     Returns a contributor by its slug. The response consists of all contributor
     fields.
-parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Contributor slug
-    schema:
-      type: string
 put:
   summary: Update contributor
   tags:

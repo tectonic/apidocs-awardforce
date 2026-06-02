@@ -1,3 +1,6 @@
+parameters:
+  - $ref: ../components/parameters/entrySlug.yaml
+  - $ref: ../components/parameters/fieldSlug.yaml
 post:
   summary: Upload entry file
   tags:
@@ -53,6 +56,3 @@ post:
                 type: string
                 format: uri
   description: Upload a file to an entry file field.
-parameters:
-  - $ref: ../components/parameters/entrySlug.yaml
-  - $ref: ../components/parameters/fieldSlug.yaml

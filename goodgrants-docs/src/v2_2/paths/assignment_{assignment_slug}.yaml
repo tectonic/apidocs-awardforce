@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../components/parameters/assignmentSlug.yaml
 get:
   summary: Retrieve an assignment
   tags:
@@ -38,8 +40,6 @@ get:
           schema:
             $ref: ../components/schemas/Assignment.yaml
   description: Retrieves an assignment identified by the specified assignment slug.
-parameters:
-  - $ref: ../components/parameters/assignmentSlug.yaml
 delete:
   summary: Delete an assignment
   tags:

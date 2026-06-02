@@ -1,3 +1,9 @@
+parameters:
+  - name: slug
+    in: path
+    required: true
+    schema:
+      type: string
 put:
   summary: Update entry chapter
   tags:
@@ -12,9 +18,3 @@ put:
       application/json:
         schema:
           type: object
-parameters:
-  - name: slug
-    in: path
-    required: true
-    schema:
-      type: string

@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../components/parameters/token.yaml
 get:
   summary: Get file info
   tags:
@@ -109,5 +111,3 @@ get:
                     etag:
                       type: string
   description: Returns file information by its token.
-parameters:
-  - $ref: ../components/parameters/token.yaml

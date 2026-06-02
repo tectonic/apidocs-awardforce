@@ -1,3 +1,10 @@
+parameters:
+  - name: slug
+    in: path
+    required: true
+    description: Category slug
+    schema:
+      type: string
 post:
   summary: Upload category file
   tags:
@@ -53,10 +60,3 @@ post:
                 type: string
                 format: uri
   description: Upload a category image.
-parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Category slug
-    schema:
-      type: string

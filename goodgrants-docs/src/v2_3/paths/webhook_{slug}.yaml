@@ -1,3 +1,9 @@
+parameters:
+  - name: slug
+    in: path
+    required: true
+    schema:
+      type: string
 get:
   summary: Get webhook
   tags:
@@ -66,12 +72,6 @@ get:
                 type: string
                 format: date-time
   description: Returns a webhook by its slug.
-parameters:
-  - name: slug
-    in: path
-    required: true
-    schema:
-      type: string
 put:
   summary: Update webhook
   tags:

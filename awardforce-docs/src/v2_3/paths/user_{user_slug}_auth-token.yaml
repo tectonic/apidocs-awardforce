@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../components/parameters/userSlug.yaml
 get:
   summary: Get auth token
   tags:
@@ -56,5 +58,3 @@ get:
     Force](https://support.awardforce.com/hc/en-us/articles/360002282716-Creating-your-own-SSO-integration)
     or [Creating your own SSO integration in Good
     Grants](https://help.goodgrants.com/hc/en-gb/articles/360002287675-Creating-your-own-SSO-integration).
-parameters:
-  - $ref: ../components/parameters/userSlug.yaml

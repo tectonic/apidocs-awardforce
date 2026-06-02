@@ -1,3 +1,10 @@
+parameters:
+  - name: slug
+    in: path
+    required: true
+    description: Season slug
+    schema:
+      type: string
 get:
   summary: Get season
   tags:
@@ -64,10 +71,3 @@ get:
                 type: string
                 format: date-time
   description: Returns a season by its slug. The response consists of all season fields.
-parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Season slug
-    schema:
-      type: string

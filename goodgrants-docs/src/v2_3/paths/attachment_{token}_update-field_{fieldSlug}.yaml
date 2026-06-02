@@ -1,3 +1,6 @@
+parameters:
+  - $ref: ../components/parameters/token.yaml
+  - $ref: ../components/parameters/fieldSlug.yaml
 put:
   summary: Update entry attachment field
   tags:
@@ -12,6 +15,3 @@ put:
       application/json:
         schema:
           type: object
-parameters:
-  - $ref: ../components/parameters/token.yaml
-  - $ref: ../components/parameters/fieldSlug.yaml

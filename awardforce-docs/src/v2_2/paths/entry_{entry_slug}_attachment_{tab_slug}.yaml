@@ -1,3 +1,6 @@
+parameters:
+  - $ref: ../components/parameters/entrySlug.yaml
+  - $ref: ../components/parameters/tabSlug.yaml
 post:
   summary: Create attachment
   tags:
@@ -68,6 +71,3 @@ post:
 
     If you don't have attachment fields you can remove this object from the body
     of your request.
-parameters:
-  - $ref: ../components/parameters/entrySlug.yaml
-  - $ref: ../components/parameters/tabSlug.yaml
