@@ -10,7 +10,7 @@ put:
   responses:
     default:
       description: Attachment field updated.
-  description: Updates a specified attachment field for an attachment identified by the token.
+  description: Updates an attachment field for the attachment identified by the specified token.
   requestBody:
     content:
       application/json:

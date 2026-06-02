@@ -1,5 +1,5 @@
 get:
-  summary: List attachments
+  summary: Retrieve attachments
   tags:
     - Attachment
   parameters:

@@ -1,7 +1,7 @@
 parameters:
   - $ref: ../components/parameters/token.yaml
 get:
-  summary: Retrieve attachment
+  summary: Retrieve an attachment
   tags:
     - Attachment
   parameters:
@@ -49,10 +49,10 @@ get:
           schema:
             $ref: ../components/schemas/Attachment.yaml
   description: >-
-    Retrieves an attachment identified by the specified token. The response
+    Retrieves the attachment identified by the specified token. The response
     includes all attachment fields. Files include a download link.
 put:
-  summary: Update attachment
+  summary: Update an attachment
   tags:
     - Attachment
   parameters:
@@ -116,7 +116,7 @@ put:
               type: string
               description: Slug of the tab.
 delete:
-  summary: Delete attachment
+  summary: Delete an attachment
   tags:
     - Attachment
   parameters:
@@ -153,4 +153,4 @@ delete:
           $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
           $ref: ../components/headers/Content-Security-Policy.yaml
-  description: Deletes an existing attachment.
+  description: Deletes the attachment identified by the specified token.
