@@ -2,14 +2,15 @@ parameters:
   - $ref: ../components/parameters/token.yaml
   - $ref: ../components/parameters/fieldSlug.yaml
 put:
-  summary: Update entry attachment field
+  summary: Update an attachment field
   tags:
     - Entry (realtime)
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     default:
-      description: Update entry attachment field
+      description: Attachment field updated.
+  description: Updates a specified attachment field for an attachment identified by the token.
   requestBody:
     content:
       application/json:

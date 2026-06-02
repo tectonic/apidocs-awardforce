@@ -1,14 +1,14 @@
 parameters:
   - $ref: ../components/parameters/token.yaml
 get:
-  summary: Get attachment
+  summary: Retrieve attachment
   tags:
     - Attachment
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Get attachment
+      description: Attachment retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -47,84 +47,10 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              entry:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  title:
-                    type: string
-              attachment_fields:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    label:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    value:
-                      type: string
-                    translated:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-              created:
-                type: string
-                format: date-time
-              file:
-                type: object
-                properties:
-                  token:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  download:
-                    type: string
-                    format: uri
-                  filename:
-                    type: string
-              order:
-                type: integer
-              tab:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              token:
-                type: string
-              updated:
-                type: string
-                format: date-time
+            $ref: ../components/schemas/Attachment.yaml
   description: >-
-    Returns an attachment by its token. The response consists of all attachment
-    fields. Files include a download link.
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
+    Retrieves an attachment identified by the specified token. The response
+    includes all attachment fields. Files include a download link.
 put:
   summary: Update attachment
   tags:
@@ -133,7 +59,7 @@ put:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Update attachment
+      description: Attachment updated.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -166,96 +92,29 @@ put:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              entry:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  title:
-                    type: string
-              attachment_fields:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    label:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    value:
-                      type: string
-                    translated:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-              created:
+            $ref: ../components/schemas/Attachment.yaml
+  description: |-
+    Updates an existing attachment.
+
+    Attachment fields are linked to the attachment and are distinct from form fields.
+    `attachment_fields` is optional when the attachment has no attachment fields.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            attachment_fields:
+              type: object
+              description: Object of attachment field values keyed by field slug.
+              additionalProperties:
                 type: string
-                format: date-time
-              file:
-                type: object
-                properties:
-                  token:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  download:
-                    type: string
-                    format: uri
-                  filename:
-                    type: string
-              order:
-                type: integer
-              tab:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              token:
-                type: string
-              updated:
-                type: string
-                format: date-time
-  description: >-
-    Update an existing attachment.  
-
-    Please note that attachment fields are linked to the attachment and
-    shouldn't be confused with form fields.  
-
-    If you don't have attachment fields you can remove this object from the body
-    of your request.
-
-
-    | Parameter | Required | Type | Description |
-
-    | --- | --- | --- | --- |
-
-    | attachment_fields | No | array | Object containing key / value pairs.
-    Where the key is the Field slug. e.g. "fJkIjGmB": "Test value" |
-
-    | order | No | Integer | Attachment order |
-
-    | tab | No | Array | Tab slug |
+            order:
+              type: integer
+              description: Order of the attachment.
+            tab:
+              type: string
+              description: Slug of the tab.
 delete:
   summary: Delete attachment
   tags:
@@ -264,7 +123,7 @@ delete:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
-      description: Delete attachment
+      description: Attachment deleted.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -294,4 +153,4 @@ delete:
           $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
           $ref: ../components/headers/Content-Security-Policy.yaml
-  description: Delete an existing attachment.
+  description: Deletes an existing attachment.

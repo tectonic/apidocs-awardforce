@@ -1,0 +1,70 @@
+type: object
+properties:
+  entry:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      title:
+        type: string
+  attachment_fields:
+    type: array
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+        link:
+          type: string
+          format: uri
+        label:
+          type: object
+          properties:
+            en_GB:
+              type: string
+        value:
+          type: string
+        translated:
+          type: object
+          properties:
+            en_GB:
+              type: string
+  created:
+    type: string
+    format: date-time
+  file:
+    type: object
+    properties:
+      token:
+        type: string
+      link:
+        type: string
+        format: uri
+      download:
+        type: string
+        format: uri
+      filename:
+        type: string
+  order:
+    type: integer
+  tab:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  token:
+    type: string
+  updated:
+    type: string
+    format: date-time
