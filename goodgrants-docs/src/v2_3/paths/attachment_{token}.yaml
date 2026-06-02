@@ -93,11 +93,14 @@ put:
         application/json:
           schema:
             $ref: ../components/schemas/Attachment.yaml
-  description: |-
-    Updates an existing attachment.
+  description: Updates an existing attachment.
+  x-mint:
+    content: |-
+      <Note>
+      Attachment fields are linked to the attachment and are distinct from form fields.
 
-    Attachment fields are linked to the attachment and are distinct from form fields.
-    `attachment_fields` is optional when the attachment has no attachment fields.
+      If the attachment has no attachment fields, you can omit `attachment_fields` from the request body.
+      </Note>
   requestBody:
     content:
       application/json:

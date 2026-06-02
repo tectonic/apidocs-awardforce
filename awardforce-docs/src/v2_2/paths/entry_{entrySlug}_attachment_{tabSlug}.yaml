@@ -2,14 +2,14 @@ parameters:
   - $ref: ../components/parameters/entrySlug.yaml
   - $ref: ../components/parameters/tabSlug.yaml
 post:
-  summary: Create attachment
+  summary: Create an attachment
   tags:
     - Attachment
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
-      description: Upload entry attachment
+      description: Attachment created.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -63,11 +63,11 @@ post:
                   link:
                     type: string
                     format: uri
-  description: >-
-    Upload an attachment to an entry by its tab.  
+  description: Creates an attachment for the specified entry and tab.
+  x-mint:
+    content: |-
+      <Note>
+      Attachment fields are linked to the attachment and are distinct from form fields.
 
-    Please note that attachment fields are linked to the attachment and
-    shouldn't be confused with form fields.  
-
-    If you don't have attachment fields you can remove this object from the body
-    of your request.
+      If the attachment has no attachment fields, you can omit `attachment_fields` from the request body.
+      </Note>
