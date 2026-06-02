@@ -156,59 +156,41 @@ get:
       description: List entries
       headers:
         Date:
-          schema:
-            type: string
+          $ref: ../components/headers/Date.yaml
         Transfer-Encoding:
-          schema:
-            type: string
+          $ref: ../components/headers/Transfer-Encoding.yaml
         Connection:
-          schema:
-            type: string
+          $ref: ../components/headers/Connection.yaml
         Set-Cookie:
-          schema:
-            type: string
+          $ref: ../components/headers/Set-Cookie.yaml
         Vary:
-          schema:
-            type: string
+          $ref: ../components/headers/Vary.yaml
         Cache-Control:
-          schema:
-            type: string
+          $ref: ../components/headers/Cache-Control.yaml
         X-RateLimit-Limit:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
         X-RateLimit-Remaining:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
         ETag:
-          schema:
-            type: string
+          $ref: ../components/headers/ETag.yaml
         X-Frame-Options:
-          schema:
-            type: string
+          $ref: ../components/headers/X-Frame-Options.yaml
         X-XSS-Protection:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-XSS-Protection.yaml
         Strict-Transport-Security:
-          schema:
-            type: string
+          $ref: ../components/headers/Strict-Transport-Security.yaml
         Content-Encoding:
-          schema:
-            type: string
+          $ref: ../components/headers/Content-Encoding.yaml
         Feature-Policy:
-          schema:
-            type: string
+          $ref: ../components/headers/Feature-Policy.yaml
         Referrer-Policy:
-          schema:
-            type: string
+          $ref: ../components/headers/Referrer-Policy.yaml
         X-Content-Type-Options:
-          schema:
-            type: string
+          $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
-          schema:
-            type: string
+          $ref: ../components/headers/Content-Security-Policy.yaml
       content:
         application/json:
           schema:
@@ -384,53 +366,37 @@ post:
       description: Create entry
       headers:
         Date:
-          schema:
-            type: string
+          $ref: ../components/headers/Date.yaml
         Transfer-Encoding:
-          schema:
-            type: string
+          $ref: ../components/headers/Transfer-Encoding.yaml
         Connection:
-          schema:
-            type: string
+          $ref: ../components/headers/Connection.yaml
         Cache-Control:
-          schema:
-            type: string
+          $ref: ../components/headers/Cache-Control.yaml
         Location:
-          schema:
-            type: string
+          $ref: ../components/headers/Location.yaml
         X-RateLimit-Limit:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
         X-RateLimit-Remaining:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
         ETag:
-          schema:
-            type: string
+          $ref: ../components/headers/ETag.yaml
         X-Frame-Options:
-          schema:
-            type: string
+          $ref: ../components/headers/X-Frame-Options.yaml
         X-XSS-Protection:
-          schema:
-            type: integer
+          $ref: ../components/headers/X-XSS-Protection.yaml
         Strict-Transport-Security:
-          schema:
-            type: string
+          $ref: ../components/headers/Strict-Transport-Security.yaml
         Feature-Policy:
-          schema:
-            type: string
+          $ref: ../components/headers/Feature-Policy.yaml
         Referrer-Policy:
-          schema:
-            type: string
+          $ref: ../components/headers/Referrer-Policy.yaml
         X-Content-Type-Options:
-          schema:
-            type: string
+          $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
-          schema:
-            type: string
+          $ref: ../components/headers/Content-Security-Policy.yaml
       content:
         application/json:
           schema:
