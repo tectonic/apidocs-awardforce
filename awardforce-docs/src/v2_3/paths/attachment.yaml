@@ -106,36 +106,12 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  $ref: ../components/schemas/Attachment.yaml
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-                format: uri
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
+            allOf:
+              - $ref: ../components/schemas/Pagination.yaml
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ../components/schemas/Attachment.yaml
   description: Retrieves a list of attachments.
