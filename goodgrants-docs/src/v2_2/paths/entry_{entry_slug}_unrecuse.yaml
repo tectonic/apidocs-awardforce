@@ -1,11 +1,7 @@
 parameters:
-  - name: slug
-    in: path
-    required: true
-    schema:
-      type: string
+  - $ref: ../components/parameters/entrySlug.yaml
 put:
-  summary: Recuse assignment
+  summary: Unrecuse assignment
   tags:
     - Assignment
   parameters:
@@ -13,7 +9,7 @@ put:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '204':
-      description: Recuse assignment
+      description: Assignment recusal removed.
       headers:
         Server:
           $ref: ../components/headers/Server.yaml
@@ -33,24 +29,20 @@ put:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
         ETag:
           $ref: ../components/headers/ETag.yaml
-      content:
-        application/json:
-          schema:
-            type: object
   description: |-
-    Recuse a judge from an existing assignment.
-
-    | Parameter | Required | Type | Description |
-    | --- | --- | --- | --- |
-    | judge | Yes | String | Judge slug |
-    | score_set | No | String | Score Set slug |
+    Removes a judge recusal from an existing assignment.
   requestBody:
+    required: true
     content:
       application/json:
         schema:
           type: object
+          required:
+            - judge
           properties:
             judge:
               type: string
+              description: Slug of the judge.
             score_set:
               type: string
+              description: Slug of the score set.

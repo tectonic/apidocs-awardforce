@@ -18,10 +18,10 @@ paths:
     $ref: paths/assignment.yaml
   /assignment/{assignment_slug}:
     $ref: paths/assignment_{assignment_slug}.yaml
-  /entry/{slug}/recuse:
-    $ref: paths/entry_{slug}_recuse.yaml
-  /entry/{slug}/unrecuse:
-    $ref: paths/entry_{slug}_unrecuse.yaml
+  /entry/{entry_slug}/recuse:
+    $ref: paths/entry_{entry_slug}_recuse.yaml
+  /entry/{entry_slug}/unrecuse:
+    $ref: paths/entry_{entry_slug}_unrecuse.yaml
   /attachment:
     $ref: paths/attachment.yaml
   /attachment/{token}:
