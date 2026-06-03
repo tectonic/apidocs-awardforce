@@ -5,7 +5,6 @@ parameters:
     description: Entry slug
     schema:
       type: string
-  - $ref: ../components/parameters/entryTags.yaml
 put:
   summary: Tag entry
   operationId: PutEntryTagV22
@@ -13,6 +12,7 @@ put:
     - Entry
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/entryTagsToAdd.yaml
   responses:
     '200':
       description: Tag entry
@@ -235,6 +235,7 @@ delete:
     - Entry
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/entryTagsToRemove.yaml
   responses:
     '204':
       description: Untag entry

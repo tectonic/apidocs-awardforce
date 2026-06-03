@@ -1,0 +1,6 @@
+name: tags
+in: path
+required: true
+description: Comma-separated tags to add to the entry.
+schema:
+  type: string

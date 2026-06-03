@@ -1,6 +1,0 @@
-name: tags
-in: path
-required: true
-description: Tags to be removed from the entry, separated by comma
-schema:
-  type: string
