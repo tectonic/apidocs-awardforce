@@ -44,18 +44,8 @@ get:
       description: Form slug
       schema:
         type: string
-    - name: per_page
-      in: query
-      required: false
-      description: Number between 1 and 100
-      schema:
-        type: string
-    - name: page
-      in: query
-      required: false
-      description: Number greater than 0
-      schema:
-        type: string
+    - $ref: ../components/parameters/perPage.yaml
+    - $ref: ../components/parameters/page.yaml
     - name: order
       in: query
       required: false
