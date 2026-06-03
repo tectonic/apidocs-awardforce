@@ -1,0 +1,16 @@
+parameters:
+  - $ref: ../components/parameters/entrySlug.yaml
+  - $ref: ../components/parameters/fieldSlug.yaml
+put:
+  summary: Update an entry field
+  operationId: PutEntryUpdateFieldV23
+  tags:
+    - Entry (realtime)
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    $ref: ../components/requestBodies/EntryFieldUpdate.yaml
+  responses:
+    default:
+      description: Entry field updated.
+  description: Updates a field for the entry identified by the specified slug.

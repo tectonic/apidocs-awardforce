@@ -1,0 +1,6 @@
+name: entry_slug
+in: path
+required: true
+description: Slug or title of the entry.
+schema:
+  type: string

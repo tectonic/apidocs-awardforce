@@ -1,0 +1,5 @@
+description: Entry category update payload.
+content:
+  application/json:
+    schema:
+      type: object

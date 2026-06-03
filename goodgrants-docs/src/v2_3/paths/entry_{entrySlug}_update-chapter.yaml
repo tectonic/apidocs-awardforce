@@ -1,0 +1,15 @@
+parameters:
+  - $ref: ../components/parameters/entrySlug.yaml
+put:
+  summary: Update an entry chapter
+  operationId: PutEntryUpdateChapterV23
+  tags:
+    - Entry (realtime)
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    $ref: ../components/requestBodies/EntryChapterUpdate.yaml
+  responses:
+    default:
+      description: Entry chapter updated.
+  description: Updates the chapter for the entry identified by the specified slug.

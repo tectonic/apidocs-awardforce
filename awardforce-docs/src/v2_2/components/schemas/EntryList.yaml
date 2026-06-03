@@ -1,0 +1,129 @@
+allOf:
+  - $ref: ./Pagination.yaml
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            entrant:
+              type: object
+              properties:
+                slug:
+                  type: string
+                link:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                global_id:
+                  type: string
+            auto_score:
+              type: integer
+            category:
+              type: object
+              properties:
+                slug:
+                  type: string
+                link:
+                  type: string
+                  format: uri
+                name:
+                  type: object
+                  properties:
+                    en_GB:
+                      type: string
+            chapter:
+              type: object
+              properties:
+                slug:
+                  type: string
+                link:
+                  type: string
+                  format: uri
+                name:
+                  type: object
+                  properties:
+                    en_GB:
+                      type: string
+            comments:
+              type: string
+            contributor_count:
+              type: integer
+            created:
+              type: string
+              format: date-time
+            custom_deadline:
+              type: string
+            division:
+              nullable: true
+            eligibility_status:
+              type: string
+            files_count:
+              type: integer
+            form:
+              type: object
+              properties:
+                slug:
+                  type: string
+                link:
+                  type: string
+                  format: uri
+                name:
+                  type: object
+                  properties:
+                    en_GB:
+                      type: string
+            grant_end_date:
+              nullable: true
+            grant_status:
+              nullable: true
+            local_id:
+              type: integer
+            moderation_status:
+              type: string
+            parent_category:
+              nullable: true
+            payment_status:
+              type: string
+            plagiarism_scan_status:
+              type: string
+            review_status:
+              type: string
+            season:
+              type: object
+              properties:
+                slug:
+                  type: string
+                link:
+                  type: string
+                  format: uri
+                name:
+                  type: object
+                  properties:
+                    en_GB:
+                      type: string
+                      format: utc-millisec
+            slug:
+              type: string
+            status:
+              type: string
+            submitted:
+              nullable: true
+            tags:
+              type: string
+            title:
+              type: string
+            updated:
+              type: string
+              format: date-time
+            user_comments:
+              type: string

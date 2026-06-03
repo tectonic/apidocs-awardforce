@@ -1,0 +1,15 @@
+parameters:
+  - $ref: ../components/parameters/entrySlug.yaml
+put:
+  summary: Update an entry title
+  operationId: PutEntryUpdateTitleV22
+  tags:
+    - Entry (realtime)
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    $ref: ../components/requestBodies/EntryTitleUpdate.yaml
+  responses:
+    default:
+      description: Entry title updated.
+  description: Updates the title for the entry identified by the specified slug.

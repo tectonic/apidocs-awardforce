@@ -46,20 +46,20 @@ paths:
     $ref: paths/contributor_{contributorSlug}.yaml
   /entry:
     $ref: paths/entry.yaml
-  /entry/{slug}:
-    $ref: paths/entry_{slug}.yaml
+  /entry/{entry_slug}:
+    $ref: paths/entry_{entrySlug}.yaml
   /entry/{entry_slug}/upload/{field_slug}:
     $ref: paths/entry_{entrySlug}_upload_{fieldSlug}.yaml
-  /entry/{slug}/tag/{tags}:
-    $ref: paths/entry_{slug}_tag_{tags}.yaml
-  /entry/{slug}/update-title:
-    $ref: paths/entry_{slug}_update-title.yaml
-  /entry/{slug}/update-field/{field_slug}:
-    $ref: paths/entry_{slug}_update-field_{fieldSlug}.yaml
-  /entry/{slug}/update-category:
-    $ref: paths/entry_{slug}_update-category.yaml
-  /entry/{slug}/update-chapter:
-    $ref: paths/entry_{slug}_update-chapter.yaml
+  /entry/{entry_slug}/tag/{tags}:
+    $ref: paths/entry_{entrySlug}_tag_{tags}.yaml
+  /entry/{entry_slug}/update-title:
+    $ref: paths/entry_{entrySlug}_update-title.yaml
+  /entry/{entry_slug}/update-field/{field_slug}:
+    $ref: paths/entry_{entrySlug}_update-field_{fieldSlug}.yaml
+  /entry/{entry_slug}/update-category:
+    $ref: paths/entry_{entrySlug}_update-category.yaml
+  /entry/{entry_slug}/update-chapter:
+    $ref: paths/entry_{entrySlug}_update-chapter.yaml
   /attachment/{token}/update-field/{field_slug}:
     $ref: paths/attachment_{token}_update-field_{fieldSlug}.yaml
   /contributor/{contributor_slug}/update-field/{field_slug}:

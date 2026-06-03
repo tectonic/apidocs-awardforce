@@ -1,0 +1,54 @@
+description: Entry creation payload.
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - category
+        - entrant
+        - season
+        - title
+      properties:
+        brand:
+          type: string
+        category:
+          type: string
+          description: Slug of the category.
+        chapter:
+          type: string
+          description: Slug of the chapter.
+        entrant:
+          type: string
+          description: Slug of the entrant.
+        season:
+          type: string
+          description: Slug of the season.
+        title:
+          type: string
+          description: Title of the entry.
+        form:
+          type: string
+          description: Slug of the form.
+        status:
+          type: string
+          description: Entry status.
+          enum:
+            - submitted
+            - in_progress
+            - resubmission_required
+        moderation_status:
+          type: string
+          description: Moderation status of the entry.
+          enum:
+            - approved
+            - undecided
+            - rejected
+        entry_fields:
+          type: object
+          description: Object of entry field values keyed by field slug.
+          additionalProperties:
+            type: string
+        custom_deadline:
+          type: string
+          description: Custom deadline in `yyyy-mm-dd hh:mm` format.
+required: true

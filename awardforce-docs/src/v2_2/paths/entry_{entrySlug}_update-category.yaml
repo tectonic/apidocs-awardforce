@@ -1,0 +1,15 @@
+parameters:
+  - $ref: ../components/parameters/entrySlug.yaml
+put:
+  summary: Update an entry category
+  operationId: PutEntryUpdateCategoryV22
+  tags:
+    - Entry (realtime)
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    $ref: ../components/requestBodies/EntryCategoryUpdate.yaml
+  responses:
+    default:
+      description: Entry category updated.
+  description: Updates the category for the entry identified by the specified slug.

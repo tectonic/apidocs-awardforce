@@ -1,0 +1,5 @@
+description: Entry field update payload.
+content:
+  application/json:
+    schema:
+      type: object

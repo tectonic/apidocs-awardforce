@@ -1,0 +1,5 @@
+description: Entry title update payload.
+content:
+  application/json:
+    schema:
+      type: object

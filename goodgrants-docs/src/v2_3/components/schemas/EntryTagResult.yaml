@@ -1,0 +1,179 @@
+type: object
+properties:
+  attachments:
+    type: array
+    items:
+      type: object
+      properties:
+        token:
+          type: string
+        link:
+          type: string
+          format: uri
+        name:
+          type: string
+        download:
+          type: string
+        attachment_fields:
+          type: array
+          items:
+            type: object
+            properties:
+              slug:
+                type: string
+              link:
+                type: string
+                format: uri
+              label:
+                type: object
+                properties:
+                  en_GB:
+                    type: string
+              value:
+                type: string
+              translated:
+                type: object
+                properties:
+                  en_GB:
+                    type: string
+  category:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  chapter:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  comments:
+    type: string
+  contributor_count:
+    type: integer
+  contributors:
+    type: array
+    items: {}
+  created:
+    type: string
+    format: date-time
+  division:
+    nullable: true
+  entrant:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+  entry_fields:
+    type: array
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+        link:
+          type: string
+          format: uri
+        label:
+          type: object
+          properties:
+            en_GB:
+              type: string
+        value:
+          type: string
+        translated:
+          type: object
+          properties:
+            en_GB:
+              type: string
+  files_count:
+    type: integer
+  form:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  local_id:
+    type: integer
+  moderation_status:
+    type: string
+  parent_category:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  payment_status:
+    type: string
+  plagiarism_scan_status:
+    type: string
+  resubmitted:
+    type: string
+  review_status:
+    type: string
+  season:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  slug:
+    type: string
+  status:
+    type: string
+  submitted:
+    type: string
+    format: date-time
+  tags:
+    type: string
+  title:
+    type: string
+  updated:
+    type: string
+    format: date-time

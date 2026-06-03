@@ -1,0 +1,41 @@
+description: Entry update payload.
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        category:
+          type: string
+          description: Slug of the category.
+        chapter:
+          type: string
+          description: Slug of the chapter.
+        entrant:
+          type: string
+          description: Slug of the entrant.
+        title:
+          type: string
+          description: Title of the entry.
+        status:
+          type: string
+          description: Entry status.
+          enum:
+            - submitted
+            - in_progress
+            - resubmission_required
+            - resubmitted
+        moderation_status:
+          type: string
+          description: Moderation status of the entry.
+          enum:
+            - approved
+            - undecided
+            - rejected
+        entry_fields:
+          type: object
+          description: Object of entry field values keyed by field slug.
+          additionalProperties:
+            type: string
+        custom_deadline:
+          type: string
+          description: Custom deadline in `yyyy-mm-dd hh:mm` format.
