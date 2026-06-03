@@ -1,0 +1,6 @@
+name: per_page
+in: query
+required: false
+description: Limit the number of items returned to between 1 and 100.
+schema:
+  type: string
