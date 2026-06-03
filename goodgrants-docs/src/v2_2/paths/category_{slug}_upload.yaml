@@ -60,4 +60,7 @@ post:
               link:
                 type: string
                 format: uri
-  description: Uploads a category image.
+  description: Uploads a file for the category identified by the specified slug.
+  x-mint:
+    content: |-
+      Use this operation to upload a category image.

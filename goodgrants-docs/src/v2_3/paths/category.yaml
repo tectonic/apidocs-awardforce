@@ -121,7 +121,7 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/CategoryList.yaml
-  description: Retrieves a list of categories.
+  description: Retrieves categories.
 post:
   summary: Create a category
   operationId: PostCategoryV23
@@ -129,6 +129,69 @@ post:
     - Category
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - season
+            - status
+            - translated
+          properties:
+            season:
+              type: string
+              description: Slug of the season.
+            status:
+              type: string
+              description: One of the following values.
+              enum:
+                - active
+                - inactive
+            translated:
+              type: object
+              description: Translated category field values keyed by field name.
+              additionalProperties: false
+              required:
+                - name
+              properties:
+                name: &translatedField
+                  type: object
+                  description: Values keyed by existing and enabled language code.
+                  additionalProperties:
+                    type: string
+                description: *translatedField
+                entry_name_label: *translatedField
+                image_heading: *translatedField
+                packing_slip_instructions: *translatedField
+                shortcode: *translatedField
+            chapters:
+              type: array
+              description: Array of chapter slugs.
+              items:
+                type: string
+            divisions:
+              type: integer
+              description: Number of divisions.
+            entrant_max_entries:
+              type: integer
+              description: Maximum number of entries per entrant.
+            fill_entry_name:
+              type: boolean
+              description: Specifies whether to prefill the entry name when the category is selected.
+            max_image_width:
+              type: integer
+              description: Maximum image width.
+            form:
+              type: string
+              description: Slug of the form.
+            parent:
+              type: string
+              description: Slug of the parent category.
+            pdf_packing_slip:
+              type: boolean
+              description: Specifies whether to generate a PDF packing slip.
   responses:
     '201':
       description: Category created.
@@ -169,40 +232,4 @@ post:
         application/json:
           schema:
             $ref: ../components/schemas/Category.yaml
-  description: |-
-    Creates a new category.
-
-
-    | Parameter | Required | Type | Description |
-
-    | --------- | -------- | ---- | ----------- |
-
-    | season | Yes | String | Slug of the season. |
-
-    | status | Yes | String | One of the following values: <ul> <li>active</li>
-    <li>inactive</li> </ul> |
-
-    | translated | Yes | Array | Array of key / value pairs where keys can be
-    any of the following: <ul> <li>name (Required)</li> <li>description</li>
-    <li>entry_name_label</li> <li>image_heading</li> 
-    <li>packing_slip_instructions</li> <li>shortcode</li> </ul> Values are
-    themselves of type Array containing key / value pairs where the key can be
-    any existing and enabled language code. |
-
-    | chapters | No | Array | Array of chapter slugs. |
-
-    | divisions | No | Integer | Number of divisions. |
-
-    | entrant_max_entries | No | Integer | Maximum number of entries per entrant. |
-
-    | fill_entry_name | No | Boolean | Specifies whether to prefill the entry
-    name when the category is selected. |
-
-    | max_image_width | No | Integer | Maximum image width. |
-
-    | form | No | String | Slug of the form. |
-
-    | parent | No | String | Slug of the parent category. |
-
-    | pdf_packing_slip | No | Boolean | Specifies whether to generate a PDF
-    packing slip. |
+  description: Creates a category.
