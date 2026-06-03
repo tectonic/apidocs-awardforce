@@ -1,0 +1,70 @@
+type: object
+properties:
+  chapters:
+    type: array
+    items: &namedLinkObject
+      type: object
+      properties:
+        slug:
+          type: string
+        link:
+          type: string
+          format: uri
+        name: &translatedText
+          type: object
+          properties:
+            en_GB:
+              type: string
+  created:
+    type: string
+    format: date-time
+  description: *translatedText
+  divisions:
+    type: integer
+  entrant_max_entries:
+    type: integer
+  entry_name_label: *translatedText
+  fill_entry_name:
+    type: boolean
+  form:
+    oneOf:
+      - type: string
+      - *namedLinkObject
+  image_heading: *translatedText
+  images:
+    type: array
+    items:
+      type: object
+      properties:
+        token:
+          type: string
+        link:
+          type: string
+          format: uri
+        filename:
+          type: string
+        name:
+          type: string
+        download:
+          type: string
+  max_image_width:
+    type: integer
+  name: *translatedText
+  packing_slip_instructions: *translatedText
+  parent: *namedLinkObject
+  pdf_packing_slip:
+    type: boolean
+  season: *namedLinkObject
+  shortcode:
+    type: object
+    properties:
+      en_GB:
+        type: string
+        format: color
+  slug:
+    type: string
+  status:
+    type: string
+  updated:
+    type: string
+    format: date-time

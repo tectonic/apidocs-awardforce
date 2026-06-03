@@ -2,11 +2,11 @@ parameters:
   - name: slug
     in: path
     required: true
-    description: Category slug
+    description: Slug of the category.
     schema:
       type: string
 get:
-  summary: Get category
+  summary: Retrieve a category
   operationId: GetCategoryV23
   tags:
     - Category
@@ -14,7 +14,7 @@ get:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Get category
+      description: Category retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -53,132 +53,13 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              chapters:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-              created:
-                type: string
-                format: date-time
-              description:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              divisions:
-                type: integer
-              entrant_max_entries:
-                type: integer
-              entry_name_label:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              fill_entry_name:
-                type: boolean
-              form:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              image_heading:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              images:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    token:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    filename:
-                      type: string
-                    download:
-                      type: string
-              max_image_width:
-                type: integer
-              name:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              packing_slip_instructions:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              parent:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              pdf_packing_slip:
-                type: boolean
-              season:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              shortcode:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-                    format: color
-              slug:
-                type: string
-              status:
-                type: string
-              updated:
-                type: string
-                format: date-time
-  description: >-
-    Returns a category by its slug. The response consists of all category
-    fields. Images include a download link.
+            $ref: ../components/schemas/Category.yaml
+  description: |-
+    Retrieves a category identified by the specified slug.
+    The response includes all category fields.
+    Images include a download link.
 put:
-  summary: Update category
+  summary: Update a category
   operationId: PutCategoryV23
   tags:
     - Category
@@ -186,7 +67,7 @@ put:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Update category
+      description: Category updated.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -219,136 +100,16 @@ put:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              chapters:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-              created:
-                type: string
-                format: date-time
-              description:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              divisions:
-                type: integer
-              entrant_max_entries:
-                type: integer
-              entry_name_label:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              fill_entry_name:
-                type: boolean
-              form:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              image_heading:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              images:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    token:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    name:
-                      type: string
-                    download:
-                      type: string
-              max_image_width:
-                type: integer
-              name:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              packing_slip_instructions:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              parent:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              pdf_packing_slip:
-                type: boolean
-              season:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              shortcode:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-                    format: color
-              slug:
-                type: string
-              status:
-                type: string
-              updated:
-                type: string
-                format: date-time
-  description: >-
-    Update an existing category.
+            $ref: ../components/schemas/Category.yaml
+  description: |-
+    Updates an existing category.
 
 
     | Parameter | Required | Type | Description |
 
     | --------- | -------- | ---- | ----------- |
 
-    | season | No | String | Season slug |
+    | season | No | String | Slug of the season. |
 
     | status | No | String | One of the following values: <ul> <li>active</li>
     <li>inactive</li> </ul> |
@@ -360,23 +121,23 @@ put:
     themselves of type Array containing key / value pairs where the key can be
     any existing and enabled language code. |
 
-    | chapters | No | Array | Array of Chapter slugs |
+    | chapters | No | Array | Array of chapter slugs. |
 
-    | divisions | No | Integer | Number of divisions |
+    | divisions | No | Integer | Number of divisions. |
 
-    | entrant_max_entries | No | Integer | Number of max entries per Entrant |
+    | entrant_max_entries | No | Integer | Maximum number of entries per entrant. |
 
-    | fill_entry_name | No | Boolean | Determines whether to prefill the entry
-    name field on the entry from when that category is selected. |
+    | fill_entry_name | No | Boolean | Specifies whether to prefill the entry
+    name when the category is selected. |
 
-    | max_image_width | No | Integer | Maximum image width |
+    | max_image_width | No | Integer | Maximum image width. |
 
-    | parent | No | String | Parent Category slug |
+    | parent | No | String | Slug of the parent category. |
 
-    | pdf_packing_slip | No | Boolean | Determines whether or not to generate a
-    PDF packing slip |
+    | pdf_packing_slip | No | Boolean | Specifies whether to generate a PDF
+    packing slip. |
 delete:
-  summary: Delete category
+  summary: Delete a category
   operationId: DeleteCategoryV23
   tags:
     - Category
@@ -384,7 +145,7 @@ delete:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
-      description: Delete category
+      description: Category deleted.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -414,4 +175,4 @@ delete:
           $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
           $ref: ../components/headers/Content-Security-Policy.yaml
-  description: Delete an existing category.
+  description: Deletes an existing category.

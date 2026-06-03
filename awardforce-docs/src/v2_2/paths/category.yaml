@@ -1,5 +1,5 @@
 get:
-  summary: List categories
+  summary: Retrieve categories
   operationId: GetCategoryCollectionV22
   tags:
     - Category
@@ -8,6 +8,7 @@ get:
       in: query
       required: false
       description: |-
+        Filter by one of the following status values:
         - active
         - inactive
       schema:
@@ -15,25 +16,26 @@ get:
     - name: chapter
       in: query
       required: false
-      description: Chapter slug
+      description: Filter by chapter slug.
       schema:
         type: string
     - name: parent
       in: query
       required: false
-      description: Category slug
+      description: Filter by parent category slug.
       schema:
         type: string
     - name: season
       in: query
       required: false
-      description: Season slug
+      description: Filter by season slug.
       schema:
         type: string
     - name: deleted
       in: query
       required: false
       description: |-
+        Filter by deletion status using one of the following modes:
         - only (show only deleted categories)
         - included (include deleted categories)
         - none (exclude deleted categories)
@@ -42,7 +44,7 @@ get:
     - name: form
       in: query
       required: false
-      description: Form slug
+      description: Filter by form slug.
       schema:
         type: string
     - $ref: ../components/parameters/perPage.yaml
@@ -51,7 +53,7 @@ get:
       in: query
       required: false
       description: |-
-        Column name to order by. The following options are available:
+        Order results by one of the following columns:
         - chapters
         - created
         - divisions
@@ -68,6 +70,7 @@ get:
       in: query
       required: false
       description: |-
+        Order results in one of the following directions:
         - asc
         - desc
       schema:
@@ -76,7 +79,7 @@ get:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
-      description: List categories
+      description: Categories retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -117,112 +120,10 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    chapter_count:
-                      type: integer
-                    created:
-                      type: string
-                      format: date-time
-                    description:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    divisions:
-                      type: integer
-                    entry_count:
-                      type: integer
-                    form:
-                      type: object
-                      properties:
-                        slug:
-                          type: string
-                        link:
-                          type: string
-                          format: uri
-                        name:
-                          type: object
-                          properties:
-                            en_GB:
-                              type: string
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    parent:
-                      type: object
-                      properties:
-                        slug:
-                          type: string
-                        link:
-                          type: string
-                          format: uri
-                        name:
-                          type: object
-                          properties:
-                            en_GB:
-                              type: string
-                    season:
-                      type: object
-                      properties:
-                        slug:
-                          type: string
-                        link:
-                          type: string
-                          format: uri
-                        name:
-                          type: object
-                          properties:
-                            en_GB:
-                              type: string
-                    shortcode:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                          format: color
-                    slug:
-                      type: string
-                    status:
-                      type: string
-                    updated:
-                      type: string
-                      format: date-time
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
-  description: Returns a list of categories.
+            $ref: ../components/schemas/CategoryList.yaml
+  description: Retrieves a list of categories.
 post:
-  summary: Create category
+  summary: Create a category
   operationId: PostCategoryV22
   tags:
     - Category
@@ -230,7 +131,7 @@ post:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
-      description: Create category
+      description: Category created.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -267,125 +168,16 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              chapters:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-              created:
-                type: string
-                format: date-time
-              description:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              divisions:
-                type: integer
-              entrant_max_entries:
-                type: integer
-              entry_name_label:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              fill_entry_name:
-                type: boolean
-              form:
-                type: string
-              image_heading:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              images:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    token:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    name:
-                      type: string
-                    download:
-                      type: string
-              max_image_width:
-                type: integer
-              name:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              packing_slip_instructions:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              parent:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              pdf_packing_slip:
-                type: boolean
-              season:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-              shortcode:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-                    format: color
-              slug:
-                type: string
-              status:
-                type: string
-              updated:
-                type: string
-                format: date-time
-  description: >-
-    Create a new category.
+            $ref: ../components/schemas/Category.yaml
+  description: |-
+    Creates a new category.
 
 
     | Parameter | Required | Type | Description |
 
     | --------- | -------- | ---- | ----------- |
 
-    | season | Yes | String | Season slug |
+    | season | Yes | String | Slug of the season. |
 
     | status | Yes | String | One of the following values: <ul> <li>active</li>
     <li>inactive</li> </ul> |
@@ -397,20 +189,20 @@ post:
     themselves of type Array containing key / value pairs where the key can be
     any existing and enabled language code. |
 
-    | chapters | No | Array | Array of Chapter slugs |
+    | chapters | No | Array | Array of chapter slugs. |
 
-    | divisions | No | Integer | Number of divisions |
+    | divisions | No | Integer | Number of divisions. |
 
-    | entrant_max_entries | No | Integer | Number of max entries per Entrant |
+    | entrant_max_entries | No | Integer | Maximum number of entries per entrant. |
 
-    | fill_entry_name | No | Boolean | Determines whether to prefill the entry
-    name field on the entry from when that category is selected |
+    | fill_entry_name | No | Boolean | Specifies whether to prefill the entry
+    name when the category is selected. |
 
-    | max_image_width | No | Integer | Maximum image width |
+    | max_image_width | No | Integer | Maximum image width. |
 
-    | form | No | String | Form slug |
+    | form | No | String | Slug of the form. |
 
-    | parent | No | String | Parent Category slug |
+    | parent | No | String | Slug of the parent category. |
 
-    | pdf_packing_slip | No | Boolean | Determines whether or not to generate a
-    PDF packing slip |
+    | pdf_packing_slip | No | Boolean | Specifies whether to generate a PDF
+    packing slip. |

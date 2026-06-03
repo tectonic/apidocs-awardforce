@@ -2,11 +2,11 @@ parameters:
   - name: slug
     in: path
     required: true
-    description: Category slug
+    description: Slug of the category.
     schema:
       type: string
 post:
-  summary: Upload category file
+  summary: Upload a category file
   operationId: PostCategoryUploadV23
   tags:
     - Category
@@ -14,7 +14,7 @@ post:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
-      description: Upload category file
+      description: Category file uploaded.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -60,4 +60,4 @@ post:
               link:
                 type: string
                 format: uri
-  description: Upload a category image.
+  description: Uploads a category image.
