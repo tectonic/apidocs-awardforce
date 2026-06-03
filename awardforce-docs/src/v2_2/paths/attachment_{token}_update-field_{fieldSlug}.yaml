@@ -13,7 +13,4 @@ put:
       description: Attachment field updated.
   description: Updates an attachment field for the attachment identified by the specified token.
   requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
+    $ref: ../components/requestBodies/AttachmentFieldUpdate.yaml

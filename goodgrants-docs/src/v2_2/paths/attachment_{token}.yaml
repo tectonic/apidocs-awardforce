@@ -104,22 +104,7 @@ put:
       If the attachment has no attachment fields, you can omit `attachment_fields` from the request body.
       </Note>
   requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            attachment_fields:
-              type: object
-              description: Object of attachment field values keyed by field slug.
-              additionalProperties:
-                type: string
-            order:
-              type: integer
-              description: Order of the attachment.
-            tab:
-              type: string
-              description: Slug of the tab.
+    $ref: ../components/requestBodies/AttachmentUpdate.yaml
 delete:
   summary: Delete an attachment
   operationId: DeleteAttachmentV22

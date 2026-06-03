@@ -30,10 +30,10 @@ paths:
     $ref: paths/entry_{entrySlug}_attachment_{tabSlug}.yaml
   /category:
     $ref: paths/category.yaml
-  /category/{slug}:
-    $ref: paths/category_{slug}.yaml
-  /category/{slug}/upload:
-    $ref: paths/category_{slug}_upload.yaml
+  /category/{category_slug}:
+    $ref: paths/category_{categorySlug}.yaml
+  /category/{category_slug}/upload:
+    $ref: paths/category_{categorySlug}_upload.yaml
   /chapter:
     $ref: paths/chapter.yaml
   /chapter/{slug}:

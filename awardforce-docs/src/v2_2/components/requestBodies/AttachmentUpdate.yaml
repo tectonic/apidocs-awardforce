@@ -1,0 +1,17 @@
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        attachment_fields:
+          type: object
+          description: Object of attachment field values keyed by field slug.
+          additionalProperties:
+            type: string
+        order:
+          type: integer
+          description: Order of the attachment.
+        tab:
+          type: string
+          description: Slug of the tab.
+description: Attachment update payload.

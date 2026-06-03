@@ -1,0 +1,53 @@
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        season:
+          type: string
+          description: Slug of the season.
+        status:
+          type: string
+          description: One of the following values.
+          enum:
+            - active
+            - inactive
+        translated:
+          type: object
+          description: Translated category field values keyed by field name.
+          additionalProperties: false
+          properties:
+            name: &translatedField
+              type: object
+              description: Values keyed by existing and enabled language code.
+              additionalProperties:
+                type: string
+            description: *translatedField
+            entry_name_label: *translatedField
+            image_heading: *translatedField
+            packing_slip_instructions: *translatedField
+            shortcode: *translatedField
+        chapters:
+          type: array
+          description: Array of chapter slugs.
+          items:
+            type: string
+        divisions:
+          type: integer
+          description: Number of divisions.
+        entrant_max_entries:
+          type: integer
+          description: Maximum number of entries per entrant.
+        fill_entry_name:
+          type: boolean
+          description: Specifies whether to prefill the entry name when the category is selected.
+        max_image_width:
+          type: integer
+          description: Maximum image width.
+        parent:
+          type: string
+          description: Slug of the parent category.
+        pdf_packing_slip:
+          type: boolean
+          description: Specifies whether to generate a PDF packing slip.
+description: Category update payload.

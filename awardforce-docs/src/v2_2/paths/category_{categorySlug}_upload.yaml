@@ -1,10 +1,5 @@
 parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Slug of the category.
-    schema:
-      type: string
+  - $ref: ../components/parameters/categorySlug.yaml
 post:
   summary: Upload a category file
   operationId: PostCategoryUploadV22

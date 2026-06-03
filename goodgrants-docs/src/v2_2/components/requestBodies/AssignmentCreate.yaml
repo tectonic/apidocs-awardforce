@@ -1,0 +1,30 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - score_set
+        - entries
+        - judges
+        - rounds
+      properties:
+        score_set:
+          type: string
+          description: Slug of the score set.
+        entries:
+          type: array
+          description: List of entry slugs.
+          items:
+            type: string
+        judges:
+          type: array
+          description: List of judge slugs.
+          items:
+            type: string
+        rounds:
+          type: array
+          description: List of round slugs.
+          items:
+            type: string
+description: Assignment creation payload.
+required: true
