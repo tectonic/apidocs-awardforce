@@ -1,0 +1,21 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - entry
+        - tab
+      properties:
+        entry:
+          type: string
+          description: Slug of the entry.
+        tab:
+          type: string
+          description: Slug of the contributor tab.
+        fields:
+          type: object
+          description: Object of contributor field values keyed by field slug.
+          additionalProperties:
+            type: string
+description: Contributor creation payload.
+required: true

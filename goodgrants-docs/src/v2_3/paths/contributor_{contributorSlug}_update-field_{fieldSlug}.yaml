@@ -1,0 +1,16 @@
+parameters:
+  - $ref: ../components/parameters/contributorSlug.yaml
+  - $ref: ../components/parameters/fieldSlug.yaml
+put:
+  summary: Update a contributor field
+  operationId: PutContributorUpdateFieldV23
+  tags:
+    - Entry (realtime)
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    default:
+      description: Contributor field updated.
+  description: Updates a contributor field for the contributor identified by the specified slug.
+  requestBody:
+    $ref: ../components/requestBodies/ContributorFieldUpdate.yaml

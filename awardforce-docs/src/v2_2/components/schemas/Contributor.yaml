@@ -1,0 +1,49 @@
+type: object
+properties:
+  entry: &entryLinkObject
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      title:
+        type: string
+  created:
+    type: string
+    format: date-time
+  fields:
+    type: array
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+        link:
+          type: string
+          format: uri
+        label: &translatedText
+          type: object
+          properties:
+            en_GB:
+              type: string
+        value:
+          type: string
+  season:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name: *translatedText
+  slug:
+    type: string
+  tab:
+    type: array
+    items: {}
+  updated:
+    type: string
+    format: date-time

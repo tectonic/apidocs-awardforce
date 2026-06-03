@@ -1,20 +1,15 @@
 parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Contributor slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/contributorSlug.yaml
 get:
-  summary: Get contributor
-  operationId: GetContributorV23
+  summary: Retrieve a contributor
+  operationId: GetContributorV22
   tags:
     - Contributor
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Get contributor
+      description: Contributor retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -53,73 +48,20 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              entry:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  title:
-                    type: string
-              created:
-                type: string
-                format: date-time
-              fields:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    label:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    value:
-                      type: string
-              season:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-                        format: utc-millisec
-              slug:
-                type: string
-              tab:
-                type: array
-                items: {}
-              updated:
-                type: string
-                format: date-time
-  description: >-
-    Returns a contributor by its slug. The response consists of all contributor
-    fields.
+            $ref: ../components/schemas/Contributor.yaml
+  description: Retrieves the contributor identified by the specified slug.
 put:
-  summary: Update contributor
-  operationId: PutContributorV23
+  summary: Update a contributor
+  operationId: PutContributorV22
   tags:
     - Contributor
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    $ref: ../components/requestBodies/ContributorUpdate.yaml
   responses:
     '200':
-      description: Update contributor
+      description: Contributor updated.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -152,80 +94,18 @@ put:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              entry:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  title:
-                    type: string
-              created:
-                type: string
-                format: date-time
-              fields:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    label:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    value:
-                      type: string
-              season:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-                        format: utc-millisec
-              slug:
-                type: string
-              tab:
-                type: array
-                items: {}
-              updated:
-                type: string
-                format: date-time
-  description: >-
-    Update an existing contributor.
-
-
-    | Parameter | Required | Type | Description |
-
-    | --------- | -------- | ---- | ----------- |
-
-    | fields | No| Object | Object containing key / value pairs. Where the key
-    is the Field slug. e.g. "fJkIjGmB": "Test value" |
+            $ref: ../components/schemas/Contributor.yaml
+  description: Updates the contributor identified by the specified slug.
 delete:
-  summary: Delete contributor
-  operationId: DeleteContributorV23
+  summary: Delete a contributor
+  operationId: DeleteContributorV22
   tags:
     - Contributor
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
-      description: Delete contributor
+      description: Contributor deleted.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -255,4 +135,4 @@ delete:
           $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
           $ref: ../components/headers/Content-Security-Policy.yaml
-  description: Delete an existing contributor.
+  description: Deletes the contributor identified by the specified slug.

@@ -1,0 +1,11 @@
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        fields:
+          type: object
+          description: Object of contributor field values keyed by field slug.
+          additionalProperties:
+            type: string
+description: Contributor update payload.

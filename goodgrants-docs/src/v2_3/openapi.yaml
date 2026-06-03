@@ -42,8 +42,8 @@ paths:
     $ref: paths/chapter_{chapterSlug}_upload.yaml
   /contributor:
     $ref: paths/contributor.yaml
-  /contributor/{slug}:
-    $ref: paths/contributor_{slug}.yaml
+  /contributor/{contributor_slug}:
+    $ref: paths/contributor_{contributorSlug}.yaml
   /entry:
     $ref: paths/entry.yaml
   /entry/{slug}:
@@ -62,8 +62,8 @@ paths:
     $ref: paths/entry_{slug}_update-chapter.yaml
   /attachment/{token}/update-field/{field_slug}:
     $ref: paths/attachment_{token}_update-field_{fieldSlug}.yaml
-  /contributor/{slug}/update-field/{field_slug}:
-    $ref: paths/contributor_{slug}_update-field_{fieldSlug}.yaml
+  /contributor/{contributor_slug}/update-field/{field_slug}:
+    $ref: paths/contributor_{contributorSlug}_update-field_{fieldSlug}.yaml
   /field:
     $ref: paths/field.yaml
   /file/{token}:
