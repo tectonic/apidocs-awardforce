@@ -1,5 +1,6 @@
 get:
   summary: List seasons
+  operationId: GetSeasonCollectionV22
   tags:
     - Season
   parameters:

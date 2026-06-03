@@ -7,6 +7,7 @@ parameters:
       type: string
 post:
   summary: Upload chapter file
+  operationId: PostChapterUploadV22
   tags:
     - Chapter
   parameters:

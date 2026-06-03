@@ -2,6 +2,7 @@ parameters:
   - $ref: ../components/parameters/entrySlug.yaml
 put:
   summary: Unrecuse assignment
+  operationId: PutEntryUnrecuseV23
   tags:
     - Assignment
   parameters:

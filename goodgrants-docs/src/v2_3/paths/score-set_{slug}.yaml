@@ -6,6 +6,7 @@ parameters:
       type: string
 get:
   summary: Get score set
+  operationId: GetScoreSetV23
   tags:
     - Score set
   parameters:

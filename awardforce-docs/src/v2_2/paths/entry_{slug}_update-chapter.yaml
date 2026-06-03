@@ -6,6 +6,7 @@ parameters:
       type: string
 put:
   summary: Update entry chapter
+  operationId: PutEntryUpdateChapterV22
   tags:
     - Entry (realtime)
   parameters:

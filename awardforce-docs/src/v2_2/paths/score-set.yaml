@@ -1,5 +1,6 @@
 get:
   summary: List score sets
+  operationId: GetScoreSetCollectionV22
   tags:
     - Score set
   parameters:

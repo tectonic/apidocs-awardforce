@@ -1,5 +1,6 @@
 get:
   summary: List users
+  operationId: GetUserCollectionV22
   tags:
     - User
   parameters:
@@ -217,6 +218,7 @@ get:
   description: Returns a list of users.
 post:
   summary: Create user
+  operationId: PostUserV22
   tags:
     - User
   parameters:

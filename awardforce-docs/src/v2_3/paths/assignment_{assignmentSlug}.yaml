@@ -2,6 +2,7 @@ parameters:
   - $ref: ../components/parameters/assignmentSlug.yaml
 get:
   summary: Retrieve an assignment
+  operationId: GetAssignmentV23
   tags:
     - Assignment
   parameters:
@@ -42,6 +43,7 @@ get:
   description: Retrieves an assignment identified by the specified assignment slug.
 delete:
   summary: Delete an assignment
+  operationId: DeleteAssignmentV23
   tags:
     - Assignment
   parameters:

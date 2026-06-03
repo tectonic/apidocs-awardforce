@@ -1,5 +1,6 @@
 get:
   summary: Retrieve assignments
+  operationId: GetAssignmentCollectionV23
   tags:
     - Assignment
   parameters:
@@ -113,6 +114,7 @@ get:
   description: Retrieves assignments that match the specified filters.
 post:
   summary: Create an assignment
+  operationId: PostAssignmentV23
   tags:
     - Assignment
   parameters:

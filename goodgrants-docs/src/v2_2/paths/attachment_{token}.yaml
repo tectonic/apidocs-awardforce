@@ -2,6 +2,7 @@ parameters:
   - $ref: ../components/parameters/token.yaml
 get:
   summary: Retrieve an attachment
+  operationId: GetAttachmentV22
   tags:
     - Attachment
   parameters:
@@ -53,6 +54,7 @@ get:
     includes all attachment fields. Files include a download link.
 put:
   summary: Update an attachment
+  operationId: PutAttachmentV22
   tags:
     - Attachment
   parameters:
@@ -120,6 +122,7 @@ put:
               description: Slug of the tab.
 delete:
   summary: Delete an attachment
+  operationId: DeleteAttachmentV22
   tags:
     - Attachment
   parameters:

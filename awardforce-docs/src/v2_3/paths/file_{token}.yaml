@@ -2,6 +2,7 @@ parameters:
   - $ref: ../components/parameters/token.yaml
 get:
   summary: Get file info
+  operationId: GetFileV23
   tags:
     - File
   parameters:

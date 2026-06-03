@@ -3,6 +3,7 @@ parameters:
   - $ref: ../components/parameters/tabSlug.yaml
 post:
   summary: Create an attachment
+  operationId: PostEntryAttachmentV23
   tags:
     - Attachment
   parameters:

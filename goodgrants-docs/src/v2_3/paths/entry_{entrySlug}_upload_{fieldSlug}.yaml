@@ -3,6 +3,7 @@ parameters:
   - $ref: ../components/parameters/fieldSlug.yaml
 post:
   summary: Upload entry file
+  operationId: PostEntryUploadV23
   tags:
     - Entry
   parameters:

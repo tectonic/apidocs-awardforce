@@ -1,5 +1,6 @@
 get:
   summary: List taxes
+  operationId: GetTaxCollectionV23
   tags:
     - Tax
   parameters:

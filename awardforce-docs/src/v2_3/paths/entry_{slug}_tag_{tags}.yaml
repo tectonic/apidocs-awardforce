@@ -8,6 +8,7 @@ parameters:
   - $ref: ../components/parameters/entryTags.yaml
 put:
   summary: Tag entry
+  operationId: PutEntryTagV23
   tags:
     - Entry
   parameters:
@@ -229,6 +230,7 @@ put:
   description: Add tags to an existing entry.
 delete:
   summary: Untag entry
+  operationId: DeleteEntryTagV23
   tags:
     - Entry
   parameters:

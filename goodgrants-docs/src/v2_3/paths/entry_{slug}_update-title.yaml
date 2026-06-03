@@ -6,6 +6,7 @@ parameters:
       type: string
 put:
   summary: Update entry title
+  operationId: PutEntryUpdateTitleV23
   tags:
     - Entry (realtime)
   parameters:

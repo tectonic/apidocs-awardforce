@@ -1,5 +1,6 @@
 get:
   summary: List webooks
+  operationId: GetWebhookCollectionV23
   tags:
     - Webhook
   parameters:
@@ -171,6 +172,7 @@ get:
   description: Returns a list of webhooks.
 post:
   summary: Create webhook
+  operationId: PostWebhookV23
   tags:
     - Webhook
   parameters:

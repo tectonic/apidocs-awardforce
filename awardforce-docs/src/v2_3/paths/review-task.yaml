@@ -1,5 +1,6 @@
 post:
   summary: Create review task
+  operationId: PostReviewTaskV23
   tags:
     - Review task
   parameters:
@@ -14,6 +15,7 @@ post:
           type: object
 get:
   summary: List review task
+  operationId: GetReviewTaskCollectionV23
   tags:
     - Review task
   parameters:

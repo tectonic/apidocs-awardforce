@@ -6,6 +6,7 @@ parameters:
       type: string
 put:
   summary: Update entry category
+  operationId: PutEntryUpdateCategoryV22
   tags:
     - Entry (realtime)
   parameters:

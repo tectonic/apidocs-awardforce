@@ -1,5 +1,6 @@
 get:
   summary: List categories
+  operationId: GetCategoryCollectionV23
   tags:
     - Category
   parameters:
@@ -222,6 +223,7 @@ get:
   description: Returns a list of categories.
 post:
   summary: Create category
+  operationId: PostCategoryV23
   tags:
     - Category
   parameters:

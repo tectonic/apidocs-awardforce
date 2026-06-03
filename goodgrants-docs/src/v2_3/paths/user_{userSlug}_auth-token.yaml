@@ -2,6 +2,7 @@ parameters:
   - $ref: ../components/parameters/userSlug.yaml
 get:
   summary: Get auth token
+  operationId: GetUserAuthTokenV23
   tags:
     - User
   parameters:

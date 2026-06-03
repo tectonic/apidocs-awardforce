@@ -1,5 +1,6 @@
 get:
   summary: List entries
+  operationId: GetEntryCollectionV23
   tags:
     - Entry
   parameters:
@@ -347,6 +348,7 @@ get:
               type: string
 post:
   summary: Create entry
+  operationId: PostEntryV23
   tags:
     - Entry
   parameters:

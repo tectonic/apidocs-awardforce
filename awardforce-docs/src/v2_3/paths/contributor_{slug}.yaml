@@ -7,6 +7,7 @@ parameters:
       type: string
 get:
   summary: Get contributor
+  operationId: GetContributorV23
   tags:
     - Contributor
   parameters:
@@ -111,6 +112,7 @@ get:
     fields.
 put:
   summary: Update contributor
+  operationId: PutContributorV23
   tags:
     - Contributor
   parameters:
@@ -216,6 +218,7 @@ put:
     is the Field slug. e.g. "fJkIjGmB": "Test value" |
 delete:
   summary: Delete contributor
+  operationId: DeleteContributorV23
   tags:
     - Contributor
   parameters:

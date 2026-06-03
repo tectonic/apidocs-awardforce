@@ -6,6 +6,7 @@ parameters:
       type: string
 get:
   summary: Get webhook
+  operationId: GetWebhookV22
   tags:
     - Webhook
   parameters:
@@ -74,6 +75,7 @@ get:
   description: Returns a webhook by its slug.
 put:
   summary: Update webhook
+  operationId: PutWebhookV22
   tags:
     - Webhook
   parameters:
@@ -154,6 +156,7 @@ put:
     \['role_granted', 'allocation_created'\] |
 delete:
   summary: Delete webhook
+  operationId: DeleteWebhookV22
   tags:
     - Webhook
   parameters:

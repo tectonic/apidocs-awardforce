@@ -1,5 +1,6 @@
 get:
   summary: List orders
+  operationId: GetOrderCollectionV22
   tags:
     - Order
   parameters:

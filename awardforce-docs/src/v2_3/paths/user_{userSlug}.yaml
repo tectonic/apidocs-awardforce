@@ -1,5 +1,6 @@
 get:
   summary: Get user
+  operationId: GetUserV23
   tags:
     - User
   parameters:
@@ -145,6 +146,7 @@ get:
     all user fields including files. Files include a download link.
 put:
   summary: Update user
+  operationId: PutUserV23
   tags:
     - User
   parameters:
@@ -279,6 +281,7 @@ put:
     key is the Field slug. e.g. "fJkIjGmB": "Test value" |
 delete:
   summary: Delete user
+  operationId: DeleteUserV23
   tags:
     - User
   parameters:

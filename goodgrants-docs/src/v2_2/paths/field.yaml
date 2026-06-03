@@ -1,5 +1,6 @@
 get:
   summary: List fields
+  operationId: GetFieldCollectionV22
   tags:
     - Field
   parameters:

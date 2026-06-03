@@ -1,5 +1,6 @@
 get:
   summary: List chapters
+  operationId: GetChapterCollectionV22
   tags:
     - Chapter
   parameters:
@@ -177,6 +178,7 @@ get:
   description: Returns a list of chapters.
 post:
   summary: Create chapter
+  operationId: PostChapterV22
   tags:
     - Chapter
   parameters:

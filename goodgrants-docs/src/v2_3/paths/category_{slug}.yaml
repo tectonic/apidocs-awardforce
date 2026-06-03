@@ -7,6 +7,7 @@ parameters:
       type: string
 get:
   summary: Get category
+  operationId: GetCategoryV23
   tags:
     - Category
   parameters:
@@ -178,6 +179,7 @@ get:
     fields. Images include a download link.
 put:
   summary: Update category
+  operationId: PutCategoryV23
   tags:
     - Category
   parameters:
@@ -375,6 +377,7 @@ put:
     PDF packing slip |
 delete:
   summary: Delete category
+  operationId: DeleteCategoryV23
   tags:
     - Category
   parameters:

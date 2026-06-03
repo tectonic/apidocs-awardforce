@@ -1,5 +1,6 @@
 get:
   summary: Retrieve attachments
+  operationId: GetAttachmentCollectionV22
   tags:
     - Attachment
   parameters:

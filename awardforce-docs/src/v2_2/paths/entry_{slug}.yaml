@@ -7,6 +7,7 @@ parameters:
       type: string
 get:
   summary: Get entry
+  operationId: GetEntryV22
   tags:
     - Entry
   parameters:
@@ -265,6 +266,7 @@ get:
     contributors. Files include a download link.
 put:
   summary: Update entry
+  operationId: PutEntryV22
   tags:
     - Entry
   parameters:
@@ -516,6 +518,7 @@ put:
     | custom_deadline | No | Date | Date with format yyyy-mm-dd hh:mm |
 delete:
   summary: Delete entry
+  operationId: DeleteEntryV22
   tags:
     - Entry
   parameters:

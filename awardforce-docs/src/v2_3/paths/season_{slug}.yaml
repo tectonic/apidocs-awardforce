@@ -7,6 +7,7 @@ parameters:
       type: string
 get:
   summary: Get season
+  operationId: GetSeasonV23
   tags:
     - Season
   parameters:

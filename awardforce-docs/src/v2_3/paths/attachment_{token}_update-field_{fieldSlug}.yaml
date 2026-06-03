@@ -3,6 +3,7 @@ parameters:
   - $ref: ../components/parameters/fieldSlug.yaml
 put:
   summary: Update an attachment field
+  operationId: PutAttachmentUpdateFieldV23
   tags:
     - Entry (realtime)
   parameters:

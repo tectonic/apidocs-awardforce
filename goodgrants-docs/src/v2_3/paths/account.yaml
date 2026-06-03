@@ -1,5 +1,6 @@
 get:
   summary: Get account
+  operationId: GetAccountV23
   tags:
     - Account
   parameters:

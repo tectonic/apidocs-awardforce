@@ -1,5 +1,6 @@
 get:
   summary: List contributors
+  operationId: GetContributorCollectionV22
   tags:
     - Contributor
   parameters:
@@ -171,6 +172,7 @@ get:
   description: Returns a list of contributors.
 post:
   summary: Create contributor
+  operationId: PostContributorV22
   tags:
     - Contributor
   parameters:

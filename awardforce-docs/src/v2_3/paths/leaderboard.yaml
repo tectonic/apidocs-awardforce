@@ -1,5 +1,6 @@
 get:
   summary: List leaderboard
+  operationId: GetLeaderboardCollectionV23
   tags:
     - Leaderboard
   parameters:
