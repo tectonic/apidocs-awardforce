@@ -2,7 +2,7 @@ parameters:
   - $ref: ../components/parameters/entrySlug.yaml
   - $ref: ../components/parameters/fieldSlug.yaml
 post:
-  summary: Upload entry file
+  summary: Upload an entry file
   operationId: PostEntryUploadV23
   tags:
     - Entry
@@ -10,7 +10,7 @@ post:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
-      description: Upload entry file
+      description: Entry file uploaded.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -47,13 +47,5 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              filename:
-                type: string
-              token:
-                type: string
-              link:
-                type: string
-                format: uri
-  description: Upload a file to an entry file field.
+            $ref: ../components/schemas/EntryUpload.yaml
+  description: Uploads a file to the specified field for the entry identified by the specified slug.

@@ -1,0 +1,9 @@
+type: object
+properties:
+  filename:
+    type: string
+  token:
+    type: string
+  link:
+    type: string
+    format: uri

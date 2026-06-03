@@ -1,7 +1,7 @@
 parameters:
   - $ref: ../components/parameters/entrySlug.yaml
 put:
-  summary: Recuse assignment
+  summary: Recuse an assignment
   operationId: PutEntryRecuseV23
   tags:
     - Assignment
@@ -30,20 +30,6 @@ put:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
         ETag:
           $ref: ../components/headers/ETag.yaml
-  description: |-
-    Recuses a judge from an existing assignment.
+  description: Recuses a judge from the assignment for the specified entry.
   requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
-          required:
-            - judge
-          properties:
-            judge:
-              type: string
-              description: Slug of the judge.
-            score_set:
-              type: string
-              description: Slug of the score set.
+    $ref: ../components/requestBodies/EntryAssignmentRecusal.yaml

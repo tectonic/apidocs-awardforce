@@ -1,7 +1,7 @@
 name: entry_slug
 in: path
 required: true
-description: Entry slug
+description: Slug of the entry.
 schema:
   type: string
   pattern: '^[A-Za-z]{8}$'

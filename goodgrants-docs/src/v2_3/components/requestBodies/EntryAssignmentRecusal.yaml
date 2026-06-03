@@ -1,0 +1,15 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - judge
+      properties:
+        judge:
+          type: string
+          description: Slug of the judge.
+        score_set:
+          type: string
+          description: Slug of the score set.
+description: Assignment recusal payload.
+required: true
