@@ -1,5 +1,5 @@
 get:
-  summary: List chapters
+  summary: Retrieve chapters
   operationId: GetChapterCollectionV22
   tags:
     - Chapter
@@ -8,6 +8,7 @@ get:
       in: query
       required: false
       description: |-
+        Filter by one of the following status values:
         - active
         - inactive
       schema:
@@ -15,18 +16,17 @@ get:
     - name: season
       in: query
       required: false
-      description: |-
-        - season slug
-        - "all" to show all seasons
+      description: Filter by season slug.
       schema:
         type: string
     - name: deleted
       in: query
       required: false
       description: |-
-        - only (show only deleted categories)
-        - included (include deleted categories)
-        - none (exclude deleted categories)
+        Filter by deletion status using one of the following modes:
+        - only (show only deleted chapters)
+        - included (include deleted chapters)
+        - none (exclude deleted chapters)
       schema:
         type: string
     - $ref: ../components/parameters/perPage.yaml
@@ -35,7 +35,7 @@ get:
       in: query
       required: false
       description: |-
-        Column name to order by. The following options are available:
+        Order results by one of the following columns:
         - chapter_count
         - divisions
         - entry_count
@@ -51,6 +51,7 @@ get:
       in: query
       required: false
       description: |-
+        Order results in one of the following directions:
         - asc
         - desc
       schema:
@@ -59,7 +60,7 @@ get:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
-      description: List chapters
+      description: Chapters retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -175,17 +176,19 @@ get:
                 type: integer
               total:
                 type: integer
-  description: Returns a list of chapters.
+  description: Retrieves chapters.
 post:
-  summary: Create chapter
+  summary: Create a chapter
   operationId: PostChapterV22
   tags:
     - Chapter
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    $ref: ../components/requestBodies/ChapterCreate.yaml
   responses:
     '201':
-      description: Create chapter
+      description: Chapter created.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -267,22 +270,4 @@ post:
               updated:
                 type: string
                 format: date-time
-  description: >-
-    Create a new chapter.
-
-
-    | Parameter | Required | Type | Description |
-
-    | --- | --- | --- | --- |
-
-    | season | Yes | String | Season slug |
-
-    | status | Yes | String | One of the following values:<br><br>-
-    active<br>    <br><br>- inactive |
-
-    | translated | No | Array | Array of key / value pairs where keys can be any
-    of the following:<br><br>- name<br>    <br><br>- image_heading |
-
-    | max_image_width | No | Integer | Maximum image width |
-
-    | managers | No | Array fo slugs | Array of user slugs of chapter managers |
+  description: Creates a chapter.

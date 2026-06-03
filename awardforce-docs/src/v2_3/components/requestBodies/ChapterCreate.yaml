@@ -1,0 +1,38 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - season
+        - status
+      properties:
+        season:
+          type: string
+          description: Slug of the season.
+        status:
+          type: string
+          description: One of the following values.
+          enum:
+            - active
+            - inactive
+        translated:
+          type: object
+          description: Translated chapter field values keyed by field name.
+          additionalProperties: false
+          properties:
+            name: &translatedField
+              type: object
+              description: Values keyed by existing and enabled language code.
+              additionalProperties:
+                type: string
+            image_heading: *translatedField
+        max_image_width:
+          type: integer
+          description: Maximum image width.
+        managers:
+          type: array
+          description: Array of user slugs for chapter managers.
+          items:
+            type: string
+description: Chapter creation payload.
+required: true

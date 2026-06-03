@@ -1,20 +1,15 @@
 parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Chapter slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/chapterSlug.yaml
 post:
-  summary: Upload chapter file
-  operationId: PostChapterUploadV23
+  summary: Upload a chapter file
+  operationId: PostChapterUploadV22
   tags:
     - Chapter
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
-      description: Upload chapter file
+      description: Chapter file uploaded.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -60,4 +55,4 @@ post:
               link:
                 type: string
                 format: uri
-  description: Upload a chapter image.
+  description: Uploads a file for the chapter identified by the specified slug.

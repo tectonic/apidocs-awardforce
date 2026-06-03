@@ -36,10 +36,10 @@ paths:
     $ref: paths/category_{categorySlug}_upload.yaml
   /chapter:
     $ref: paths/chapter.yaml
-  /chapter/{slug}:
-    $ref: paths/chapter_{slug}.yaml
-  /chapter/{slug}/upload:
-    $ref: paths/chapter_{slug}_upload.yaml
+  /chapter/{chapter_slug}:
+    $ref: paths/chapter_{chapterSlug}.yaml
+  /chapter/{chapter_slug}/upload:
+    $ref: paths/chapter_{chapterSlug}_upload.yaml
   /contributor:
     $ref: paths/contributor.yaml
   /contributor/{slug}:

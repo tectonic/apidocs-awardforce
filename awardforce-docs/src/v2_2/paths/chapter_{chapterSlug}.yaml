@@ -1,12 +1,7 @@
 parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Chapter slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/chapterSlug.yaml
 get:
-  summary: Get chapter
+  summary: Retrieve a chapter
   operationId: GetChapterV22
   tags:
     - Chapter
@@ -14,7 +9,7 @@ get:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Get chapter
+      description: Chapter retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -98,17 +93,19 @@ get:
               updated:
                 type: string
                 format: date-time
-  description: Returns a chapter by its slug. The response consists of all chapter fields.
+  description: Retrieves the chapter identified by the specified slug.
 put:
-  summary: Update chapter
+  summary: Update a chapter
   operationId: PutChapterV22
   tags:
     - Chapter
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    $ref: ../components/requestBodies/ChapterUpdate.yaml
   responses:
     '200':
-      description: Update chapter
+      description: Chapter updated.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -186,27 +183,9 @@ put:
               updated:
                 type: string
                 format: date-time
-  description: >-
-    Update an existing chapter.
-
-
-    | Parameter | Required | Type | Description |
-
-    | --------- | -------- | ---- | ----------- |
-
-    | season | No | String | Season slug |
-
-    | status | No | String | One of the following values: <ul> <li>active</li>
-    <li>inactive</li> </ul> |
-
-    | translated | No| Array | Array of key / value pairs where keys can be any
-    of the following: <ul> <li>name</li> <li>image_heading</li> |
-
-    | max_image_width | No | Integer | Maximum image width |
-
-    | managers | No | Array fo slugs | Array of user slugs of chapter managers |
+  description: Updates the chapter identified by the specified slug.
 delete:
-  summary: Delete chapter
+  summary: Delete a chapter
   operationId: DeleteChapterV22
   tags:
     - Chapter
@@ -214,7 +193,7 @@ delete:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
-      description: Delete chapter
+      description: Chapter deleted.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -244,4 +223,4 @@ delete:
           $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
           $ref: ../components/headers/Content-Security-Policy.yaml
-  description: Delete an existing chapter.
+  description: Deletes the chapter identified by the specified slug.
