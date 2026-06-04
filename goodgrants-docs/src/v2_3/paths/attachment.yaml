@@ -4,54 +4,15 @@ get:
   tags:
     - Attachment
   parameters:
-    - name: entry
-      in: query
-      required: false
-      description: Filter by entry slug.
-      schema:
-        type: string
-    - name: tab
-      in: query
-      required: false
-      description: Filter by tab slug.
-      schema:
-        type: string
-    - name: category
-      in: query
-      required: false
-      description: Filter by category slug.
-      schema:
-        type: string
-    - name: chapter
-      in: query
-      required: false
-      description: Filter by chapter slug.
-      schema:
-        type: string
-    - name: season
-      in: query
-      required: false
-      description: Filter by season slug.
-      schema:
-        type: string
+    - $ref: ../components/parameters/entryFilter.yaml
+    - $ref: ../components/parameters/tabFilter.yaml
+    - $ref: ../components/parameters/categoryFilter.yaml
+    - $ref: ../components/parameters/chapterFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
-    - name: order
-      in: query
-      required: false
-      description: |-
-        Sort by a supported attachment field.
-        Supported values: created, entry, order, tab, updated.
-      schema:
-        type: string
-    - name: dir
-      in: query
-      required: false
-      description: |-
-        Sort in ascending or descending order.
-        Supported values: asc, desc.
-      schema:
-        type: string
+    - $ref: ../components/parameters/attachmentOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
@@ -97,36 +58,12 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  $ref: ../components/schemas/Attachment.yaml
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-                format: uri
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
+            allOf:
+              - $ref: ../components/schemas/Pagination.yaml
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ../components/schemas/Attachment.yaml
   description: Retrieves a list of attachments.

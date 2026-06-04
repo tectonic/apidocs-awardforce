@@ -46,15 +46,7 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              filename:
-                type: string
-              token:
-                type: string
-              link:
-                type: string
-                format: uri
+            $ref: ../components/schemas/UploadResult.yaml
   description: Uploads a file for the category identified by the specified slug.
   x-mint:
     content: |-

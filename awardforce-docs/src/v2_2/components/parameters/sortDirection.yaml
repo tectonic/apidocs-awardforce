@@ -1,0 +1,9 @@
+name: dir
+in: query
+required: false
+description: Sort in ascending or descending order.
+schema:
+  type: string
+  enum:
+    - asc
+    - desc

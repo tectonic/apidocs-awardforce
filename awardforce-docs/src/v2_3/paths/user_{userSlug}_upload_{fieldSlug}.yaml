@@ -47,15 +47,7 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              filename:
-                type: string
-              token:
-                type: string
-              link:
-                type: string
-                format: uri
+            $ref: ../components/schemas/UploadResult.yaml
   description: Upload a file to a user file field.
   requestBody:
     content:

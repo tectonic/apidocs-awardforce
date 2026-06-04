@@ -1,0 +1,12 @@
+name: order
+in: query
+required: false
+description: Sort by a supported attachment field.
+schema:
+  type: string
+  enum:
+    - created
+    - entry
+    - order
+    - tab
+    - updated

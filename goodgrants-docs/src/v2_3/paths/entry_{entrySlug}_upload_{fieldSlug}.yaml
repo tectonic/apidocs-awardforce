@@ -47,5 +47,5 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/EntryUpload.yaml
+            $ref: ../components/schemas/UploadResult.yaml
   description: Uploads a file to the specified field for the entry identified by the specified slug.
