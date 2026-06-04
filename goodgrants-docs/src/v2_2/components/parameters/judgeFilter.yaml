@@ -1,0 +1,6 @@
+name: judge
+in: query
+required: false
+description: Filter by judge slug.
+schema:
+  type: string

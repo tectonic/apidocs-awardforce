@@ -1,0 +1,6 @@
+name: chapter
+in: query
+required: false
+description: Filter by chapter slug.
+schema:
+  type: string

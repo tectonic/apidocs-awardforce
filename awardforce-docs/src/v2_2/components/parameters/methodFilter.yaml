@@ -1,0 +1,11 @@
+name: method
+in: query
+required: false
+description: Filter by assignment method.
+schema:
+  type: string
+  enum:
+    - automatic
+    - manual
+    - random
+    - stray

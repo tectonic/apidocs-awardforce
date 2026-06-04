@@ -1,0 +1,6 @@
+name: category
+in: query
+required: false
+description: Filter by category slug.
+schema:
+  type: string

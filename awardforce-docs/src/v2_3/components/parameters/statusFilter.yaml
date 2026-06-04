@@ -1,0 +1,11 @@
+name: status
+in: query
+required: false
+description: Filter by assignment status.
+schema:
+  type: string
+  enum:
+    - none
+    - in_progress
+    - complete
+    - abstained

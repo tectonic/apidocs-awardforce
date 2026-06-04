@@ -1,0 +1,6 @@
+name: season
+in: query
+required: false
+description: Filter by season slug.
+schema:
+  type: string

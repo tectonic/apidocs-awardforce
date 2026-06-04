@@ -1,0 +1,6 @@
+name: panel
+in: query
+required: false
+description: Filter by panel slug.
+schema:
+  type: string

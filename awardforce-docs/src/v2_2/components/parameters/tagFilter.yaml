@@ -1,0 +1,6 @@
+name: tag
+in: query
+required: false
+description: Filter by tag.
+schema:
+  type: string
