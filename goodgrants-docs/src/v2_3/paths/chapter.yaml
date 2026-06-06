@@ -7,12 +7,12 @@ get:
     - name: status
       in: query
       required: false
-      description: |-
-        Filter by one of the following status values:
-        - active
-        - inactive
+      description: Filter by status.
       schema:
         type: string
+        enum:
+          - active
+          - inactive
     - name: season
       in: query
       required: false
@@ -23,39 +23,46 @@ get:
       in: query
       required: false
       description: |-
-        Filter by deletion status using one of the following modes:
-        - only (show only deleted chapters)
-        - included (include deleted chapters)
-        - none (exclude deleted chapters)
+        Filter by deletion mode.
+        * `only` - Show only deleted chapters.
+        * `included` - Include deleted chapters.
+        * `none` - Exclude deleted chapters.
       schema:
         type: string
+        enum:
+          - only
+          - included
+          - none
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
     - name: order
       in: query
       required: false
       description: |-
-        Order results by one of the following columns:
-        - chapter_count
-        - divisions
-        - entry_count
-        - name
-        - parent (slug)
-        - season (slug)
-        - shortcode
-        - status
-        - updated
+        Sort by a supported chapter field.
+        * `parent` - Sort by parent slug.
+        * `season` - Sort by season slug.
       schema:
         type: string
+        enum:
+          - chapter_count
+          - divisions
+          - entry_count
+          - name
+          - parent
+          - season
+          - shortcode
+          - status
+          - updated
     - name: dir
       in: query
       required: false
-      description: |-
-        Order results in one of the following directions:
-        - asc
-        - desc
+      description: Sort in ascending or descending order.
       schema:
         type: string
+        enum:
+          - asc
+          - desc
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
@@ -101,81 +108,7 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    created:
-                      type: string
-                      format: date-time
-                    managers:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          slug:
-                            type: string
-                          link:
-                            type: string
-                            format: uri
-                          first_name:
-                            type: string
-                          last_name:
-                            type: string
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    season:
-                      type: object
-                      properties:
-                        slug:
-                          type: string
-                        link:
-                          type: string
-                          format: uri
-                        name:
-                          type: object
-                          properties:
-                            en_GB:
-                              type: string
-                              format: utc-millisec
-                    slug:
-                      type: string
-                    status:
-                      type: string
-                    updated:
-                      type: string
-                      format: date-time
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
+            $ref: ../components/schemas/ChapterList.yaml
   description: Retrieves chapters.
 post:
   summary: Create a chapter
@@ -225,49 +158,5 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              created:
-                type: string
-                format: date-time
-              managers:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    first_name:
-                      type: string
-                    last_name:
-                      type: string
-              name:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-              season:
-                type: object
-                properties:
-                  slug:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  name:
-                    type: object
-                    properties:
-                      en_GB:
-                        type: string
-                        format: utc-millisec
-              slug:
-                type: string
-              status:
-                type: string
-              updated:
-                type: string
-                format: date-time
+            $ref: ../components/schemas/Chapter.yaml
   description: Creates a chapter.

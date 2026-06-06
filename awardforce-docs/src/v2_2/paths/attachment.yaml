@@ -58,12 +58,5 @@ get:
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: ../components/schemas/Pagination.yaml
-              - type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: ../components/schemas/Attachment.yaml
+            $ref: ../components/schemas/AttachmentList.yaml
   description: Retrieves a list of attachments.
