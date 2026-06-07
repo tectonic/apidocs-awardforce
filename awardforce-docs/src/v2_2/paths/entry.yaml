@@ -4,142 +4,25 @@ get:
   tags:
     - Entry
   parameters:
-    - name: title
-      in: query
-      required: false
-      description: Full or partial name of the entry
-      schema:
-        type: string
-    - name: category
-      in: query
-      required: false
-      description: Category slug
-      schema:
-        type: string
-    - name: chapter
-      in: query
-      required: false
-      description: Chapter slug
-      schema:
-        type: string
-    - name: status
-      in: query
-      required: false
-      description: |-
-        - submitted
-        - in_progress
-        - resubmission_required
-        - resubmitted
-      schema:
-        type: string
-    - name: payment_status
-      in: query
-      required: false
-      description: |-
-        Status of the order. Possible values:
-        paid
-        awaiting_payment
-      schema:
-        type: string
-    - name: price
-      in: query
-      required: false
-      description: Price slug
-      schema:
-        type: string
-    - name: review_status
-      in: query
-      required: false
-      description: All available review statuses in the program
-      schema:
-        type: string
-    - name: moderation
-      in: query
-      required: false
-      description: |-
-        - approved
-        - undecided
-        - rejected
-      schema:
-        type: string
-    - name: season
-      in: query
-      required: false
-      description: |-
-        - Season slug
-        - "all" to show all seasons
-      schema:
-        type: string
-    - name: form
-      in: query
-      required: false
-      description: Form slug
-      schema:
-        type: string
-    - name: tag
-      in: query
-      required: false
-      description: All available tags in the program
-      schema:
-        type: string
-    - name: entrant
-      in: query
-      required: false
-      description: Entrant slug
-      schema:
-        type: string
-    - name: deleted
-      in: query
-      required: false
-      description: |-
-        - only (show only deleted entries)
-        - included (include deleted entries)
-        - none (exclude deleted entries)
-      schema:
-        type: string
-    - name: archived
-      in: query
-      required: false
-      description: |-
-        - only (show only archived entries)
-        - all (include archived entries)
-        - none (exclude archived entries)
-      schema:
-        type: string
+    - $ref: ../components/parameters/entryTitleFilter.yaml
+    - $ref: ../components/parameters/categoryFilter.yaml
+    - $ref: ../components/parameters/chapterFilter.yaml
+    - $ref: ../components/parameters/entryStatusFilter.yaml
+    - $ref: ../components/parameters/entryPaymentStatusFilter.yaml
+    - $ref: ../components/parameters/entryPriceFilter.yaml
+    - $ref: ../components/parameters/entryReviewStatusFilter.yaml
+    - $ref: ../components/parameters/entryModerationFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
+    - $ref: ../components/parameters/formFilter.yaml
+    - $ref: ../components/parameters/tagFilter.yaml
+    - $ref: ../components/parameters/entryEntrantFilter.yaml
+    - $ref: ../components/parameters/deletedFilter.yaml
+    - $ref: ../components/parameters/archivedFilter.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
-    - name: order
-      in: query
-      required: false
-      description: |-
-        Column name to order by. The following options are available:
-        - category (slug)
-        - chapter (slug)
-        - applicant (slug)
-        - local_id
-        - parent_category (slug)
-        - title
-        - updated
-      schema:
-        type: string
-    - name: dir
-      in: query
-      required: false
-      description: |-
-        - asc
-        - desc
-      schema:
-        type: string
-    - name: updated_at
-      in: query
-      required: false
-      description: |-
-        - [before]=YYYY-MM-DDTHH:MM:SSZ
-        - [after]=YYYY-MM-DDTHH:MM:SSZ
-        - [on]=YYYY-MM-DDTHH:MM:SSZ
-        - [between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]
-      schema:
-        type: string
+    - $ref: ../components/parameters/entryOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
+    - $ref: ../components/parameters/entryUpdatedAtFilter.yaml
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:

@@ -1,0 +1,11 @@
+name: status
+in: query
+required: false
+description: Filter by entry status.
+schema:
+  type: string
+  enum:
+    - submitted
+    - in_progress
+    - resubmission_required
+    - resubmitted

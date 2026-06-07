@@ -1,0 +1,6 @@
+name: review_status
+in: query
+required: false
+description: Filter by review status.
+schema:
+  type: string

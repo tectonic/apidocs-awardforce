@@ -1,0 +1,9 @@
+name: payment_status
+in: query
+required: false
+description: Filter by payment status.
+schema:
+  type: string
+  enum:
+    - paid
+    - awaiting_payment

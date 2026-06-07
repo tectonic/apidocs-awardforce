@@ -1,0 +1,14 @@
+name: archived
+in: query
+required: false
+description: |-
+  Filter by archive mode.
+  * `only` - Show only archived resources.
+  * `all` - Include archived resources.
+  * `none` - Exclude archived resources.
+schema:
+  type: string
+  enum:
+    - only
+    - all
+    - none

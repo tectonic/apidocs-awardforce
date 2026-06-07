@@ -1,0 +1,10 @@
+name: moderation
+in: query
+required: false
+description: Filter by moderation status.
+schema:
+  type: string
+  enum:
+    - approved
+    - undecided
+    - rejected

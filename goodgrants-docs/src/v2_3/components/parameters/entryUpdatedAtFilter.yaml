@@ -1,0 +1,12 @@
+name: updated_at
+in: query
+required: false
+description: |-
+  Filter by update timestamp.
+  Supported values:
+  * `[before]=YYYY-MM-DDTHH:MM:SSZ`
+  * `[after]=YYYY-MM-DDTHH:MM:SSZ`
+  * `[on]=YYYY-MM-DDTHH:MM:SSZ`
+  * `[between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]`
+schema:
+  type: string

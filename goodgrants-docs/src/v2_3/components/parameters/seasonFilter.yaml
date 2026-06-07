@@ -1,6 +1,8 @@
 name: season
 in: query
 required: false
-description: Filter by season slug.
+description: |-
+  Filter by season slug.
+  Use `all` to show all seasons.
 schema:
   type: string

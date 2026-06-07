@@ -1,0 +1,6 @@
+name: order
+in: query
+required: false
+description: Sort by a supported contributor field.
+schema:
+  type: string

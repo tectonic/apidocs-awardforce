@@ -1,0 +1,15 @@
+name: order
+in: query
+required: false
+description: |-
+  Sort by a supported entry field.
+schema:
+  type: string
+  enum:
+    - category
+    - chapter
+    - applicant
+    - local_id
+    - parent_category
+    - title
+    - updated

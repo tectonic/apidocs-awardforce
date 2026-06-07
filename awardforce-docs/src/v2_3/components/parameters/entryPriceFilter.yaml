@@ -1,0 +1,6 @@
+name: price
+in: query
+required: false
+description: Filter by price slug.
+schema:
+  type: string

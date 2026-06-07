@@ -1,0 +1,6 @@
+name: title
+in: query
+required: false
+description: Filter by full or partial entry name.
+schema:
+  type: string
