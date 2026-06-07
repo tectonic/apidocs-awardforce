@@ -1,0 +1,20 @@
+name: order
+in: query
+required: false
+description: |-
+  Sort by a supported category field.
+  * `parent` - Sort by parent slug.
+  * `season` - Sort by season slug.
+schema:
+  type: string
+  enum:
+    - chapters
+    - created
+    - divisions
+    - entry_count
+    - name
+    - parent
+    - season
+    - shortcode
+    - status
+    - updated

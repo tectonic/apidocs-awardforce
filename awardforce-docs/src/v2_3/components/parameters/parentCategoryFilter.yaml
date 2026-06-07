@@ -1,0 +1,6 @@
+name: parent
+in: query
+required: false
+description: Filter by parent category slug.
+schema:
+  type: string

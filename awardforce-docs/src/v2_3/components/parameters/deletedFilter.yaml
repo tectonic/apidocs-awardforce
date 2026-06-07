@@ -1,0 +1,14 @@
+name: deleted
+in: query
+required: false
+description: |-
+  Filter by deletion mode.
+  * `only` - Show only deleted resources.
+  * `included` - Include deleted resources.
+  * `none` - Exclude deleted resources.
+schema:
+  type: string
+  enum:
+    - only
+    - included
+    - none

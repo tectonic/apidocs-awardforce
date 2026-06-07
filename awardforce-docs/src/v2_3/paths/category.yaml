@@ -4,84 +4,16 @@ get:
   tags:
     - Category
   parameters:
-    - name: status
-      in: query
-      required: false
-      description: Filter by status.
-      schema:
-        type: string
-        enum:
-          - active
-          - inactive
-    - name: chapter
-      in: query
-      required: false
-      description: Filter by chapter slug.
-      schema:
-        type: string
-    - name: parent
-      in: query
-      required: false
-      description: Filter by parent category slug.
-      schema:
-        type: string
-    - name: season
-      in: query
-      required: false
-      description: Filter by season slug.
-      schema:
-        type: string
-    - name: deleted
-      in: query
-      required: false
-      description: |-
-        Filter by deletion mode.
-        * `only` - Show only deleted categories.
-        * `included` - Include deleted categories.
-        * `none` - Exclude deleted categories.
-      schema:
-        type: string
-        enum:
-          - only
-          - included
-          - none
-    - name: form
-      in: query
-      required: false
-      description: Filter by form slug.
-      schema:
-        type: string
+    - $ref: ../components/parameters/activeInactiveStatusFilter.yaml
+    - $ref: ../components/parameters/chapterFilter.yaml
+    - $ref: ../components/parameters/parentCategoryFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
+    - $ref: ../components/parameters/deletedFilter.yaml
+    - $ref: ../components/parameters/formFilter.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
-    - name: order
-      in: query
-      required: false
-      description: |-
-        Sort by a supported category field.
-        * `parent` - Sort by parent slug.
-        * `season` - Sort by season slug.
-      schema:
-        type: string
-        enum:
-          - chapters
-          - created
-          - divisions
-          - entry_count
-          - name
-          - parent
-          - season
-          - shortcode
-          - status
-          - updated
-    - name: dir
-      in: query
-      required: false
-      description: Sort in ascending or descending order.
-      schema:
-        type: string
-        enum:
-          - asc
-          - desc
+    - $ref: ../components/parameters/categoryOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:

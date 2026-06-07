@@ -1,0 +1,6 @@
+name: form
+in: query
+required: false
+description: Filter by form slug.
+schema:
+  type: string
