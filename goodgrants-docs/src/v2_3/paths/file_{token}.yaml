@@ -1,7 +1,7 @@
 parameters:
   - $ref: ../components/parameters/token.yaml
 get:
-  summary: Get file info
+  summary: Retrieve file information
   operationId: GetFileV23
   tags:
     - File
@@ -10,7 +10,7 @@ get:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
-      description: Get file info
+      description: File information retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -49,66 +49,5 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              download_link:
-                type: string
-              duration:
-                nullable: true
-              filename:
-                type: string
-              image_height:
-                nullable: true
-              image_width:
-                nullable: true
-              metadata:
-                type: object
-                properties:
-                  title:
-                    type: string
-                  caption:
-                    type: string
-                  copyright:
-                    type: string
-                  created:
-                    type: string
-                  city:
-                    type: string
-                  country:
-                    type: string
-                  state:
-                    type: string
-                  camera:
-                    type: string
-                  exposure:
-                    type: string
-                  iso:
-                    type: string
-                  fstop:
-                    type: string
-                  focal_length:
-                    type: string
-                  size:
-                    type: string
-              mime:
-                type: string
-              size:
-                type: integer
-              transcoding:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    basename:
-                      type: string
-                    download_link:
-                      type: string
-                    extension:
-                      type: string
-                    timestamp:
-                      type: integer
-                    size:
-                      type: integer
-                    etag:
-                      type: string
-  description: Returns file information by its token.
+            $ref: ../components/schemas/File.yaml
+  description: Retrieves file information for the file identified by the specified token.

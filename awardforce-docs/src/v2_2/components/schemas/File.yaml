@@ -1,0 +1,90 @@
+type: object
+properties:
+  download_link:
+    type: string
+    description: Download URL for the file.
+  duration:
+    nullable: true
+    description: Duration of the file.
+  filename:
+    type: string
+    description: Name of the file.
+  image_height:
+    nullable: true
+    description: Height of the image in pixels.
+  image_width:
+    nullable: true
+    description: Width of the image in pixels.
+  metadata:
+    type: object
+    description: Metadata associated with the file.
+    properties:
+      title:
+        type: string
+        description: Metadata title.
+      caption:
+        type: string
+        description: Metadata caption.
+      copyright:
+        type: string
+        description: Metadata copyright notice.
+      created:
+        type: string
+        description: Metadata creation time.
+      city:
+        type: string
+        description: Metadata city.
+      country:
+        type: string
+        description: Metadata country.
+      state:
+        type: string
+        description: Metadata state.
+      camera:
+        type: string
+        description: Camera model in the metadata.
+      exposure:
+        type: string
+        description: Exposure setting in the metadata.
+      iso:
+        type: string
+        description: ISO setting in the metadata.
+      fstop:
+        type: string
+        description: F-stop setting in the metadata.
+      focal_length:
+        type: string
+        description: Focal length in the metadata.
+      size:
+        type: string
+        description: Size value in the metadata.
+  mime:
+    type: string
+    description: MIME type of the file.
+  size:
+    type: integer
+    description: Size of the file.
+  transcoding:
+    type: array
+    description: Transcoded file variants.
+    items:
+      type: object
+      properties:
+        basename:
+          type: string
+          description: Basename of the transcoded file.
+        download_link:
+          type: string
+          description: Download URL for the transcoded file.
+        extension:
+          type: string
+          description: File extension of the transcoded file.
+        timestamp:
+          type: integer
+          description: Timestamp of the transcoded file.
+        size:
+          type: integer
+          description: Size of the transcoded file.
+        etag:
+          type: string
+          description: ETag of the transcoded file.
