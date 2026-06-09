@@ -1,0 +1,20 @@
+name: order
+in: query
+required: false
+description: |-
+  Sort by a supported leaderboard field.
+  * `category` - Sort by category slug.
+  * `chapter` - Sort by chapter slug.
+schema:
+  type: string
+  enum:
+    - category
+    - chapter
+    - division
+    - link
+    - slug
+    - status
+    - submitted
+    - auto_score
+    - title
+    - tags

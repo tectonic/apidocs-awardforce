@@ -1,0 +1,6 @@
+name: score_set
+in: query
+required: true
+description: Filter by score set slug.
+schema:
+  type: string

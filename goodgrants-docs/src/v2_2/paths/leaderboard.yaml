@@ -1,76 +1,21 @@
 get:
-  summary: List leaderboard
+  summary: Retrieve leaderboard results
   operationId: GetLeaderboardCollectionV22
   tags:
     - Leaderboard
   parameters:
-    - name: score_set
-      in: query
-      required: false
-      description: Score set slug (required)
-      schema:
-        type: string
-    - name: entry
-      in: query
-      required: false
-      description: Entry slug
-      schema:
-        type: string
-    - name: category
-      in: query
-      required: false
-      description: Category slug
-      schema:
-        type: string
-    - name: chapter
-      in: query
-      required: false
-      description: Chapter slug
-      schema:
-        type: string
-    - name: tag
-      in: query
-      required: false
-      description: All available tags in the program
-      schema:
-        type: string
-    - name: archived
-      in: query
-      required: false
-      description: |-
-        - only
-        - all
-        - none
-      schema:
-        type: string
+    - $ref: ../components/parameters/leaderboardScoreSetFilter.yaml
+    - $ref: ../components/parameters/entryFilter.yaml
+    - $ref: ../components/parameters/categoryFilter.yaml
+    - $ref: ../components/parameters/chapterFilter.yaml
+    - $ref: ../components/parameters/tagFilter.yaml
+    - $ref: ../components/parameters/archivedFilter.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
-    - name: order
-      in: query
-      required: false
-      description: |-
-        Column name to order by. The following options are available:
-        - category (slug)
-        - chapter (slug)
-        - division
-        - link 
-        - slug
-        - status
-        - submitted
-        - auto_score
-        - title
-        - tags
-      schema:
-        type: string
-    - name: dir
-      in: query
-      required: false
-      description: |-
-        - asc
-        - desc
-      schema:
-        type: string
+    - $ref: ../components/parameters/leaderboardOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
     default:
-      description: List leaderboard
+      description: Leaderboard results retrieved.
+  description: Retrieves leaderboard results.
