@@ -1,0 +1,125 @@
+type: object
+properties:
+  applicant_read_access:
+    type: string
+  applicant_write_access:
+    type: string
+  auto_scoring:
+    type: integer
+  categories:
+    type: array
+    items:
+      type: string
+  category_count:
+    type: string
+  conditional_field:
+    nullable: true
+  created:
+    type: string
+    format: date-time
+  file_types:
+    type: array
+    items: {}
+  form:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  help_text:
+    type: object
+    properties:
+      en_GB:
+        type: string
+  hint_text:
+    type: object
+    properties:
+      en_GB:
+        type: string
+  label:
+    type: object
+    properties:
+      en_GB:
+        type: string
+  max_file_size:
+    nullable: true
+  maximum_characters:
+    nullable: true
+  maximum_words:
+    nullable: true
+  minimum_characters:
+    nullable: true
+  minimum_words:
+    nullable: true
+  options:
+    type: array
+    items:
+      type: string
+  order:
+    type: integer
+  protection:
+    type: string
+  registration:
+    nullable: true
+  required:
+    type: boolean
+  resource:
+    type: string
+  scores:
+    type: object
+    properties:
+      'Yes':
+        type: integer
+      'No':
+        type: integer
+  searchable:
+    type: boolean
+  season:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+            format: utc-millisec
+  slug:
+    type: string
+  tab:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  title:
+    type: object
+    properties:
+      en_GB:
+        type: string
+  type:
+    type: string
+  updated:
+    type: string
+    format: date-time
+  visibility:
+    type: array
+    items: {}

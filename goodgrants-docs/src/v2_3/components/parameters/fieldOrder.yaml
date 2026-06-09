@@ -1,0 +1,15 @@
+name: order
+in: query
+required: false
+description: Sort by a supported field property.
+schema:
+  type: string
+  enum:
+    - title
+    - resource
+    - type
+    - updated
+    - created
+    - categories
+    - order
+    - tab

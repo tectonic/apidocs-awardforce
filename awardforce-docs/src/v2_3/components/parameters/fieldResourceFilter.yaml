@@ -1,0 +1,11 @@
+name: resource
+in: query
+required: false
+description: Filter by resource type.
+schema:
+  type: string
+  enum:
+    - entries
+    - users
+    - attachments
+    - contributors

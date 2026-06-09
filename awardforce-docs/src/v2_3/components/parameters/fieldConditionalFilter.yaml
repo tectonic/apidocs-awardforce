@@ -1,0 +1,6 @@
+name: conditional
+in: query
+required: false
+description: Filter by conditional value.
+schema:
+  type: string

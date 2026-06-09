@@ -1,0 +1,25 @@
+name: type
+in: query
+required: false
+description: Filter by field type.
+schema:
+  type: string
+  enum:
+    - checkbox
+    - checkboxlist
+    - content
+    - country
+    - currency
+    - date
+    - datetime
+    - drop-down-list
+    - email
+    - file
+    - numeric
+    - phone
+    - radio
+    - table
+    - text
+    - textarea
+    - time
+    - url

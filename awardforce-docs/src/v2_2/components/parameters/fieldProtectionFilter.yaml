@@ -1,0 +1,10 @@
+name: protection
+in: query
+required: false
+description: Filter by protection level.
+schema:
+  type: string
+  enum:
+    - standard
+    - elevated
+    - maximum
