@@ -1,5 +1,5 @@
 get:
-  summary: List taxes
+  summary: Retrieve taxes
   operationId: GetTaxCollectionV23
   tags:
     - Tax
@@ -8,7 +8,7 @@ get:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
-      description: List taxes
+      description: Taxes retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -49,58 +49,5 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    country:
-                      type: string
-                    country_name:
-                      type: string
-                    created:
-                      type: string
-                      format: date-time
-                    name:
-                      type: string
-                    rate:
-                      type: integer
-                    region:
-                      nullable: true
-                    region_name:
-                      nullable: true
-                    slug:
-                      type: string
-                    term:
-                      type: string
-                    updated:
-                      type: string
-                      format: date-time
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
-  description: Returns a list of taxes.
+            $ref: ../components/schemas/TaxList.yaml
+  description: Retrieves taxes.
