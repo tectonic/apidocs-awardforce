@@ -1,0 +1,155 @@
+type: object
+properties:
+  address:
+    type: string
+  city:
+    type: string
+  comments:
+    type: string
+  company:
+    type: string
+  country:
+    type: string
+  created_at:
+    type: string
+    format: date-time
+  currency:
+    type: string
+  discount:
+    type: integer
+  discount_code:
+    type: string
+  invoice_number:
+    type: string
+  ip_address:
+    type: string
+    format: ip-address
+  items:
+    type: string
+  items_array:
+    type: array
+    items:
+      type: object
+      properties:
+        amount:
+          type: string
+        description:
+          type: string
+        discount:
+          type: string
+        entry:
+          type: object
+          properties:
+            slug:
+              type: string
+            link:
+              type: string
+              format: uri
+            title:
+              type: string
+        item_type:
+          type: string
+        name:
+          type: string
+        price:
+          type: object
+          properties:
+            slug:
+              type: string
+            link:
+              type: string
+              format: uri
+            title:
+              type: object
+              properties:
+                en_GB:
+                  type: string
+        quantity:
+          type: integer
+  member_number:
+    type: string
+  payment_method:
+    type: string
+  payment_status:
+    type: string
+  postcode:
+    type: string
+  processing_fee:
+    type: number
+  processing_fee_rate:
+    type: number
+  region:
+    type: string
+  season:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: object
+        properties:
+          en_GB:
+            type: string
+  slug:
+    type: string
+  state:
+    type: string
+  subtotal:
+    type: number
+  tax:
+    type: number
+  tax_rate:
+    type: integer
+  tax_rate_details:
+    type: object
+    properties:
+      country:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: string
+      rate:
+        type: integer
+      region:
+        nullable: true
+      slug:
+        type: string
+      term:
+        type: string
+  tax_term:
+    type: string
+  total:
+    type: number
+  transaction_date:
+    type: string
+    format: date-time
+  transaction_provider:
+    type: string
+  transaction_reference:
+    type: string
+  transaction_status:
+    type: string
+  user:
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+        format: email
+  vat_number:
+    type: string

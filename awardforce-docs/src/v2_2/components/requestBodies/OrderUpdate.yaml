@@ -1,0 +1,35 @@
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        company:
+          type: string
+          description: Billing company name.
+        address:
+          type: string
+          description: Billing address.
+        city:
+          type: string
+          description: Billing city.
+        state:
+          type: string
+          description: Billing state.
+        postcode:
+          type: string
+          description: Billing postcode.
+        country:
+          type: string
+          description: |-
+            Two-letter country code.
+            See [Two-letter country codes](https://support.awardforce.com/hc/en-us/articles/360000237856-Two-letter-country-codes).
+        payment_status:
+          type: string
+          description: Status of the order.
+          enum:
+            - paid
+            - awaiting_payment
+        note:
+          type: string
+          description: Annotation on the order.
+description: Order update payload.
