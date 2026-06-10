@@ -1,0 +1,12 @@
+name: test
+in: query
+required: false
+description: |-
+  Filter by test order visibility.
+  * `only` - Show only test orders.
+  * `hide` - Exclude test orders.
+schema:
+  type: string
+  enum:
+    - only
+    - hide
