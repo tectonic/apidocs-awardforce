@@ -1,0 +1,6 @@
+name: review_stage
+in: query
+required: false
+description: Filter by review stage slug.
+schema:
+  type: string

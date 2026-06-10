@@ -1,0 +1,17 @@
+parameters:
+  - $ref: ../components/parameters/roundSlug.yaml
+get:
+  summary: Retrieve a round
+  operationId: GetRoundV22
+  tags:
+    - Round
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    '200':
+      description: Round retrieved.
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Round.yaml
+  description: Retrieves the round identified by the specified slug.

@@ -1,0 +1,6 @@
+name: reviewer
+in: query
+required: false
+description: Filter by reviewer name or email.
+schema:
+  type: string

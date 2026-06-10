@@ -1,129 +1,21 @@
 get:
-  summary: List Rounds
+  summary: Retrieve rounds
   operationId: GetRoundCollectionV23
   tags:
     - Round
   parameters:
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
-    - name: form
-      in: query
-      required: false
-      description: Form slug
-      schema:
-        type: string
-    - name: season
-      in: query
-      required: false
-      description: Season slug
-      schema:
-        type: string
-    - name: type
-      in: query
-      required: false
-      description: |-
-        - entry
-        - judge
-        - feedback
-      schema:
-        type: string
-    - name: dir
-      in: query
-      required: false
-      description: |-
-        - asc
-        - desc
-      schema:
-        type: string
+    - $ref: ../components/parameters/formFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
+    - $ref: ../components/parameters/roundTypeFilter.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: List Rounds
+      description: Rounds retrieved.
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    chapters:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          slug:
-                            type: string
-                          link:
-                            type: string
-                            format: uri
-                          name:
-                            type: object
-                            properties:
-                              en_GB:
-                                type: string
-                    created:
-                      type: string
-                      format: date-time
-                    end_date:
-                      type: string
-                      format: style
-                    form:
-                      type: string
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    season:
-                      type: object
-                      properties:
-                        slug:
-                          type: string
-                        link:
-                          type: string
-                          format: uri
-                        name:
-                          type: object
-                          properties:
-                            en_GB:
-                              type: string
-                              format: utc-millisec
-                    slug:
-                      type: string
-                    start_date:
-                      type: string
-                      format: style
-                    type:
-                      type: string
-                    updated:
-                      type: string
-                      format: date-time
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
-  description: Returns a list of rounds.
+            $ref: ../components/schemas/RoundList.yaml
+  description: Retrieves rounds.

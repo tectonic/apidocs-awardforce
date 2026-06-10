@@ -80,8 +80,8 @@ paths:
     $ref: paths/review-task_{token}.yaml
   /round:
     $ref: paths/round.yaml
-  /round/{slug}:
-    $ref: paths/round_{slug}.yaml
+  /round/{round_slug}:
+    $ref: paths/round_{roundSlug}.yaml
   /score-set:
     $ref: paths/score-set.yaml
   /score-set/{slug}:

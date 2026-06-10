@@ -1,0 +1,6 @@
+name: decision
+in: query
+required: false
+description: Filter by decision name.
+schema:
+  type: string

@@ -1,7 +1,7 @@
 parameters:
   - $ref: ../components/parameters/token.yaml
 get:
-  summary: Get review task
+  summary: Retrieve a review task
   operationId: GetReviewTaskV22
   tags:
     - Review task
@@ -9,9 +9,7 @@ get:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     default:
-      description: Get review task
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
+      description: |-
+        Review task retrieved.
+        TBD: response schema pending API verification.
+  description: Retrieves the review task identified by the specified token.

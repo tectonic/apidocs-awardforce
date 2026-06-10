@@ -1,5 +1,5 @@
 post:
-  summary: Create review task
+  summary: Create a review task
   operationId: PostReviewTaskV23
   tags:
     - Review task
@@ -7,89 +7,30 @@ post:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     default:
-      description: Create review task
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
+      description: |-
+        Review task created.
+        TBD: response schema pending API verification.
+  description: Creates a review task.
 get:
-  summary: List review task
+  summary: Retrieve review tasks
   operationId: GetReviewTaskCollectionV23
   tags:
     - Review task
   parameters:
-    - name: action_at
-      in: query
-      required: false
-      description: |-
-        - [before]=YYYY-MM-DDTHH:MM:SSZ
-        - [after]=YYYY-MM-DDTHH:MM:SSZ
-        - [on]=YYYY-MM-DDTHH:MM:SSZ
-        - [between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]
-      schema:
-        type: string
-    - name: created_at
-      in: query
-      required: false
-      description: |-
-        - [before]=YYYY-MM-DDTHH:MM:SSZ
-        - [after]=YYYY-MM-DDTHH:MM:SSZ
-        - [on]=YYYY-MM-DDTHH:MM:SSZ
-        - [between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]
-      schema:
-        type: string
-    - name: decision
-      in: query
-      required: false
-      description: Decision name
-      schema:
-        type: string
-    - name: deleted
-      in: query
-      required: false
-      description: |-
-        - only (show only deleted review tasks)
-        - included (include deleted review tasks)
-        - none (exclude deleted review tasks)
-      schema:
-        type: string
+    - $ref: ../components/parameters/reviewTaskActionAtFilter.yaml
+    - $ref: ../components/parameters/reviewTaskCreatedAtFilter.yaml
+    - $ref: ../components/parameters/decisionFilter.yaml
+    - $ref: ../components/parameters/deletedFilter.yaml
     - $ref: ../components/parameters/page.yaml
     - $ref: ../components/parameters/perPage.yaml
-    - name: review_stage
-      in: query
-      required: false
-      description: Review stage slug
-      schema:
-        type: string
-    - name: reviewer
-      in: query
-      required: false
-      description: Reviewer name or email
-      schema:
-        type: string
-    - name: season
-      in: query
-      required: false
-      description: Season slug
-      schema:
-        type: string
-    - name: updated_at
-      in: query
-      required: false
-      description: |-
-        - [before]=YYYY-MM-DDTHH:MM:SSZ
-        - [after]=YYYY-MM-DDTHH:MM:SSZ
-        - [on]=YYYY-MM-DDTHH:MM:SSZ
-        - [between]=[YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ]
-      schema:
-        type: string
+    - $ref: ../components/parameters/reviewStageFilter.yaml
+    - $ref: ../components/parameters/reviewerFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
+    - $ref: ../components/parameters/reviewTaskUpdatedAtFilter.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
     default:
-      description: List review task
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
+      description: |-
+        Review tasks retrieved.
+        TBD: response schema pending API verification.
+  description: Retrieves review tasks.
