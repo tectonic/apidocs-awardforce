@@ -1,5 +1,5 @@
 get:
-  summary: Get user
+  summary: Retrieve a user
   operationId: GetUserV23
   tags:
     - User
@@ -8,7 +8,7 @@ get:
     - $ref: ../components/parameters/userSlugParameter.yaml
   responses:
     '200':
-      description: Get user
+      description: User retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -47,240 +47,31 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              analytics_cookies:
-                type: boolean
-              broadcast_emails:
-                type: boolean
-              confirmed_at:
-                type: string
-                format: date-time
-              created_at:
-                type: string
-                format: date-time
-              created_by:
-                type: string
-              email:
-                type: string
-                format: email
-              first_name:
-                type: string
-              language:
-                type: object
-                properties:
-                  code:
-                    type: string
-                  language:
-                    type: string
-              last_name:
-                type: string
-              marketing_cookies:
-                type: boolean
-              mobile:
-                type: string
-                format: utc-millisec
-              name:
-                type: string
-              necessary_cookies:
-                type: boolean
-              notification_emails:
-                type: boolean
-              notification_sms:
-                type: boolean
-              preferences:
-                type: object
-                properties:
-                  broadcast_emails:
-                    type: boolean
-                  notification_emails:
-                    type: boolean
-                  notification_sms:
-                    type: boolean
-              roles:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-              slug:
-                type: string
-              social_sharing:
-                type: boolean
-              updated:
-                type: string
-                format: date-time
-              user_fields:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    label:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    value:
-                      type: string
-                    translated:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-  description: >-
-    Returns a user by email or by its 8-letter slug. The response consists of
-    all user fields including files. Files include a download link.
+            $ref: ../components/schemas/User.yaml
+  description: Retrieves the user identified by the specified slug or email address.
+  x-mint:
+    content: |-
+      The response includes all user fields. File fields include a download link.
 put:
-  summary: Update user
+  summary: Update a user
   operationId: PutUserV23
   tags:
     - User
   parameters:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/userSlug.yaml
+  requestBody:
+    $ref: ../components/requestBodies/UserUpdate.yaml
   responses:
     '200':
-      description: Update user
+      description: User updated.
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              analytics_cookies:
-                type: boolean
-              broadcast_emails:
-                type: boolean
-              confirmed_at:
-                type: string
-                format: date-time
-              created_at:
-                type: string
-                format: date-time
-              created_by:
-                type: string
-              email:
-                type: string
-                format: email
-              first_name:
-                type: string
-              language:
-                type: object
-                properties:
-                  code:
-                    type: string
-                  language:
-                    type: string
-              last_name:
-                type: string
-              marketing_cookies:
-                type: boolean
-              mobile:
-                type: string
-                format: utc-millisec
-              name:
-                type: string
-              necessary_cookies:
-                type: boolean
-              notification_emails:
-                type: boolean
-              notification_sms:
-                type: boolean
-              preferences:
-                type: object
-                properties:
-                  broadcast_emails:
-                    type: boolean
-                  notification_emails:
-                    type: boolean
-                  notification_sms:
-                    type: boolean
-              roles:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-              slug:
-                type: string
-              social_sharing:
-                type: boolean
-              updated:
-                type: string
-                format: date-time
-              user_fields:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                    link:
-                      type: string
-                      format: uri
-                    label:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    value:
-                      type: string
-                    translated:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-  description: >-
-    Update an existing user.
-
-
-    | Parameter | Required | Type | Description |
-
-    | --- | --- | --- | --- |
-
-    | first_name | No | String | User's first name |
-
-    | last_name | No | String | User's last name |
-
-    | password | No | String | Password for accessing the account |
-
-    | email | No | String | User's email address |
-
-    | mobile | No | String | User's mobile number |
-
-    | roles | No | Array | Array of Role slugs |
-
-    | preferences | No | Object | Object containing key / value pairs where keys
-    can be any of the following:<br><br>- broadcast_emails<br><br>-
-    notification_emails<br><br>- notification_sms<br><br>Values are of type
-    Boolean |
-
-    | user_fields | No | Object | Object containing key / value pairs. Where the
-    key is the Field slug. e.g. "fJkIjGmB": "Test value" |
+            $ref: ../components/schemas/User.yaml
+  description: Updates the user identified by the specified slug.
 delete:
-  summary: Delete user
+  summary: Delete a user
   operationId: DeleteUserV23
   tags:
     - User
@@ -289,7 +80,7 @@ delete:
     - $ref: ../components/parameters/userSlug.yaml
   responses:
     '204':
-      description: Delete user
+      description: User deleted.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -319,4 +110,4 @@ delete:
           $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
           $ref: ../components/headers/Content-Security-Policy.yaml
-  description: Delete an existing user.
+  description: Deletes the user identified by the specified slug.

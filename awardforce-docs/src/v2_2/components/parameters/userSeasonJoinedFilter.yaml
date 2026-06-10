@@ -1,0 +1,6 @@
+name: season_joined
+in: query
+required: false
+description: Filter by the season the user joined in, identified by season slug.
+schema:
+  type: string

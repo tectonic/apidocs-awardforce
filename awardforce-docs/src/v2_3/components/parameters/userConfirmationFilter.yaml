@@ -1,0 +1,9 @@
+name: confirmation
+in: query
+required: false
+description: Filter by account confirmation status.
+schema:
+  type: string
+  enum:
+    - confirmed
+    - pending

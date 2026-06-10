@@ -1,7 +1,7 @@
 parameters:
   - $ref: ../components/parameters/userSlug.yaml
 get:
-  summary: Get auth token
+  summary: Retrieve a user auth token
   operationId: GetUserAuthTokenV23
   tags:
     - User
@@ -9,7 +9,7 @@ get:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Get auth token
+      description: Auth token retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -52,10 +52,15 @@ get:
             properties:
               auth_token:
                 type: string
-  description: >-
-    Returns an auth token for a given user. The response consists of a token
-    that allows the user to log into the app using SSO. To learn more about this
-    please refer to [Creating your own SSO integration in Award
-    Force](https://support.awardforce.com/hc/en-us/articles/360002282716-Creating-your-own-SSO-integration)
-    or [Creating your own SSO integration in Good
-    Grants](https://help.goodgrants.com/hc/en-gb/articles/360002287675-Creating-your-own-SSO-integration).
+  description: Retrieves an SSO auth token for the specified user.
+  x-mint:
+    content: |-
+      The token allows the user to log into the app using SSO.
+
+      <Card
+        title="Creating your own SSO integration"
+        icon="key"
+        href="https://support.awardforce.com/hc/en-us/articles/360002282716-Creating-your-own-SSO-integration"
+      >
+        Learn how to integrate Award Force with your own SSO provider.
+      </Card>

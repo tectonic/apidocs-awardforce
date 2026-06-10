@@ -1,0 +1,6 @@
+name: role
+in: query
+required: false
+description: Filter by role slug.
+schema:
+  type: string

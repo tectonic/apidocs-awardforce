@@ -1,0 +1,6 @@
+name: active_in_season
+in: query
+required: false
+description: Filter by the season the user is active in, identified by season slug.
+schema:
+  type: string

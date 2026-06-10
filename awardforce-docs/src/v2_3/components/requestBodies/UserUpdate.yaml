@@ -1,0 +1,44 @@
+description: User update payload.
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: User's first name.
+        last_name:
+          type: string
+          description: User's last name.
+        password:
+          type: string
+          description: Password for accessing the account.
+        email:
+          type: string
+          format: email
+          description: User's email address.
+        mobile:
+          type: string
+          description: User's mobile number.
+        roles:
+          type: array
+          description: Array of role slugs.
+          items:
+            type: string
+        preferences:
+          type: object
+          description: User notification preferences.
+          properties:
+            broadcast_emails:
+              type: boolean
+            notification_emails:
+              type: boolean
+            notification_sms:
+              type: boolean
+        user_fields:
+          type: object
+          description: |-
+            User field values, keyed by field slug. For example, `{ "fJkIjGmB": "Test value" }`.
+          additionalProperties:
+            type: string
+

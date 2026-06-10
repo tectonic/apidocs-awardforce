@@ -2,7 +2,7 @@ parameters:
   - $ref: ../components/parameters/userSlug.yaml
   - $ref: ../components/parameters/fieldSlug.yaml
 post:
-  summary: Upload user file
+  summary: Upload a user file
   operationId: PostUserUploadV23
   tags:
     - User
@@ -10,7 +10,7 @@ post:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
-      description: Upload user file
+      description: File uploaded.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -48,7 +48,7 @@ post:
         application/json:
           schema:
             $ref: ../components/schemas/UploadResult.yaml
-  description: Upload a file to a user file field.
+  description: Uploads a file to the specified user field.
   requestBody:
     content:
       application/json:

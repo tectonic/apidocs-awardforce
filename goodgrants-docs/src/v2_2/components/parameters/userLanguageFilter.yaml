@@ -1,0 +1,6 @@
+name: language
+in: query
+required: false
+description: Filter by language code.
+schema:
+  type: string

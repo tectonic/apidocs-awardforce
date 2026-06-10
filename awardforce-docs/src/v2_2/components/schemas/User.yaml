@@ -1,0 +1,93 @@
+type: object
+properties:
+  analytics_cookies:
+    type: boolean
+  broadcast_emails:
+    type: boolean
+  confirmed_at:
+    type: string
+    format: date-time
+  created_at:
+    type: string
+    format: date-time
+  created_by:
+    type: string
+  email:
+    type: string
+    format: email
+  first_name:
+    type: string
+  language:
+    type: object
+    properties:
+      code:
+        type: string
+      language:
+        type: string
+  last_name:
+    type: string
+  marketing_cookies:
+    type: boolean
+  mobile:
+    type: string
+  name:
+    type: string
+  necessary_cookies:
+    type: boolean
+  notification_emails:
+    type: boolean
+  notification_sms:
+    type: boolean
+  preferences:
+    type: object
+    properties:
+      broadcast_emails:
+        type: boolean
+      notification_emails:
+        type: boolean
+      notification_sms:
+        type: boolean
+  roles:
+    type: array
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+        link:
+          type: string
+          format: uri
+        name:
+          type: object
+          properties:
+            en_GB:
+              type: string
+  slug:
+    type: string
+  social_sharing:
+    type: boolean
+  updated:
+    type: string
+    format: date-time
+  user_fields:
+    type: array
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+        link:
+          type: string
+          format: uri
+        label:
+          type: object
+          properties:
+            en_GB:
+              type: string
+        value:
+          type: string
+        translated:
+          type: object
+          properties:
+            en_GB:
+              type: string

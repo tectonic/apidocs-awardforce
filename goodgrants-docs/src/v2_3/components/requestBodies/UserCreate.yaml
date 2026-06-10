@@ -1,0 +1,53 @@
+description: User create payload.
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - password
+      anyOf:
+        - required:
+            - email
+        - required:
+            - mobile
+      properties:
+        first_name:
+          type: string
+          description: User's first name.
+        last_name:
+          type: string
+          description: User's last name.
+        password:
+          type: string
+          description: Password for accessing the account.
+        email:
+          type: string
+          format: email
+          description: User's email address. Required if `mobile` is not set.
+        mobile:
+          type: string
+          description: User's mobile number. Required if `email` is not set.
+        roles:
+          type: array
+          description: Array of role slugs.
+          items:
+            type: string
+        preferences:
+          type: object
+          description: User notification preferences.
+          properties:
+            broadcast_emails:
+              type: boolean
+            notification_emails:
+              type: boolean
+            notification_sms:
+              type: boolean
+        user_fields:
+          type: object
+          description: |-
+            User field values, keyed by field slug. For example, `{ "fJkIjGmB": "Test value" }`.
+          additionalProperties:
+            type: string
+
