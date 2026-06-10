@@ -1,0 +1,17 @@
+type: object
+properties:
+  created:
+    type: string
+    format: date-time
+  name:
+    type: object
+    properties:
+      en_GB:
+        type: string
+  slug:
+    type: string
+  status:
+    type: string
+  updated:
+    type: string
+    format: date-time

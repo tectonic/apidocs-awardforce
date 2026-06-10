@@ -1,38 +1,18 @@
 get:
-  summary: List score sets
+  summary: Retrieve score sets
   operationId: GetScoreSetCollectionV22
   tags:
     - Score set
   parameters:
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
-    - name: form
-      in: query
-      required: false
-      description: Form slug
-      schema:
-        type: string
-    - name: season
-      in: query
-      required: false
-      description: Season slug
-      schema:
-        type: string
-    - name: mode
-      in: query
-      required: false
-      description: |2-
-         - qualifying
-         - top_pick
-         - vip_judging
-         - voting
-         - gallery
-      schema:
-        type: string
+    - $ref: ../components/parameters/formFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
+    - $ref: ../components/parameters/scoreSetModeFilter.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: List scoresets
+      description: Score sets retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -69,69 +49,5 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    created:
-                      type: string
-                      format: date-time
-                    form:
-                      type: string
-                    mode:
-                      type: string
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    order:
-                      type: integer
-                    season:
-                      type: object
-                      properties:
-                        slug:
-                          type: string
-                        link:
-                          type: string
-                          format: uri
-                        name:
-                          type: object
-                          properties:
-                            en_GB:
-                              type: string
-                              format: utc-millisec
-                    slug:
-                      type: string
-                    updated:
-                      type: string
-                      format: date-time
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
-  description: Returns a list of score sets.
+            $ref: ../components/schemas/ScoreSetList.yaml
+  description: Retrieves score sets.

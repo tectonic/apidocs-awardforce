@@ -1,20 +1,15 @@
 parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Season slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/scoreSetSlug.yaml
 get:
-  summary: Get season
-  operationId: GetSeasonV23
+  summary: Retrieve a score set
+  operationId: GetScoreSetV22
   tags:
-    - Season
+    - Score set
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Get season
+      description: Score set retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -24,6 +19,12 @@ get:
           $ref: ../components/headers/Connection.yaml
         Vary:
           $ref: ../components/headers/Vary.yaml
+        X-DataDome:
+          $ref: ../components/headers/X-DataDome.yaml
+        Accept-CH:
+          $ref: ../components/headers/Accept-CH.yaml
+        Set-Cookie:
+          $ref: ../components/headers/Set-Cookie.yaml
         Cache-Control:
           $ref: ../components/headers/Cache-Control.yaml
         X-RateLimit-Limit:
@@ -42,33 +43,10 @@ get:
           $ref: ../components/headers/Strict-Transport-Security.yaml
         Content-Encoding:
           $ref: ../components/headers/Content-Encoding.yaml
-        Feature-Policy:
-          $ref: ../components/headers/Feature-Policy.yaml
-        Referrer-Policy:
-          $ref: ../components/headers/Referrer-Policy.yaml
-        X-Content-Type-Options:
-          $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
           $ref: ../components/headers/Content-Security-Policy.yaml
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              created:
-                type: string
-                format: date-time
-              name:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-                    format: utc-millisec
-              slug:
-                type: string
-              status:
-                type: string
-              updated:
-                type: string
-                format: date-time
-  description: Returns a season by its slug. The response consists of all season fields.
+            $ref: ../components/schemas/ScoreSet.yaml
+  description: Retrieves the score set identified by the specified slug.

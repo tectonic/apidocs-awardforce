@@ -1,0 +1,10 @@
+name: order
+in: query
+required: false
+description: Column name to order by.
+schema:
+  type: string
+  enum:
+    - created
+    - name
+    - status

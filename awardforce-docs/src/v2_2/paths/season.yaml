@@ -1,43 +1,19 @@
 get:
-  summary: List seasons
+  summary: Retrieve seasons
   operationId: GetSeasonCollectionV22
   tags:
     - Season
   parameters:
-    - name: deleted
-      in: query
-      required: false
-      description: |-
-        - only (show only deleted categories)
-        - included (include deleted categories)
-        - none (exclude deleted categories)
-      schema:
-        type: string
+    - $ref: ../components/parameters/deletedFilter.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
-    - name: order
-      in: query
-      required: false
-      description: |-
-        Column name to order by. The following options are available:
-        - created
-        - name
-        - status
-      schema:
-        type: string
-    - name: dir
-      in: query
-      required: false
-      description: |-
-        - asc
-        - desc
-      schema:
-        type: string
+    - $ref: ../components/parameters/seasonOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
-      description: List seasons
+      description: Seasons retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -78,51 +54,5 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    created:
-                      type: string
-                      format: date-time
-                    name:
-                      type: object
-                      properties:
-                        en_GB:
-                          type: string
-                    slug:
-                      type: string
-                    status:
-                      type: string
-                    updated:
-                      type: string
-                      format: date-time
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
-  description: Returns a list of seasons.
+            $ref: ../components/schemas/SeasonList.yaml
+  description: Retrieves seasons.

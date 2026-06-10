@@ -1,12 +1,7 @@
 parameters:
-  - name: slug
-    in: path
-    required: true
-    description: Season slug
-    schema:
-      type: string
+  - $ref: ../components/parameters/seasonSlug.yaml
 get:
-  summary: Get season
+  summary: Retrieve a season
   operationId: GetSeasonV22
   tags:
     - Season
@@ -14,7 +9,7 @@ get:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: Get season
+      description: Season retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -53,22 +48,5 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              created:
-                type: string
-                format: date-time
-              name:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-                    format: utc-millisec
-              slug:
-                type: string
-              status:
-                type: string
-              updated:
-                type: string
-                format: date-time
-  description: Returns a season by its slug. The response consists of all season fields.
+            $ref: ../components/schemas/Season.yaml
+  description: Retrieves the season identified by the specified slug.

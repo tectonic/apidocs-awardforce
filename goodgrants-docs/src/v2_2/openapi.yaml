@@ -84,12 +84,12 @@ paths:
     $ref: paths/round_{roundSlug}.yaml
   /score-set:
     $ref: paths/score-set.yaml
-  /score-set/{slug}:
-    $ref: paths/score-set_{slug}.yaml
+  /score-set/{score_set_slug}:
+    $ref: paths/score-set_{scoreSetSlug}.yaml
   /season:
     $ref: paths/season.yaml
-  /season/{slug}:
-    $ref: paths/season_{slug}.yaml
+  /season/{season_slug}:
+    $ref: paths/season_{seasonSlug}.yaml
   /tax:
     $ref: paths/tax.yaml
   /user:
