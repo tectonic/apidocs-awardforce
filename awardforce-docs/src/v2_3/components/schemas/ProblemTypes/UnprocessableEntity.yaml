@@ -1,0 +1,17 @@
+allOf:
+  - $ref: ./BaseProblem.yaml
+  - type: object
+    properties:
+      status_code:
+        type: integer
+        minimum: 422
+        maximum: 422
+      errors:
+        type: object
+        description: |-
+          Map of request field to the list of validation messages
+          produced by Laravel's form-request validator.
+        additionalProperties:
+          type: array
+          items:
+            type: string

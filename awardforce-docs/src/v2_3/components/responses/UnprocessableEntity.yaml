@@ -1,0 +1,7 @@
+description: |-
+  Request body failed form-request validation. The `errors` map lists
+  every field that failed along with one or more validation messages.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProblemTypes/UnprocessableEntity.yaml
