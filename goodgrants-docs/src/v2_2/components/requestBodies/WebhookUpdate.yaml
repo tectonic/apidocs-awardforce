@@ -1,0 +1,28 @@
+description: Webhook update payload.
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        method:
+          type: string
+          description: HTTP method used to call the webhook URL.
+          enum:
+            - get
+            - post
+        name:
+          type: string
+          description: Name of the webhook.
+        url:
+          type: string
+          format: uri
+          description: URL that receives the webhook payload.
+        signing_key:
+          type: string
+          description: Key used to sign outgoing webhook requests so the receiver can validate the payload.
+        events:
+          type: array
+          description: |-
+            Subscription events that trigger this webhook. For example, `["role_granted", "allocation_created"]`.
+          items:
+            type: string

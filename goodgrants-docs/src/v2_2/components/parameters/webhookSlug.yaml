@@ -1,0 +1,6 @@
+name: webhook_slug
+in: path
+required: true
+description: Slug of the webhook.
+schema:
+  type: string

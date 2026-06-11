@@ -1,84 +1,20 @@
 get:
-  summary: List webooks
+  summary: Retrieve webhooks
   operationId: GetWebhookCollectionV23
   tags:
     - Webhook
   parameters:
-    - name: http_method
-      in: query
-      required: false
-      description: |-
-        - post
-        - get
-      schema:
-        type: string
-    - name: subscription_event
-      in: query
-      required: false
-      description: |-
-        - allocation_created
-        - allocation_payment_created
-        - allocation_payment_deleted
-        - allocation_payment_status_changed
-        - allocation_payment_updated
-        - assignment_completed
-        - assignment_created
-        - collaborator_invited
-        - document_created
-        - document_deleted
-        - document_updated
-        - entry_created
-        - entry_eligible
-        - entry_ineligible
-        - entry_moderated
-        - entry_resubmitted
-        - entry_submitted
-        - entry_tagged
-        - entry_updated
-        - field_value_updated
-        - membership_registered
-        - payment_pending
-        - payment_success
-        - review_task_created
-        - review_task_submitted
-        - role_granted
-        - user_updated
-      schema:
-        type: string
-    - name: url
-      in: query
-      required: false
-      description: URL of the webhook
-      schema:
-        type: string
+    - $ref: ../components/parameters/webhookHttpMethodFilter.yaml
+    - $ref: ../components/parameters/webhookSubscriptionEventFilter.yaml
+    - $ref: ../components/parameters/webhookUrlFilter.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
-    - name: order
-      in: query
-      required: false
-      description: |-
-        Column name to order by. The following options are available:
-        - events
-        - http_method
-        - notification_emails
-        - signing_keys
-        - title
-        - updated
-        - url
-      schema:
-        type: string
-    - name: dir
-      in: query
-      required: false
-      description: |-
-        - asc
-        - desc
-      schema:
-        type: string
+    - $ref: ../components/parameters/webhookOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
-      description: List webhooks
+      description: Webhooks retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -119,67 +55,20 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              current_page:
-                type: integer
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    events:
-                      type: array
-                      items:
-                        type: string
-                    method:
-                      type: string
-                    name:
-                      type: string
-                    slug:
-                      type: string
-                    signing_key:
-                      type: string
-                    url:
-                      type: string
-                      format: uri
-                    updated:
-                      type: string
-                      format: date-time
-              first_page_url:
-                type: string
-                format: uri
-              from:
-                type: integer
-              last_page:
-                type: integer
-              last_page_url:
-                type: string
-                format: uri
-              next_page_url:
-                type: string
-              path:
-                type: string
-                format: uri
-              per_page:
-                type: integer
-              prev_page_url:
-                type: string
-              to:
-                type: integer
-              total:
-                type: integer
-  description: Returns a list of webhooks.
+            $ref: ../components/schemas/WebhookList.yaml
+  description: Retrieves webhooks.
 post:
-  summary: Create webhook
+  summary: Create a webhook
   operationId: PostWebhookV23
   tags:
     - Webhook
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    $ref: ../components/requestBodies/WebhookCreate.yaml
   responses:
     '201':
-      description: Create webhook
+      description: Webhook created.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -216,100 +105,38 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              events:
-                type: array
-                items:
-                  type: string
-              method:
-                type: string
-              name:
-                type: string
-              slug:
-                type: string
-              signing_key:
-                type: string
-              url:
-                type: string
-                format: uri
-              updated:
-                type: string
-                format: date-time
-  description: >-
-    Create a new webhook.
+            $ref: ../components/schemas/Webhook.yaml
+  description: Creates a webhook.
+  x-mint:
+    content: |-
+      Each webhook subscribes to one or more events. When a subscribed event occurs, the webhook URL receives a payload describing the event.
 
+      **Supported subscription events:**
 
-    **Supported webhook triggers:**
-
-
-    - allocation_created
-        
-    - allocation_payment_created
-        
-    - allocation_payment_deleted
-        
-    - allocation_payment_status_changed
-        
-    - allocation_payment_updated
-        
-    - assignment_completed
-        
-    - assignment_created
-        
-    - collaborator_invited
-        
-    - document_created
-        
-    - document_deleted
-        
-    - document_updated
-        
-    - entry_created
-        
-    - entry_eligible
-        
-    - entry_ineligible
-        
-    - entry_moderated
-        
-    - entry_resubmitted
-        
-    - entry_submitted
-        
-    - entry_tagged
-        
-    - entry_updated
-        
-    - field_value_updated
-        
-    - membership_registered (User created)
-        
-    - payment_pending
-        
-    - payment_success
-        
-    - review_task_created
-        
-    - review_task_submitted
-        
-    - role_granted
-        
-    - user_updated
-        
-
-    | Parameter | Required | Type | Description |
-
-    | --- | --- | --- | --- |
-
-    | method | Yes | String | HTTP supported methods ("get"/"post") |
-
-    | name | Yes | String | Name of the webhook |
-
-    | url | Yes | String | URL for the webhook |
-
-    | signing_key | No | String | Requests will be signed using this key and you
-    can use it to validate the webhook payload. |
-
-    | events | Yes | Array | List of events will trigger the webhook. Example:
-    \['role_granted', 'allocation_created'\] |
+      - allocation_created
+      - allocation_payment_created
+      - allocation_payment_deleted
+      - allocation_payment_status_changed
+      - allocation_payment_updated
+      - assignment_completed
+      - assignment_created
+      - collaborator_invited
+      - document_created
+      - document_deleted
+      - document_updated
+      - entry_created
+      - entry_eligible
+      - entry_ineligible
+      - entry_moderated
+      - entry_resubmitted
+      - entry_submitted
+      - entry_tagged
+      - entry_updated
+      - field_value_updated
+      - membership_registered (user created)
+      - payment_pending
+      - payment_success
+      - review_task_created
+      - review_task_submitted
+      - role_granted
+      - user_updated

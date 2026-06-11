@@ -1,0 +1,34 @@
+name: subscription_event
+in: query
+required: false
+description: Filter by subscription event.
+schema:
+  type: string
+  enum:
+    - allocation_created
+    - allocation_payment_created
+    - allocation_payment_deleted
+    - allocation_payment_status_changed
+    - allocation_payment_updated
+    - assignment_completed
+    - assignment_created
+    - collaborator_invited
+    - document_created
+    - document_deleted
+    - document_updated
+    - entry_created
+    - entry_eligible
+    - entry_ineligible
+    - entry_moderated
+    - entry_resubmitted
+    - entry_submitted
+    - entry_tagged
+    - entry_updated
+    - field_value_updated
+    - membership_registered
+    - payment_pending
+    - payment_success
+    - review_task_created
+    - review_task_submitted
+    - role_granted
+    - user_updated

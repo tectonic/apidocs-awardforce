@@ -1,0 +1,14 @@
+name: order
+in: query
+required: false
+description: Column to sort by.
+schema:
+  type: string
+  enum:
+    - events
+    - http_method
+    - notification_emails
+    - signing_keys
+    - title
+    - updated
+    - url

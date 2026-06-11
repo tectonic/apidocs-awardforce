@@ -1,19 +1,14 @@
-parameters:
-  - name: slug
-    in: path
-    required: true
-    schema:
-      type: string
 get:
-  summary: Get webhook
+  summary: Retrieve a webhook
   operationId: GetWebhookV23
   tags:
     - Webhook
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/webhookSlug.yaml
   responses:
     '200':
-      description: Get webhook
+      description: Webhook retrieved.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -52,37 +47,21 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              events:
-                type: array
-                items:
-                  type: string
-              method:
-                type: string
-              name:
-                type: string
-              slug:
-                type: string
-              signing_key:
-                type: string
-              url:
-                type: string
-                format: uri
-              updated:
-                type: string
-                format: date-time
-  description: Returns a webhook by its slug.
+            $ref: ../components/schemas/Webhook.yaml
+  description: Retrieves the webhook identified by the specified slug.
 put:
-  summary: Update webhook
+  summary: Update a webhook
   operationId: PutWebhookV23
   tags:
     - Webhook
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/webhookSlug.yaml
+  requestBody:
+    $ref: ../components/requestBodies/WebhookUpdate.yaml
   responses:
     '200':
-      description: Update webhook
+      description: Webhook updated.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -115,55 +94,19 @@ put:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              events:
-                type: array
-                items:
-                  type: string
-              method:
-                type: string
-              name:
-                type: string
-              slug:
-                type: string
-              signing_key:
-                type: string
-              url:
-                type: string
-                format: uri
-              updated:
-                type: string
-                format: date-time
-  description: >-
-    Update events, name and method of an existing webhook.
-
-
-    | Parameter | Required | Type | Description |
-
-    | --- | --- | --- | --- |
-
-    | method | No | String | HTTP supported methods ("get"/"post") |
-
-    | name | No | String | Name of the webhook |
-
-    | url | No | String | URL for the webhook |
-
-    | signing_key | No | String | Requests will be signed using this key and you
-    can use it to validate the webhook payload. |
-
-    | events | No | Array | List of events will trigger the webhook. Example:
-    \['role_granted', 'allocation_created'\] |
+            $ref: ../components/schemas/Webhook.yaml
+  description: Updates the webhook identified by the specified slug.
 delete:
-  summary: Delete webhook
+  summary: Delete a webhook
   operationId: DeleteWebhookV23
   tags:
     - Webhook
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/webhookSlug.yaml
   responses:
     '204':
-      description: Delete webhook
+      description: Webhook deleted.
       headers:
         Date:
           $ref: ../components/headers/Date.yaml
@@ -195,4 +138,4 @@ delete:
           $ref: ../components/headers/X-Content-Type-Options.yaml
         Content-Security-Policy:
           $ref: ../components/headers/Content-Security-Policy.yaml
-  description: Delete an existing webhook.
+  description: Deletes the webhook identified by the specified slug.

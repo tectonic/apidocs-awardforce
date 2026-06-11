@@ -102,5 +102,5 @@ paths:
     $ref: paths/user_{userSlug}_auth-token.yaml
   /webhook:
     $ref: paths/webhook.yaml
-  /webhook/{slug}:
-    $ref: paths/webhook_{slug}.yaml
+  /webhook/{webhook_slug}:
+    $ref: paths/webhook_{webhookSlug}.yaml

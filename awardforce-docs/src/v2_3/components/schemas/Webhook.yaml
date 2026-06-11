@@ -1,0 +1,30 @@
+type: object
+properties:
+  events:
+    type: array
+    description: Subscription events that trigger this webhook.
+    items:
+      type: string
+  method:
+    type: string
+    description: HTTP method used to call the webhook URL.
+    enum:
+      - get
+      - post
+  name:
+    type: string
+    description: Name of the webhook.
+  slug:
+    type: string
+    description: Slug of the webhook.
+  signing_key:
+    type: string
+    description: Key used to sign outgoing webhook requests so the receiver can validate the payload.
+  url:
+    type: string
+    format: uri
+    description: URL that receives the webhook payload.
+  updated:
+    type: string
+    format: date-time
+    description: Date and time the webhook was last updated.

@@ -1,0 +1,9 @@
+name: http_method
+in: query
+required: false
+description: Filter by HTTP method.
+schema:
+  type: string
+  enum:
+    - get
+    - post
