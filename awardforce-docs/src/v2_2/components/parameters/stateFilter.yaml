@@ -1,10 +1,18 @@
 name: state
 in: query
 required: false
-description: Filter by assignment state.
+description: |-
+  Filter by entry state.
+  * `current` - Only current (non-archived) entries.
+  * `archived` - Only archived entries.
+  * `all` - Include both current and archived entries.
+  * `only` - Equivalent to `archived`.
+  * `none` - Exclude all entries.
 schema:
   type: string
   enum:
-    - undecided
-    - approved
-    - rejected
+    - current
+    - archived
+    - all
+    - only
+    - none

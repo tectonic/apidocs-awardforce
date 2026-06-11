@@ -1,0 +1,14 @@
+name: trashed
+in: query
+required: false
+description: |-
+  Filter by soft-deletion mode.
+  * `only` - Show only soft-deleted resources.
+  * `all` - Include soft-deleted resources alongside live ones.
+  * `none` - Exclude soft-deleted resources.
+schema:
+  type: string
+  enum:
+    - only
+    - all
+    - none

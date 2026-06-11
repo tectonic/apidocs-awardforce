@@ -1,0 +1,12 @@
+name: order
+in: query
+required: false
+description: |-
+  Sort by a supported assignment column. Unsupported values fall back
+  silently to the default sort (`updated` descending).
+schema:
+  type: string
+  enum:
+    - method
+    - status
+    - updated
