@@ -1,0 +1,8 @@
+description: Rate limit of 60 requests per minute exceeded.
+headers:
+  Retry-After:
+    $ref: ../headers/Retry-After.yaml
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProblemTypes/TooManyRequests.yaml

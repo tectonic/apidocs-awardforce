@@ -1,0 +1,8 @@
+description: |-
+  Request rejected before reaching the controller. Common causes:
+  invalid `Accept` header, unsupported `x-api-language` code, empty
+  request body on `POST` / `PUT`, or invalid JSON in the request body.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProblemTypes/BadRequest.yaml

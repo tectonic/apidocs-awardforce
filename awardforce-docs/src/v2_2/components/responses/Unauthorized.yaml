@@ -1,0 +1,5 @@
+description: Missing `x-api-key` header.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProblemTypes/Unauthorized.yaml
