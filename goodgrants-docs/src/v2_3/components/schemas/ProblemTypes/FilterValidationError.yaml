@@ -1,0 +1,27 @@
+allOf:
+  - $ref: ./BaseProblem.yaml
+  - type: object
+    properties:
+      status_code:
+        type: integer
+        minimum: 400
+        maximum: 400
+      errors:
+        type: object
+        properties:
+          invalid_filter_names:
+            type: string
+            description: Comma-separated list of unrecognised filter names.
+          invalid_filter_values:
+            type: object
+            description: |-
+              Map of filter name to human-readable message describing
+              why the supplied value was rejected.
+            additionalProperties:
+              type: string
+example:
+  message: Invalid filter names and / or values.
+  errors:
+    invalid_filter_values:
+      state: 'Value must be one of the following: [current, archived, all, none, only]. You provided [undecided].'
+  status_code: 400

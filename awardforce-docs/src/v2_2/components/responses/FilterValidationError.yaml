@@ -1,0 +1,8 @@
+description: |-
+  One or more list filters were rejected. Either an unknown filter name
+  was supplied, or a known filter received a value outside its accepted
+  set.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProblemTypes/FilterValidationError.yaml
