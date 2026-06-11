@@ -4,21 +4,21 @@ content:
       type: object
       required:
         - score_set
-        - entries
-        - judges
+        - applications
+        - reviewers
         - rounds
       properties:
         score_set:
           type: string
           description: Slug of the score set.
-        entries:
+        applications:
           type: array
-          description: List of entry slugs.
+          description: List of application slugs.
           items:
             type: string
-        judges:
+        reviewers:
           type: array
-          description: List of judge slugs.
+          description: List of reviewer slugs.
           items:
             type: string
         rounds:
