@@ -125,14 +125,18 @@ run_mint_vertical() {
   docker_compose run --rm --entrypoint /docs/node_modules/.bin/mint "$vertical" "$@"
 }
 
-# Run a shell script inside the selected vertical service for Redocly tasks.
-run_redocly_vertical() {
+# Run a shell script inside the Redocly service with the working directory set
+# to the vertical's docs root so callers can use vertical-relative paths.
+run_redocly() {
   local vertical="$1"
   local script="$2"
   shift
   shift
+  local vertical_path
+  vertical_path="$(vertical_dir "$vertical")"
   docker_compose run --rm \
-    --entrypoint sh "$vertical" -lc "$script" sh "$@" </dev/null
+    --workdir "/spec/$vertical_path" \
+    --entrypoint sh redocly -lc "$script" sh "$@" </dev/null
 }
 
 # Require a vertical argument for commands that target one docs site.
@@ -216,11 +220,11 @@ bundle_openapi_vertical() {
     die "No versioned OpenAPI sources found under ${vertical_path}/src"
   fi
 
-  run_redocly_vertical "$vertical" '
+  run_redocly "$vertical" '
     for version_dir in "$@"; do
       input_path="src/${version_dir}/openapi.yaml"
       output_path="api-reference/openapi-${version_dir}.yaml"
-      /docs/node_modules/.bin/redocly bundle "$input_path" --output "$output_path"
+      redocly bundle "$input_path" --output "$output_path"
     done
   ' "${version_dirs[@]}"
 }
@@ -245,9 +249,9 @@ lint_openapi_vertical() {
     die "No bundled OpenAPI files found under ${vertical_path}/api-reference. Run '${SCRIPT_NAME} openapi ${vertical}' first."
   fi
 
-  run_redocly_vertical "$vertical" '
+  run_redocly "$vertical" '
     for bundled_file in "$@"; do
-      /docs/node_modules/.bin/redocly lint "api-reference/${bundled_file}"
+      redocly lint "api-reference/${bundled_file}"
     done
   ' "${bundled_files[@]}"
 }

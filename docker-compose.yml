@@ -38,3 +38,9 @@ services:
       - .:/docs
     entrypoint: ["npm"]
 
+  redocly:
+    image: redocly/cli:2.32.0
+    user: "${HOST_UID}:${HOST_GID}"
+    working_dir: /spec
+    volumes:
+      - .:/spec
