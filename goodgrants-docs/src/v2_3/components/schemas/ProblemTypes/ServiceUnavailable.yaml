@@ -1,9 +1,0 @@
-description: |-
-  Region is undergoing maintenance. Uses a different shape from the standard
-  error envelope.
-type: object
-properties:
-  status:
-    type: string
-    enum:
-      - Maintenance in progress

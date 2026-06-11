@@ -58,6 +58,4 @@ get:
       $ref: ../components/responses/Forbidden.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-    '503':
-      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves account information for the account associated with the API key in the request header.

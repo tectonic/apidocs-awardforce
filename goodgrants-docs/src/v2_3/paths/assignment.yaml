@@ -63,8 +63,6 @@ get:
       $ref: ../components/responses/Forbidden.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-    '503':
-      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves assignments that match the specified filters.
 post:
   summary: Create an assignment
@@ -111,8 +109,6 @@ post:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-    '503':
-      $ref: ../components/responses/ServiceUnavailable.yaml
   description: |-
     Creates a new assignment.
   requestBody:
