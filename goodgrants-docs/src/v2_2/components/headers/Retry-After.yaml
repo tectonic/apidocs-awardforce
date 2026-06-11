@@ -1,0 +1,4 @@
+description: Number of seconds the client should wait before retrying.
+schema:
+  type: integer
+example: 60

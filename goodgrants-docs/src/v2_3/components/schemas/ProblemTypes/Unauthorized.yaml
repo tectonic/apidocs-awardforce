@@ -1,0 +1,8 @@
+allOf:
+  - $ref: ./BaseProblem.yaml
+  - type: object
+    properties:
+      status_code:
+        type: integer
+        minimum: 401
+        maximum: 401
