@@ -1,0 +1,9 @@
+description: Standard API error envelope (Dingo errorFormat).
+type: object
+properties:
+  message:
+    type: string
+  status_code:
+    type: integer
+    minimum: 400
+    maximum: 599
