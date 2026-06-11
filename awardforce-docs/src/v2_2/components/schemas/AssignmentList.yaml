@@ -7,7 +7,7 @@ allOf:
         items:
           type: object
           properties:
-            application:
+            entry:
               type: object
               properties:
                 slug:
@@ -113,8 +113,21 @@ allOf:
               type: string
             panels:
               type: array
-              items: {}
-            reviewer:
+              items:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    properties:
+                      en_GB:
+                        type: string
+            judge:
+              nullable: true
               type: object
               properties:
                 slug:
@@ -126,6 +139,18 @@ allOf:
                   type: string
             role:
               nullable: true
+              type: object
+              properties:
+                slug:
+                  type: string
+                link:
+                  type: string
+                  format: uri
+                name:
+                  type: object
+                  properties:
+                    en_GB:
+                      type: string
             rounds:
               type: array
               items:
@@ -141,6 +166,12 @@ allOf:
                     properties:
                       en_GB:
                         type: string
+            score:
+              description: |-
+                Score for this assignment, formatted per the score-set
+                mode (VIP, qualifying, top-pick, voting). Shape varies
+                by mode; `null` when no score has been recorded.
+              nullable: true
             score_set:
               type: object
               properties:
