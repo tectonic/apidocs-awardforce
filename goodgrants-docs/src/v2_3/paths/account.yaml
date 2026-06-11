@@ -1,5 +1,5 @@
 get:
-  summary: Get account
+  summary: Retrieve account
   operationId: GetAccountV23
   tags:
     - Account
