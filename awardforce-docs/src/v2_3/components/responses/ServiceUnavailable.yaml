@@ -1,0 +1,5 @@
+description: Region is undergoing maintenance.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProblemTypes/ServiceUnavailable.yaml

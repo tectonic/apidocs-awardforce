@@ -1,0 +1,8 @@
+description: |-
+  Authenticated request denied. Common causes: invalid or unknown
+  API key, suspended account, or `api` feature not enabled for
+  the account.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProblemTypes/Forbidden.yaml
