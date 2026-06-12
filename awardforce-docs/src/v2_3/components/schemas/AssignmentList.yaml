@@ -94,6 +94,10 @@ allOf:
                     properties:
                       name:
                         type: string
+                        description: |-
+                          Display name of the criterion, rendered in
+                          the account's default locale (single string,
+                          not a locale map).
                       comments:
                         type: array
                         items:
@@ -115,6 +119,7 @@ allOf:
               format: date-time
             form:
               type: string
+              description: Slug of the form attached to the entry.
             method:
               type: string
             panels:
@@ -186,6 +191,27 @@ allOf:
                 Score for this assignment, formatted per the score-set
                 mode (VIP, qualifying, top-pick, voting). Shape varies
                 by mode; `null` when no score has been recorded.
+
+                Example payload for the regular numeric mode:
+
+                ```json
+                {
+                  "criteria": [
+                    {
+                      "name": { "en_GB": "Originality" },
+                      "value": 7,
+                      "max_score": 10,
+                      "final_score": "7/10",
+                      "weight": 1
+                    }
+                  ],
+                  "total_score": {
+                    "value": 7,
+                    "max_score": 10,
+                    "final_score": "7/10"
+                  }
+                }
+                ```
               nullable: true
             score_set:
               type: object
