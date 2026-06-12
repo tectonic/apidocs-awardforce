@@ -27,9 +27,12 @@ allOf:
                   format: uri
                 name:
                   type: object
-                  properties:
-                    en_GB:
-                      type: string
+                  description: |-
+                    Map keyed by locale code (e.g. `en_GB`, `fr_FR`).
+                    Keys are drawn from the languages enabled on the
+                    account. Values are the translated string.
+                  additionalProperties:
+                    type: string
             chapter:
               type: object
               properties:
@@ -40,9 +43,12 @@ allOf:
                   format: uri
                 name:
                   type: object
-                  properties:
-                    en_GB:
-                      type: string
+                  description: |-
+                    Map keyed by locale code (e.g. `en_GB`, `fr_FR`).
+                    Keys are drawn from the languages enabled on the
+                    account. Values are the translated string.
+                  additionalProperties:
+                    type: string
             comments:
               type: object
               properties:
@@ -123,9 +129,12 @@ allOf:
                     format: uri
                   name:
                     type: object
-                    properties:
-                      en_GB:
-                        type: string
+                    description: |-
+                      Map keyed by locale code (e.g. `en_GB`, `fr_FR`).
+                      Keys are drawn from the languages enabled on the
+                      account. Values are the translated string.
+                    additionalProperties:
+                      type: string
             reviewer:
               nullable: true
               type: object
@@ -148,9 +157,12 @@ allOf:
                   format: uri
                 name:
                   type: object
-                  properties:
-                    en_GB:
-                      type: string
+                  description: |-
+                    Map keyed by locale code (e.g. `en_GB`, `fr_FR`).
+                    Keys are drawn from the languages enabled on the
+                    account. Values are the translated string.
+                  additionalProperties:
+                    type: string
             rounds:
               type: array
               items:
@@ -163,9 +175,12 @@ allOf:
                     format: uri
                   name:
                     type: object
-                    properties:
-                      en_GB:
-                        type: string
+                    description: |-
+                      Map keyed by locale code (e.g. `en_GB`, `fr_FR`).
+                      Keys are drawn from the languages enabled on the
+                      account. Values are the translated string.
+                    additionalProperties:
+                      type: string
             score:
               description: |-
                 Score for this assignment, formatted per the score-set
@@ -182,9 +197,12 @@ allOf:
                   format: uri
                 name:
                   type: object
-                  properties:
-                    en_GB:
-                      type: string
+                  description: |-
+                    Map keyed by locale code (e.g. `en_GB`, `fr_FR`).
+                    Keys are drawn from the languages enabled on the
+                    account. Values are the translated string.
+                  additionalProperties:
+                    type: string
             slug:
               type: string
             status:
