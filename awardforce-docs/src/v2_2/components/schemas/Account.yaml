@@ -3,45 +3,79 @@ properties:
   created:
     type: string
     format: date-time
+    description: Time the account was created.
   domains:
     type: array
+    description: |-
+      Hostnames associated with the account.
+
+      Includes the primary public domain and any staging or local mirrors configured for the account.
     items:
       type: string
   global_id:
     type: string
     format: uuid
+    description: |-
+      Globally unique identifier for the account.
+
+      Stable across slug changes and consistent across the platform.
   languages:
     type: array
+    description: |-
+      Locales enabled for the account.
+
+      Translation maps on other resources (such as category, round, and score-set names) are keyed by these codes.
     items:
       type: object
       properties:
         code:
           type: string
-          description: Locale code (e.g. `en_GB`, `en_US`).
+          description: Locale code, for example `en_GB` or `en_US`.
   name:
     type: string
+    description: Display name of the account.
   owner:
     type: object
+    description: User who owns the account.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the owner.
       link:
         type: string
         format: uri
+        description: Canonical URL for the owner resource.
       name:
         type: string
+        description: Full display name of the owner.
       first_name:
         type: string
+        description: Given name of the owner.
       last_name:
         type: string
+        description: Family name of the owner.
   product:
     type: string
+    description: |-
+      Subscription plan tier the account is on.
+
+      Resolved from the underlying plan code, for example `Premium`.
   region:
     type: string
+    description: |-
+      Deployment region the account is hosted in.
+
+      Two-letter region code, for example `au` or `eu`.
   slug:
     type: string
+    description: Short URL-safe identifier for the account.
   timezone:
     type: string
+    description: |-
+      Timezone the account uses for date calculations.
+
+      Returned as a concatenated IANA identifier without the slash separator, for example `EuropeLondon`.
   updated:
     type: string
     format: date-time
+    description: Time the account record was last updated.
