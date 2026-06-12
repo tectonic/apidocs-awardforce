@@ -51,6 +51,13 @@ allOf:
                     type: string
             comments:
               type: object
+              nullable: true
+              description: |-
+                Comments attached to the assignment.
+
+                `null` for role-based assignments (where `role` is
+                populated and `reviewer` is absent), since role
+                holders do not own per-assignment comment threads.
               properties:
                 judging:
                   type: array
@@ -61,6 +68,12 @@ allOf:
                         type: string
                       comment:
                         type: string
+                        description: |-
+                          Comment body as an HTML fragment.
+
+                          May contain block-level tags such as
+                          `<p>`. Empty string when the user saved
+                          a comment with no content.
                       created_at:
                         type: string
                         format: date-time
@@ -107,6 +120,12 @@ allOf:
                               type: string
                             comment:
                               type: string
+                              description: |-
+                                Comment body as an HTML fragment.
+
+                                May contain block-level tags such as
+                                `<p>`. Empty string when the user
+                                saved a comment with no content.
                             created_at:
                               type: string
                               format: date-time
@@ -189,10 +208,11 @@ allOf:
             score:
               description: |-
                 Score for this assignment, formatted per the score-set
-                mode (VIP, qualifying, top-pick, voting). Shape varies
-                by mode; `null` when no score has been recorded.
+                mode. `null` when no score has been recorded.
 
-                Example payload for the regular numeric mode:
+                Shape varies by score-set mode. Two confirmed shapes:
+
+                Regular numeric or qualifying mode:
 
                 ```json
                 {
@@ -212,6 +232,14 @@ allOf:
                   }
                 }
                 ```
+
+                Voting mode:
+
+                ```json
+                { "total_votes": 0 }
+                ```
+
+                VIP and top-pick modes follow their own conventions.
               nullable: true
             score_set:
               type: object
