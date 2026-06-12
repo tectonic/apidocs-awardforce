@@ -9,6 +9,7 @@ properties:
       type: string
   global_id:
     type: string
+    format: uuid
   languages:
     type: array
     items:
@@ -16,6 +17,7 @@ properties:
       properties:
         code:
           type: string
+          description: Locale code (e.g. `en_GB`, `en_US`).
   name:
     type: string
   owner:
