@@ -1,164 +1,305 @@
 type: object
+title: Assignment
+description: |-
+  Single scoring task for an application, addressed to either a reviewer or a role within a given round and score set.
+
+  Created automatically by panel allocation rules or manually by a panel manager. Lifecycle is tracked in `status`; the scoring outcome lives in `score`.
+
+  Exactly one of `reviewer` and `role` is populated.
 properties:
+  application:
+    type: object
+    description: Application the assignment refers to.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the application.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the application resource.
+      title:
+        type: string
+        description: Title of the application as submitted by the applicant.
   category:
     type: object
+    description: Category the application belongs to.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the category.
       link:
         type: string
         format: uri
+        description: Canonical URL for the category resource.
       name:
         type: object
-        properties:
-          en_GB:
-            type: string
-          pl_PL:
-            type: string
+        description: |-
+          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
   chapter:
     type: object
+    description: Chapter the category belongs to.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the chapter.
       link:
         type: string
         format: uri
+        description: Canonical URL for the chapter resource.
       name:
         type: object
-        properties:
-          en_GB:
-            type: string
-          pl_PL:
-            type: string
+        description: |-
+          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
   comments:
     type: object
+    nullable: true
+    description: |-
+      Comments attached to the assignment.
+
+      `null` for role-based assignments (where `role` is populated and `reviewer` is absent), since role holders do not own per-assignment comment threads.
     properties:
       judging:
         type: array
+        description: Comments left by the reviewer during scoring.
         items: &commentItem
           type: object
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the comment.
             comment:
               type: string
+              description: |-
+                Comment body as an HTML fragment.
+
+                May contain block-level tags such as `<p>`. Empty string when the user saved a comment with no content.
             created_at:
               type: string
               format: date-time
+              description: Time the comment was created.
             updated_at:
               type: string
               format: date-time
+              description: Time the comment was last updated.
             user: &commentUser
               type: object
+              description: User who left the comment.
               properties:
                 slug:
                   type: string
+                  description: Short URL-safe identifier for the user.
                 link:
                   type: string
                   format: uri
+                  description: Canonical URL for the user resource.
                 name:
                   type: string
+                  description: Full display name of the user.
                 first_name:
                   type: string
+                  description: Given name of the user.
                 last_name:
                   type: string
+                  description: Family name of the user.
       abstention:
         type: array
+        description: Comments left when the reviewer marked the application as abstained.
         items: *commentItem
       conflict:
         type: array
+        description: Comments left when the reviewer flagged a conflict of interest.
         items: *commentItem
       criteria:
         type: array
+        description: Comments grouped by score-set criterion.
         items:
           type: object
           properties:
             name:
               type: string
+              description: |-
+                Display name of the criterion, rendered in the account's default locale (single string, not a locale map).
             comments:
               type: array
+              description: Comments left against this criterion.
               items:
                 type: object
                 properties:
                   slug:
                     type: string
+                    description: Short URL-safe identifier for the comment.
                   comment:
                     type: string
+                    description: |-
+                      Comment body as an HTML fragment.
+
+                      May contain block-level tags such as `<p>`. Empty string when the user saved a comment with no content.
                   created_at:
                     type: string
                     format: date-time
+                    description: Time the comment was created.
                   updated_at:
                     type: string
                     format: date-time
+                    description: Time the comment was last updated.
                   user: *commentUser
   created:
     type: string
     format: date-time
-  entry:
-    type: object
-    properties:
-      slug:
-        type: string
-      link:
-        type: string
-        format: uri
-      title:
-        type: string
+    description: Time the assignment was created.
   form:
     type: string
-  judge:
-    type: object
-    properties:
-      slug:
-        type: string
-      link:
-        type: string
-        format: uri
-      name:
-        type: string
+    description: Slug of the form attached to the application.
   method:
     type: string
+    description: |-
+      How the assignment was created.
+
+      Known values include `Manual`, `Automatic (Panel)`, `Recused`, and `Stray`. Other values are possible depending on the score-set mode.
   panels:
     type: array
-    items: {}
-  role:
-    nullable: true
-  rounds:
-    type: array
-    items: &namedLinkObject
+    description: Panels the assignment is associated with.
+    items:
       type: object
       properties:
         slug:
           type: string
+          description: Short URL-safe identifier for the panel.
         link:
           type: string
           format: uri
+          description: Canonical URL for the panel resource.
         name:
           type: object
-          properties:
-            en_GB:
-              type: string
-            pl_PL:
-              type: string
-  score_set:
+          description: |-
+            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+  reviewer:
+    nullable: true
     type: object
+    description: |-
+      Reviewer assigned to score the application.
+
+      `null` for role-based assignments where `role` is populated instead.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the reviewer.
       link:
         type: string
         format: uri
+        description: Canonical URL for the reviewer resource.
+      name:
+        type: string
+        description: Full display name of the reviewer.
+  role:
+    nullable: true
+    type: object
+    description: |-
+      Role assigned to score the application, used when the assignment is shared across all holders of a role rather than addressed to one reviewer.
+
+      `null` for judge-specific assignments where `judge` is populated.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the role.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the role resource.
       name:
         type: object
-        properties:
-          en_GB:
+        description: |-
+          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  rounds:
+    type: array
+    description: Rounds the assignment applies to.
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: Short URL-safe identifier for the round.
+        link:
+          type: string
+          format: uri
+          description: Canonical URL for the round resource.
+        name:
+          type: object
+          description: |-
+            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
             type: string
-          pl_PL:
-            type: string
+  score:
+    description: |-
+      Score for this assignment, formatted per the score-set mode. `null` when no score has been recorded.
+
+      Shape varies by score-set mode. Two confirmed shapes:
+
+      Regular numeric or qualifying mode:
+
+      ```json
+      {
+        "criteria": [
+          {
+            "name": { "en_GB": "Originality" },
+            "value": 7,
+            "max_score": 10,
+            "final_score": "7/10",
+            "weight": 1
+          }
+        ],
+        "total_score": {
+          "value": 7,
+          "max_score": 10,
+          "final_score": "7/10"
+        }
+      }
+      ```
+
+      Voting mode:
+
+      ```json
+      { "total_votes": 0 }
+      ```
+
+      VIP and top-pick modes follow their own conventions.
+    nullable: true
+  score_set:
+    type: object
+    description: Score set used to evaluate the application.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the score set.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the score set resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
   slug:
     type: string
+    description: Short URL-safe identifier for the assignment.
   status:
     type: string
+    description: |-
+      Current state of the assignment.
+
+      Known values include `To be scored`, `In progress`, and `Complete`.
   updated:
     type: string
     format: date-time
+    description: Time the assignment was last updated.
