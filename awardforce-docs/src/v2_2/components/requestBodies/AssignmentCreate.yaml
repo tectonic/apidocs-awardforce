@@ -2,6 +2,11 @@ content:
   application/json:
     schema:
       type: object
+      title: Assignment creation request
+      description: |-
+        Inputs for creating assignments in bulk.
+
+        One assignment is created for each pairing of an entry from `entries` with a judge from `judges` under `score_set`, and every resulting assignment is linked to all rounds listed in `rounds`. Existing assignments for the same entry, judge, and score set are updated in place rather than duplicated.
       required:
         - score_set
         - entries
@@ -10,21 +15,36 @@ content:
       properties:
         score_set:
           type: string
-          description: Slug of the score set.
+          description: |-
+            Slug of the score set to assign under.
+
+            Its current season must be either active or draft. Entries and rounds must belong to the same form as this score set.
         entries:
           type: array
-          description: List of entry slugs.
+          description: |-
+            Slugs of the entries to include.
+
+            Each entry must belong to the same form as `score_set`.
           items:
             type: string
         judges:
           type: array
-          description: List of judge slugs.
+          description: |-
+            Slugs of the users to assign as judges.
+
+            Each user must hold the Judge role for the account.
           items:
             type: string
         rounds:
           type: array
-          description: List of round slugs.
+          description: |-
+            Slugs of the judging rounds to link the assignments to.
+
+            Each round must be a judging round on the same form as `score_set`.
           items:
             type: string
-description: Assignment creation payload.
+description: |-
+  Inputs for the assignment creation request.
+
+  The request is processed asynchronously: the response is `202 Accepted` with an empty body. Created assignments become available via `GET /assignment` once processing completes.
 required: true
