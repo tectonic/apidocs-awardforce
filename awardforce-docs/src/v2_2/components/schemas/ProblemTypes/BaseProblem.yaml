@@ -1,4 +1,4 @@
-description: Standard API error envelope (Dingo errorFormat).
+description: Standard error envelope shared by every error response on this API.
 type: object
 properties:
   message:

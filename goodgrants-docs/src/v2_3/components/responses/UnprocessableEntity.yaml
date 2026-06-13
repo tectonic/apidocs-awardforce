@@ -1,6 +1,10 @@
 description: |-
-  Request body failed form-request validation. The `errors` map lists
-  every field that failed along with one or more validation messages.
+  Request was syntactically valid but could not be processed.
+
+  Returned in two scenarios:
+
+  - **Field-level validation failure** — one or more request fields violated the endpoint's validation rules. The body includes an `errors` map keyed by field name with one or more validation messages each.
+  - **Resource-state precondition failure** — the request fields were all valid, but the target resource was in a state that does not permit the requested operation. The body carries only `message` and `status_code`; no `errors` map.
 content:
   application/json:
     schema:

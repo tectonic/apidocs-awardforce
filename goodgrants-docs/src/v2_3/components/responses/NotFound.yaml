@@ -1,0 +1,6 @@
+description: |-
+  Resource identified by the path slug does not exist. Returned when the slug is well-formed but no record matches it.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ProblemTypes/NotFound.yaml

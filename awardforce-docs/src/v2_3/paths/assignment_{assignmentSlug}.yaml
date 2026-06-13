@@ -40,6 +40,14 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/Assignment.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
   description: Retrieves an assignment identified by the specified assignment slug.
 delete:
   summary: Delete an assignment
@@ -71,8 +79,16 @@ delete:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
         ETag:
           $ref: ../components/headers/ETag.yaml
-      content:
-        application/json:
-          schema:
-            type: object
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
   description: Deletes an existing assignment.

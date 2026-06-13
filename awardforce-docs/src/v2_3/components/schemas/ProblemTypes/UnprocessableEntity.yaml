@@ -9,8 +9,7 @@ allOf:
       errors:
         type: object
         description: |-
-          Map of request field to the list of validation messages
-          produced by Laravel's form-request validator.
+          Map of request field to the list of validation messages for that field. Present only on field-level validation failures; omitted when the 422 was raised by a resource-state precondition.
         additionalProperties:
           type: array
           items:
