@@ -1,3 +1,0 @@
-description: HTTP Strict Transport Security policy for the response.
-schema:
-  type: string

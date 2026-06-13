@@ -11,6 +11,15 @@ put:
   responses:
     default:
       description: Attachment field updated.
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
   description: Updates an attachment field for the attachment identified by the specified token.
   requestBody:
     $ref: ../components/requestBodies/AttachmentFieldUpdate.yaml

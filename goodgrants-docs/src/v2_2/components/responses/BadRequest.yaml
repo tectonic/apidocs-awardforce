@@ -1,5 +1,12 @@
 description: |-
   Request was rejected before the endpoint could process it. Common causes: invalid `Accept` header, unsupported `x-api-language` code, empty request body on `POST` / `PUT`, or invalid JSON in the request body.
+headers:
+  X-RateLimit-Limit:
+    $ref: ../headers/X-RateLimit-Limit.yaml
+  X-RateLimit-Remaining:
+    $ref: ../headers/X-RateLimit-Remaining.yaml
+  X-RateLimit-Reset:
+    $ref: ../headers/X-RateLimit-Reset.yaml
 content:
   application/json:
     schema:

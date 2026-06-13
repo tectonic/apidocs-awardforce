@@ -1,3 +1,0 @@
-description: Caching directives that apply to the response.
-schema:
-  type: string

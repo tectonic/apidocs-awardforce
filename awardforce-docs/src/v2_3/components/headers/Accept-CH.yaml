@@ -1,3 +1,0 @@
-description: Client hint headers accepted by the response.
-schema:
-  type: string

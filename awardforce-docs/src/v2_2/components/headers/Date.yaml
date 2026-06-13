@@ -1,3 +1,0 @@
-description: Date and time at which the response was generated.
-schema:
-  type: string

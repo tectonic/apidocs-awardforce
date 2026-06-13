@@ -1,3 +1,0 @@
-description: MIME-type handling directives returned by the response.
-schema:
-  type: string

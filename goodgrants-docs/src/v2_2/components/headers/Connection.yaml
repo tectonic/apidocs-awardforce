@@ -1,3 +1,0 @@
-description: Connection-specific options for the current response.
-schema:
-  type: string

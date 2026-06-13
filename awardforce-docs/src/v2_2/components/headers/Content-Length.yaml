@@ -1,3 +1,0 @@
-description: Size of the response body in bytes.
-schema:
-  type: integer

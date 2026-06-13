@@ -1,3 +1,0 @@
-description: Cross-site scripting protection setting returned by the response.
-schema:
-  type: string

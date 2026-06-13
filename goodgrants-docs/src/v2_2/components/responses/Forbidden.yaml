@@ -2,6 +2,13 @@ description: |-
   Authenticated request denied. Common causes: invalid or unknown
   API key, suspended account, or `api` feature not enabled for
   the account.
+headers:
+  X-RateLimit-Limit:
+    $ref: ../headers/X-RateLimit-Limit.yaml
+  X-RateLimit-Remaining:
+    $ref: ../headers/X-RateLimit-Remaining.yaml
+  X-RateLimit-Reset:
+    $ref: ../headers/X-RateLimit-Reset.yaml
 content:
   application/json:
     schema:

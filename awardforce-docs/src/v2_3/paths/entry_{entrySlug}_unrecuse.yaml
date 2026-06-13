@@ -12,24 +12,12 @@ put:
     '204':
       description: Assignment recusal removed.
       headers:
-        Server:
-          $ref: ../components/headers/Server.yaml
-        Connection:
-          $ref: ../components/headers/Connection.yaml
-        X-Powered-By:
-          $ref: ../components/headers/X-Powered-By.yaml
-        Cache-Control:
-          $ref: ../components/headers/Cache-Control.yaml
-        Date:
-          $ref: ../components/headers/Date.yaml
         X-RateLimit-Limit:
           $ref: ../components/headers/X-RateLimit-Limit.yaml
         X-RateLimit-Remaining:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
-        ETag:
-          $ref: ../components/headers/ETag.yaml
   description: Removes a judge recusal from the assignment for the specified entry.
   requestBody:
     $ref: ../components/requestBodies/EntryAssignmentRecusal.yaml

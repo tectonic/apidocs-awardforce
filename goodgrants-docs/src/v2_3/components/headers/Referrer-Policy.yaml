@@ -1,3 +1,0 @@
-description: Referrer policy that applies to requests made from the response context.
-schema:
-  type: string

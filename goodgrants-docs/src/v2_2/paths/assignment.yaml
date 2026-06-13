@@ -27,30 +27,14 @@ get:
     '200':
       description: Assignments retrieved.
       headers:
-        Server:
-          $ref: ../components/headers/Server.yaml
-        Transfer-Encoding:
-          $ref: ../components/headers/Transfer-Encoding.yaml
-        Connection:
-          $ref: ../components/headers/Connection.yaml
-        Vary:
-          $ref: ../components/headers/Vary.yaml
-        X-Powered-By:
-          $ref: ../components/headers/X-Powered-By.yaml
-        Cache-Control:
-          $ref: ../components/headers/Cache-Control.yaml
-        Date:
-          $ref: ../components/headers/Date.yaml
+        ETag:
+          $ref: ../components/headers/ETag.yaml
         X-RateLimit-Limit:
           $ref: ../components/headers/X-RateLimit-Limit.yaml
         X-RateLimit-Remaining:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
-        ETag:
-          $ref: ../components/headers/ETag.yaml
-        Content-Encoding:
-          $ref: ../components/headers/Content-Encoding.yaml
       content:
         application/json:
           schema:
@@ -76,26 +60,12 @@ post:
     '202':
       description: Assignment creation accepted.
       headers:
-        Server:
-          $ref: ../components/headers/Server.yaml
-        Transfer-Encoding:
-          $ref: ../components/headers/Transfer-Encoding.yaml
-        Connection:
-          $ref: ../components/headers/Connection.yaml
-        X-Powered-By:
-          $ref: ../components/headers/X-Powered-By.yaml
-        Cache-Control:
-          $ref: ../components/headers/Cache-Control.yaml
-        Date:
-          $ref: ../components/headers/Date.yaml
         X-RateLimit-Limit:
           $ref: ../components/headers/X-RateLimit-Limit.yaml
         X-RateLimit-Remaining:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
-        ETag:
-          $ref: ../components/headers/ETag.yaml
       content:
         application/json:
           schema:

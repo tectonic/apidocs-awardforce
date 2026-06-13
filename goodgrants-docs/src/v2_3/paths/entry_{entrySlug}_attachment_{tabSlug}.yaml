@@ -12,38 +12,16 @@ post:
     '201':
       description: Attachment created.
       headers:
-        Date:
-          $ref: ../components/headers/Date.yaml
-        Transfer-Encoding:
-          $ref: ../components/headers/Transfer-Encoding.yaml
-        Connection:
-          $ref: ../components/headers/Connection.yaml
-        Cache-Control:
-          $ref: ../components/headers/Cache-Control.yaml
         Location:
           $ref: ../components/headers/Location.yaml
+        ETag:
+          $ref: ../components/headers/ETag.yaml
         X-RateLimit-Limit:
           $ref: ../components/headers/X-RateLimit-Limit.yaml
         X-RateLimit-Remaining:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
-        ETag:
-          $ref: ../components/headers/ETag.yaml
-        X-Frame-Options:
-          $ref: ../components/headers/X-Frame-Options.yaml
-        X-XSS-Protection:
-          $ref: ../components/headers/X-XSS-Protection.yaml
-        Strict-Transport-Security:
-          $ref: ../components/headers/Strict-Transport-Security.yaml
-        Feature-Policy:
-          $ref: ../components/headers/Feature-Policy.yaml
-        Referrer-Policy:
-          $ref: ../components/headers/Referrer-Policy.yaml
-        X-Content-Type-Options:
-          $ref: ../components/headers/X-Content-Type-Options.yaml
-        Content-Security-Policy:
-          $ref: ../components/headers/Content-Security-Policy.yaml
       content:
         application/json:
           schema:
