@@ -71,6 +71,7 @@ post:
     - Assignment
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '202':
       description: Assignment creation accepted.
@@ -109,7 +110,6 @@ post:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-  description: |-
-    Creates a new assignment.
+  description: Creates a new assignment.
   requestBody:
     $ref: ../components/requestBodies/AssignmentCreate.yaml
