@@ -4,17 +4,17 @@ get:
   tags:
     - User
   parameters:
-    - $ref: ../components/parameters/userRoleFilter.yaml
-    - $ref: ../components/parameters/userConfirmationFilter.yaml
-    - $ref: ../components/parameters/userSeasonJoinedFilter.yaml
     - $ref: ../components/parameters/userActiveInSeasonFilter.yaml
+    - $ref: ../components/parameters/userConfirmationFilter.yaml
     - $ref: ../components/parameters/userEntriesFilter.yaml
+    - $ref: ../components/parameters/userLanguageFilter.yaml
+    - $ref: ../components/parameters/userRoleFilter.yaml
+    - $ref: ../components/parameters/userSeasonJoinedFilter.yaml
     - $ref: ../components/parameters/deletedFilter.yaml
-    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/userOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
-    - $ref: ../components/parameters/userLanguageFilter.yaml
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:

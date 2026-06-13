@@ -6,8 +6,8 @@ put:
   tags:
     - Entry
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/entryTagsToAdd.yaml
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: Entry tagged.
@@ -31,8 +31,8 @@ delete:
   tags:
     - Entry
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/entryTagsToRemove.yaml
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
       description: Entry untagged.

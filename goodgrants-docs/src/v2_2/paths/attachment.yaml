@@ -4,13 +4,13 @@ get:
   tags:
     - Attachment
   parameters:
-    - $ref: ../components/parameters/entryFilter.yaml
-    - $ref: ../components/parameters/tabFilter.yaml
     - $ref: ../components/parameters/categoryFilter.yaml
     - $ref: ../components/parameters/chapterFilter.yaml
+    - $ref: ../components/parameters/entryFilter.yaml
     - $ref: ../components/parameters/seasonFilter.yaml
-    - $ref: ../components/parameters/perPage.yaml
+    - $ref: ../components/parameters/tabFilter.yaml
     - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/attachmentOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml

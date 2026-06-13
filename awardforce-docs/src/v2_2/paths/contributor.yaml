@@ -4,13 +4,13 @@ get:
   tags:
     - Contributor
   parameters:
-    - $ref: ../components/parameters/perPage.yaml
+    - $ref: ../components/parameters/categoryFilter.yaml
+    - $ref: ../components/parameters/chapterFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
     - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/contributorOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
-    - $ref: ../components/parameters/chapterFilter.yaml
-    - $ref: ../components/parameters/categoryFilter.yaml
-    - $ref: ../components/parameters/seasonFilter.yaml
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:

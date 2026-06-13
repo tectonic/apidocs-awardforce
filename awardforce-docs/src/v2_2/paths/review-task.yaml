@@ -28,14 +28,14 @@ get:
   parameters:
     - $ref: ../components/parameters/reviewTaskActionAtFilter.yaml
     - $ref: ../components/parameters/reviewTaskCreatedAtFilter.yaml
+    - $ref: ../components/parameters/reviewTaskUpdatedAtFilter.yaml
     - $ref: ../components/parameters/decisionFilter.yaml
-    - $ref: ../components/parameters/deletedFilter.yaml
-    - $ref: ../components/parameters/page.yaml
-    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/reviewStageFilter.yaml
     - $ref: ../components/parameters/reviewerFilter.yaml
     - $ref: ../components/parameters/seasonFilter.yaml
-    - $ref: ../components/parameters/reviewTaskUpdatedAtFilter.yaml
+    - $ref: ../components/parameters/deletedFilter.yaml
+    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
     default:

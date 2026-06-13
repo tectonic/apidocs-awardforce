@@ -31,8 +31,8 @@ put:
   tags:
     - Entry
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/entrySlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
   requestBody:
     $ref: ../components/requestBodies/EntryUpdate.yaml
   responses:
@@ -58,8 +58,8 @@ delete:
   tags:
     - Entry
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/entrySlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
       description: Entry deleted.

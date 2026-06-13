@@ -7,8 +7,8 @@ get:
     - $ref: ../components/parameters/webhookHttpMethodFilter.yaml
     - $ref: ../components/parameters/webhookSubscriptionEventFilter.yaml
     - $ref: ../components/parameters/webhookUrlFilter.yaml
-    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/webhookOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml

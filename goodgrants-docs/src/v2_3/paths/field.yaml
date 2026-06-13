@@ -4,18 +4,18 @@ get:
   tags:
     - Field
   parameters:
+    - $ref: ../components/parameters/fieldConditionalFilter.yaml
+    - $ref: ../components/parameters/fieldProtectionFilter.yaml
+    - $ref: ../components/parameters/fieldResourceFilter.yaml
+    - $ref: ../components/parameters/fieldTypeFilter.yaml
     - $ref: ../components/parameters/categoryFilter.yaml
     - $ref: ../components/parameters/formFilter.yaml
-    - $ref: ../components/parameters/fieldResourceFilter.yaml
-    - $ref: ../components/parameters/deletedFilter.yaml
     - $ref: ../components/parameters/tabFilter.yaml
-    - $ref: ../components/parameters/fieldTypeFilter.yaml
-    - $ref: ../components/parameters/fieldOrder.yaml
-    - $ref: ../components/parameters/fieldProtectionFilter.yaml
-    - $ref: ../components/parameters/fieldConditionalFilter.yaml
-    - $ref: ../components/parameters/sortDirection.yaml
+    - $ref: ../components/parameters/deletedFilter.yaml
     - $ref: ../components/parameters/page.yaml
     - $ref: ../components/parameters/perPage.yaml
+    - $ref: ../components/parameters/fieldOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:

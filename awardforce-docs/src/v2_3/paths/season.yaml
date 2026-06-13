@@ -5,8 +5,8 @@ get:
     - Season
   parameters:
     - $ref: ../components/parameters/deletedFilter.yaml
-    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/seasonOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml

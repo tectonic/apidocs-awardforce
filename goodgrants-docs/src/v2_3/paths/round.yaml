@@ -4,11 +4,11 @@ get:
   tags:
     - Round
   parameters:
-    - $ref: ../components/parameters/perPage.yaml
-    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/roundTypeFilter.yaml
     - $ref: ../components/parameters/formFilter.yaml
     - $ref: ../components/parameters/seasonFilter.yaml
-    - $ref: ../components/parameters/roundTypeFilter.yaml
+    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:

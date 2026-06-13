@@ -4,8 +4,8 @@ get:
   tags:
     - User
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/userSlugParameter.yaml
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: User retrieved.
@@ -32,8 +32,8 @@ put:
   tags:
     - User
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/userSlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
   requestBody:
     $ref: ../components/requestBodies/UserUpdate.yaml
   responses:
@@ -59,8 +59,8 @@ delete:
   tags:
     - User
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/userSlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
       description: User deleted.

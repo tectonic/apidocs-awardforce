@@ -4,8 +4,8 @@ get:
   tags:
     - Webhook
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/webhookSlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
       description: Webhook retrieved.
@@ -29,8 +29,8 @@ put:
   tags:
     - Webhook
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/webhookSlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
   requestBody:
     $ref: ../components/requestBodies/WebhookUpdate.yaml
   responses:
@@ -56,8 +56,8 @@ delete:
   tags:
     - Webhook
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/webhookSlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     '204':
       description: Webhook deleted.

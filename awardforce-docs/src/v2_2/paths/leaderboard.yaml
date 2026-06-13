@@ -5,13 +5,13 @@ get:
     - Leaderboard
   parameters:
     - $ref: ../components/parameters/leaderboardScoreSetFilter.yaml
-    - $ref: ../components/parameters/entryFilter.yaml
     - $ref: ../components/parameters/categoryFilter.yaml
     - $ref: ../components/parameters/chapterFilter.yaml
+    - $ref: ../components/parameters/entryFilter.yaml
     - $ref: ../components/parameters/tagFilter.yaml
     - $ref: ../components/parameters/archivedFilter.yaml
-    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/leaderboardOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml

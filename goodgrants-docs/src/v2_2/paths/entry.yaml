@@ -4,25 +4,25 @@ get:
   tags:
     - Entry
   parameters:
-    - $ref: ../components/parameters/entryTitleFilter.yaml
-    - $ref: ../components/parameters/categoryFilter.yaml
-    - $ref: ../components/parameters/chapterFilter.yaml
-    - $ref: ../components/parameters/entryStatusFilter.yaml
+    - $ref: ../components/parameters/entryEntrantFilter.yaml
+    - $ref: ../components/parameters/entryModerationFilter.yaml
     - $ref: ../components/parameters/entryPaymentStatusFilter.yaml
     - $ref: ../components/parameters/entryPriceFilter.yaml
     - $ref: ../components/parameters/entryReviewStatusFilter.yaml
-    - $ref: ../components/parameters/entryModerationFilter.yaml
-    - $ref: ../components/parameters/seasonFilter.yaml
+    - $ref: ../components/parameters/entryStatusFilter.yaml
+    - $ref: ../components/parameters/entryTitleFilter.yaml
+    - $ref: ../components/parameters/entryUpdatedAtFilter.yaml
+    - $ref: ../components/parameters/categoryFilter.yaml
+    - $ref: ../components/parameters/chapterFilter.yaml
     - $ref: ../components/parameters/formFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
     - $ref: ../components/parameters/tagFilter.yaml
-    - $ref: ../components/parameters/entryEntrantFilter.yaml
-    - $ref: ../components/parameters/deletedFilter.yaml
     - $ref: ../components/parameters/archivedFilter.yaml
-    - $ref: ../components/parameters/perPage.yaml
+    - $ref: ../components/parameters/deletedFilter.yaml
     - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/entryOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
-    - $ref: ../components/parameters/entryUpdatedAtFilter.yaml
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:

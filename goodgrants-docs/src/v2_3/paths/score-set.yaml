@@ -4,11 +4,11 @@ get:
   tags:
     - Score set
   parameters:
-    - $ref: ../components/parameters/perPage.yaml
-    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/scoreSetModeFilter.yaml
     - $ref: ../components/parameters/formFilter.yaml
     - $ref: ../components/parameters/seasonFilter.yaml
-    - $ref: ../components/parameters/scoreSetModeFilter.yaml
+    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '200':
