@@ -1,4 +1,9 @@
 type: object
+title: Account
+description: |-
+  Tenant-level account record describing the subscription and configuration shared by every resource within it.
+
+  Each account has one owner, one product tier, a region, a timezone, and a set of enabled locales. The locale codes here are the keys used by translation maps elsewhere in the API (such as category, chapter, round, and score-set names).
 properties:
   created:
     type: string
