@@ -1,42 +1,64 @@
 type: object
+title: Attachment
+description: |-
+  File attached to an entry through an attachments-typed form tab.
+
+  Carries the file itself together with the form-field metadata captured against it, the entry it belongs to, and the tab through which it was added.
 properties:
   entry:
     type: object
+    description: Entry the attachment belongs to.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the entry.
       link:
         type: string
         format: uri
+        description: Canonical URL for the entry resource.
       title:
         type: string
+        description: Title of the entry as submitted by the entrant.
   attachment_fields:
     type: array
+    description: |-
+      Form fields captured against this attachment.
+
+      One item per field defined on the parent attachments tab, in form order. The exact set of keys varies by field type.
     items:
       type: object
       properties:
         slug:
           type: string
+          description: Short URL-safe identifier for the field.
         link:
           type: string
           format: uri
+          description: Canonical URL for the field resource.
         label:
           type: object
           description: |-
+            Display label shown to the entrant alongside the field. May contain HTML and may be empty.
+
             Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
           additionalProperties:
             type: string
         title:
           type: object
           description: |-
+            Short title used to refer to the field in administrative contexts.
+
             Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
           additionalProperties:
             type: string
         value:
           type: string
+          description: Raw stored value for the field, as submitted by the entrant.
         translated:
           type: object
           description: |-
+            Human-readable rendering of `value` resolved against the field definition (for example, choice slugs expanded to labels).
+
             Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
           additionalProperties:
             type: string
@@ -47,29 +69,39 @@ properties:
   created:
     type: string
     format: date-time
+    description: Time the attachment was created.
   file:
     type: object
+    description: File backing the attachment.
     properties:
       token:
         type: string
+        description: Token identifying the file.
       link:
         type: string
         format: uri
+        description: Canonical URL for the file resource.
       download:
         type: string
         format: uri
+        description: Time-limited download URL for the underlying file.
       filename:
         type: string
+        description: Original filename as uploaded.
   order:
     type: integer
+    description: Position of the attachment within its tab.
   tab:
     type: object
+    description: Attachments tab the attachment belongs to.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the tab.
       link:
         type: string
         format: uri
+        description: Canonical URL for the tab resource.
       name:
         type: object
         description: |-
@@ -78,6 +110,8 @@ properties:
           type: string
   token:
     type: string
+    description: Token identifying the attachment file. Same value as `file.token`.
   updated:
     type: string
     format: date-time
+    description: Time the attachment was last updated.
