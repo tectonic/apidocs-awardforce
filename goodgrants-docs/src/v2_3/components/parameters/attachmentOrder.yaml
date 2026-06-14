@@ -1,7 +1,9 @@
 name: order
 in: query
 required: false
-description: Sort by a supported attachment field.
+description: |-
+  Sort by a supported attachment field. Unsupported values fall back
+  silently to the default sort (`updated` descending).
 schema:
   type: string
   enum:

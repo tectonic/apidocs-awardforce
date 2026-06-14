@@ -22,16 +22,28 @@ properties:
           format: uri
         label:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: |-
+            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        title:
+          type: object
+          description: |-
+            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         value:
           type: string
         translated:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: |-
+            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        download:
+          type: string
+          format: uri
+          description: Time-limited download URL. Present only for file-typed attachment fields with an underlying file.
   created:
     type: string
     format: date-time
@@ -60,9 +72,10 @@ properties:
         format: uri
       name:
         type: object
-        properties:
-          en_GB:
-            type: string
+        description: |-
+          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
   token:
     type: string
   updated:
