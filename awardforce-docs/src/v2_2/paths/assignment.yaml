@@ -58,7 +58,10 @@ post:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '202':
-      description: Assignment creation accepted.
+      description: |-
+        Assignment creation accepted.
+
+        The response body is empty. Created assignments become available via `GET /assignment` once processing completes.
       headers:
         X-RateLimit-Limit:
           $ref: ../components/headers/X-RateLimit-Limit.yaml
@@ -66,10 +69,6 @@ post:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
-      content:
-        application/json:
-          schema:
-            type: object
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':

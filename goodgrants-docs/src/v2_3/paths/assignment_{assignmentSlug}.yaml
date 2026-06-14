@@ -43,7 +43,10 @@ delete:
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '204':
-      description: Assignment deleted.
+      description: |-
+        Assignment removed.
+
+        If the assignment has scores or comments, the record is retained with `method` set to `stray` and remains retrievable via `GET /assignment/{assignment_slug}`. Otherwise the record is removed entirely.
       headers:
         X-RateLimit-Limit:
           $ref: ../components/headers/X-RateLimit-Limit.yaml
@@ -63,4 +66,7 @@ delete:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-  description: Deletes an existing assignment.
+  description: |-
+    Deletes an existing assignment.
+
+    Only assignments with `method` of `manual` or `random` can be deleted. Other methods (`automatic`, `stray`, `recused`) return `422`.
