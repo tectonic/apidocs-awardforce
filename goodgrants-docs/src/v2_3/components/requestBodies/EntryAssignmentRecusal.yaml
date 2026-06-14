@@ -7,9 +7,20 @@ content:
       properties:
         judge:
           type: string
-          description: Slug of the judge.
+          pattern: '^[A-Za-z]{8}$'
+          description: |-
+            Slug of the judge to recuse.
+
+            Must be an existing user. The recusal is recorded even when the judge has no current assignment to the entry, and prevents the judge being assigned in the future within the affected score set scope.
         score_set:
           type: string
-          description: Slug of the score set.
-description: Assignment recusal payload.
+          pattern: '^[A-Za-z]{8}$'
+          description: |-
+            Slug of the score set to scope the recusal to.
+
+            When omitted, the recusal applies to every score set the judge has assignments under for this entry and prevents future assignment across all of them. When supplied, the scope is limited to the named score set.
+description: |-
+  Recusal payload identifying the judge and, optionally, the score set scope.
+
+  Shared by the recuse and unrecuse operations. When `score_set` is omitted the operation acts across every score set associated with the judge's assignments for the entry; otherwise it is limited to the named score set.
 required: true

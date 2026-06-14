@@ -15,6 +15,7 @@ content:
       properties:
         score_set:
           type: string
+          pattern: '^[A-Za-z]{8}$'
           description: |-
             Slug of the score set to assign under.
 
@@ -27,6 +28,7 @@ content:
             Each entry must belong to the same form as `score_set`.
           items:
             type: string
+            pattern: '^[A-Za-z]{8}$'
         judges:
           type: array
           description: |-
@@ -35,6 +37,7 @@ content:
             Each user must hold the Judge role for the account.
           items:
             type: string
+            pattern: '^[A-Za-z]{8}$'
         rounds:
           type: array
           description: |-
@@ -43,6 +46,7 @@ content:
             Each round must be a judging round on the same form as `score_set`.
           items:
             type: string
+            pattern: '^[A-Za-z]{8}$'
 description: |-
   Inputs for the assignment creation request.
 
