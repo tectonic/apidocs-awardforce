@@ -1,6 +1,6 @@
 name: tags
 in: path
 required: true
-description: Comma-separated tags to remove from the entry.
+description: Comma-separated tags to remove from the application.
 schema:
   type: string
