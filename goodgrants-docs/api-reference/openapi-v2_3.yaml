@@ -513,7 +513,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-      description: Creates an attachment on the specified entry under the specified tab.
+      description: Creates an attachment on the specified application under the specified tab.
       x-mint:
         content: |-
           <Note>
@@ -6331,7 +6331,7 @@ components:
                   Field slugs that do not exist on the parent tab are rejected.
                 additionalProperties: {}
       description: |-
-        File and metadata for a new attachment on the specified entry tab.
+        File and metadata for a new attachment on the specified application tab.
 
         `filename`, `data`, and `order` are required. `attachment_fields` is optional and may be omitted when the parent tab has no attachment fields.
     CategoryCreate:
