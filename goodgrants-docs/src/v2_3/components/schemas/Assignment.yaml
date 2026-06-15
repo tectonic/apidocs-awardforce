@@ -204,7 +204,7 @@ properties:
     description: |-
       Role assigned to score the application, used when the assignment is shared across all holders of a role rather than addressed to one reviewer.
 
-      `null` for judge-specific assignments where `judge` is populated.
+      `null` for reviewer-specific assignments where `reviewer` is populated.
     properties:
       slug:
         type: string
