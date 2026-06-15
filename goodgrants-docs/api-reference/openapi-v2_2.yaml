@@ -202,7 +202,7 @@ paths:
           <Note>
           Only assignments with `method` of `manual` or `random` can be deleted. Other methods (`automatic`, `stray`, `recused`) return `422`.
           </Note>
-  /entry/{entry_slug}/recuse:
+  /application/{application_slug}/recuse:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
@@ -238,7 +238,7 @@ paths:
       description: Recuses a judge from the assignment for the specified entry.
       requestBody:
         $ref: '#/components/requestBodies/EntryAssignmentRecusal'
-  /entry/{entry_slug}/unrecuse:
+  /application/{application_slug}/unrecuse:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
@@ -432,7 +432,7 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
       description: Deletes the attachment identified by the specified token.
-  /entry/{entry_slug}/attachment/{tab_slug}:
+  /application/{application_slug}/attachment/{tab_slug}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
       - $ref: '#/components/parameters/tabSlug'
@@ -968,7 +968,7 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Deletes the contributor identified by the specified slug.
-  /entry:
+  /application:
     get:
       summary: Retrieve entries
       operationId: GetEntryCollectionV22
@@ -1041,7 +1041,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/EntryCreate'
       description: Creates an entry.
-  /entry/{entry_slug}:
+  /application/{application_slug}:
     parameters:
       - $ref: '#/components/parameters/entryIdentifier'
     get:
@@ -1115,7 +1115,7 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Deletes the entry identified by the specified slug.
-  /entry/{entry_slug}/upload/{field_slug}:
+  /application/{application_slug}/upload/{field_slug}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
       - $ref: '#/components/parameters/fieldSlug'
@@ -1145,7 +1145,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UploadResult'
       description: Uploads a file to the specified field for the entry identified by the specified slug.
-  /entry/{entry_slug}/tag/{tags}:
+  /application/{application_slug}/tag/{tags}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
@@ -1196,7 +1196,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EntryTagResult'
       description: Removes tags from the entry identified by the specified slug or title.
-  /entry/{entry_slug}/update-title:
+  /application/{application_slug}/update-title:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
@@ -1221,7 +1221,7 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Updates the title for the entry identified by the specified slug.
-  /entry/{entry_slug}/update-field/{field_slug}:
+  /application/{application_slug}/update-field/{field_slug}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
       - $ref: '#/components/parameters/fieldSlug'
@@ -1247,7 +1247,7 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Updates a field for the entry identified by the specified slug.
-  /entry/{entry_slug}/update-category:
+  /application/{application_slug}/update-category:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
@@ -1272,7 +1272,7 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Updates the category for the entry identified by the specified slug.
-  /entry/{entry_slug}/update-chapter:
+  /application/{application_slug}/update-chapter:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
@@ -1532,7 +1532,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Order'
       description: Updates the billing information and status of the order identified by the specified slug.
-  /review-task:
+  /action-task:
     post:
       summary: Create a review task
       operationId: PostReviewTaskV22
@@ -1587,7 +1587,7 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Retrieves review tasks.
-  /review-task/{token}:
+  /action-task/{token}:
     parameters:
       - $ref: '#/components/parameters/token'
     get:
@@ -2455,10 +2455,10 @@ components:
         type: string
         pattern: ^[A-Za-z0-9]{24}[JR]$
     entrySlug:
-      name: entry_slug
+      name: application_slug
       in: path
       required: true
-      description: Slug of the entry.
+      description: Slug of the application.
       schema:
         type: string
         pattern: ^[A-Za-z]{8}$
@@ -2710,10 +2710,10 @@ components:
           - title
           - updated
     entryIdentifier:
-      name: entry_slug
+      name: application_slug
       in: path
       required: true
-      description: Slug or title of the entry.
+      description: Slug or title of the application.
       schema:
         type: string
     fieldSlug:
