@@ -84,7 +84,11 @@ properties:
       download:
         type: string
         format: uri
-        description: Time-limited download URL for the underlying file.
+        nullable: true
+        description: |-
+          Time-limited download URL for the underlying file.
+
+          `null` when no signed URL can be resolved for the file (for example, in environments without a configured CDN).
       filename:
         type: string
         description: Original filename as uploaded.

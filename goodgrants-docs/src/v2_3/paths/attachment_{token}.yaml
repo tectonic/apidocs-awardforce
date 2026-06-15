@@ -7,6 +7,7 @@ get:
     - Attachment
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
       description: Attachment retrieved.
@@ -23,6 +24,16 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/Attachment.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
   description: >-
     Retrieves the attachment identified by the specified token. The response
     includes all attachment fields. Files include a download link.
@@ -33,6 +44,7 @@ put:
     - Attachment
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
       description: Attachment updated.
@@ -49,6 +61,18 @@ put:
         application/json:
           schema:
             $ref: ../components/schemas/Attachment.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
   description: Updates an existing attachment.
   x-mint:
     content: |-
@@ -66,6 +90,7 @@ delete:
     - Attachment
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '204':
       description: Attachment deleted.
@@ -76,4 +101,14 @@ delete:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
   description: Deletes the attachment identified by the specified token.
