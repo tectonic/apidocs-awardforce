@@ -2,7 +2,7 @@ post:
   summary: Create a review task
   operationId: PostReviewTaskV23
   tags:
-    - Review task
+    - Action task
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
@@ -24,7 +24,7 @@ get:
   summary: Retrieve review tasks
   operationId: GetReviewTaskCollectionV23
   tags:
-    - Review task
+    - Action task
   parameters:
     - $ref: ../components/parameters/reviewTaskActionAtFilter.yaml
     - $ref: ../components/parameters/reviewTaskCreatedAtFilter.yaml

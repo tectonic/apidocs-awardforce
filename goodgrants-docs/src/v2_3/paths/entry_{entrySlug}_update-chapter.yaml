@@ -4,7 +4,7 @@ put:
   summary: Update an entry chapter
   operationId: PutEntryUpdateChapterV23
   tags:
-    - Entry (realtime)
+    - Application (realtime)
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   requestBody:

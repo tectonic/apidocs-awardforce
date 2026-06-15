@@ -4,7 +4,7 @@ get:
   summary: Retrieve an entry
   operationId: GetEntryV23
   tags:
-    - Entry
+    - Application
   parameters:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
@@ -29,7 +29,7 @@ put:
   summary: Update an entry
   operationId: PutEntryV23
   tags:
-    - Entry
+    - Application
   parameters:
     - $ref: ../components/parameters/entrySlug.yaml
     - $ref: ../components/parameters/Accept.yaml
@@ -56,7 +56,7 @@ delete:
   summary: Delete an entry
   operationId: DeleteEntryV23
   tags:
-    - Entry
+    - Application
   parameters:
     - $ref: ../components/parameters/entrySlug.yaml
     - $ref: ../components/parameters/Accept.yaml

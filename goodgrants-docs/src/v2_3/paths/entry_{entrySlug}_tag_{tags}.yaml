@@ -4,7 +4,7 @@ put:
   summary: Tag an entry
   operationId: PutEntryTagV23
   tags:
-    - Entry
+    - Application
   parameters:
     - $ref: ../components/parameters/entryTagsToAdd.yaml
     - $ref: ../components/parameters/Accept.yaml
@@ -29,7 +29,7 @@ delete:
   summary: Untag an entry
   operationId: DeleteEntryTagV23
   tags:
-    - Entry
+    - Application
   parameters:
     - $ref: ../components/parameters/entryTagsToRemove.yaml
     - $ref: ../components/parameters/Accept.yaml

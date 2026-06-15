@@ -4,7 +4,7 @@ get:
   summary: Retrieve a review task
   operationId: GetReviewTaskV22
   tags:
-    - Review task
+    - Action task
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:

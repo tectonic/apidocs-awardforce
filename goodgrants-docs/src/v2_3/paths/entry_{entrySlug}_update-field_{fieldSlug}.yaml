@@ -5,7 +5,7 @@ put:
   summary: Update an entry field
   operationId: PutEntryUpdateFieldV23
   tags:
-    - Entry (realtime)
+    - Application (realtime)
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   requestBody:
