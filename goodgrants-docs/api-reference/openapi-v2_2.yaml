@@ -973,7 +973,7 @@ paths:
       summary: Retrieve entries
       operationId: GetEntryCollectionV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entryEntrantFilter'
         - $ref: '#/components/parameters/entryModerationFilter'
@@ -1017,7 +1017,7 @@ paths:
       summary: Create an entry
       operationId: PostEntryV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1048,7 +1048,7 @@ paths:
       summary: Retrieve an entry
       operationId: GetEntryV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/X-Api-Language'
@@ -1073,7 +1073,7 @@ paths:
       summary: Update an entry
       operationId: PutEntryV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entrySlug'
         - $ref: '#/components/parameters/Accept'
@@ -1100,7 +1100,7 @@ paths:
       summary: Delete an entry
       operationId: DeleteEntryV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entrySlug'
         - $ref: '#/components/parameters/Accept'
@@ -1123,7 +1123,7 @@ paths:
       summary: Upload an entry file
       operationId: PostEntryUploadV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1152,7 +1152,7 @@ paths:
       summary: Tag an entry
       operationId: PutEntryTagV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entryTagsToAdd'
         - $ref: '#/components/parameters/Accept'
@@ -1177,7 +1177,7 @@ paths:
       summary: Untag an entry
       operationId: DeleteEntryTagV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entryTagsToRemove'
         - $ref: '#/components/parameters/Accept'
@@ -1203,7 +1203,7 @@ paths:
       summary: Update an entry title
       operationId: PutEntryUpdateTitleV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       requestBody:
@@ -1229,7 +1229,7 @@ paths:
       summary: Update an entry field
       operationId: PutEntryUpdateFieldV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       requestBody:
@@ -1254,7 +1254,7 @@ paths:
       summary: Update an entry category
       operationId: PutEntryUpdateCategoryV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       requestBody:
@@ -1279,7 +1279,7 @@ paths:
       summary: Update an entry chapter
       operationId: PutEntryUpdateChapterV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       requestBody:
@@ -1305,7 +1305,7 @@ paths:
       summary: Update an attachment field
       operationId: PutAttachmentUpdateFieldV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1331,7 +1331,7 @@ paths:
       summary: Update a contributor field
       operationId: PutContributorUpdateFieldV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1537,7 +1537,7 @@ paths:
       summary: Create a review task
       operationId: PostReviewTaskV22
       tags:
-        - Review task
+        - Action task
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1559,7 +1559,7 @@ paths:
       summary: Retrieve review tasks
       operationId: GetReviewTaskCollectionV22
       tags:
-        - Review task
+        - Action task
       parameters:
         - $ref: '#/components/parameters/reviewTaskActionAtFilter'
         - $ref: '#/components/parameters/reviewTaskCreatedAtFilter'
@@ -1594,7 +1594,7 @@ paths:
       summary: Retrieve a review task
       operationId: GetReviewTaskV22
       tags:
-        - Review task
+        - Action task
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
