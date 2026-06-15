@@ -3943,24 +3943,24 @@ components:
       type: object
       title: Attachment
       description: |-
-        File attached to an entry through an attachments-typed form tab.
+        File attached to an application through an attachments-typed form tab.
 
-        Carries the file itself together with the form-field metadata captured against it, the entry it belongs to, and the tab through which it was added.
+        Carries the file itself together with the form-field metadata captured against it, the application it belongs to, and the tab through which it was added.
       properties:
-        entry:
+        application:
           type: object
-          description: Entry the attachment belongs to.
+          description: Application the attachment belongs to.
           properties:
             slug:
               type: string
-              description: Short URL-safe identifier for the entry.
+              description: Short URL-safe identifier for the application.
             link:
               type: string
               format: uri
-              description: Canonical URL for the entry resource.
+              description: Canonical URL for the application resource.
             title:
               type: string
-              description: Title of the entry as submitted by the entrant.
+              description: Title of the application as submitted by the applicant.
         attachment_fields:
           type: array
           description: |-
@@ -3980,7 +3980,7 @@ components:
               label:
                 type: object
                 description: |-
-                  Display label shown to the entrant alongside the field. May contain HTML and may be empty.
+                  Display label shown to the applicant alongside the field. May contain HTML and may be empty.
 
                   Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
                 additionalProperties:
@@ -3995,7 +3995,7 @@ components:
                   type: string
               value:
                 type: string
-                description: Raw stored value for the field, as submitted by the entrant.
+                description: Raw stored value for the field, as submitted by the applicant.
               translated:
                 type: object
                 description: |-
@@ -4061,7 +4061,7 @@ components:
           format: date-time
           description: Time the attachment was last updated.
       example:
-        entry:
+        application:
           slug: AbCdEfGh
           link: https://api.au.cr4ce.com/entry/AbCdEfGh
           title: Project title
@@ -4110,7 +4110,7 @@ components:
       example:
         current_page: 1
         data:
-          - entry:
+          - application:
               slug: PqRsTuVw
               link: https://api.au.cr4ce.com/entry/PqRsTuVw
               title: Documentary series
