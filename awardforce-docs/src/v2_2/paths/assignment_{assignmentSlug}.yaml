@@ -32,7 +32,7 @@ get:
       $ref: ../components/responses/Forbidden.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-  description: Retrieves an assignment identified by the specified assignment slug.
+  description: Retrieves the assignment identified by the specified slug.
 delete:
   summary: Delete an assignment
   operationId: DeleteAssignmentV22
@@ -66,7 +66,9 @@ delete:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-  description: |-
-    Deletes an existing assignment.
-
-    Only assignments with `method` of `manual` or `random` can be deleted. Other methods (`automatic`, `stray`, `recused`) return `422`.
+  description: Deletes the assignment identified by the specified slug.
+  x-mint:
+    content: |-
+      <Note>
+      Only assignments with `method` of `manual` or `random` can be deleted. Other methods (`automatic`, `stray`, `recused`) return `422`.
+      </Note>
