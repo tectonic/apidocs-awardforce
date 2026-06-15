@@ -5,13 +5,24 @@ content:
       properties:
         attachment_fields:
           type: object
-          description: Object of attachment field values keyed by field slug.
-          additionalProperties:
-            type: string
+          description: |-
+            Values for the form fields captured against this attachment, keyed by field slug.
+
+            Each value must conform to the type of the corresponding field on the parent attachments tab; for example, a text field accepts a string, a choice field accepts the slug of one of its options, and a number field accepts a numeric value.
+
+            Field slugs that do not exist on the parent tab are rejected.
+          additionalProperties: {}
         order:
           type: integer
-          description: Order of the attachment.
+          description: Position of the attachment within its tab. Lower values sort earlier.
         tab:
           type: string
-          description: Slug of the tab.
-description: Attachment update payload.
+          pattern: '^[A-Za-z]{8}$'
+          description: |-
+            Slug of the tab to move the attachment to.
+
+            Must reference a tab whose type is `Attachments`; tabs of other types are rejected.
+description: |-
+  Fields to update on an existing attachment.
+
+  Every property is optional; only properties that are supplied are written.

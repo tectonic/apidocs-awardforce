@@ -34,9 +34,10 @@ get:
       $ref: ../components/responses/NotFound.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-  description: >-
-    Retrieves the attachment identified by the specified token. The response
-    includes all attachment fields. Files include a download link.
+  description: |-
+    Retrieves the attachment identified by the specified token.
+
+    The response carries the full attachment representation, including the parent entry, the attachments tab, the form fields captured against the attachment, and the underlying file together with a time-limited download URL.
 put:
   summary: Update an attachment
   operationId: PutAttachmentV22
@@ -73,7 +74,12 @@ put:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-  description: Updates an existing attachment.
+  description: |-
+    Updates an existing attachment.
+
+    Every property in the request body is optional; only properties that are supplied are written. Properties that are omitted retain their current value.
+
+    On success the response carries the post-update attachment representation, so a separate `GET` is not required to read the new state.
   x-mint:
     content: |-
       <Note>
@@ -111,4 +117,7 @@ delete:
       $ref: ../components/responses/NotFound.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-  description: Deletes the attachment identified by the specified token.
+  description: |-
+    Deletes the attachment identified by the specified token.
+
+    Removes the attachment from its parent entry. The change is durable before the response is returned.
