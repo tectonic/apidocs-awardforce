@@ -9,7 +9,7 @@ allOf:
 example:
   current_page: 1
   data:
-    - entry:
+    - application:
         slug: PqRsTuVw
         link: https://api.au.cr4ce.com/entry/PqRsTuVw
         title: Documentary series
