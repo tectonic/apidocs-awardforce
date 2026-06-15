@@ -5,6 +5,6 @@ node_modules/
 .DS_Store
 template
 
-# Generated API specs
-awardforce-docs/api-reference/
-goodgrants-docs/api-reference/
+# # Generated API specs
+# awardforce-docs/api-reference/
+# goodgrants-docs/api-reference/
