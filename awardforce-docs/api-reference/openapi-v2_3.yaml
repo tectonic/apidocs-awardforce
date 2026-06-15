@@ -3276,6 +3276,26 @@ components:
           type: string
           format: date-time
           description: Time the account record was last updated.
+      example:
+        created: '2025-01-15T09:00:00Z'
+        domains:
+          - awards.example.com
+        global_id: 6a0c6f70-1b9e-4d63-9c2a-2f8c5d0a1c34
+        languages:
+          - code: en_GB
+          - code: en_US
+        name: Example
+        owner:
+          slug: AbCdEfGh
+          link: https://api.au.cr4ce.com/user/AbCdEfGh
+          name: Jane Doe
+          first_name: Jane
+          last_name: Doe
+        product: payment-subscriptions.form.plan-premium.label
+        region: au
+        slug: WxYzAbCd
+        timezone: EuropeLondon
+        updated: '2025-06-20T14:30:00Z'
     BaseProblem:
       description: Standard error envelope shared by every error response on this API.
       type: object
