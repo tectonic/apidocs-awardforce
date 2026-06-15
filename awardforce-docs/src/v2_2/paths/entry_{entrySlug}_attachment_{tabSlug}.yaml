@@ -42,6 +42,18 @@ post:
                   link:
                     type: string
                     format: uri
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
   description: Creates an attachment for the specified entry and tab.
   x-mint:
     content: |-
@@ -50,3 +62,5 @@ post:
 
       If the attachment has no attachment fields, you can omit `attachment_fields` from the request body.
       </Note>
+  requestBody:
+    $ref: ../components/requestBodies/AttachmentUpload.yaml

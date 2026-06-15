@@ -1,0 +1,35 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - filename
+        - data
+        - order
+      properties:
+        filename:
+          type: string
+          description: Original filename of the uploaded file, including the extension.
+        data:
+          type: string
+          format: byte
+          description: |-
+            Base64-encoded contents of the file.
+
+            The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
+        order:
+          type: integer
+          description: Position of the attachment within its tab. Lower values sort earlier.
+        attachment_fields:
+          type: object
+          description: |-
+            Values for the form fields captured against this attachment, keyed by field slug.
+
+            Each value must conform to the type of the corresponding field on the parent attachments tab; for example, a text field accepts a string, a choice field accepts the slug of one of its options, and a number field accepts a numeric value.
+
+            Field slugs that do not exist on the parent tab are rejected.
+          additionalProperties: {}
+description: |-
+  File and metadata for a new attachment on the specified entry tab.
+
+  `filename`, `data`, and `order` are required. `attachment_fields` is optional and may be omitted when the parent tab has no attachment fields.
