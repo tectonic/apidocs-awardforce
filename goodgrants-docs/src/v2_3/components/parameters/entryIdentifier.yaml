@@ -1,6 +1,6 @@
-name: entry_slug
+name: application_slug
 in: path
 required: true
-description: Slug or title of the entry.
+description: Slug or title of the application.
 schema:
   type: string

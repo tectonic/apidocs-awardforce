@@ -18,15 +18,15 @@ paths:
     $ref: paths/assignment.yaml
   /assignment/{assignment_slug}:
     $ref: paths/assignment_{assignmentSlug}.yaml
-  /entry/{entry_slug}/recuse:
+  /application/{application_slug}/recuse:
     $ref: paths/entry_{entrySlug}_recuse.yaml
-  /entry/{entry_slug}/unrecuse:
+  /application/{application_slug}/unrecuse:
     $ref: paths/entry_{entrySlug}_unrecuse.yaml
   /attachment:
     $ref: paths/attachment.yaml
   /attachment/{token}:
     $ref: paths/attachment_{token}.yaml
-  /entry/{entry_slug}/attachment/{tab_slug}:
+  /application/{application_slug}/attachment/{tab_slug}:
     $ref: paths/entry_{entrySlug}_attachment_{tabSlug}.yaml
   /category:
     $ref: paths/category.yaml
@@ -44,21 +44,21 @@ paths:
     $ref: paths/contributor.yaml
   /contributor/{contributor_slug}:
     $ref: paths/contributor_{contributorSlug}.yaml
-  /entry:
+  /application:
     $ref: paths/entry.yaml
-  /entry/{entry_slug}:
+  /application/{application_slug}:
     $ref: paths/entry_{entrySlug}.yaml
-  /entry/{entry_slug}/upload/{field_slug}:
+  /application/{application_slug}/upload/{field_slug}:
     $ref: paths/entry_{entrySlug}_upload_{fieldSlug}.yaml
-  /entry/{entry_slug}/tag/{tags}:
+  /application/{application_slug}/tag/{tags}:
     $ref: paths/entry_{entrySlug}_tag_{tags}.yaml
-  /entry/{entry_slug}/update-title:
+  /application/{application_slug}/update-title:
     $ref: paths/entry_{entrySlug}_update-title.yaml
-  /entry/{entry_slug}/update-field/{field_slug}:
+  /application/{application_slug}/update-field/{field_slug}:
     $ref: paths/entry_{entrySlug}_update-field_{fieldSlug}.yaml
-  /entry/{entry_slug}/update-category:
+  /application/{application_slug}/update-category:
     $ref: paths/entry_{entrySlug}_update-category.yaml
-  /entry/{entry_slug}/update-chapter:
+  /application/{application_slug}/update-chapter:
     $ref: paths/entry_{entrySlug}_update-chapter.yaml
   /attachment/{token}/update-field/{field_slug}:
     $ref: paths/attachment_{token}_update-field_{fieldSlug}.yaml
@@ -74,9 +74,9 @@ paths:
     $ref: paths/order.yaml
   /order/{order_slug}:
     $ref: paths/order_{orderSlug}.yaml
-  /review-task:
+  /action-task:
     $ref: paths/review-task.yaml
-  /review-task/{token}:
+  /action-task/{token}:
     $ref: paths/review-task_{token}.yaml
   /round:
     $ref: paths/round.yaml
