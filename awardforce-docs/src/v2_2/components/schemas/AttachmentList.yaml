@@ -6,3 +6,45 @@ allOf:
         type: array
         items:
           $ref: ./Attachment.yaml
+example:
+  current_page: 1
+  data:
+    - entry:
+        slug: PqRsTuVw
+        link: https://api.au.cr4ce.com/entry/PqRsTuVw
+        title: Documentary series
+      attachment_fields:
+        - slug: KlMnOpQr
+          link: https://api.au.cr4ce.com/field/KlMnOpQr
+          label:
+            en_GB: <p>Headshot</p>
+          title:
+            en_GB: Headshot
+          value: GhIjKlMnOpQrStUv
+          translated:
+            en_GB: ''
+          download: https://files.au.cr4ce.com/file/GhIjKlMnOpQrStUv/headshot.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+      created: '2025-05-12T14:00:00Z'
+      file:
+        token: GhIjKlMnOpQrStUv
+        link: https://api.au.cr4ce.com/file/GhIjKlMnOpQrStUv
+        download: https://files.au.cr4ce.com/file/GhIjKlMnOpQrStUv/headshot.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+        filename: headshot.jpg
+      order: 2
+      tab:
+        slug: YzAbCdEf
+        link: https://api.au.cr4ce.com/tab/YzAbCdEf
+        name:
+          en_GB: Attachments
+      token: GhIjKlMnOpQrStUv
+      updated: '2025-05-12T14:05:00Z'
+  first_page_url: https://api.au.cr4ce.com/attachment?per_page=10&page=1
+  from: 1
+  last_page: 2
+  last_page_url: https://api.au.cr4ce.com/attachment?per_page=10&page=2
+  next_page_url: https://api.au.cr4ce.com/attachment?per_page=10&page=2
+  path: https://api.au.cr4ce.com/attachment
+  per_page: 10
+  prev_page_url: ''
+  to: 10
+  total: 12
