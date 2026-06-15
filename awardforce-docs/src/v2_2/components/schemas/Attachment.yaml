@@ -119,3 +119,41 @@ properties:
     type: string
     format: date-time
     description: Time the attachment was last updated.
+example:
+  entry:
+    slug: AbCdEfGh
+    link: https://api.au.cr4ce.com/entry/AbCdEfGh
+    title: Project title
+  attachment_fields:
+    - slug: IjKlMnOp
+      link: https://api.au.cr4ce.com/field/IjKlMnOp
+      label:
+        en_GB: ''
+      title:
+        en_GB: Type of attachment
+      value: Photo
+      translated:
+        en_GB: Photo
+    - slug: QrStUvWx
+      link: https://api.au.cr4ce.com/field/QrStUvWx
+      label:
+        en_GB: <p>URL</p>
+      title:
+        en_GB: URL
+      value: https://example.com/image.svg
+      translated:
+        en_GB: ''
+  created: '2025-04-27T01:00:00Z'
+  file:
+    token: AbCdEfGhIjKlMnOp
+    link: https://api.au.cr4ce.com/file/AbCdEfGhIjKlMnOp
+    download: https://files.au.cr4ce.com/file/AbCdEfGhIjKlMnOp/example.pdf?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+    filename: example.pdf
+  order: 1
+  tab:
+    slug: YzAbCdEf
+    link: https://api.au.cr4ce.com/tab/YzAbCdEf
+    name:
+      en_GB: Attachments
+  token: AbCdEfGhIjKlMnOp
+  updated: '2025-04-27T01:05:00Z'
