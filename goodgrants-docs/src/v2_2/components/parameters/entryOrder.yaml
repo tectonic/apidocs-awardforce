@@ -3,7 +3,6 @@ in: query
 required: false
 description: |-
   Sort by a supported application field.
-  Supported values: category, chapter, applicant, local_id, parent_category, title, updated.
 schema:
   type: string
   enum:
