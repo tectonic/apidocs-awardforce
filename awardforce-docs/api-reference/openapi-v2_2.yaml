@@ -3728,6 +3728,7 @@ components:
                 additionalProperties:
                   type: string
         score:
+          type: object
           description: |-
             Score for this assignment, formatted per the score-set mode. `null` when no score has been recorded.
 
@@ -3791,6 +3792,57 @@ components:
           type: string
           format: date-time
           description: Time the assignment was last updated.
+      example:
+        entry:
+          slug: AbCdEfGh
+          link: https://api.au.cr4ce.com/entry/AbCdEfGh
+          title: Project title
+        category:
+          slug: WxYzAbCd
+          link: https://api.au.cr4ce.com/category/WxYzAbCd
+          name:
+            en_GB: Documentary
+        chapter:
+          slug: MnOpQrSt
+          link: https://api.au.cr4ce.com/chapter/MnOpQrSt
+          name:
+            en_GB: Film
+        comments:
+          judging: []
+          abstention: []
+          conflict: []
+          criteria:
+            - name: Originality
+              comments: []
+            - name: Execution
+              comments: []
+        created: '2025-01-15T09:00:00Z'
+        form: GhIjKlMn
+        method: Automatic (Panel)
+        panels:
+          - slug: OpQrStUv
+            link: https://api.au.cr4ce.com/panel/OpQrStUv
+            name:
+              en_GB: Panel A
+        judge:
+          slug: EfGhIjKl
+          link: https://api.au.cr4ce.com/judge/EfGhIjKl
+          name: Jane Doe
+        role: null
+        rounds:
+          - slug: QrStUvWx
+            link: https://api.au.cr4ce.com/round/QrStUvWx
+            name:
+              en_GB: Judging
+        score: null
+        score_set:
+          slug: UvWxYzAb
+          link: https://api.au.cr4ce.com/score-set/UvWxYzAb
+          name:
+            en_GB: Scoring rubric
+        slug: AbCdEfGhEfGhIjKlUvWxYzAbA
+        status: To be scored
+        updated: '2025-06-20T14:30:00Z'
     AssignmentList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
