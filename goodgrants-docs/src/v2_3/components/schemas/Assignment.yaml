@@ -307,7 +307,7 @@ properties:
 example:
   application:
     slug: AbCdEfGh
-    link: https://api.au.cr4ce.com/entry/AbCdEfGh
+    link: https://api.au.cr4ce.com/application/AbCdEfGh
     title: Project title
   category:
     slug: WxYzAbCd

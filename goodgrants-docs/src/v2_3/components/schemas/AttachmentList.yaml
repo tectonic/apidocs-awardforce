@@ -11,7 +11,7 @@ example:
   data:
     - application:
         slug: PqRsTuVw
-        link: https://api.au.cr4ce.com/entry/PqRsTuVw
+        link: https://api.au.cr4ce.com/application/PqRsTuVw
         title: Documentary series
       attachment_fields:
         - slug: KlMnOpQr

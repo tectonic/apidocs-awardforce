@@ -11,7 +11,7 @@ example:
   data:
     - application:
         slug: IjKlMnOp
-        link: https://api.au.cr4ce.com/entry/IjKlMnOp
+        link: https://api.au.cr4ce.com/application/IjKlMnOp
         title: Photo series
       category:
         slug: QrStUvWx
