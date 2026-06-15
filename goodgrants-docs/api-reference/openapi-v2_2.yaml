@@ -2314,7 +2314,7 @@ components:
       name: judge
       in: query
       required: false
-      description: Filter by judge slug.
+      description: Filter by reviewer slug.
       schema:
         type: string
     methodFilter:
@@ -2358,12 +2358,12 @@ components:
       in: query
       required: false
       description: |-
-        Filter by entry state.
-        * `current` - Only current (non-archived) entries.
-        * `archived` - Only archived entries.
-        * `all` - Include both current and archived entries.
+        Filter by application state.
+        * `current` - Only current (non-archived) applications.
+        * `archived` - Only archived applications.
+        * `all` - Include both current and archived applications.
         * `only` - Equivalent to `archived`.
-        * `none` - Exclude all entries.
+        * `none` - Exclude all applications.
       schema:
         type: string
         enum:
@@ -2466,7 +2466,7 @@ components:
       name: entry
       in: query
       required: false
-      description: Filter by entry slug.
+      description: Filter by application slug.
       schema:
         type: string
     tabFilter:
@@ -2503,7 +2503,7 @@ components:
       name: tab_slug
       in: path
       required: true
-      description: Entry tab slug
+      description: Application tab slug
       schema:
         type: string
         pattern: ^[A-Za-z]{8}$
@@ -2607,7 +2607,7 @@ components:
       name: entrant
       in: query
       required: false
-      description: Filter by entrant slug.
+      description: Filter by applicant slug.
       schema:
         type: string
     entryModerationFilter:
@@ -2649,7 +2649,7 @@ components:
       name: status
       in: query
       required: false
-      description: Filter by entry status.
+      description: Filter by application status.
       schema:
         type: string
         enum:
@@ -2661,7 +2661,7 @@ components:
       name: title
       in: query
       required: false
-      description: Filter by full or partial entry name.
+      description: Filter by full or partial application name.
       schema:
         type: string
     entryUpdatedAtFilter:
@@ -2697,7 +2697,7 @@ components:
       in: query
       required: false
       description: |-
-        Sort by a supported entry field.
+        Sort by a supported application field.
         Supported values: category, chapter, applicant, local_id, parent_category, title, updated.
       schema:
         type: string
@@ -2727,14 +2727,14 @@ components:
       name: tags
       in: path
       required: true
-      description: Comma-separated tags to add to the entry.
+      description: Comma-separated tags to add to the application.
       schema:
         type: string
     entryTagsToRemove:
       name: tags
       in: path
       required: true
-      description: Comma-separated tags to remove from the entry.
+      description: Comma-separated tags to remove from the application.
       schema:
         type: string
     fieldConditionalFilter:
@@ -3026,7 +3026,7 @@ components:
       name: entries
       in: query
       required: false
-      description: Filter by entry status.
+      description: Filter by application status.
       schema:
         type: string
         enum:
