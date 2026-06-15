@@ -41,6 +41,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the account associated with the API key.
   /assignment:
     get:
@@ -92,6 +94,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves assignments that match the specified filters.
     post:
       summary: Create an assignment
@@ -124,6 +128,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Creates a new assignment.
       requestBody:
         $ref: '#/components/requestBodies/AssignmentCreate'
@@ -162,6 +168,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the assignment identified by the specified slug.
     delete:
       summary: Delete an assignment
@@ -196,6 +204,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the assignment identified by the specified slug.
       x-mint:
         content: |-
@@ -235,6 +245,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Recuses a judge from the assignment for the specified entry.
       requestBody:
         $ref: '#/components/requestBodies/EntryAssignmentRecusal'
@@ -271,6 +283,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Removes a judge recusal from the assignment for the specified entry.
       requestBody:
         $ref: '#/components/requestBodies/EntryAssignmentRecusal'
@@ -316,6 +330,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves a list of attachments.
   /attachment/{token}:
     parameters:
@@ -354,6 +370,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the attachment identified by the specified token.
     put:
       summary: Update an attachment
@@ -391,6 +409,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the attachment identified by the specified token.
       x-mint:
         content: |-
@@ -431,6 +451,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the attachment identified by the specified token.
   /entry/{entry_slug}/attachment/{tab_slug}:
     parameters:
@@ -489,6 +511,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Creates an attachment on the specified entry under the specified tab.
       x-mint:
         content: |-
@@ -6118,6 +6142,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/TooManyRequests'
+    ServiceUnavailable:
+      description: Service is temporarily unavailable due to regional maintenance.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Human-readable maintenance status.
+            example:
+              status: Maintenance in progress
     UnprocessableEntity:
       description: |-
         Request was syntactically valid but could not be processed.
