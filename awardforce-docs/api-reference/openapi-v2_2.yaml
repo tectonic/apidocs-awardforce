@@ -2005,10 +2005,7 @@ paths:
                 $ref: '#/components/schemas/UploadResult'
       description: Uploads a file to the specified user field.
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
+        $ref: '#/components/requestBodies/FileUpload'
   /user/{user_slug}/auth-token:
     parameters:
       - $ref: '#/components/parameters/userSlug'
@@ -6873,6 +6870,29 @@ components:
                 description: 'User field values, keyed by field slug. For example, `{ "fJkIjGmB": "Test value" }`.'
                 additionalProperties:
                   type: string
+    FileUpload:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - filename
+              - data
+            properties:
+              filename:
+                type: string
+                description: Original filename of the uploaded file, including the extension.
+              data:
+                type: string
+                format: byte
+                description: |-
+                  Base64-encoded contents of the file.
+
+                  The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
+      description: |-
+        File payload for an upload operation.
+
+        `filename` and `data` are required.
     WebhookCreate:
       description: Webhook create payload.
       content:
