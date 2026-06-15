@@ -3794,7 +3794,7 @@ components:
       example:
         application:
           slug: AbCdEfGh
-          link: https://api.au.cr4ce.com/entry/AbCdEfGh
+          link: https://api.au.cr4ce.com/application/AbCdEfGh
           title: Project title
         category:
           slug: WxYzAbCd
@@ -3856,7 +3856,7 @@ components:
         data:
           - application:
               slug: IjKlMnOp
-              link: https://api.au.cr4ce.com/entry/IjKlMnOp
+              link: https://api.au.cr4ce.com/application/IjKlMnOp
               title: Photo series
             category:
               slug: QrStUvWx
@@ -4063,7 +4063,7 @@ components:
       example:
         application:
           slug: AbCdEfGh
-          link: https://api.au.cr4ce.com/entry/AbCdEfGh
+          link: https://api.au.cr4ce.com/application/AbCdEfGh
           title: Project title
         attachment_fields:
           - slug: IjKlMnOp
@@ -4112,7 +4112,7 @@ components:
         data:
           - application:
               slug: PqRsTuVw
-              link: https://api.au.cr4ce.com/entry/PqRsTuVw
+              link: https://api.au.cr4ce.com/application/PqRsTuVw
               title: Documentary series
             attachment_fields:
               - slug: KlMnOpQr
