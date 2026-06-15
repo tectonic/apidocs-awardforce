@@ -239,6 +239,7 @@ properties:
           additionalProperties:
             type: string
   score:
+    type: object
     description: |-
       Score for this assignment, formatted per the score-set mode. `null` when no score has been recorded.
 
