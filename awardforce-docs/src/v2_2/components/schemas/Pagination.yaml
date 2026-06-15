@@ -1,27 +1,49 @@
 type: object
+title: Pagination
+description: |-
+  Pagination envelope returned by every list endpoint.
+
+  Wraps the result set with positional fields (`current_page`, `from`, `to`, `total`) and navigation URLs (`first_page_url`, `last_page_url`, `next_page_url`, `prev_page_url`) for traversing the full list. The records themselves are returned in a sibling `data` array supplied by the wrapping schema.
 properties:
   current_page:
     type: integer
+    description: Number of the page returned by this response. The first page is `1`.
   first_page_url:
     type: string
     format: uri
+    description: URL of the first page in the result set.
   from:
     type: integer
+    description: Position of the first record on this page within the full result set. The first record is at position `1`.
   last_page:
     type: integer
+    description: Number of the last page. Equals the total number of pages.
   last_page_url:
     type: string
     format: uri
+    description: URL of the last page in the result set.
   next_page_url:
     type: string
+    description: |-
+      URL of the next page in the result set.
+
+      Empty string when the current page is the last page.
   path:
     type: string
     format: uri
+    description: Canonical URL of the endpoint, without query parameters.
   per_page:
     type: integer
+    description: Maximum number of records returned per page.
   prev_page_url:
     type: string
+    description: |-
+      URL of the previous page in the result set.
+
+      Empty string when the current page is the first page.
   to:
     type: integer
+    description: Position of the last record on this page within the full result set.
   total:
     type: integer
+    description: Total number of records across all pages.
