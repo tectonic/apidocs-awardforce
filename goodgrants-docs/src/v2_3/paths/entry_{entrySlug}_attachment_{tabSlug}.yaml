@@ -54,6 +54,8 @@ post:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Creates an attachment on the specified entry under the specified tab.
   x-mint:
     content: |-

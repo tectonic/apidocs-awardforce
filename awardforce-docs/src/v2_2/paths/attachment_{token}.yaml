@@ -34,6 +34,8 @@ get:
       $ref: ../components/responses/NotFound.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves the attachment identified by the specified token.
 put:
   summary: Update an attachment
@@ -71,6 +73,8 @@ put:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Updates the attachment identified by the specified token.
   x-mint:
     content: |-
@@ -111,4 +115,6 @@ delete:
       $ref: ../components/responses/NotFound.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Deletes the attachment identified by the specified token.
