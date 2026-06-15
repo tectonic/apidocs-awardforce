@@ -54,7 +54,14 @@ post:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
-  description: Creates an attachment for the specified entry and tab.
+  description: |-
+    Creates an attachment on the specified entry under the specified tab.
+
+    The tab must be of type `Attachments`; tabs of other types are rejected.
+
+    On success the response carries the new attachment's token, a link to the attachment, and the underlying file (filename, token, and a link to the file). The `Location` header points to the same attachment URL as the top-level `link`.
+
+    The uploaded file is validated and stored before the response is returned; the attachment itself is finalized shortly after. A `GET` on the returned `Location` immediately after the `201` may briefly return a response with a `null` body until finalization is complete.
   x-mint:
     content: |-
       <Note>
