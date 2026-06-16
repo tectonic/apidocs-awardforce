@@ -3459,7 +3459,7 @@ components:
           description: |-
             Comments attached to the assignment.
 
-            `null` for role-based assignments (where `role` is populated and `reviewer` is absent), since role holders do not own per-assignment comment threads.
+            `null` for role-based assignments (where `role` is populated and `judge` is absent), since role holders do not own per-assignment comment threads.
           properties:
             judging:
               type: array
@@ -6315,6 +6315,7 @@ components:
         Fields to update on an existing attachment.
 
         Every property is optional; only properties that are supplied are written.
+      required: true
     AttachmentUpload:
       content:
         application/json:
@@ -6336,7 +6337,7 @@ components:
 
                   The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
               order:
-                type: number
+                type: integer
                 description: Position of the attachment within its tab. Lower values sort earlier.
               attachment_fields:
                 type: object
@@ -6378,6 +6379,7 @@ components:
         File and metadata for a new attachment on the specified entry tab.
 
         `filename`, `data`, and `order` are required. `attachment_fields` is optional and may be omitted when the parent tab has no required attachment fields.
+      required: true
     CategoryCreate:
       content:
         application/json:
