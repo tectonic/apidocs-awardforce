@@ -18,19 +18,44 @@ content:
 
             The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
         order:
-          type: integer
+          type: number
           description: Position of the attachment within its tab. Lower values sort earlier.
         attachment_fields:
           type: object
           description: |-
             Values for the form fields captured against this attachment, keyed by field slug.
 
-            Each value must conform to the type of the corresponding field on the parent attachments tab; for example, a text field accepts a string, a choice field accepts the slug of one of its options, and a number field accepts a numeric value.
+            Each value must conform to the type of the corresponding field on the parent attachments tab:
 
-            Field slugs that do not exist on the parent tab are rejected.
+            - `text`, `textarea`, `email`, `url`, `phone`, `ai` — string.
+            - `numeric` — number.
+            - `currency` — string holding a decimal value, for example `"1234.56"`.
+            - `checkbox` — boolean (`true`/`false`; `1` and `0` are also accepted).
+            - `radio`, `drop-down-list` — string matching one of the field's defined option keys (case-insensitive).
+            - `checkboxlist` — array of option keys, or a comma-separated string such as `"opt1,opt2"`.
+            - `country` — ISO 3166 alpha-2 country code; lower-case codes are accepted and stored upper-cased.
+            - `date` — `YYYY-MM-DD` string or an object such as `{date: "2026-06-16"}`; the bare string form is wrapped server-side into the object form.
+            - `datetime` — `YYYY-MM-DD HH:MM` string or an object such as `{date: "2026-06-16 14:30"}`; same wrapping behavior as `date`.
+            - `time` — `HH:MM` string.
 
-            Fields marked as required on the parent tab must be supplied; omitting them returns a 422.
+            Field slugs that do not exist on the parent tab are rejected. Fields marked as required on the parent tab must be supplied; omitting them returns a 422.
+
+            `formula` fields are computed server-side and cannot be set through this property. `file` fields are not settable here; upload files through `POST /entry/{entry_slug}/upload/{field_slug}` instead. `table` and `lookup` field types are not handled by this property; consult their dedicated endpoints if your tab uses them.
           additionalProperties: {}
+      example:
+        filename: hello.xls
+        data: aGVsbG8gd29ybGQ=
+        order: 1
+        attachment_fields:
+          text-slug: Some short text
+          numeric-slug: 42
+          checkbox-slug: true
+          radio-slug: option-key-1
+          checkboxlist-slug:
+            - option-key-1
+            - option-key-2
+          country-slug: AU
+          date-slug: "2026-06-16"
 description: |-
   File and metadata for a new attachment on the specified application tab.
 
