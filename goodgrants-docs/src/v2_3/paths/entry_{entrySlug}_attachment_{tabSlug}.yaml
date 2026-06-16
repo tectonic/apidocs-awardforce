@@ -25,15 +25,7 @@ post:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              token:
-                type: string
-              link:
-                type: string
-                format: uri
-              file:
-                $ref: ../components/schemas/UploadResult.yaml
+            $ref: ../components/schemas/AttachmentCreateResult.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
