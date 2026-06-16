@@ -33,15 +33,7 @@ post:
                 type: string
                 format: uri
               file:
-                type: object
-                properties:
-                  filename:
-                    type: string
-                  token:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
+                $ref: ../components/schemas/UploadResult.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
