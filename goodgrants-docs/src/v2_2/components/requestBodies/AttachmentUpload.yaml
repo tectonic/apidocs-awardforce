@@ -18,7 +18,7 @@ content:
 
             The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
         order:
-          type: number
+          type: integer
           description: Position of the attachment within its tab. Lower values sort earlier.
         attachment_fields:
           type: object
@@ -60,3 +60,4 @@ description: |-
   File and metadata for a new attachment on the specified application tab.
 
   `filename`, `data`, and `order` are required. `attachment_fields` is optional and may be omitted when the parent tab has no required attachment fields.
+required: true

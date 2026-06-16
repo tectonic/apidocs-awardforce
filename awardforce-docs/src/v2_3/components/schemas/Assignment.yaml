@@ -61,7 +61,7 @@ properties:
     description: |-
       Comments attached to the assignment.
 
-      `null` for role-based assignments (where `role` is populated and `reviewer` is absent), since role holders do not own per-assignment comment threads.
+      `null` for role-based assignments (where `role` is populated and `judge` is absent), since role holders do not own per-assignment comment threads.
     properties:
       judging:
         type: array

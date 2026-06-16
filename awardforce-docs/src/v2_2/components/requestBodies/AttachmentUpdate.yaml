@@ -26,3 +26,4 @@ description: |-
   Fields to update on an existing attachment.
 
   Every property is optional; only properties that are supplied are written.
+required: true
