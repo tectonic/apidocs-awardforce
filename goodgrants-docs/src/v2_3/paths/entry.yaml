@@ -2,7 +2,7 @@ get:
   summary: Retrieve entries
   operationId: GetEntryCollectionV23
   tags:
-    - Entry
+    - Application
   parameters:
     - $ref: ../components/parameters/entryEntrantFilter.yaml
     - $ref: ../components/parameters/entryModerationFilter.yaml
@@ -46,7 +46,7 @@ post:
   summary: Create an entry
   operationId: PostEntryV23
   tags:
-    - Entry
+    - Application
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:

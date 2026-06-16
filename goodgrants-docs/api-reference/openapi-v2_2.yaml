@@ -41,6 +41,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the account associated with the API key.
   /assignment:
     get:
@@ -92,6 +94,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves assignments that match the specified filters.
     post:
       summary: Create an assignment
@@ -124,6 +128,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Creates a new assignment.
       requestBody:
         $ref: '#/components/requestBodies/AssignmentCreate'
@@ -162,6 +168,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the assignment identified by the specified slug.
     delete:
       summary: Delete an assignment
@@ -196,13 +204,15 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the assignment identified by the specified slug.
       x-mint:
         content: |-
           <Note>
           Only assignments with `method` of `manual` or `random` can be deleted. Other methods (`automatic`, `stray`, `recused`) return `422`.
           </Note>
-  /entry/{entry_slug}/recuse:
+  /application/{application_slug}/recuse:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
@@ -235,10 +245,12 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Recuses a judge from the assignment for the specified entry.
       requestBody:
         $ref: '#/components/requestBodies/EntryAssignmentRecusal'
-  /entry/{entry_slug}/unrecuse:
+  /application/{application_slug}/unrecuse:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
@@ -271,6 +283,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Removes a judge recusal from the assignment for the specified entry.
       requestBody:
         $ref: '#/components/requestBodies/EntryAssignmentRecusal'
@@ -316,6 +330,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves a list of attachments.
   /attachment/{token}:
     parameters:
@@ -354,6 +370,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the attachment identified by the specified token.
     put:
       summary: Update an attachment
@@ -391,6 +409,8 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the attachment identified by the specified token.
       x-mint:
         content: |-
@@ -431,8 +451,10 @@ paths:
           $ref: '#/components/responses/NotFound'
         '429':
           $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the attachment identified by the specified token.
-  /entry/{entry_slug}/attachment/{tab_slug}:
+  /application/{application_slug}/attachment/{tab_slug}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
       - $ref: '#/components/parameters/tabSlug'
@@ -443,6 +465,7 @@ paths:
         - Attachment
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '201':
           description: Attachment created.
@@ -460,23 +483,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  token:
-                    type: string
-                  link:
-                    type: string
-                    format: uri
-                  file:
-                    type: object
-                    properties:
-                      filename:
-                        type: string
-                      token:
-                        type: string
-                      link:
-                        type: string
-                        format: uri
+                $ref: '#/components/schemas/AttachmentCreateResult'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -489,7 +496,9 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         '429':
           $ref: '#/components/responses/TooManyRequests'
-      description: Creates an attachment on the specified entry under the specified tab.
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Creates an attachment on the specified application under the specified tab.
       x-mint:
         content: |-
           <Note>
@@ -991,12 +1000,12 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Deletes the contributor identified by the specified slug.
-  /entry:
+  /application:
     get:
       summary: Retrieve entries
       operationId: GetEntryCollectionV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entryEntrantFilter'
         - $ref: '#/components/parameters/entryModerationFilter'
@@ -1040,7 +1049,7 @@ paths:
       summary: Create an entry
       operationId: PostEntryV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1064,14 +1073,14 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/EntryCreate'
       description: Creates an entry.
-  /entry/{entry_slug}:
+  /application/{application_slug}:
     parameters:
       - $ref: '#/components/parameters/entryIdentifier'
     get:
       summary: Retrieve an entry
       operationId: GetEntryV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/X-Api-Language'
@@ -1096,7 +1105,7 @@ paths:
       summary: Update an entry
       operationId: PutEntryV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entrySlug'
         - $ref: '#/components/parameters/Accept'
@@ -1123,7 +1132,7 @@ paths:
       summary: Delete an entry
       operationId: DeleteEntryV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entrySlug'
         - $ref: '#/components/parameters/Accept'
@@ -1138,7 +1147,7 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Deletes the entry identified by the specified slug.
-  /entry/{entry_slug}/upload/{field_slug}:
+  /application/{application_slug}/upload/{field_slug}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
       - $ref: '#/components/parameters/fieldSlug'
@@ -1146,7 +1155,7 @@ paths:
       summary: Upload an entry file
       operationId: PostEntryUploadV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1168,14 +1177,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/UploadResult'
       description: Uploads a file to the specified field for the entry identified by the specified slug.
-  /entry/{entry_slug}/tag/{tags}:
+  /application/{application_slug}/tag/{tags}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
       summary: Tag an entry
       operationId: PutEntryTagV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entryTagsToAdd'
         - $ref: '#/components/parameters/Accept'
@@ -1200,7 +1209,7 @@ paths:
       summary: Untag an entry
       operationId: DeleteEntryTagV22
       tags:
-        - Entry
+        - Application
       parameters:
         - $ref: '#/components/parameters/entryTagsToRemove'
         - $ref: '#/components/parameters/Accept'
@@ -1219,14 +1228,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/EntryTagResult'
       description: Removes tags from the entry identified by the specified slug or title.
-  /entry/{entry_slug}/update-title:
+  /application/{application_slug}/update-title:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
       summary: Update an entry title
       operationId: PutEntryUpdateTitleV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       requestBody:
@@ -1244,7 +1253,7 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Updates the title for the entry identified by the specified slug.
-  /entry/{entry_slug}/update-field/{field_slug}:
+  /application/{application_slug}/update-field/{field_slug}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
       - $ref: '#/components/parameters/fieldSlug'
@@ -1252,7 +1261,7 @@ paths:
       summary: Update an entry field
       operationId: PutEntryUpdateFieldV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       requestBody:
@@ -1270,14 +1279,14 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Updates a field for the entry identified by the specified slug.
-  /entry/{entry_slug}/update-category:
+  /application/{application_slug}/update-category:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
       summary: Update an entry category
       operationId: PutEntryUpdateCategoryV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       requestBody:
@@ -1295,14 +1304,14 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Updates the category for the entry identified by the specified slug.
-  /entry/{entry_slug}/update-chapter:
+  /application/{application_slug}/update-chapter:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
       summary: Update an entry chapter
       operationId: PutEntryUpdateChapterV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       requestBody:
@@ -1328,7 +1337,7 @@ paths:
       summary: Update an attachment field
       operationId: PutAttachmentUpdateFieldV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1354,7 +1363,7 @@ paths:
       summary: Update a contributor field
       operationId: PutContributorUpdateFieldV22
       tags:
-        - Entry (realtime)
+        - Application (realtime)
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1555,12 +1564,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Order'
       description: Updates the billing information and status of the order identified by the specified slug.
-  /review-task:
+  /action-task:
     post:
       summary: Create a review task
       operationId: PostReviewTaskV22
       tags:
-        - Review task
+        - Action task
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -1582,7 +1591,7 @@ paths:
       summary: Retrieve review tasks
       operationId: GetReviewTaskCollectionV22
       tags:
-        - Review task
+        - Action task
       parameters:
         - $ref: '#/components/parameters/reviewTaskActionAtFilter'
         - $ref: '#/components/parameters/reviewTaskCreatedAtFilter'
@@ -1610,14 +1619,14 @@ paths:
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
       description: Retrieves review tasks.
-  /review-task/{token}:
+  /action-task/{token}:
     parameters:
       - $ref: '#/components/parameters/token'
     get:
       summary: Retrieve a review task
       operationId: GetReviewTaskV22
       tags:
-        - Review task
+        - Action task
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -2004,10 +2013,7 @@ paths:
                 $ref: '#/components/schemas/UploadResult'
       description: Uploads a file to the specified user field.
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
+        $ref: '#/components/requestBodies/FileUpload'
   /user/{user_slug}/auth-token:
     parameters:
       - $ref: '#/components/parameters/userSlug'
@@ -2337,7 +2343,7 @@ components:
       name: judge
       in: query
       required: false
-      description: Filter by judge slug.
+      description: Filter by reviewer slug.
       schema:
         type: string
     methodFilter:
@@ -2381,12 +2387,12 @@ components:
       in: query
       required: false
       description: |-
-        Filter by entry state.
-        * `current` - Only current (non-archived) entries.
-        * `archived` - Only archived entries.
-        * `all` - Include both current and archived entries.
+        Filter by application state.
+        * `current` - Only current (non-archived) applications.
+        * `archived` - Only archived applications.
+        * `all` - Include both current and archived applications.
         * `only` - Equivalent to `archived`.
-        * `none` - Exclude all entries.
+        * `none` - Exclude all applications.
       schema:
         type: string
         enum:
@@ -2478,10 +2484,10 @@ components:
         type: string
         pattern: ^[A-Za-z0-9]{24}[JR]$
     entrySlug:
-      name: entry_slug
+      name: application_slug
       in: path
       required: true
-      description: Slug of the entry.
+      description: Slug of the application.
       schema:
         type: string
         pattern: ^[A-Za-z]{8}$
@@ -2489,7 +2495,7 @@ components:
       name: entry
       in: query
       required: false
-      description: Filter by entry slug.
+      description: Filter by application slug.
       schema:
         type: string
     tabFilter:
@@ -2526,7 +2532,7 @@ components:
       name: tab_slug
       in: path
       required: true
-      description: Entry tab slug
+      description: Application tab slug
       schema:
         type: string
         pattern: ^[A-Za-z]{8}$
@@ -2630,7 +2636,7 @@ components:
       name: entrant
       in: query
       required: false
-      description: Filter by entrant slug.
+      description: Filter by applicant slug.
       schema:
         type: string
     entryModerationFilter:
@@ -2672,7 +2678,7 @@ components:
       name: status
       in: query
       required: false
-      description: Filter by entry status.
+      description: Filter by application status.
       schema:
         type: string
         enum:
@@ -2684,7 +2690,7 @@ components:
       name: title
       in: query
       required: false
-      description: Filter by full or partial entry name.
+      description: Filter by full or partial application name.
       schema:
         type: string
     entryUpdatedAtFilter:
@@ -2719,9 +2725,7 @@ components:
       name: order
       in: query
       required: false
-      description: |-
-        Sort by a supported entry field.
-        Supported values: category, chapter, applicant, local_id, parent_category, title, updated.
+      description: Sort by a supported application field.
       schema:
         type: string
         enum:
@@ -2733,10 +2737,10 @@ components:
           - title
           - updated
     entryIdentifier:
-      name: entry_slug
+      name: application_slug
       in: path
       required: true
-      description: Slug or title of the entry.
+      description: Slug or title of the application.
       schema:
         type: string
     fieldSlug:
@@ -2750,14 +2754,14 @@ components:
       name: tags
       in: path
       required: true
-      description: Comma-separated tags to add to the entry.
+      description: Comma-separated tags to add to the application.
       schema:
         type: string
     entryTagsToRemove:
       name: tags
       in: path
       required: true
-      description: Comma-separated tags to remove from the entry.
+      description: Comma-separated tags to remove from the application.
       schema:
         type: string
     fieldConditionalFilter:
@@ -3049,7 +3053,7 @@ components:
       name: entries
       in: query
       required: false
-      description: Filter by entry status.
+      description: Filter by application status.
       schema:
         type: string
         enum:
@@ -3301,6 +3305,26 @@ components:
           type: string
           format: date-time
           description: Time the account record was last updated.
+      example:
+        created: '2025-01-15T09:00:00Z'
+        domains:
+          - awards.example.com
+        global_id: 6a0c6f70-1b9e-4d63-9c2a-2f8c5d0a1c34
+        languages:
+          - code: en_GB
+          - code: en_US
+        name: Example
+        owner:
+          slug: AbCdEfGh
+          link: https://api.au.cr4ce.com/user/AbCdEfGh
+          name: Jane Doe
+          first_name: Jane
+          last_name: Doe
+        product: payment-subscriptions.form.plan-premium.label
+        region: au
+        slug: WxYzAbCd
+        timezone: EuropeLondon
+        updated: '2025-06-20T14:30:00Z'
     BaseProblem:
       description: Standard error envelope shared by every error response on this API.
       type: object
@@ -3697,7 +3721,7 @@ components:
           description: |-
             Role assigned to score the application, used when the assignment is shared across all holders of a role rather than addressed to one reviewer.
 
-            `null` for judge-specific assignments where `judge` is populated.
+            `null` for reviewer-specific assignments where `reviewer` is populated.
           properties:
             slug:
               type: string
@@ -3730,6 +3754,7 @@ components:
                 additionalProperties:
                   type: string
         score:
+          type: object
           description: |-
             Score for this assignment, formatted per the score-set mode. `null` when no score has been recorded.
 
@@ -3793,6 +3818,57 @@ components:
           type: string
           format: date-time
           description: Time the assignment was last updated.
+      example:
+        application:
+          slug: AbCdEfGh
+          link: https://api.au.cr4ce.com/application/AbCdEfGh
+          title: Project title
+        category:
+          slug: WxYzAbCd
+          link: https://api.au.cr4ce.com/category/WxYzAbCd
+          name:
+            en_GB: Documentary
+        chapter:
+          slug: MnOpQrSt
+          link: https://api.au.cr4ce.com/chapter/MnOpQrSt
+          name:
+            en_GB: Film
+        comments:
+          judging: []
+          abstention: []
+          conflict: []
+          criteria:
+            - name: Originality
+              comments: []
+            - name: Execution
+              comments: []
+        created: '2025-01-15T09:00:00Z'
+        form: GhIjKlMn
+        method: Automatic (Panel)
+        panels:
+          - slug: OpQrStUv
+            link: https://api.au.cr4ce.com/panel/OpQrStUv
+            name:
+              en_GB: Panel A
+        reviewer:
+          slug: EfGhIjKl
+          link: https://api.au.cr4ce.com/judge/EfGhIjKl
+          name: Jane Doe
+        role: null
+        rounds:
+          - slug: QrStUvWx
+            link: https://api.au.cr4ce.com/round/QrStUvWx
+            name:
+              en_GB: Judging
+        score: null
+        score_set:
+          slug: UvWxYzAb
+          link: https://api.au.cr4ce.com/score-set/UvWxYzAb
+          name:
+            en_GB: Scoring rubric
+        slug: AbCdEfGhEfGhIjKlUvWxYzAbA
+        status: To be scored
+        updated: '2025-06-20T14:30:00Z'
     AssignmentList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
@@ -3802,6 +3878,69 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Assignment'
+      example:
+        current_page: 1
+        data:
+          - application:
+              slug: IjKlMnOp
+              link: https://api.au.cr4ce.com/application/IjKlMnOp
+              title: Photo series
+            category:
+              slug: QrStUvWx
+              link: https://api.au.cr4ce.com/category/QrStUvWx
+              name:
+                en_GB: Photography
+            chapter:
+              slug: MnOpQrSt
+              link: https://api.au.cr4ce.com/chapter/MnOpQrSt
+              name:
+                en_GB: Image
+            comments:
+              judging:
+                - slug: AbCdEfGh
+                  comment: <p>Strong composition.</p>
+                  created_at: '2025-05-20T11:00:00Z'
+                  updated_at: '2025-05-20T11:00:00Z'
+                  user:
+                    slug: YzAbCdEf
+                    link: https://api.au.cr4ce.com/user/YzAbCdEf
+                    name: Jane Doe
+                    first_name: Jane
+                    last_name: Doe
+              abstention: []
+              conflict: []
+              criteria:
+                - name: Composition
+                  comments: []
+            created: '2025-05-20T10:30:00Z'
+            form: GhIjKlMn
+            method: Stray
+            panels: []
+            reviewer:
+              slug: YzAbCdEf
+              link: https://api.au.cr4ce.com/judge/YzAbCdEf
+              name: Jane Doe
+            role: null
+            rounds: []
+            score: null
+            score_set:
+              slug: KlMnOpQr
+              link: https://api.au.cr4ce.com/score-set/KlMnOpQr
+              name:
+                en_GB: Scoring rubric
+            slug: IjKlMnOpYzAbCdEfKlMnOpQrA
+            status: To be scored
+            updated: '2025-06-10T09:00:00Z'
+        first_page_url: https://api.au.cr4ce.com/assignment?per_page=50&page=1
+        from: 1
+        last_page: 4
+        last_page_url: https://api.au.cr4ce.com/assignment?per_page=50&page=4
+        next_page_url: https://api.au.cr4ce.com/assignment?per_page=50&page=2
+        path: https://api.au.cr4ce.com/assignment
+        per_page: 50
+        prev_page_url: ''
+        to: 50
+        total: 175
     UnprocessableEntity:
       allOf:
         - $ref: '#/components/schemas/BaseProblem'
@@ -3831,24 +3970,24 @@ components:
       type: object
       title: Attachment
       description: |-
-        File attached to an entry through an attachments-typed form tab.
+        File attached to an application through an attachments-typed form tab.
 
-        Carries the file itself together with the form-field metadata captured against it, the entry it belongs to, and the tab through which it was added.
+        Carries the file itself together with the form-field metadata captured against it, the application it belongs to, and the tab through which it was added.
       properties:
-        entry:
+        application:
           type: object
-          description: Entry the attachment belongs to.
+          description: Application the attachment belongs to.
           properties:
             slug:
               type: string
-              description: Short URL-safe identifier for the entry.
+              description: Short URL-safe identifier for the application.
             link:
               type: string
               format: uri
-              description: Canonical URL for the entry resource.
+              description: Canonical URL for the application resource.
             title:
               type: string
-              description: Title of the entry as submitted by the entrant.
+              description: Title of the application as submitted by the applicant.
         attachment_fields:
           type: array
           description: |-
@@ -3868,7 +4007,7 @@ components:
               label:
                 type: object
                 description: |-
-                  Display label shown to the entrant alongside the field. May contain HTML and may be empty.
+                  Display label shown to the applicant alongside the field. May contain HTML and may be empty.
 
                   Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
                 additionalProperties:
@@ -3883,7 +4022,7 @@ components:
                   type: string
               value:
                 type: string
-                description: Raw stored value for the field, as submitted by the entrant.
+                description: Raw stored value for the field, as submitted by the applicant.
               translated:
                 type: object
                 description: |-
@@ -3948,6 +4087,44 @@ components:
           type: string
           format: date-time
           description: Time the attachment was last updated.
+      example:
+        application:
+          slug: AbCdEfGh
+          link: https://api.au.cr4ce.com/application/AbCdEfGh
+          title: Project title
+        attachment_fields:
+          - slug: IjKlMnOp
+            link: https://api.au.cr4ce.com/field/IjKlMnOp
+            label:
+              en_GB: ''
+            title:
+              en_GB: Type of attachment
+            value: Photo
+            translated:
+              en_GB: Photo
+          - slug: QrStUvWx
+            link: https://api.au.cr4ce.com/field/QrStUvWx
+            label:
+              en_GB: <p>URL</p>
+            title:
+              en_GB: URL
+            value: https://example.com/image.svg
+            translated:
+              en_GB: ''
+        created: '2025-04-27T01:00:00Z'
+        file:
+          token: AbCdEfGhIjKlMnOp
+          link: https://api.au.cr4ce.com/file/AbCdEfGhIjKlMnOp
+          download: https://files.au.cr4ce.com/file/AbCdEfGhIjKlMnOp/example.pdf?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+          filename: example.pdf
+        order: 1
+        tab:
+          slug: YzAbCdEf
+          link: https://api.au.cr4ce.com/tab/YzAbCdEf
+          name:
+            en_GB: Attachments
+        token: AbCdEfGhIjKlMnOp
+        updated: '2025-04-27T01:05:00Z'
     AttachmentList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
@@ -3957,6 +4134,94 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Attachment'
+      example:
+        current_page: 1
+        data:
+          - application:
+              slug: PqRsTuVw
+              link: https://api.au.cr4ce.com/application/PqRsTuVw
+              title: Documentary series
+            attachment_fields:
+              - slug: KlMnOpQr
+                link: https://api.au.cr4ce.com/field/KlMnOpQr
+                label:
+                  en_GB: <p>Headshot</p>
+                title:
+                  en_GB: Headshot
+                value: GhIjKlMnOpQrStUv
+                translated:
+                  en_GB: ''
+                download: https://files.au.cr4ce.com/file/GhIjKlMnOpQrStUv/headshot.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+            created: '2025-05-12T14:00:00Z'
+            file:
+              token: GhIjKlMnOpQrStUv
+              link: https://api.au.cr4ce.com/file/GhIjKlMnOpQrStUv
+              download: https://files.au.cr4ce.com/file/GhIjKlMnOpQrStUv/headshot.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+              filename: headshot.jpg
+            order: 2
+            tab:
+              slug: YzAbCdEf
+              link: https://api.au.cr4ce.com/tab/YzAbCdEf
+              name:
+                en_GB: Attachments
+            token: GhIjKlMnOpQrStUv
+            updated: '2025-05-12T14:05:00Z'
+        first_page_url: https://api.au.cr4ce.com/attachment?per_page=10&page=1
+        from: 1
+        last_page: 2
+        last_page_url: https://api.au.cr4ce.com/attachment?per_page=10&page=2
+        next_page_url: https://api.au.cr4ce.com/attachment?per_page=10&page=2
+        path: https://api.au.cr4ce.com/attachment
+        per_page: 10
+        prev_page_url: ''
+        to: 10
+        total: 12
+    UploadResult:
+      type: object
+      title: UploadResult
+      description: |-
+        Receipt returned when a file is uploaded to a category, chapter, entry, or user field.
+
+        Carries the original filename, a short opaque token that addresses the stored file, and the canonical URL through which the file can be retrieved.
+      properties:
+        filename:
+          type: string
+          description: Original filename of the uploaded file, including the extension.
+        token:
+          type: string
+          description: Opaque identifier for the stored file. Used as the `{token}` path parameter on `/file/{token}`.
+        link:
+          type: string
+          format: uri
+          description: Canonical URL for retrieving the uploaded file.
+      example:
+        filename: example.pdf
+        token: AbCdEfGhIjKlMnOp
+        link: https://api.au.cr4ce.com/file/AbCdEfGhIjKlMnOp
+    AttachmentCreateResult:
+      type: object
+      title: AttachmentCreateResult
+      description: |-
+        Receipt returned after an attachment is created.
+
+        Carries the new attachment's short opaque token and canonical URL together with the underlying file record, so callers can immediately reference the new attachment and fetch the stored file.
+      properties:
+        token:
+          type: string
+          description: Opaque identifier for the new attachment. Used as the `{token}` path parameter on `/attachment/{token}`.
+        link:
+          type: string
+          format: uri
+          description: Canonical URL for the new attachment resource.
+        file:
+          $ref: '#/components/schemas/UploadResult'
+      example:
+        token: AbCdEfGhIjKlMnOp
+        link: https://api.au.cr4ce.com/attachment/AbCdEfGhIjKlMnOp
+        file:
+          filename: example.pdf
+          token: QrStUvWxYzAbCdEf
+          link: https://api.au.cr4ce.com/file/QrStUvWxYzAbCdEf
     Category:
       type: object
       properties:
@@ -4099,16 +4364,6 @@ components:
                         type: integer
                       entry_count:
                         type: integer
-    UploadResult:
-      type: object
-      properties:
-        filename:
-          type: string
-        token:
-          type: string
-        link:
-          type: string
-          format: uri
     Chapter:
       type: object
       properties:
@@ -5928,6 +6183,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/TooManyRequests'
+    ServiceUnavailable:
+      description: Service is temporarily unavailable due to regional maintenance.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Human-readable maintenance status.
+            example:
+              status: Maintenance in progress
     UnprocessableEntity:
       description: |-
         Request was syntactically valid but could not be processed.
@@ -6072,6 +6339,7 @@ components:
         Fields to update on an existing attachment.
 
         Every property is optional; only properties that are supplied are written.
+      required: true
     AttachmentUpload:
       content:
         application/json:
@@ -6100,14 +6368,42 @@ components:
                 description: |-
                   Values for the form fields captured against this attachment, keyed by field slug.
 
-                  Each value must conform to the type of the corresponding field on the parent attachments tab; for example, a text field accepts a string, a choice field accepts the slug of one of its options, and a number field accepts a numeric value.
+                  Each value must conform to the type of the corresponding field on the parent attachments tab:
 
-                  Field slugs that do not exist on the parent tab are rejected.
+                  - `text`, `textarea`, `email`, `url`, `phone`, `ai` — string.
+                  - `numeric` — number.
+                  - `currency` — string holding a decimal value, for example `"1234.56"`.
+                  - `checkbox` — boolean (`true`/`false`; `1` and `0` are also accepted).
+                  - `radio`, `drop-down-list` — string matching one of the field's defined option keys (case-insensitive).
+                  - `checkboxlist` — array of option keys, or a comma-separated string such as `"opt1,opt2"`.
+                  - `country` — ISO 3166 alpha-2 country code; lower-case codes are accepted and stored upper-cased.
+                  - `date` — `YYYY-MM-DD` string or an object such as `{date: "2026-06-16"}`; the bare string form is wrapped server-side into the object form.
+                  - `datetime` — `YYYY-MM-DD HH:MM` string or an object such as `{date: "2026-06-16 14:30"}`; same wrapping behavior as `date`.
+                  - `time` — `HH:MM` string.
+
+                  Field slugs that do not exist on the parent tab are rejected. Fields marked as required on the parent tab must be supplied; omitting them returns a 422.
+
+                  `formula` fields are computed server-side and cannot be set through this property. `file` fields are not settable here; upload files through `POST /entry/{entry_slug}/upload/{field_slug}` instead. `table` and `lookup` field types are not handled by this property; consult their dedicated endpoints if your tab uses them.
                 additionalProperties: {}
+            example:
+              filename: hello.xls
+              data: aGVsbG8gd29ybGQ=
+              order: 1
+              attachment_fields:
+                text-slug: Some short text
+                numeric-slug: 42
+                checkbox-slug: true
+                radio-slug: option-key-1
+                checkboxlist-slug:
+                  - option-key-1
+                  - option-key-2
+                country-slug: AU
+                date-slug: '2026-06-16'
       description: |-
-        File and metadata for a new attachment on the specified entry tab.
+        File and metadata for a new attachment on the specified application tab.
 
-        `filename`, `data`, and `order` are required. `attachment_fields` is optional and may be omitted when the parent tab has no attachment fields.
+        `filename`, `data`, and `order` are required. `attachment_fields` is optional and may be omitted when the parent tab has no required attachment fields.
+      required: true
     CategoryCreate:
       content:
         application/json:
@@ -6646,6 +6942,29 @@ components:
                 description: 'User field values, keyed by field slug. For example, `{ "fJkIjGmB": "Test value" }`.'
                 additionalProperties:
                   type: string
+    FileUpload:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - filename
+              - data
+            properties:
+              filename:
+                type: string
+                description: Original filename of the uploaded file, including the extension.
+              data:
+                type: string
+                format: byte
+                description: |-
+                  Base64-encoded contents of the file.
+
+                  The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
+      description: |-
+        File payload for an upload operation.
+
+        `filename` and `data` are required.
     WebhookCreate:
       description: Webhook create payload.
       content:

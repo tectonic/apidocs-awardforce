@@ -7,13 +7,18 @@
     "light": "#eb3700",
     "dark": "#2741F1"
   },
+  "api": {
+    "examples": {
+      "prefill": true
+    }
+  },
   "appearance": {
     "default": "light"
   },
   "background": {
     "decoration": "gradient"
   },
-"fonts": {
+  "fonts": {
     "heading": {
       "family": "Montserrat",
       "format": "woff2",
@@ -57,7 +62,9 @@
           },
           {
             "tab": "Changelog",
-            "pages": ["/pages/v2_3/changelog"]
+            "pages": [
+              "/pages/v2_3/changelog"
+            ]
           }
         ]
       },
@@ -86,7 +93,9 @@
           },
           {
             "tab": "Changelog",
-            "pages": ["/pages/v2_2/changelog"]
+            "pages": [
+              "/pages/v2_2/changelog"
+            ]
           }
         ]
       }

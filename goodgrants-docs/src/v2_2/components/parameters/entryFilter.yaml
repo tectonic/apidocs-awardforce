@@ -1,6 +1,6 @@
 name: entry
 in: query
 required: false
-description: Filter by entry slug.
+description: Filter by application slug.
 schema:
   type: string

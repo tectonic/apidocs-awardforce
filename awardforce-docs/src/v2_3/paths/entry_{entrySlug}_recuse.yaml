@@ -30,6 +30,8 @@ put:
       $ref: ../components/responses/UnprocessableEntity.yaml
     '429':
       $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Recuses a judge from the assignment for the specified entry.
   requestBody:
     $ref: ../components/requestBodies/EntryAssignmentRecusal.yaml

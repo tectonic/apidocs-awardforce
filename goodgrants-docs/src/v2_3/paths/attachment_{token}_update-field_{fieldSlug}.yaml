@@ -5,7 +5,7 @@ put:
   summary: Update an attachment field
   operationId: PutAttachmentUpdateFieldV23
   tags:
-    - Entry (realtime)
+    - Application (realtime)
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:

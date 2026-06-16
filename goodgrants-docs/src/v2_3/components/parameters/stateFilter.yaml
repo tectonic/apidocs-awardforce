@@ -2,12 +2,12 @@ name: state
 in: query
 required: false
 description: |-
-  Filter by entry state.
-  * `current` - Only current (non-archived) entries.
-  * `archived` - Only archived entries.
-  * `all` - Include both current and archived entries.
+  Filter by application state.
+  * `current` - Only current (non-archived) applications.
+  * `archived` - Only archived applications.
+  * `all` - Include both current and archived applications.
   * `only` - Equivalent to `archived`.
-  * `none` - Exclude all entries.
+  * `none` - Exclude all applications.
 schema:
   type: string
   enum:

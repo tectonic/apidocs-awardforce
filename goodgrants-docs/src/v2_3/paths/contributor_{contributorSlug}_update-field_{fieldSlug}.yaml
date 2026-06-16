@@ -5,7 +5,7 @@ put:
   summary: Update a contributor field
   operationId: PutContributorUpdateFieldV23
   tags:
-    - Entry (realtime)
+    - Application (realtime)
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:

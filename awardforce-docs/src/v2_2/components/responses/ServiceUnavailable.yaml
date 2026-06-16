@@ -1,0 +1,11 @@
+description: Service is temporarily unavailable due to regional maintenance.
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Human-readable maintenance status.
+      example:
+        status: Maintenance in progress

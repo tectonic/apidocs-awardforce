@@ -6,3 +6,66 @@ allOf:
         type: array
         items:
           $ref: ./Assignment.yaml
+example:
+  current_page: 1
+  data:
+    - entry:
+        slug: IjKlMnOp
+        link: https://api.au.cr4ce.com/entry/IjKlMnOp
+        title: Photo series
+      category:
+        slug: QrStUvWx
+        link: https://api.au.cr4ce.com/category/QrStUvWx
+        name:
+          en_GB: Photography
+      chapter:
+        slug: MnOpQrSt
+        link: https://api.au.cr4ce.com/chapter/MnOpQrSt
+        name:
+          en_GB: Image
+      comments:
+        judging:
+          - slug: AbCdEfGh
+            comment: <p>Strong composition.</p>
+            created_at: '2025-05-20T11:00:00Z'
+            updated_at: '2025-05-20T11:00:00Z'
+            user:
+              slug: YzAbCdEf
+              link: https://api.au.cr4ce.com/user/YzAbCdEf
+              name: Jane Doe
+              first_name: Jane
+              last_name: Doe
+        abstention: []
+        conflict: []
+        criteria:
+          - name: Composition
+            comments: []
+      created: '2025-05-20T10:30:00Z'
+      form: GhIjKlMn
+      method: Stray
+      panels: []
+      judge:
+        slug: YzAbCdEf
+        link: https://api.au.cr4ce.com/judge/YzAbCdEf
+        name: Jane Doe
+      role: null
+      rounds: []
+      score: null
+      score_set:
+        slug: KlMnOpQr
+        link: https://api.au.cr4ce.com/score-set/KlMnOpQr
+        name:
+          en_GB: Scoring rubric
+      slug: IjKlMnOpYzAbCdEfKlMnOpQrA
+      status: To be scored
+      updated: '2025-06-10T09:00:00Z'
+  first_page_url: https://api.au.cr4ce.com/assignment?per_page=50&page=1
+  from: 1
+  last_page: 4
+  last_page_url: https://api.au.cr4ce.com/assignment?per_page=50&page=4
+  next_page_url: https://api.au.cr4ce.com/assignment?per_page=50&page=2
+  path: https://api.au.cr4ce.com/assignment
+  per_page: 50
+  prev_page_url: ''
+  to: 50
+  total: 175

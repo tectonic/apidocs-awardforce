@@ -2,8 +2,7 @@ name: order
 in: query
 required: false
 description: |-
-  Sort by a supported entry field.
-  Supported values: category, chapter, applicant, local_id, parent_category, title, updated.
+  Sort by a supported application field.
 schema:
   type: string
   enum:

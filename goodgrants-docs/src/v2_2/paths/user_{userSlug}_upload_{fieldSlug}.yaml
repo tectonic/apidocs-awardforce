@@ -28,7 +28,4 @@ post:
             $ref: ../components/schemas/UploadResult.yaml
   description: Uploads a file to the specified user field.
   requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
+    $ref: ../components/requestBodies/FileUpload.yaml

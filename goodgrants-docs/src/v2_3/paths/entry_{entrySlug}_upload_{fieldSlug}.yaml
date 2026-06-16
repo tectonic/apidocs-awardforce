@@ -5,7 +5,7 @@ post:
   summary: Upload an entry file
   operationId: PostEntryUploadV23
   tags:
-    - Entry
+    - Application
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:

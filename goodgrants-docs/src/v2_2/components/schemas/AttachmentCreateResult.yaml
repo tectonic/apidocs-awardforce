@@ -1,0 +1,23 @@
+type: object
+title: AttachmentCreateResult
+description: |-
+  Receipt returned after an attachment is created.
+
+  Carries the new attachment's short opaque token and canonical URL together with the underlying file record, so callers can immediately reference the new attachment and fetch the stored file.
+properties:
+  token:
+    type: string
+    description: Opaque identifier for the new attachment. Used as the `{token}` path parameter on `/attachment/{token}`.
+  link:
+    type: string
+    format: uri
+    description: Canonical URL for the new attachment resource.
+  file:
+    $ref: ./UploadResult.yaml
+example:
+  token: AbCdEfGhIjKlMnOp
+  link: https://api.au.cr4ce.com/attachment/AbCdEfGhIjKlMnOp
+  file:
+    filename: example.pdf
+    token: QrStUvWxYzAbCdEf
+    link: https://api.au.cr4ce.com/file/QrStUvWxYzAbCdEf

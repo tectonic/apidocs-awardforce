@@ -1,6 +1,6 @@
 name: judge
 in: query
 required: false
-description: Filter by judge slug.
+description: Filter by reviewer slug.
 schema:
   type: string
