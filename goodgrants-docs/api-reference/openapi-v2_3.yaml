@@ -6330,11 +6330,13 @@ components:
                   Each value must conform to the type of the corresponding field on the parent attachments tab; for example, a text field accepts a string, a choice field accepts the slug of one of its options, and a number field accepts a numeric value.
 
                   Field slugs that do not exist on the parent tab are rejected.
+
+                  Fields marked as required on the parent tab must be supplied; omitting them returns a 422.
                 additionalProperties: {}
       description: |-
         File and metadata for a new attachment on the specified application tab.
 
-        `filename`, `data`, and `order` are required. `attachment_fields` is optional and may be omitted when the parent tab has no attachment fields.
+        `filename`, `data`, and `order` are required. `attachment_fields` is optional and may be omitted when the parent tab has no required attachment fields.
     CategoryCreate:
       content:
         application/json:
