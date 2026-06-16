@@ -8,6 +8,7 @@ post:
     - Attachment
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '201':
       description: Attachment created.
