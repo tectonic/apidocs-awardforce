@@ -490,15 +490,7 @@ paths:
                     type: string
                     format: uri
                   file:
-                    type: object
-                    properties:
-                      filename:
-                        type: string
-                      token:
-                        type: string
-                      link:
-                        type: string
-                        format: uri
+                    $ref: '#/components/schemas/UploadResult'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4168,6 +4160,28 @@ components:
         prev_page_url: ''
         to: 10
         total: 12
+    UploadResult:
+      type: object
+      title: UploadResult
+      description: |-
+        Receipt returned when a file is uploaded to a category, chapter, entry, or user field.
+
+        Carries the original filename, a short opaque token that addresses the stored file, and the canonical URL through which the file can be retrieved.
+      properties:
+        filename:
+          type: string
+          description: Original filename of the uploaded file, including the extension.
+        token:
+          type: string
+          description: Opaque identifier for the stored file. Used as the `{token}` path parameter on `/file/{token}`.
+        link:
+          type: string
+          format: uri
+          description: Canonical URL for retrieving the uploaded file.
+      example:
+        filename: example.pdf
+        token: AbCdEfGhIjKlMnOp
+        link: https://api.au.cr4ce.com/file/AbCdEfGhIjKlMnOp
     Category:
       type: object
       properties:
@@ -4310,28 +4324,6 @@ components:
                         type: integer
                       entry_count:
                         type: integer
-    UploadResult:
-      type: object
-      title: UploadResult
-      description: |-
-        Receipt returned when a file is uploaded to a category, chapter, entry, or user field.
-
-        Carries the original filename, a short opaque token that addresses the stored file, and the canonical URL through which the file can be retrieved.
-      properties:
-        filename:
-          type: string
-          description: Original filename of the uploaded file, including the extension.
-        token:
-          type: string
-          description: Opaque identifier for the stored file. Used as the `{token}` path parameter on `/file/{token}`.
-        link:
-          type: string
-          format: uri
-          description: Canonical URL for retrieving the uploaded file.
-      example:
-        filename: example.pdf
-        token: AbCdEfGhIjKlMnOp
-        link: https://api.au.cr4ce.com/file/AbCdEfGhIjKlMnOp
     Chapter:
       type: object
       properties:
