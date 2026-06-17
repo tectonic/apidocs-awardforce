@@ -1,46 +1,140 @@
+title: Category
+description: |-
+  Competition category that entries are submitted to.
+
+  Includes the entry form used for submissions, its translated name and description, the season it belongs to, and the rules that govern entries within it. Categories can be nested under a parent category and made available across one or more chapters.
 allOf:
   - $ref: ./CategoryBase.yaml
   - type: object
     properties:
       chapters:
         type: array
+        description: Chapters the category is available in.
         items:
           type: object
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the chapter.
             link:
               type: string
               format: uri
-            name: &translatedText
+              description: Canonical URL for the chapter resource.
+            name:
               type: object
+              description: |-
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
               additionalProperties:
                 type: string
       entrant_max_entries:
         type: integer
         nullable: true
-      entry_name_label: *translatedText
+        description: |-
+          Maximum number of entries a single entrant may submit to this category.
+
+          `null` when the number of entries is not capped.
+      entry_name_label:
+        type: object
+        description: |-
+          Custom label for the entry-name field shown to entrants.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
       fill_entry_name:
         type: boolean
-      image_heading: *translatedText
+        description: Specifies whether entrants are asked to name their entry when submitting to this category.
+      image_heading:
+        type: object
+        description: |-
+          Heading shown above the category images.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
       images:
         type: array
+        description: Images attached to the category.
         items:
           type: object
           properties:
             token:
               type: string
+              description: Token identifying the image file.
             link:
               type: string
               format: uri
+              description: Canonical URL for the file resource.
             filename:
               type: string
+              description: Original filename as uploaded.
             name:
               type: string
+              description: Display name of the image.
             download:
               type: string
+              format: uri
+              description: Time-limited download URL for the image.
       max_image_width:
         type: integer
-      packing_slip_instructions: *translatedText
+        description: Maximum display width for the category images, in pixels.
+      packing_slip_instructions:
+        type: object
+        description: |-
+          Instructions shown on the packing slip for the category.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
       pdf_packing_slip:
         type: boolean
+        description: Specifies whether a PDF packing slip is enabled for the category.
+example:
+  created: '2025-01-15T09:00:00Z'
+  description:
+    en_GB: ''
+  divisions: 1
+  form:
+    slug: GhIjKlMn
+    link: https://api.au.cr4ce.com/form/GhIjKlMn
+    name:
+      en_GB: Entry form
+  name:
+    en_GB: Documentary
+  parent:
+    slug: KlMnOpQr
+    link: https://api.au.cr4ce.com/category/KlMnOpQr
+    name:
+      en_GB: Film
+  promoted: null
+  season:
+    slug: QrStUvWx
+    link: https://api.au.cr4ce.com/season/QrStUvWx
+    name:
+      en_GB: '2025'
+  shortcode:
+    en_GB: '01'
+  slug: AbCdEfGh
+  status: active
+  updated: '2025-06-20T14:30:00Z'
+  chapters:
+    - slug: MnOpQrSt
+      link: https://api.au.cr4ce.com/chapter/MnOpQrSt
+      name:
+        en_GB: Film
+  entrant_max_entries: null
+  entry_name_label:
+    en_GB: ''
+  fill_entry_name: false
+  image_heading:
+    en_GB: Category image
+  images:
+    - token: H6eSZxAbZZPr8z8I
+      link: https://api.au.cr4ce.com/file/H6eSZxAbZZPr8z8I
+      filename: example.png
+      name: Category image
+      download: https://files.au.cr4ce.com/file/H6eSZxAbZZPr8z8I/example.png?Expires=1781657570&Signature=REDACTED&Key-Pair-Id=REDACTED
+  max_image_width: 300
+  packing_slip_instructions:
+    en_GB: ''
+  pdf_packing_slip: false

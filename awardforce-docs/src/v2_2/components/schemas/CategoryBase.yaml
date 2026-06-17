@@ -3,45 +3,106 @@ properties:
   created:
     type: string
     format: date-time
-  description: &translatedText
+    description: Date and time when the category was created.
+  description:
     type: object
+    description: |-
+      Description shown to entrants on the category, as an HTML fragment.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
     additionalProperties:
       type: string
   divisions:
     type: integer
-  form: &namedLinkObject
+    minimum: 1
+    description: Number of divisions configured for the category. Always at least `1`.
+  form:
     type: object
+    description: Entry form attached to the category.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the form.
       link:
         type: string
         format: uri
-      name: *translatedText
-  name: *translatedText
+        description: Canonical URL for the form resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  name:
+    type: object
+    description: |-
+      Display name of the category.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
   parent:
-    nullable: true
     type: object
+    nullable: true
+    description: |-
+      Parent category this category sits under.
+
+      `null` for a top-level category.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the parent category.
       link:
         type: string
         format: uri
-      name: *translatedText
+        description: Canonical URL for the parent category resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
   promoted:
     type: integer
     nullable: true
-    enum: [0, 1]
-  season: *namedLinkObject
+    enum: [0, 1, null]
+    description: |-
+      Promotion state of the category.
+
+      `1` when promoted, `0` when not, and `null` when no preference has been set.
+  season:
+    type: object
+    description: Season the category belongs to.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the season.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the season resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
   shortcode:
     type: object
+    description: |-
+      Short code used to reference the category.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
     additionalProperties:
       type: string
   slug:
     type: string
+    description: Short URL-safe identifier for the category.
   status:
     type: string
+    enum: [active, inactive]
+    description: Current state of the category.
   updated:
     type: string
     format: date-time
+    description: Date and time when the category was last updated.
