@@ -1,80 +1,46 @@
-type: object
-properties:
-  chapters:
-    type: array
-    items: &namedLinkObject
-      type: object
-      properties:
-        slug:
-          type: string
-        link:
-          type: string
-          format: uri
-        name: &translatedText
+allOf:
+  - $ref: ./CategoryBase.yaml
+  - type: object
+    properties:
+      chapters:
+        type: array
+        items:
           type: object
           properties:
-            en_GB:
+            slug:
               type: string
-  created:
-    type: string
-    format: date-time
-  description: *translatedText
-  divisions:
-    type: integer
-  entrant_max_entries:
-    type: integer
-    nullable: true
-  entry_name_label: *translatedText
-  fill_entry_name:
-    type: boolean
-  form: *namedLinkObject
-  image_heading: *translatedText
-  images:
-    type: array
-    items:
-      type: object
-      properties:
-        token:
-          type: string
-        link:
-          type: string
-          format: uri
-        filename:
-          type: string
-        name:
-          type: string
-        download:
-          type: string
-  max_image_width:
-    type: integer
-  name: *translatedText
-  packing_slip_instructions: *translatedText
-  parent:
-    nullable: true
-    type: object
-    properties:
-      slug:
-        type: string
-      link:
-        type: string
-        format: uri
-      name: *translatedText
-  pdf_packing_slip:
-    type: boolean
-  promoted:
-    type: integer
-    nullable: true
-    enum: [0, 1]
-  season: *namedLinkObject
-  shortcode:
-    type: object
-    properties:
-      en_GB:
-        type: string
-  slug:
-    type: string
-  status:
-    type: string
-  updated:
-    type: string
-    format: date-time
+            link:
+              type: string
+              format: uri
+            name: &translatedText
+              type: object
+              additionalProperties:
+                type: string
+      entrant_max_entries:
+        type: integer
+        nullable: true
+      entry_name_label: *translatedText
+      fill_entry_name:
+        type: boolean
+      image_heading: *translatedText
+      images:
+        type: array
+        items:
+          type: object
+          properties:
+            token:
+              type: string
+            link:
+              type: string
+              format: uri
+            filename:
+              type: string
+            name:
+              type: string
+            download:
+              type: string
+      max_image_width:
+        type: integer
+      packing_slip_instructions: *translatedText
+      pdf_packing_slip:
+        type: boolean

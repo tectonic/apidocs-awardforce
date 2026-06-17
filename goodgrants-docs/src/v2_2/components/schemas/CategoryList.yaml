@@ -6,7 +6,7 @@ allOf:
         type: array
         items:
           allOf:
-            - $ref: ./Category.yaml
+            - $ref: ./CategoryBase.yaml
             - type: object
               properties:
                 chapter_count:

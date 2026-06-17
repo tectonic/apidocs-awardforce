@@ -1,0 +1,47 @@
+type: object
+properties:
+  created:
+    type: string
+    format: date-time
+  description: &translatedText
+    type: object
+    additionalProperties:
+      type: string
+  divisions:
+    type: integer
+  form: &namedLinkObject
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name: *translatedText
+  name: *translatedText
+  parent:
+    nullable: true
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name: *translatedText
+  promoted:
+    type: integer
+    nullable: true
+    enum: [0, 1]
+  season: *namedLinkObject
+  shortcode:
+    type: object
+    additionalProperties:
+      type: string
+  slug:
+    type: string
+  status:
+    type: string
+  updated:
+    type: string
+    format: date-time
