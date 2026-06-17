@@ -2551,7 +2551,10 @@ components:
       name: form
       in: query
       required: false
-      description: Filter by form slug.
+      description: |-
+        Filter by form slug.
+
+        Use the value `all` to include results from every form rather than a single form.
       schema:
         type: string
     parentCategoryFilter:
@@ -3461,7 +3464,7 @@ components:
               description: Canonical URL for the category resource.
             name:
               type: object
-              description: Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              description: Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
               additionalProperties:
                 type: string
         chapter:
@@ -3477,7 +3480,7 @@ components:
               description: Canonical URL for the chapter resource.
             name:
               type: object
-              description: Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              description: Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
               additionalProperties:
                 type: string
         comments:
@@ -3697,7 +3700,7 @@ components:
                 description: Canonical URL for the panel resource.
               name:
                 type: object
-                description: Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                description: Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
                 additionalProperties:
                   type: string
         judge:
@@ -3735,7 +3738,7 @@ components:
               description: Canonical URL for the role resource.
             name:
               type: object
-              description: Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              description: Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
               additionalProperties:
                 type: string
         rounds:
@@ -3753,7 +3756,7 @@ components:
                 description: Canonical URL for the round resource.
               name:
                 type: object
-                description: Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                description: Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
                 additionalProperties:
                   type: string
         score:
@@ -3805,7 +3808,7 @@ components:
               description: Canonical URL for the score set resource.
             name:
               type: object
-              description: Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              description: Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
               additionalProperties:
                 type: string
         slug:
@@ -4012,7 +4015,7 @@ components:
                 description: |-
                   Display label shown to the entrant alongside the field. May contain HTML and may be empty.
 
-                  Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                  Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
                 additionalProperties:
                   type: string
               title:
@@ -4020,7 +4023,7 @@ components:
                 description: |-
                   Short title used to refer to the field in administrative contexts.
 
-                  Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                  Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
                 additionalProperties:
                   type: string
               value:
@@ -4031,7 +4034,7 @@ components:
                 description: |-
                   Human-readable rendering of `value` resolved against the field definition (for example, choice slugs expanded to labels).
 
-                  Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                  Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
                 additionalProperties:
                   type: string
               download:
@@ -4080,7 +4083,7 @@ components:
               description: Canonical URL for the tab resource.
             name:
               type: object
-              description: Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              description: Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
               additionalProperties:
                 type: string
         token:
@@ -6617,7 +6620,7 @@ components:
                 description: Slug of the season.
               status:
                 type: string
-                description: One of the following values.
+                description: Active or inactive state of the category.
                 enum:
                   - active
                   - inactive
@@ -6660,7 +6663,10 @@ components:
                       type: string
               chapters:
                 type: array
-                description: Array of chapter slugs.
+                description: |-
+                  Array of chapter slugs.
+
+                  Each chapter must belong to the same season as `season`.
                 items:
                   type: string
               divisions:
@@ -6680,10 +6686,16 @@ components:
                 description: Maximum image width.
               form:
                 type: string
-                description: Slug of the form.
+                description: |-
+                  Slug of the form.
+
+                  The form must be valid for `season`.
               parent:
                 type: string
-                description: Slug of the parent category.
+                description: |-
+                  Slug of the parent category.
+
+                  The parent category must belong to the same season as `season`.
               promoted:
                 type: integer
                 nullable: true
@@ -6697,7 +6709,10 @@ components:
                   `1` when promoted, `0` when not, and `null` when no preference has been set.
               pdf_packing_slip:
                 type: boolean
-                description: Specifies whether to generate a PDF packing slip.
+                description: |-
+                  Specifies whether to generate a PDF packing slip.
+
+                  Required when `translated.packing_slip_instructions` is provided.
       description: Category creation payload.
       required: true
     CategoryUpdate:
