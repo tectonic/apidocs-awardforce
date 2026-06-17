@@ -41,8 +41,6 @@ properties:
           format: uri
         filename:
           type: string
-        name:
-          type: string
         download:
           type: string
   max_image_width:
