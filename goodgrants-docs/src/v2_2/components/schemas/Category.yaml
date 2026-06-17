@@ -23,13 +23,11 @@ properties:
     type: integer
   entrant_max_entries:
     type: integer
+    nullable: true
   entry_name_label: *translatedText
   fill_entry_name:
     type: boolean
-  form:
-    oneOf:
-      - type: string
-      - *namedLinkObject
+  form: *namedLinkObject
   image_heading: *translatedText
   images:
     type: array
@@ -51,16 +49,28 @@ properties:
     type: integer
   name: *translatedText
   packing_slip_instructions: *translatedText
-  parent: *namedLinkObject
+  parent:
+    nullable: true
+    type: object
+    properties:
+      slug:
+        type: string
+      link:
+        type: string
+        format: uri
+      name: *translatedText
   pdf_packing_slip:
     type: boolean
+  promoted:
+    type: integer
+    nullable: true
+    enum: [0, 1]
   season: *namedLinkObject
   shortcode:
     type: object
     properties:
       en_GB:
         type: string
-        format: color
   slug:
     type: string
   status:
