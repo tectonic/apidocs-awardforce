@@ -35,7 +35,7 @@ properties:
       name:
         type: object
         description: |-
-          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
         additionalProperties:
           type: string
   chapter:
@@ -52,7 +52,7 @@ properties:
       name:
         type: object
         description: |-
-          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
         additionalProperties:
           type: string
   comments:
@@ -177,7 +177,7 @@ properties:
         name:
           type: object
           description: |-
-            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+            Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
           additionalProperties:
             type: string
   judge:
@@ -216,7 +216,7 @@ properties:
       name:
         type: object
         description: |-
-          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
         additionalProperties:
           type: string
   rounds:
@@ -235,7 +235,7 @@ properties:
         name:
           type: object
           description: |-
-            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+            Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
           additionalProperties:
             type: string
   score:
@@ -288,7 +288,7 @@ properties:
       name:
         type: object
         description: |-
-          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
         additionalProperties:
           type: string
   slug:

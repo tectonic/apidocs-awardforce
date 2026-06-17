@@ -1,6 +1,9 @@
 name: form
 in: query
 required: false
-description: Filter by form slug.
+description: |-
+  Filter by form slug.
+
+  Use the value `all` to include results from every form rather than a single form.
 schema:
   type: string

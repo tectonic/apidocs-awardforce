@@ -13,7 +13,7 @@ content:
           description: Slug of the season.
         status:
           type: string
-          description: One of the following values.
+          description: Active or inactive state of the category.
           enum:
             - active
             - inactive
@@ -36,7 +36,10 @@ content:
             shortcode: *translatedField
         chapters:
           type: array
-          description: Array of chapter slugs.
+          description: |-
+            Array of chapter slugs.
+
+            Each chapter must belong to the same season as `season`.
           items:
             type: string
         divisions:
@@ -56,10 +59,16 @@ content:
           description: Maximum image width.
         form:
           type: string
-          description: Slug of the form.
+          description: |-
+            Slug of the form.
+
+            The form must be valid for `season`.
         parent:
           type: string
-          description: Slug of the parent category.
+          description: |-
+            Slug of the parent category.
+
+            The parent category must belong to the same season as `season`.
         promoted:
           type: integer
           nullable: true
@@ -70,6 +79,9 @@ content:
             `1` when promoted, `0` when not, and `null` when no preference has been set.
         pdf_packing_slip:
           type: boolean
-          description: Specifies whether to generate a PDF packing slip.
+          description: |-
+            Specifies whether to generate a PDF packing slip.
+
+            Required when `translated.packing_slip_instructions` is provided.
 description: Category creation payload.
 required: true

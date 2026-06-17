@@ -40,7 +40,7 @@ properties:
           description: |-
             Display label shown to the applicant alongside the field. May contain HTML and may be empty.
 
-            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+            Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
           additionalProperties:
             type: string
         title:
@@ -48,7 +48,7 @@ properties:
           description: |-
             Short title used to refer to the field in administrative contexts.
 
-            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+            Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
           additionalProperties:
             type: string
         value:
@@ -59,7 +59,7 @@ properties:
           description: |-
             Human-readable rendering of `value` resolved against the field definition (for example, choice slugs expanded to labels).
 
-            Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+            Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
           additionalProperties:
             type: string
         download:
@@ -109,7 +109,7 @@ properties:
       name:
         type: object
         description: |-
-          Map keyed by locale code (e.g. `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          Map keyed by locale code (for example `en_GB`, `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
         additionalProperties:
           type: string
   token:
