@@ -4222,44 +4222,18 @@ components:
           filename: example.pdf
           token: QrStUvWxYzAbCdEf
           link: https://api.au.cr4ce.com/file/QrStUvWxYzAbCdEf
-    Category:
+    CategoryBase:
       type: object
       properties:
-        chapters:
-          type: array
-          items:
-            type: object
-            properties:
-              slug:
-                type: string
-              link:
-                type: string
-                format: uri
-              name:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
         created:
           type: string
           format: date-time
         description:
           type: object
-          properties:
-            en_GB:
-              type: string
+          additionalProperties:
+            type: string
         divisions:
           type: integer
-        entrant_max_entries:
-          type: integer
-          nullable: true
-        entry_name_label:
-          type: object
-          properties:
-            en_GB:
-              type: string
-        fill_entry_name:
-          type: boolean
         form:
           type: object
           properties:
@@ -4270,42 +4244,12 @@ components:
               format: uri
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
-        image_heading:
-          type: object
-          properties:
-            en_GB:
-              type: string
-        images:
-          type: array
-          items:
-            type: object
-            properties:
-              token:
+              additionalProperties:
                 type: string
-              link:
-                type: string
-                format: uri
-              filename:
-                type: string
-              name:
-                type: string
-              download:
-                type: string
-        max_image_width:
-          type: integer
         name:
           type: object
-          properties:
-            en_GB:
-              type: string
-        packing_slip_instructions:
-          type: object
-          properties:
-            en_GB:
-              type: string
+          additionalProperties:
+            type: string
         parent:
           nullable: true
           type: object
@@ -4317,11 +4261,8 @@ components:
               format: uri
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
-        pdf_packing_slip:
-          type: boolean
+              additionalProperties:
+                type: string
         promoted:
           type: integer
           nullable: true
@@ -4338,14 +4279,12 @@ components:
               format: uri
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
+              additionalProperties:
+                type: string
         shortcode:
           type: object
-          properties:
-            en_GB:
-              type: string
+          additionalProperties:
+            type: string
         slug:
           type: string
         status:
@@ -4362,13 +4301,69 @@ components:
               type: array
               items:
                 allOf:
-                  - $ref: '#/components/schemas/Category'
+                  - $ref: '#/components/schemas/CategoryBase'
                   - type: object
                     properties:
                       chapter_count:
                         type: integer
                       entry_count:
                         type: integer
+    Category:
+      allOf:
+        - $ref: '#/components/schemas/CategoryBase'
+        - type: object
+          properties:
+            chapters:
+              type: array
+              items:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  name:
+                    type: object
+                    additionalProperties:
+                      type: string
+            entrant_max_entries:
+              type: integer
+              nullable: true
+            entry_name_label:
+              type: object
+              additionalProperties:
+                type: string
+            fill_entry_name:
+              type: boolean
+            image_heading:
+              type: object
+              additionalProperties:
+                type: string
+            images:
+              type: array
+              items:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                  filename:
+                    type: string
+                  name:
+                    type: string
+                  download:
+                    type: string
+            max_image_width:
+              type: integer
+            packing_slip_instructions:
+              type: object
+              additionalProperties:
+                type: string
+            pdf_packing_slip:
+              type: boolean
     Chapter:
       type: object
       properties:
