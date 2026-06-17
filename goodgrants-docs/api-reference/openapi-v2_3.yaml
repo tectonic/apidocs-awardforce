@@ -4252,6 +4252,7 @@ components:
           type: integer
         entrant_max_entries:
           type: integer
+          nullable: true
         entry_name_label:
           type: object
           properties:
@@ -4260,20 +4261,18 @@ components:
         fill_entry_name:
           type: boolean
         form:
-          oneOf:
-            - type: string
-            - type: object
+          type: object
+          properties:
+            slug:
+              type: string
+            link:
+              type: string
+              format: uri
+            name:
+              type: object
               properties:
-                slug:
+                en_GB:
                   type: string
-                link:
-                  type: string
-                  format: uri
-                name:
-                  type: object
-                  properties:
-                    en_GB:
-                      type: string
         image_heading:
           type: object
           properties:
@@ -4308,6 +4307,7 @@ components:
             en_GB:
               type: string
         parent:
+          nullable: true
           type: object
           properties:
             slug:
@@ -4322,6 +4322,12 @@ components:
                   type: string
         pdf_packing_slip:
           type: boolean
+        promoted:
+          type: integer
+          nullable: true
+          enum:
+            - 0
+            - 1
         season:
           type: object
           properties:
@@ -4340,7 +4346,6 @@ components:
           properties:
             en_GB:
               type: string
-              format: color
         slug:
           type: string
         status:
