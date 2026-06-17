@@ -2,6 +2,7 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       required:
         - season
         - status
@@ -40,9 +41,12 @@ content:
             type: string
         divisions:
           type: integer
+          minimum: 1
           description: Number of divisions.
         applicant_max_applications:
           type: integer
+          nullable: true
+          minimum: 1
           description: Maximum number of applications per applicant.
         fill_application_name:
           type: boolean
@@ -56,6 +60,14 @@ content:
         parent:
           type: string
           description: Slug of the parent category.
+        promoted:
+          type: integer
+          nullable: true
+          enum: [0, 1, null]
+          description: |-
+            Promotion state of the category.
+
+            `1` when promoted, `0` when not, and `null` when no preference has been set.
         pdf_packing_slip:
           type: boolean
           description: Specifies whether to generate a PDF packing slip.

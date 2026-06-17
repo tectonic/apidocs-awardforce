@@ -8,12 +8,14 @@ description: |-
 schema:
   type: string
   enum:
-    - chapters
+    - chapter_count
     - created
     - divisions
     - entry_count
+    - form
     - name
     - parent
+    - promoted
     - season
     - shortcode
     - status
