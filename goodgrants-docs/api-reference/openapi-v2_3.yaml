@@ -1283,7 +1283,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
     put:
-      summary: Update an entry category
+      summary: Update an application category
       operationId: PutEntryUpdateCategoryV23
       tags:
         - Application (realtime)
@@ -1293,7 +1293,7 @@ paths:
         $ref: '#/components/requestBodies/EntryCategoryUpdate'
       responses:
         default:
-          description: Entry category updated.
+          description: Application category updated.
           headers:
             ETag:
               $ref: '#/components/headers/ETag'
@@ -1303,7 +1303,7 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
-      description: Updates the category for the entry identified by the specified slug.
+      description: Updates the category for the application identified by the specified slug.
   /application/{application_slug}/update-chapter:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
@@ -2574,7 +2574,7 @@ components:
           - chapters
           - created
           - divisions
-          - entry_count
+          - application_count
           - name
           - parent
           - season
@@ -4306,7 +4306,7 @@ components:
                     properties:
                       chapter_count:
                         type: integer
-                      entry_count:
+                      application_count:
                         type: integer
     Category:
       allOf:
@@ -4327,14 +4327,14 @@ components:
                     type: object
                     additionalProperties:
                       type: string
-            entrant_max_entries:
+            applicant_max_applications:
               type: integer
               nullable: true
-            entry_name_label:
+            application_name_label:
               type: object
               additionalProperties:
                 type: string
-            fill_entry_name:
+            fill_application_name:
               type: boolean
             image_heading:
               type: object
@@ -6438,7 +6438,7 @@ components:
                     description: Values keyed by existing and enabled language code.
                     additionalProperties:
                       type: string
-                  entry_name_label:
+                  application_name_label:
                     type: object
                     description: Values keyed by existing and enabled language code.
                     additionalProperties:
@@ -6466,12 +6466,12 @@ components:
               divisions:
                 type: integer
                 description: Number of divisions.
-              entrant_max_entries:
+              applicant_max_applications:
                 type: integer
-                description: Maximum number of entries per entrant.
-              fill_entry_name:
+                description: Maximum number of applications per applicant.
+              fill_application_name:
                 type: boolean
-                description: Specifies whether to prefill the entry name when the category is selected.
+                description: Specifies whether to prefill the application name when the category is selected.
               max_image_width:
                 type: integer
                 description: Maximum image width.
@@ -6516,7 +6516,7 @@ components:
                     description: Values keyed by existing and enabled language code.
                     additionalProperties:
                       type: string
-                  entry_name_label:
+                  application_name_label:
                     type: object
                     description: Values keyed by existing and enabled language code.
                     additionalProperties:
@@ -6544,12 +6544,12 @@ components:
               divisions:
                 type: integer
                 description: Number of divisions.
-              entrant_max_entries:
+              applicant_max_applications:
                 type: integer
-                description: Maximum number of entries per entrant.
-              fill_entry_name:
+                description: Maximum number of applications per applicant.
+              fill_application_name:
                 type: boolean
-                description: Specifies whether to prefill the entry name when the category is selected.
+                description: Specifies whether to prefill the application name when the category is selected.
               max_image_width:
                 type: integer
                 description: Maximum image width.
@@ -6786,7 +6786,7 @@ components:
           schema:
             type: object
     EntryCategoryUpdate:
-      description: Entry category update payload.
+      description: Application category update payload.
       content:
         application/json:
           schema:
