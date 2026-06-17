@@ -16,11 +16,11 @@ allOf:
               type: object
               additionalProperties:
                 type: string
-      entrant_max_entries:
+      applicant_max_applications:
         type: integer
         nullable: true
-      entry_name_label: *translatedText
-      fill_entry_name:
+      application_name_label: *translatedText
+      fill_application_name:
         type: boolean
       image_heading: *translatedText
       images:

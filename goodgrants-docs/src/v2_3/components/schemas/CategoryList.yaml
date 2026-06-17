@@ -11,5 +11,5 @@ allOf:
               properties:
                 chapter_count:
                   type: integer
-                entry_count:
+                application_count:
                   type: integer

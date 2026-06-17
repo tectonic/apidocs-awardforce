@@ -11,7 +11,7 @@ schema:
     - chapters
     - created
     - divisions
-    - entry_count
+    - application_count
     - name
     - parent
     - season

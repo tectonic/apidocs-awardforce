@@ -1,7 +1,7 @@
 parameters:
   - $ref: ../components/parameters/entrySlug.yaml
 put:
-  summary: Update an entry category
+  summary: Update an application category
   operationId: PutEntryUpdateCategoryV23
   tags:
     - Application (realtime)
@@ -11,7 +11,7 @@ put:
     $ref: ../components/requestBodies/EntryCategoryUpdate.yaml
   responses:
     default:
-      description: Entry category updated.
+      description: Application category updated.
       headers:
         ETag:
           $ref: ../components/headers/ETag.yaml
@@ -21,4 +21,4 @@ put:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
-  description: Updates the category for the entry identified by the specified slug.
+  description: Updates the category for the application identified by the specified slug.

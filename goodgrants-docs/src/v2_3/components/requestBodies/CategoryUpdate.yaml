@@ -23,7 +23,7 @@ content:
               additionalProperties:
                 type: string
             description: *translatedField
-            entry_name_label: *translatedField
+            application_name_label: *translatedField
             image_heading: *translatedField
             packing_slip_instructions: *translatedField
             shortcode: *translatedField
@@ -35,12 +35,12 @@ content:
         divisions:
           type: integer
           description: Number of divisions.
-        entrant_max_entries:
+        applicant_max_applications:
           type: integer
-          description: Maximum number of entries per entrant.
-        fill_entry_name:
+          description: Maximum number of applications per applicant.
+        fill_application_name:
           type: boolean
-          description: Specifies whether to prefill the entry name when the category is selected.
+          description: Specifies whether to prefill the application name when the category is selected.
         max_image_width:
           type: integer
           description: Maximum image width.

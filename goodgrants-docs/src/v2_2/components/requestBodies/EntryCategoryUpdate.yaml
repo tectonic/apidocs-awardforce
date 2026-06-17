@@ -1,4 +1,4 @@
-description: Entry category update payload.
+description: Application category update payload.
 content:
   application/json:
     schema:
