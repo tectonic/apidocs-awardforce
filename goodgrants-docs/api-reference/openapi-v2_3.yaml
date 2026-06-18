@@ -611,6 +611,7 @@ paths:
         - Category
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '200':
           description: Category retrieved.
@@ -627,6 +628,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Category'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the category identified by the specified slug.
       x-mint:
         content: |-
@@ -639,6 +652,7 @@ paths:
         - Category
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       requestBody:
         $ref: '#/components/requestBodies/CategoryUpdate'
       responses:
@@ -657,6 +671,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Category'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the category identified by the specified slug.
     delete:
       summary: Delete a category
@@ -675,7 +703,21 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the category identified by the specified slug.
+      x-mint:
+        content: Any child categories are not deleted. They move up one level in the hierarchy to take the place of the deleted category.
   /category/{category_slug}/upload:
     parameters:
       - $ref: '#/components/parameters/categorySlug'
@@ -6854,13 +6896,11 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
             properties:
-              season:
-                type: string
-                description: Slug of the season.
               status:
                 type: string
-                description: One of the following values.
+                description: Active or inactive state of the category.
                 enum:
                   - active
                   - inactive
@@ -6901,28 +6941,44 @@ components:
                       type: string
               chapters:
                 type: array
-                description: Array of chapter slugs.
+                description: |-
+                  Array of chapter slugs.
+
+                  Each chapter must belong to the category's season.
                 items:
                   type: string
               divisions:
                 type: integer
+                minimum: 1
                 description: Number of divisions.
               applicant_max_applications:
                 type: integer
+                nullable: true
+                minimum: 1
                 description: Maximum number of applications per applicant.
               fill_application_name:
                 type: boolean
                 description: Specifies whether to prefill the application name when the category is selected.
+              locked:
+                type: boolean
+                description: Specifies whether the category is locked.
               max_image_width:
                 type: integer
                 description: Maximum image width.
               parent:
                 type: string
-                description: Slug of the parent category.
+                description: |-
+                  Slug of the parent category.
+
+                  The parent category must belong to the category's season, and cannot be the category itself or one of its descendants.
               pdf_packing_slip:
                 type: boolean
-                description: Specifies whether to generate a PDF packing slip.
+                description: |-
+                  Specifies whether to generate a PDF packing slip.
+
+                  Required when `translated.packing_slip_instructions` is provided.
       description: Category update payload.
+      required: true
     CategoryUpload:
       content:
         application/json:
