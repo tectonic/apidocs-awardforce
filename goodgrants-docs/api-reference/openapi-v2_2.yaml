@@ -760,6 +760,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChapterList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves chapters.
     post:
       summary: Create a chapter
@@ -768,6 +778,7 @@ paths:
         - Chapter
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       requestBody:
         $ref: '#/components/requestBodies/ChapterCreate'
       responses:
@@ -788,6 +799,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Chapter'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Creates a chapter.
   /chapter/{chapter_slug}:
     parameters:
@@ -2619,20 +2642,13 @@ components:
       name: order
       in: query
       required: false
-      description: |-
-        Sort by a supported chapter field.
-        * `parent` - Sort by parent slug.
-        * `season` - Sort by season slug.
+      description: Sort by a supported chapter field.
       schema:
         type: string
         enum:
-          - chapter_count
-          - divisions
-          - entry_count
+          - created
           - name
-          - parent
           - season
-          - shortcode
           - status
           - updated
     chapterSlug:
@@ -4585,51 +4601,104 @@ components:
           en_GB: ''
         pdf_packing_slip: false
     Chapter:
+      title: Chapter
+      description: |-
+        Grouping that categories can be made available in.
+
+        Includes its translated name and description, the season it belongs to, and the users who manage it. Chapters let you partition a program — for example by region or division — and delegate day-to-day management to chapter managers.
       type: object
       properties:
         created:
           type: string
           format: date-time
+          description: Date and time when the chapter was created.
+        description:
+          type: object
+          description: |-
+            Description shown for the chapter.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         managers:
           type: array
+          description: Users who manage the chapter.
           items:
             type: object
             properties:
               slug:
                 type: string
+                description: Short URL-safe identifier for the user.
               link:
                 type: string
                 format: uri
+                description: Canonical URL for the user resource.
               first_name:
                 type: string
+                description: User's first name.
               last_name:
                 type: string
+                description: User's last name.
         name:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: |-
+            Display name of the chapter.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         season:
           type: object
+          description: Season the chapter belongs to.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the season.
             link:
               type: string
               format: uri
+              description: Canonical URL for the season resource.
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
-                  format: utc-millisec
+              description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         slug:
           type: string
+          description: Short URL-safe identifier for the chapter.
         status:
           type: string
+          description: |-
+            Localized status label for the chapter, such as `Active` or `Inactive`, rendered according to the request's `X-Api-Language`.
+
+            This is the response form and differs from the value used when creating or updating a chapter, which is the `active` or `inactive` enum.
         updated:
           type: string
           format: date-time
+          description: Date and time when the chapter was last updated.
+      example:
+        created: '2024-12-12T09:41:21Z'
+        description:
+          en_GB: ''
+        managers:
+          - slug: MrKnBLed
+            link: https://api.au.cr4ce.com/user/MrKnBLed
+            first_name: John
+            last_name: Smith
+          - slug: EAwQLyWN
+            link: https://api.au.cr4ce.com/user/EAwQLyWN
+            first_name: Carol
+            last_name: Murphy
+        name:
+          en_GB: Glenlivet
+        season:
+          slug: wboyrBmo
+          link: https://api.au.cr4ce.com/season/wboyrBmo
+          name:
+            en_GB: '2026'
+        slug: WPaxbzgQ
+        status: Active
+        updated: '2026-04-13T13:45:50Z'
     ChapterList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
@@ -4639,6 +4708,55 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Chapter'
+      example:
+        current_page: 1
+        data:
+          - created: '2024-12-12T09:41:21Z'
+            description:
+              en_GB: ''
+            managers:
+              - slug: MrKnBLed
+                link: https://api.au.cr4ce.com/user/MrKnBLed
+                first_name: John
+                last_name: Smith
+              - slug: EAwQLyWN
+                link: https://api.au.cr4ce.com/user/EAwQLyWN
+                first_name: Carol
+                last_name: Murphy
+            name:
+              en_GB: Glenlivet
+            season:
+              slug: wboyrBmo
+              link: https://api.au.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: WPaxbzgQ
+            status: Active
+            updated: '2026-04-13T13:45:50Z'
+          - created: '2023-01-16T10:01:11Z'
+            description:
+              en_GB: ''
+            managers: []
+            name:
+              en_GB: Lecht
+            season:
+              slug: wboyrBmo
+              link: https://api.au.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: VbaERKdP
+            status: Active
+            updated: '2026-04-13T13:45:43Z'
+        first_page_url: https://api.au.cr4ce.com/chapter?per_page=10&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.au.cr4ce.com/chapter?per_page=10&page=1
+        next_page_url: ''
+        path: https://api.au.cr4ce.com/chapter
+        per_page: 10
+        prev_page_url: ''
+        to: 4
+        total: 4
     Contributor:
       type: object
       properties:
@@ -6844,9 +6962,11 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
             required:
               - season
               - status
+              - translated
             properties:
               season:
                 type: string
