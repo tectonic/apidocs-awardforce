@@ -7,6 +7,7 @@ get:
     - Category
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
       description: Category retrieved.
@@ -23,6 +24,18 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/Category.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves the category identified by the specified slug.
   x-mint:
     content: |-
@@ -35,6 +48,7 @@ put:
     - Category
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   requestBody:
     $ref: ../components/requestBodies/CategoryUpdate.yaml
   responses:
@@ -53,6 +67,20 @@ put:
         application/json:
           schema:
             $ref: ../components/schemas/Category.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Updates the category identified by the specified slug.
 delete:
   summary: Delete a category
@@ -71,4 +99,19 @@ delete:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Deletes the category identified by the specified slug.
+  x-mint:
+    content: |-
+      Any child categories are not deleted. They move up one level in the hierarchy to take the place of the deleted category.

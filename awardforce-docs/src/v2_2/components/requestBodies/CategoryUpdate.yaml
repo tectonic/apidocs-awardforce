@@ -2,13 +2,11 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       properties:
-        season:
-          type: string
-          description: Slug of the season.
         status:
           type: string
-          description: One of the following values.
+          description: Active or inactive state of the category.
           enum:
             - active
             - inactive
@@ -29,25 +27,41 @@ content:
             shortcode: *translatedField
         chapters:
           type: array
-          description: Array of chapter slugs.
+          description: |-
+            Array of chapter slugs.
+
+            Each chapter must belong to the category's season.
           items:
             type: string
         divisions:
           type: integer
+          minimum: 1
           description: Number of divisions.
         entrant_max_entries:
           type: integer
+          nullable: true
+          minimum: 1
           description: Maximum number of entries per entrant.
         fill_entry_name:
           type: boolean
           description: Specifies whether to prefill the entry name when the category is selected.
+        locked:
+          type: boolean
+          description: Specifies whether the category is locked.
         max_image_width:
           type: integer
           description: Maximum image width.
         parent:
           type: string
-          description: Slug of the parent category.
+          description: |-
+            Slug of the parent category.
+
+            The parent category must belong to the category's season, and cannot be the category itself or one of its descendants.
         pdf_packing_slip:
           type: boolean
-          description: Specifies whether to generate a PDF packing slip.
+          description: |-
+            Specifies whether to generate a PDF packing slip.
+
+            Required when `translated.packing_slip_instructions` is provided.
 description: Category update payload.
+required: true
