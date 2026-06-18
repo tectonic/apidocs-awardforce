@@ -1,19 +1,12 @@
 name: order
 in: query
 required: false
-description: |-
-  Sort by a supported chapter field.
-  * `parent` - Sort by parent slug.
-  * `season` - Sort by season slug.
+description: Sort by a supported chapter field.
 schema:
   type: string
   enum:
-    - chapter_count
-    - divisions
-    - entry_count
+    - created
     - name
-    - parent
     - season
-    - shortcode
     - status
     - updated

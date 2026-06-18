@@ -1,45 +1,99 @@
+title: Chapter
+description: |-
+  Grouping that categories can be made available in.
+
+  Includes its translated name and description, the season it belongs to, and the users who manage it. Chapters let you partition a program — for example by region or division — and delegate day-to-day management to chapter managers.
 type: object
 properties:
   created:
     type: string
     format: date-time
+    description: Date and time when the chapter was created.
+  description:
+    type: object
+    description: |-
+      Description shown for the chapter.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
   managers:
     type: array
+    description: Users who manage the chapter.
     items:
       type: object
       properties:
         slug:
           type: string
+          description: Short URL-safe identifier for the user.
         link:
           type: string
           format: uri
+          description: Canonical URL for the user resource.
         first_name:
           type: string
+          description: User's first name.
         last_name:
           type: string
+          description: User's last name.
   name:
     type: object
-    properties:
-      en_GB:
-        type: string
+    description: |-
+      Display name of the chapter.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
   season:
     type: object
+    description: Season the chapter belongs to.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the season.
       link:
         type: string
         format: uri
+        description: Canonical URL for the season resource.
       name:
         type: object
-        properties:
-          en_GB:
-            type: string
-            format: utc-millisec
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
   slug:
     type: string
+    description: Short URL-safe identifier for the chapter.
   status:
     type: string
+    description: |-
+      Localized status label for the chapter, such as `Active` or `Inactive`, rendered according to the request's `X-Api-Language`.
+
+      This is the response form and differs from the value used when creating or updating a chapter, which is the `active` or `inactive` enum.
   updated:
     type: string
     format: date-time
+    description: Date and time when the chapter was last updated.
+example:
+  created: '2024-12-12T09:41:21Z'
+  description:
+    en_GB: ''
+  managers:
+    - slug: MrKnBLed
+      link: https://api.au.cr4ce.com/user/MrKnBLed
+      first_name: John
+      last_name: Smith
+    - slug: EAwQLyWN
+      link: https://api.au.cr4ce.com/user/EAwQLyWN
+      first_name: Carol
+      last_name: Murphy
+  name:
+    en_GB: Glenlivet
+  season:
+    slug: wboyrBmo
+    link: https://api.au.cr4ce.com/season/wboyrBmo
+    name:
+      en_GB: '2026'
+  slug: WPaxbzgQ
+  status: Active
+  updated: '2026-04-13T13:45:50Z'

@@ -2,9 +2,11 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       required:
         - season
         - status
+        - translated
       properties:
         season:
           type: string
