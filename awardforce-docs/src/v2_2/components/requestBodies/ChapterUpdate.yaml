@@ -2,10 +2,8 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       properties:
-        season:
-          type: string
-          description: Slug of the season.
         status:
           type: string
           description: One of the following values.
@@ -32,3 +30,4 @@ content:
           items:
             type: string
 description: Chapter update payload.
+required: true
