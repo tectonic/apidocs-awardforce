@@ -864,6 +864,7 @@ paths:
         - Chapter
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '200':
           description: Chapter retrieved.
@@ -880,6 +881,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Chapter'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the chapter identified by the specified slug.
     put:
       summary: Update a chapter
@@ -888,6 +901,7 @@ paths:
         - Chapter
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       requestBody:
         $ref: '#/components/requestBodies/ChapterUpdate'
       responses:
@@ -906,6 +920,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Chapter'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the chapter identified by the specified slug.
     delete:
       summary: Delete a chapter
@@ -924,6 +952,18 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the chapter identified by the specified slug.
   /chapter/{chapter_slug}/upload:
     parameters:
@@ -7059,10 +7099,8 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
             properties:
-              season:
-                type: string
-                description: Slug of the season.
               status:
                 type: string
                 description: One of the following values.
@@ -7093,6 +7131,7 @@ components:
                 items:
                   type: string
       description: Chapter update payload.
+      required: true
     ContributorCreate:
       content:
         application/json:
