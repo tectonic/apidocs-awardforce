@@ -4220,7 +4220,7 @@ components:
           - slug: IjKlMnOp
             link: https://api.au.cr4ce.com/field/IjKlMnOp
             label:
-              en_GB: ''
+              en_GB: Type of attachment
             title:
               en_GB: Type of attachment
             value: Photo
@@ -4234,7 +4234,7 @@ components:
               en_GB: URL
             value: https://example.com/image.svg
             translated:
-              en_GB: ''
+              en_GB: https://example.com/image.svg
         created: '2025-04-27T01:00:00Z'
         file:
           token: AbCdEfGhIjKlMnOp
@@ -4274,7 +4274,7 @@ components:
                   en_GB: Headshot
                 value: GhIjKlMnOpQrStUv
                 translated:
-                  en_GB: ''
+                  en_GB: headshot.jpg
                 download: https://files.au.cr4ce.com/file/GhIjKlMnOpQrStUv/headshot.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
             created: '2025-05-12T14:00:00Z'
             file:
@@ -4480,7 +4480,7 @@ components:
         data:
           - created: '2024-05-23T13:37:43Z'
             description:
-              en_GB: ''
+              en_GB: Submit your documentary films exploring real-world subjects and stories.
             divisions: 1
             form:
               slug: GhIjKlMn
@@ -4497,7 +4497,7 @@ components:
               name:
                 en_GB: '2025'
             shortcode:
-              en_GB: ''
+              en_GB: '01'
             slug: AbCdEfGh
             status: active
             updated: '2025-05-07T16:18:07Z'
@@ -4505,7 +4505,7 @@ components:
             entry_count: 3
           - created: '2025-02-10T10:00:00Z'
             description:
-              en_GB: ''
+              en_GB: Submit short films under 40 minutes in length.
             divisions: 1
             form:
               slug: GhIjKlMn
@@ -4633,7 +4633,7 @@ components:
       example:
         created: '2025-01-15T09:00:00Z'
         description:
-          en_GB: ''
+          en_GB: Submit your documentary films exploring real-world subjects and stories.
         divisions: 1
         form:
           slug: GhIjKlMn
@@ -4665,7 +4665,7 @@ components:
               en_GB: Film
         entrant_max_entries: null
         entry_name_label:
-          en_GB: ''
+          en_GB: Entry title
         fill_entry_name: false
         image_heading:
           en_GB: Category image
@@ -4676,7 +4676,7 @@ components:
             download: https://files.au.cr4ce.com/file/H6eSZxAbZZPr8z8I/example.png?Expires=1781657570&Signature=REDACTED&Key-Pair-Id=REDACTED
         max_image_width: 300
         packing_slip_instructions:
-          en_GB: ''
+          en_GB: Attach this slip to each physical submission.
         pdf_packing_slip: false
     Chapter:
       title: Chapter
@@ -4757,7 +4757,7 @@ components:
       example:
         created: '2024-12-12T09:41:21Z'
         description:
-          en_GB: ''
+          en_GB: Chapter for the Glenlivet region.
         managers:
           - slug: MrKnBLed
             link: https://api.au.cr4ce.com/user/MrKnBLed
@@ -4791,7 +4791,7 @@ components:
         data:
           - created: '2024-12-12T09:41:21Z'
             description:
-              en_GB: ''
+              en_GB: Chapter for the Glenlivet region.
             managers:
               - slug: MrKnBLed
                 link: https://api.au.cr4ce.com/user/MrKnBLed
@@ -4813,7 +4813,7 @@ components:
             updated: '2026-04-13T13:45:50Z'
           - created: '2023-01-16T10:01:11Z'
             description:
-              en_GB: ''
+              en_GB: Chapter for the Lecht region.
             managers: []
             name:
               en_GB: Lecht
