@@ -22,7 +22,7 @@ example:
             en_GB: Headshot
           value: GhIjKlMnOpQrStUv
           translated:
-            en_GB: ''
+            en_GB: headshot.jpg
           download: https://files.au.cr4ce.com/file/GhIjKlMnOpQrStUv/headshot.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
       created: '2025-05-12T14:00:00Z'
       file:

@@ -92,7 +92,7 @@ allOf:
 example:
   created: '2025-01-15T09:00:00Z'
   description:
-    en_GB: ''
+    en_GB: Submit your documentary films exploring real-world subjects and stories.
   divisions: 1
   form:
     slug: GhIjKlMn
@@ -124,7 +124,7 @@ example:
         en_GB: Film
   applicant_max_applications: null
   application_name_label:
-    en_GB: ''
+    en_GB: Application title
   fill_application_name: false
   image_heading:
     en_GB: Category image
@@ -136,5 +136,5 @@ example:
       download: https://files.au.cr4ce.com/file/H6eSZxAbZZPr8z8I/example.png?Expires=1781657570&Signature=REDACTED&Key-Pair-Id=REDACTED
   max_image_width: 300
   packing_slip_instructions:
-    en_GB: ''
+    en_GB: Attach this slip to each physical submission.
   pdf_packing_slip: false

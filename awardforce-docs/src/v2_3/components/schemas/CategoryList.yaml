@@ -20,7 +20,7 @@ example:
   data:
     - created: '2024-05-23T13:37:43Z'
       description:
-        en_GB: ''
+        en_GB: Submit your documentary films exploring real-world subjects and stories.
       divisions: 1
       form:
         slug: GhIjKlMn
@@ -37,7 +37,7 @@ example:
         name:
           en_GB: '2025'
       shortcode:
-        en_GB: ''
+        en_GB: '01'
       slug: AbCdEfGh
       status: active
       updated: '2025-05-07T16:18:07Z'
@@ -45,7 +45,7 @@ example:
       entry_count: 3
     - created: '2025-02-10T10:00:00Z'
       description:
-        en_GB: ''
+        en_GB: Submit short films under 40 minutes in length.
       divisions: 1
       form:
         slug: GhIjKlMn
