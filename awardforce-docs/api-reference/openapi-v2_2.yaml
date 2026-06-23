@@ -993,7 +993,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Uploads a file for the chapter identified by the specified slug.
+      requestBody:
+        $ref: '#/components/requestBodies/ChapterUpload'
+      x-mint:
+        content: |-
+          Use this operation to upload a chapter image.
+
+          <Warning>
+          The uploaded file is validated and stored before the response is returned; the image itself is processed shortly after. A `GET` on the returned `Location` immediately after the `201` may briefly return a response with a `null` body until processing is complete.
+          </Warning>
   /contributor:
     get:
       summary: Retrieve contributors
@@ -7136,6 +7159,36 @@ components:
                 items:
                   type: string
       description: Chapter update payload.
+      required: true
+    ChapterUpload:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - filename
+              - data
+            properties:
+              filename:
+                type: string
+                description: Original filename of the uploaded file, including the extension.
+              data:
+                type: string
+                format: byte
+                description: |-
+                  Base64-encoded contents of the image file.
+
+                  The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
+
+                  Only image files are accepted: `gif`, `jpeg`, `jpg`, `png`, `tif`, `tiff`, `ico`, `webp`, and `avif`. The file size must not exceed the account's maximum file size.
+            example:
+              filename: logo.png
+              data: aGVsbG8gd29ybGQ=
+      description: |-
+        Image payload for the chapter upload.
+
+        `filename` and `data` are required.
       required: true
     ContributorCreate:
       content:
