@@ -4,6 +4,13 @@ get:
   tags:
     - Contributor
   parameters:
+    - $ref: ../components/parameters/entryFilter.yaml
+    - $ref: ../components/parameters/tabFilter.yaml
+    - $ref: ../components/parameters/entryStatusFilter.yaml
+    - $ref: ../components/parameters/entryPaymentStatusFilter.yaml
+    - $ref: ../components/parameters/entryModerationFilter.yaml
+    - $ref: ../components/parameters/entryReviewStatusFilter.yaml
+    - $ref: ../components/parameters/tagFilter.yaml
     - $ref: ../components/parameters/categoryFilter.yaml
     - $ref: ../components/parameters/chapterFilter.yaml
     - $ref: ../components/parameters/seasonFilter.yaml

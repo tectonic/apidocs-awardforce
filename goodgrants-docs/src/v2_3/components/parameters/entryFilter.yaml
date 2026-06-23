@@ -1,4 +1,4 @@
-name: entry
+name: application
 in: query
 required: false
 description: Filter by application slug.

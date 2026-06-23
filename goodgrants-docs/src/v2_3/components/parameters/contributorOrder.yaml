@@ -1,6 +1,11 @@
 name: order
 in: query
 required: false
-description: Sort by a supported contributor field.
+description: Sort by a supported contributor field. Custom contributor field slugs are also accepted.
 schema:
   type: string
+  enum:
+    - application
+    - tab
+    - created
+    - updated
