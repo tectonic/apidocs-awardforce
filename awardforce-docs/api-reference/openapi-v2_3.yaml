@@ -4926,55 +4926,109 @@ components:
       properties:
         entry:
           type: object
+          description: Entry the contributor is attached to.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the entry.
             link:
               type: string
               format: uri
+              description: Canonical URL for the entry resource.
             title:
               type: string
+              description: Title of the entry.
         created:
           type: string
           format: date-time
+          description: Date and time when the contributor was created.
         fields:
           type: array
+          description: Field values captured for the contributor, one entry per field on the contributor tab.
           items:
             type: object
             properties:
               slug:
                 type: string
+                description: Short URL-safe identifier for the field.
               link:
                 type: string
                 format: uri
+                description: Canonical URL for the field resource.
               label:
                 type: object
-                properties:
-                  en_GB:
-                    type: string
+                description: |-
+                  Label of the field, as an HTML fragment.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+              title:
+                type: object
+                description: |-
+                  Plain-text title of the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
               value:
-                type: string
+                description: Value submitted for the field. The type depends on the field type — for example, a string for text fields or a boolean for checkbox fields.
+                oneOf:
+                  - type: string
+                  - type: boolean
+              translated:
+                type: object
+                description: |-
+                  Translated value submitted for the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
         season:
           type: object
+          description: Season the contributor belongs to.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the season.
             link:
               type: string
               format: uri
+              description: Canonical URL for the season resource.
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
+              description: |-
+                Display name of the season.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         slug:
           type: string
+          description: Short URL-safe identifier for the contributor.
         tab:
-          type: array
-          items: {}
+          type: object
+          description: Contributor tab the contributor belongs to.
+          properties:
+            slug:
+              type: string
+              description: Short URL-safe identifier for the tab.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL for the tab resource.
+            name:
+              type: object
+              description: |-
+                Display name of the tab.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         updated:
           type: string
           format: date-time
+          description: Date and time when the contributor was last updated.
       example:
         entry:
           slug: IjKlMnOp
@@ -4983,17 +5037,34 @@ components:
         created: '2025-01-15T09:00:00Z'
         fields:
           - slug: StUvWxYz
-            link: https://api.au.cr4ce.com/file/H6eSZxAbZZPr8z8I
+            link: https://api.au.cr4ce.com/field/StUvWxYz
             label:
-              en_GB: Headshot
-            value: headshot.jpg
+              en_GB: Team member name
+            title:
+              en_GB: Team member name
+            value: Jane Seymour
+            translated:
+              en_GB: ''
+          - slug: KlMnOpQr
+            link: https://api.au.cr4ce.com/field/KlMnOpQr
+            label:
+              en_GB: <p>Confirmed</p>
+            title:
+              en_GB: Confirmed
+            value: true
+            translated:
+              en_GB: ''
         season:
           slug: QrStUvWx
           link: https://api.au.cr4ce.com/season/QrStUvWx
           name:
             en_GB: '2025'
         slug: AbCdEfGh
-        tab: []
+        tab:
+          slug: MnOpQrSt
+          link: https://api.au.cr4ce.com/tab/MnOpQrSt
+          name:
+            en_GB: Contributors
         updated: '2025-06-20T14:30:00Z'
     ContributorList:
       allOf:
@@ -5014,17 +5085,25 @@ components:
             created: '2025-01-15T09:00:00Z'
             fields:
               - slug: StUvWxYz
-                link: https://api.au.cr4ce.com/file/H6eSZxAbZZPr8z8I
+                link: https://api.au.cr4ce.com/field/StUvWxYz
                 label:
-                  en_GB: Headshot
-                value: headshot.jpg
+                  en_GB: Team member name
+                title:
+                  en_GB: Team member name
+                value: Jane Seymour
+                translated:
+                  en_GB: ''
             season:
               slug: QrStUvWx
               link: https://api.au.cr4ce.com/season/QrStUvWx
               name:
                 en_GB: '2025'
             slug: AbCdEfGh
-            tab: []
+            tab:
+              slug: MnOpQrSt
+              link: https://api.au.cr4ce.com/tab/MnOpQrSt
+              name:
+                en_GB: Contributors
             updated: '2025-06-20T14:30:00Z'
           - entry:
               slug: MnOpQrSt
@@ -5033,17 +5112,25 @@ components:
             created: '2025-02-10T10:00:00Z'
             fields:
               - slug: UvWxYzAb
-                link: https://api.au.cr4ce.com/file/K7fTaYbCaaQs9a9J
+                link: https://api.au.cr4ce.com/field/UvWxYzAb
                 label:
-                  en_GB: Biography
-                value: biography.pdf
+                  en_GB: <p>Confirmed</p>
+                title:
+                  en_GB: Confirmed
+                value: true
+                translated:
+                  en_GB: ''
             season:
               slug: QrStUvWx
               link: https://api.au.cr4ce.com/season/QrStUvWx
               name:
                 en_GB: '2025'
             slug: WxYzAbCd
-            tab: []
+            tab:
+              slug: MnOpQrSt
+              link: https://api.au.cr4ce.com/tab/MnOpQrSt
+              name:
+                en_GB: Contributors
             updated: '2025-02-10T10:05:00Z'
         first_page_url: https://api.au.cr4ce.com/contributor?per_page=10&page=1
         from: 1
