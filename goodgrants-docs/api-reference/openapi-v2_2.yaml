@@ -1024,6 +1024,13 @@ paths:
       tags:
         - Contributor
       parameters:
+        - $ref: '#/components/parameters/entryFilter'
+        - $ref: '#/components/parameters/tabFilter'
+        - $ref: '#/components/parameters/entryStatusFilter'
+        - $ref: '#/components/parameters/entryPaymentStatusFilter'
+        - $ref: '#/components/parameters/entryModerationFilter'
+        - $ref: '#/components/parameters/entryReviewStatusFilter'
+        - $ref: '#/components/parameters/tagFilter'
         - $ref: '#/components/parameters/categoryFilter'
         - $ref: '#/components/parameters/chapterFilter'
         - $ref: '#/components/parameters/seasonFilter'
@@ -2704,7 +2711,7 @@ components:
         type: string
         pattern: ^[A-Za-z]{8}$
     entryFilter:
-      name: entry
+      name: application
       in: query
       required: false
       description: Filter by application slug.
@@ -2827,13 +2834,58 @@ components:
       schema:
         type: string
         pattern: ^[A-Za-z]{8}$
+    entryStatusFilter:
+      name: status
+      in: query
+      required: false
+      description: Filter by application status.
+      schema:
+        type: string
+        enum:
+          - submitted
+          - in_progress
+          - resubmission_required
+          - resubmitted
+    entryPaymentStatusFilter:
+      name: payment_status
+      in: query
+      required: false
+      description: Filter by payment status.
+      schema:
+        type: string
+        enum:
+          - paid
+          - awaiting_payment
+    entryModerationFilter:
+      name: moderation
+      in: query
+      required: false
+      description: Filter by moderation status.
+      schema:
+        type: string
+        enum:
+          - approved
+          - undecided
+          - rejected
+    entryReviewStatusFilter:
+      name: review_status
+      in: query
+      required: false
+      description: Filter by review status.
+      schema:
+        type: string
     contributorOrder:
       name: order
       in: query
       required: false
-      description: Sort by a supported contributor field.
+      description: Sort by a supported contributor field. Custom contributor field slugs are also accepted.
       schema:
         type: string
+        enum:
+          - application
+          - tab
+          - created
+          - updated
     contributorSlug:
       name: contributor_slug
       in: path
@@ -2849,27 +2901,6 @@ components:
       description: Filter by applicant slug.
       schema:
         type: string
-    entryModerationFilter:
-      name: moderation
-      in: query
-      required: false
-      description: Filter by moderation status.
-      schema:
-        type: string
-        enum:
-          - approved
-          - undecided
-          - rejected
-    entryPaymentStatusFilter:
-      name: payment_status
-      in: query
-      required: false
-      description: Filter by payment status.
-      schema:
-        type: string
-        enum:
-          - paid
-          - awaiting_payment
     entryPriceFilter:
       name: price
       in: query
@@ -2877,25 +2908,6 @@ components:
       description: Filter by price slug.
       schema:
         type: string
-    entryReviewStatusFilter:
-      name: review_status
-      in: query
-      required: false
-      description: Filter by review status.
-      schema:
-        type: string
-    entryStatusFilter:
-      name: status
-      in: query
-      required: false
-      description: Filter by application status.
-      schema:
-        type: string
-        enum:
-          - submitted
-          - in_progress
-          - resubmission_required
-          - resubmitted
     entryTitleFilter:
       name: title
       in: query
