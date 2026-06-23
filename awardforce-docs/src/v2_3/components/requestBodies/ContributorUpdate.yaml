@@ -2,6 +2,7 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       properties:
         fields:
           type: object
@@ -9,3 +10,4 @@ content:
           additionalProperties:
             type: string
 description: Contributor update payload.
+required: true
