@@ -44,3 +44,14 @@ services:
     working_dir: /spec
     volumes:
       - .:/spec
+
+  schemathesis:
+    image: ghcr.io/schemathesis/schemathesis:stable
+    user: "${HOST_UID}:${HOST_GID}"
+    working_dir: /spec
+    environment:
+      - HOME=/spec
+      - AWARDFORCE_API_URL=${AWARDFORCE_API_URL:-https://api.cr4ce.com}
+      - AWARDFORCE_API_KEY=${AWARDFORCE_API_KEY:-}
+    volumes:
+      - .:/spec

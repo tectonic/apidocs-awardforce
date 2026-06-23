@@ -1,0 +1,16 @@
+# Schemathesis configuration.
+# Run via the Dockerised helper: `./docs schemathesis`.
+
+# Target API, supplied via the environment (defaults to the production host in
+# docker-compose.yml). Override per run with `./docs schemathesis --url https://...`
+# or by setting AWARDFORCE_API_URL in .env to test a non-production host.
+base-url = "${AWARDFORCE_API_URL}"
+
+# Use all available CPUs (the image ships free-threaded Python).
+workers = "auto"
+
+# OpenAPI-aware auth: Schemathesis reads the parameter name/location from the
+# `ApiKeyAuth` security scheme and injects the value as the `x-api-key` header.
+# The key is supplied through the environment, never committed.
+[auth.openapi.ApiKeyAuth]
+api_key = "${AWARDFORCE_API_KEY}"

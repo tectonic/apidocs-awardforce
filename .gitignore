@@ -5,6 +5,12 @@ node_modules/
 .DS_Store
 template
 
+# Schemathesis run artifacts and caches
+schemathesis-report/
+schema-coverage.html
+.hypothesis/
+allure-results/
+
 # # Generated API specs
 # awardforce-docs/api-reference/
 # goodgrants-docs/api-reference/

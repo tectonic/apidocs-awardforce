@@ -176,3 +176,41 @@ The bundled files under `api-reference/openapi-*.yaml` are generated from `src/`
 If those bundles do not exist yet, run `docs openapi` first.
 
 When you change OpenAPI source files under `src/`, regenerate the matching bundles with `docs openapi` and commit both the source changes and the updated `api-reference/` outputs together.
+
+### API conformance testing (Schemathesis)
+
+[Schemathesis](https://schemathesis.readthedocs.io) tests a live API against its
+OpenAPI spec. It runs from the official Docker image, so no local Python is
+needed. Currently only Award Force `v2.3`
+(`awardforce-docs/api-reference/openapi-v2_3.yaml`) is wired up.
+
+Authentication is configured in `schemathesis.toml` via the spec's `ApiKeyAuth`
+security scheme. Provide the key through `.env` (it is injected as the
+`x-api-key` header and never passed on the command line):
+
+```bash
+echo 'AWARDFORCE_API_KEY=your-api-key' >> .env
+```
+
+Run the test suite:
+
+```bash
+docs schemathesis
+docker compose run --rm schemathesis run awardforce-docs/api-reference/openapi-v2_3.yaml
+```
+
+Defaults (target URL, parallel workers, auth) come from `schemathesis.toml`.
+The target host is `AWARDFORCE_API_URL` (defaults to `https://api.cr4ce.com`);
+set it in `.env` to point at a staging environment. Extra arguments are
+forwarded to `schemathesis run`, for example to override the host per run or
+write a report:
+
+```bash
+docs schemathesis --url https://staging.example.com
+docs schemathesis --report junit
+```
+
+> **Warning:** Schemathesis generates and sends many requests. Point it at a
+> staging or test environment with `--url`; do not fuzz production unless you
+> intend to. Generated reports and caches under `schemathesis-report/`,
+> `.hypothesis/`, and `allure-results/` are git-ignored.

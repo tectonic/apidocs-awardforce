@@ -57,6 +57,7 @@ EOF
   ${SCRIPT_NAME} openapi [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} openapi-lint [awardforce|af|goodgrants|gg|all]
   ${SCRIPT_NAME} openapi-clean [awardforce|af|goodgrants|gg|all]
+  ${SCRIPT_NAME} schemathesis [schemathesis run options]
   ${SCRIPT_NAME} check
   ${SCRIPT_NAME} build [docker compose build options]
   ${SCRIPT_NAME} down [docker compose down options]
@@ -77,6 +78,8 @@ Examples:
   ${SCRIPT_NAME} openapi-lint gg
   ${SCRIPT_NAME} openapi-clean
   ${SCRIPT_NAME} openapi-clean gg
+  ${SCRIPT_NAME} schemathesis
+  ${SCRIPT_NAME} schemathesis --url https://staging.example.com
   ${SCRIPT_NAME} check
   ${SCRIPT_NAME} npm install
 EOF
@@ -137,6 +140,18 @@ run_redocly() {
   docker_compose run --rm \
     --workdir "/spec/$vertical_path" \
     --entrypoint sh redocly -lc "$script" sh "$@" </dev/null
+}
+
+# Run Schemathesis against the Award Force v2.3 bundled OpenAPI spec. Auth and
+# defaults come from schemathesis.toml; extra args are forwarded to the run.
+run_schemathesis() {
+  local spec_path="awardforce-docs/api-reference/openapi-v2_3.yaml"
+
+  if [[ ! -f "$ROOT_DIR/$spec_path" ]]; then
+    die "Missing bundled OpenAPI spec: ${spec_path}. Run '${SCRIPT_NAME} openapi af' first."
+  fi
+
+  docker_compose run --rm schemathesis run "$spec_path" "$@"
 }
 
 # Require a vertical argument for commands that target one docs site.
@@ -349,6 +364,9 @@ case "$command" in
     shift || true
     require_no_extra_args "openapi-clean [awardforce|af|goodgrants|gg|all]" "$#"
     run_for_target "$target" "openapi-clean [awardforce|af|goodgrants|gg|all]" clear_bundled_openapi_vertical
+    ;;
+  schemathesis)
+    run_schemathesis "$@"
     ;;
   check)
     require_no_extra_args "check" "$#"
