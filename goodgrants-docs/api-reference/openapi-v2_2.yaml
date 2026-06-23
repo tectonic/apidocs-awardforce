@@ -4977,9 +4977,6 @@ components:
                   type: string
               value:
                 description: Value submitted for the field. The type depends on the field type — for example, a string for text fields or a boolean for checkbox fields.
-                oneOf:
-                  - type: string
-                  - type: boolean
               translated:
                 type: object
                 description: |-
@@ -7417,20 +7414,22 @@ components:
             type: object
             additionalProperties: false
             required:
-              - entry
+              - application
               - tab
             properties:
-              entry:
+              application:
                 type: string
-                description: Slug of the entry.
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the application.
               tab:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: Slug of the contributor tab.
               fields:
                 type: object
-                description: Object of contributor field values keyed by field slug.
+                description: Contributor field values keyed by field slug.
                 additionalProperties:
-                  type: string
+                  description: Value to submit for the field. The type depends on the field type — for example, a string for text fields or a boolean for checkbox fields.
       description: Contributor creation payload.
       required: true
     ContributorUpdate:
@@ -7442,9 +7441,9 @@ components:
             properties:
               fields:
                 type: object
-                description: Object of contributor field values keyed by field slug.
+                description: Contributor field values keyed by field slug.
                 additionalProperties:
-                  type: string
+                  description: Value to submit for the field. The type depends on the field type — for example, a string for text fields or a boolean for checkbox fields.
       description: Contributor update payload.
       required: true
     EntryCreate:
