@@ -25,4 +25,27 @@ post:
         application/json:
           schema:
             $ref: ../components/schemas/UploadResult.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Uploads a file for the chapter identified by the specified slug.
+  requestBody:
+    $ref: ../components/requestBodies/ChapterUpload.yaml
+  x-mint:
+    content: |-
+      Use this operation to upload a chapter image.
+
+      <Warning>
+      The uploaded file is validated and stored before the response is returned; the image itself is processed shortly after. A `GET` on the returned `Location` immediately after the `201` may briefly return a response with a `null` body until processing is complete.
+      </Warning>
