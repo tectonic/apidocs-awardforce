@@ -47,3 +47,23 @@ properties:
   updated:
     type: string
     format: date-time
+example:
+  entry:
+    slug: IjKlMnOp
+    link: https://api.au.cr4ce.com/entry/IjKlMnOp
+    title: Documentary submission
+  created: '2025-01-15T09:00:00Z'
+  fields:
+    - slug: StUvWxYz
+      link: https://api.au.cr4ce.com/file/H6eSZxAbZZPr8z8I
+      label:
+        en_GB: Headshot
+      value: headshot.jpg
+  season:
+    slug: QrStUvWx
+    link: https://api.au.cr4ce.com/season/QrStUvWx
+    name:
+      en_GB: '2025'
+  slug: AbCdEfGh
+  tab: []
+  updated: '2025-06-20T14:30:00Z'

@@ -2,6 +2,7 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       required:
         - entry
         - tab
