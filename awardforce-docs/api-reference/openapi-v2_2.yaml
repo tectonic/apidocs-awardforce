@@ -8062,21 +8062,26 @@ components:
             properties:
               category:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: Slug of the category.
               chapter:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: Slug of the chapter. If omitted, defaults to the first chapter of the season.
               entrant:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: Slug of the entrant.
               season:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: Slug of the season.
               title:
                 type: string
                 description: Title of the entry.
               form:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: Slug of the form.
               status:
                 type: string
@@ -8094,13 +8099,14 @@ components:
                   - rejected
               entry_fields:
                 type: object
-                description: Entry field values keyed by field slug. The value type depends on the field type.
+                description: Entry field values keyed by field slug. Each key must be a valid 8-letter field slug. The value type depends on the field type.
                 additionalProperties: {}
               custom_deadline:
                 type: string
                 description: Custom deadline in `yyyy-mm-dd hh:mm` format.
               grant_status:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: Slug of the grant status. Available when the grants feature is enabled.
               grant_end_date:
                 type: string
