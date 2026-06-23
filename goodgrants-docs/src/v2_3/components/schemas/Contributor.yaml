@@ -50,9 +50,6 @@ properties:
         value:
           description: |-
             Value submitted for the field. The type depends on the field type — for example, a string for text fields or a boolean for checkbox fields.
-          oneOf:
-            - type: string
-            - type: boolean
         translated:
           type: object
           description: |-
