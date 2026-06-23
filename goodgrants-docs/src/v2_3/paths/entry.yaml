@@ -41,6 +41,16 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/EntryList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves entries.
 post:
   summary: Create an entry
@@ -49,6 +59,7 @@ post:
     - Application
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '201':
       description: Entry created.
@@ -67,6 +78,18 @@ post:
         application/json:
           schema:
             $ref: ../components/schemas/EntryCreateResult.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   requestBody:
     $ref: ../components/requestBodies/EntryCreate.yaml
   description: Creates an entry.

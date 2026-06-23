@@ -3,20 +3,19 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       required:
         - category
         - entrant
         - season
         - title
       properties:
-        brand:
-          type: string
         category:
           type: string
           description: Slug of the category.
         chapter:
           type: string
-          description: Slug of the chapter.
+          description: Slug of the chapter. If omitted, defaults to the first chapter of the season.
         entrant:
           type: string
           description: Slug of the entrant.
@@ -45,10 +44,16 @@ content:
             - rejected
         entry_fields:
           type: object
-          description: Object of entry field values keyed by field slug.
-          additionalProperties:
-            type: string
+          description: Entry field values keyed by field slug. The value type depends on the field type.
+          additionalProperties: {}
         custom_deadline:
           type: string
           description: Custom deadline in `yyyy-mm-dd hh:mm` format.
+        grant_status:
+          type: string
+          description: Slug of the grant status. Available when the grants feature is enabled.
+        grant_end_date:
+          type: string
+          format: date
+          description: Date when the grant ends. Available when the grants feature is enabled.
 required: true
