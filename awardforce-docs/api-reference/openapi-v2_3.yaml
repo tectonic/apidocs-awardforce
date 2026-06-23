@@ -1049,6 +1049,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContributorList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves contributors.
     post:
       summary: Create a contributor
@@ -1057,6 +1067,7 @@ paths:
         - Contributor
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       requestBody:
         $ref: '#/components/requestBodies/ContributorCreate'
       responses:
@@ -1077,6 +1088,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Contributor'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Creates a contributor.
   /contributor/{contributor_slug}:
     parameters:
@@ -4912,6 +4935,26 @@ components:
         updated:
           type: string
           format: date-time
+      example:
+        entry:
+          slug: IjKlMnOp
+          link: https://api.au.cr4ce.com/entry/IjKlMnOp
+          title: Documentary submission
+        created: '2025-01-15T09:00:00Z'
+        fields:
+          - slug: StUvWxYz
+            link: https://api.au.cr4ce.com/file/H6eSZxAbZZPr8z8I
+            label:
+              en_GB: Headshot
+            value: headshot.jpg
+        season:
+          slug: QrStUvWx
+          link: https://api.au.cr4ce.com/season/QrStUvWx
+          name:
+            en_GB: '2025'
+        slug: AbCdEfGh
+        tab: []
+        updated: '2025-06-20T14:30:00Z'
     ContributorList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
@@ -4921,6 +4964,57 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Contributor'
+      example:
+        current_page: 1
+        data:
+          - entry:
+              slug: IjKlMnOp
+              link: https://api.au.cr4ce.com/entry/IjKlMnOp
+              title: Documentary submission
+            created: '2025-01-15T09:00:00Z'
+            fields:
+              - slug: StUvWxYz
+                link: https://api.au.cr4ce.com/file/H6eSZxAbZZPr8z8I
+                label:
+                  en_GB: Headshot
+                value: headshot.jpg
+            season:
+              slug: QrStUvWx
+              link: https://api.au.cr4ce.com/season/QrStUvWx
+              name:
+                en_GB: '2025'
+            slug: AbCdEfGh
+            tab: []
+            updated: '2025-06-20T14:30:00Z'
+          - entry:
+              slug: MnOpQrSt
+              link: https://api.au.cr4ce.com/entry/MnOpQrSt
+              title: Short film submission
+            created: '2025-02-10T10:00:00Z'
+            fields:
+              - slug: UvWxYzAb
+                link: https://api.au.cr4ce.com/file/K7fTaYbCaaQs9a9J
+                label:
+                  en_GB: Biography
+                value: biography.pdf
+            season:
+              slug: QrStUvWx
+              link: https://api.au.cr4ce.com/season/QrStUvWx
+              name:
+                en_GB: '2025'
+            slug: WxYzAbCd
+            tab: []
+            updated: '2025-02-10T10:05:00Z'
+        first_page_url: https://api.au.cr4ce.com/contributor?per_page=10&page=1
+        from: 1
+        last_page: 2
+        last_page_url: https://api.au.cr4ce.com/contributor?per_page=10&page=2
+        next_page_url: https://api.au.cr4ce.com/contributor?per_page=10&page=2
+        path: https://api.au.cr4ce.com/contributor
+        per_page: 10
+        prev_page_url: ''
+        to: 10
+        total: 14
     EntryList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
@@ -7190,6 +7284,7 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
             required:
               - entry
               - tab
