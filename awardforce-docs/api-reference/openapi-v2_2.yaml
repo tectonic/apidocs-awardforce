@@ -1111,6 +1111,7 @@ paths:
         - Contributor
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '200':
           description: Contributor retrieved.
@@ -1127,6 +1128,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Contributor'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the contributor identified by the specified slug.
     put:
       summary: Update a contributor
@@ -1135,6 +1148,7 @@ paths:
         - Contributor
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       requestBody:
         $ref: '#/components/requestBodies/ContributorUpdate'
       responses:
@@ -1153,6 +1167,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Contributor'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the contributor identified by the specified slug.
     delete:
       summary: Delete a contributor
@@ -1171,6 +1199,18 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the contributor identified by the specified slug.
   /entry:
     get:
@@ -7312,6 +7352,7 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
             properties:
               fields:
                 type: object
@@ -7319,6 +7360,7 @@ components:
                 additionalProperties:
                   type: string
       description: Contributor update payload.
+      required: true
     EntryCreate:
       description: Entry creation payload.
       content:
