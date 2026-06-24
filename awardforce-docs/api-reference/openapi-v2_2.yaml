@@ -1499,9 +1499,11 @@ paths:
         - $ref: '#/components/parameters/entryTagsToAdd'
         - $ref: '#/components/parameters/Accept'
       responses:
-        '200':
+        '201':
           description: Entry tagged.
           headers:
+            Location:
+              $ref: '#/components/headers/Location'
             ETag:
               $ref: '#/components/headers/ETag'
             X-RateLimit-Limit:
@@ -1513,8 +1515,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EntryTagResult'
-      description: Adds tags to the entry identified by the specified slug or title.
+                $ref: '#/components/schemas/Entry'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Adds tags to the entry identified by the specified slug.
     delete:
       summary: Untag an entry
       operationId: DeleteEntryTagV22
@@ -1524,9 +1538,13 @@ paths:
         - $ref: '#/components/parameters/entryTagsToRemove'
         - $ref: '#/components/parameters/Accept'
       responses:
-        '204':
+        '201':
           description: Entry untagged.
           headers:
+            Location:
+              $ref: '#/components/headers/Location'
+            ETag:
+              $ref: '#/components/headers/ETag'
             X-RateLimit-Limit:
               $ref: '#/components/headers/X-RateLimit-Limit'
             X-RateLimit-Remaining:
@@ -1536,8 +1554,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EntryTagResult'
-      description: Removes tags from the entry identified by the specified slug or title.
+                $ref: '#/components/schemas/Entry'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Removes tags from the entry identified by the specified slug.
+      x-mint:
+        content: |-
+          <Note>
+          Removing a tag that is not currently applied to the entry has no effect and still returns `201` with the entry's current tags. Inspect `tags` in the response to confirm the result.
+          </Note>
   /entry/{entry_slug}/update-title:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
@@ -3062,14 +3097,14 @@ components:
       name: tags
       in: path
       required: true
-      description: Comma-separated tags to add to the entry.
+      description: Comma-separated list of tags to add to the entry. Surrounding whitespace is trimmed from each tag and empty values are ignored. A tag cannot contain a comma or a forward slash.
       schema:
         type: string
     entryTagsToRemove:
       name: tags
       in: path
       required: true
-      description: Comma-separated tags to remove from the entry.
+      description: Comma-separated list of tags to remove from the entry. Surrounding whitespace is trimmed from each tag and empty values are ignored. Tags that are not currently applied to the entry are ignored.
       schema:
         type: string
     fieldConditionalFilter:
@@ -5909,269 +5944,6 @@ components:
         title: Documentary series
         updated: '2026-06-18T07:25:20Z'
         user_comments: 'Jordan Lee (2025-02-19T14:22:43+00:00): strong submission'
-    EntryTagResult:
-      type: object
-      description: Entry with its updated tags, including the entrant, form field responses, attachments, and status.
-      properties:
-        attachments:
-          type: array
-          description: Files attached to the entry.
-          items:
-            type: object
-            properties:
-              token:
-                type: string
-                description: URL-safe identifier of the attachment.
-              link:
-                type: string
-                format: uri
-                description: URL of the attachment resource.
-              name:
-                type: string
-                description: Original name of the uploaded file.
-              download:
-                type: string
-                format: uri
-                description: Temporary download URL for the file.
-              attachment_fields:
-                type: array
-                description: Field responses captured against the attachment.
-                items:
-                  type: object
-                  properties:
-                    slug:
-                      type: string
-                      description: URL-safe identifier of the field.
-                    link:
-                      type: string
-                      format: uri
-                      description: URL of the field resource.
-                    label:
-                      type: object
-                      description: |-
-                        Label of the field, as an HTML fragment.
-
-                        Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-                      additionalProperties:
-                        type: string
-                    value:
-                      type: string
-                      description: Value submitted for the field.
-                    translated:
-                      type: object
-                      description: |-
-                        Translated value submitted for the field.
-
-                        Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-                      additionalProperties:
-                        type: string
-        category:
-          type: object
-          description: Category the entry is assigned to.
-          properties:
-            slug:
-              type: string
-              description: URL-safe identifier of the category.
-            link:
-              type: string
-              format: uri
-              description: URL of the category resource.
-            name:
-              type: object
-              description: |-
-                Name of the category.
-
-                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-              additionalProperties:
-                type: string
-        chapter:
-          type: object
-          description: Chapter the entry is assigned to.
-          properties:
-            slug:
-              type: string
-              description: URL-safe identifier of the chapter.
-            link:
-              type: string
-              format: uri
-              description: URL of the chapter resource.
-            name:
-              type: object
-              description: |-
-                Name of the chapter.
-
-                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-              additionalProperties:
-                type: string
-        comments:
-          type: string
-          description: Manager comments recorded on the entry, joined into a single string.
-        contributor_count:
-          type: integer
-          description: Number of contributors linked to the entry.
-        contributors:
-          type: array
-          description: Contributors linked to the entry.
-          items: {}
-        created:
-          type: string
-          format: date-time
-          description: Date and time when the entry was created.
-        division:
-          type: integer
-          nullable: true
-          description: Division number assigned to the entry, or `null` when none is assigned.
-        entrant:
-          type: object
-          description: Entrant who created and owns the entry.
-          properties:
-            slug:
-              type: string
-              description: URL-safe identifier of the entrant.
-            link:
-              type: string
-              format: uri
-              description: URL of the entrant resource.
-            name:
-              type: string
-              description: Full name of the entrant.
-            first_name:
-              type: string
-              description: First name of the entrant.
-            last_name:
-              type: string
-              description: Last name of the entrant.
-        entry_fields:
-          type: array
-          description: Form field responses captured on the entry.
-          items:
-            type: object
-            properties:
-              slug:
-                type: string
-                description: URL-safe identifier of the field.
-              link:
-                type: string
-                format: uri
-                description: URL of the field resource.
-              label:
-                type: object
-                description: |-
-                  Label of the field, as an HTML fragment.
-
-                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-                additionalProperties:
-                  type: string
-              value:
-                description: Value submitted for the field. Type varies by field type and is `null` when no value is recorded.
-              translated:
-                type: object
-                description: |-
-                  Translated value submitted for the field.
-
-                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-                additionalProperties:
-                  type: string
-        files_count:
-          type: integer
-          description: Number of files uploaded to the entry.
-        form:
-          type: object
-          description: Entry form used to capture the entry.
-          properties:
-            slug:
-              type: string
-              description: URL-safe identifier of the form.
-            link:
-              type: string
-              format: uri
-              description: URL of the form resource.
-            name:
-              type: object
-              description: |-
-                Name of the form.
-
-                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-              additionalProperties:
-                type: string
-        local_id:
-          type: integer
-          description: Sequential identifier of the entry within the account.
-        moderation_status:
-          type: string
-          description: Moderation status of the entry.
-        parent_category:
-          type: object
-          nullable: true
-          description: Parent of the assigned category, or `null` when the category has no parent.
-          properties:
-            slug:
-              type: string
-              description: URL-safe identifier of the parent category.
-            link:
-              type: string
-              format: uri
-              description: URL of the parent category resource.
-            name:
-              type: object
-              description: |-
-                Name of the parent category.
-
-                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-              additionalProperties:
-                type: string
-        payment_status:
-          type: string
-          description: Payment status of the entry.
-        plagiarism_scan_status:
-          type: string
-          description: Plagiarism scan status of the entry.
-        resubmitted:
-          type: string
-          description: Resubmission state of the entry.
-        review_status:
-          type: string
-          description: Review status of the entry.
-        season:
-          type: object
-          description: Season the entry belongs to.
-          properties:
-            slug:
-              type: string
-              description: URL-safe identifier of the season.
-            link:
-              type: string
-              format: uri
-              description: URL of the season resource.
-            name:
-              type: object
-              description: |-
-                Name of the season.
-
-                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
-              additionalProperties:
-                type: string
-        slug:
-          type: string
-          description: URL-safe identifier of the entry.
-        status:
-          type: string
-          description: Submission status of the entry. Possible values include `submitted`, `in_progress`, `resubmission_required`, `resubmitted`, `invited`, and `not_approved_for_submission`.
-        submitted:
-          type: string
-          format: date-time
-          nullable: true
-          description: Date and time when the entry was submitted, or `null` when not yet submitted.
-        tags:
-          type: string
-          description: Tags applied to the entry, as a comma-separated list.
-        title:
-          type: string
-          description: Title of the entry.
-        updated:
-          type: string
-          format: date-time
-          description: Date and time when the entry was last updated.
     Field:
       type: object
       properties:
