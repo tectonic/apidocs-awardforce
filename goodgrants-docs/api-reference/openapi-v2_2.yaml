@@ -1673,7 +1673,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/EntryCategoryUpdate'
       responses:
-        default:
+        '200':
           description: Application category updated.
           headers:
             ETag:
@@ -1684,6 +1684,24 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the category for the application identified by the specified slug.
   /application/{application_slug}/update-chapter:
     parameters:
@@ -7577,6 +7595,15 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
+            required:
+              - category
+            properties:
+              category:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the category.
+      required: true
     EntryChapterUpdate:
       description: Entry chapter update payload.
       content:
