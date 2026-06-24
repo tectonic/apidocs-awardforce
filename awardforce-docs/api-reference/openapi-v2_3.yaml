@@ -1758,7 +1758,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
-        default:
+        '200':
           description: Attachment field updated.
           headers:
             ETag:
@@ -1769,6 +1769,24 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates an attachment field for the attachment identified by the specified token.
       requestBody:
         $ref: '#/components/requestBodies/AttachmentFieldUpdate'
@@ -7638,7 +7656,17 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
+            required:
+              - value
+            properties:
+              value:
+                description: |-
+                  New value for the attachment field identified by `field_slug`. The accepted value depends on the type and configuration of the field.
+
+                  Use a string for text fields, a number for numeric fields, an ISO 8601 date for date fields, and an option slug for choice fields. A value outside the option set of a choice field returns a `422` response. For file-type fields, use an object containing the base64-encoded file data and a filename.
       description: Attachment field update payload.
+      required: true
     ContributorFieldUpdate:
       content:
         application/json:
