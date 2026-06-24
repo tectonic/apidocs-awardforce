@@ -1630,7 +1630,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/EntryFieldUpdate'
       responses:
-        default:
+        '200':
           description: Entry field updated.
           headers:
             ETag:
@@ -1641,6 +1641,24 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates a field for the entry identified by the specified slug.
   /application/{application_slug}/update-category:
     parameters:
@@ -7546,6 +7564,13 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
+            required:
+              - value
+            properties:
+              value:
+                description: New value for the field. The type depends on the field type.
+      required: true
     EntryCategoryUpdate:
       description: Application category update payload.
       content:
