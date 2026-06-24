@@ -1,6 +1,6 @@
 name: tags
 in: path
 required: true
-description: Comma-separated tags to remove from the entry.
+description: Comma-separated list of tags to remove from the entry. Surrounding whitespace is trimmed from each tag and empty values are ignored. Tags that are not currently applied to the entry are ignored.
 schema:
   type: string

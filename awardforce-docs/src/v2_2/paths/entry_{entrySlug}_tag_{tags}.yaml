@@ -9,9 +9,11 @@ put:
     - $ref: ../components/parameters/entryTagsToAdd.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
-    '200':
+    '201':
       description: Entry tagged.
       headers:
+        Location:
+          $ref: ../components/headers/Location.yaml
         ETag:
           $ref: ../components/headers/ETag.yaml
         X-RateLimit-Limit:
@@ -23,8 +25,20 @@ put:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/EntryTagResult.yaml
-  description: Adds tags to the entry identified by the specified slug or title.
+            $ref: ../components/schemas/Entry.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Adds tags to the entry identified by the specified slug.
 delete:
   summary: Untag an entry
   operationId: DeleteEntryTagV22
@@ -34,9 +48,13 @@ delete:
     - $ref: ../components/parameters/entryTagsToRemove.yaml
     - $ref: ../components/parameters/Accept.yaml
   responses:
-    '204':
+    '201':
       description: Entry untagged.
       headers:
+        Location:
+          $ref: ../components/headers/Location.yaml
+        ETag:
+          $ref: ../components/headers/ETag.yaml
         X-RateLimit-Limit:
           $ref: ../components/headers/X-RateLimit-Limit.yaml
         X-RateLimit-Remaining:
@@ -46,5 +64,22 @@ delete:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/EntryTagResult.yaml
-  description: Removes tags from the entry identified by the specified slug or title.
+            $ref: ../components/schemas/Entry.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Removes tags from the entry identified by the specified slug.
+  x-mint:
+    content: |-
+      <Note>
+      Removing a tag that is not currently applied to the entry has no effect and still returns `201` with the entry's current tags. Inspect `tags` in the response to confirm the result.
+      </Note>

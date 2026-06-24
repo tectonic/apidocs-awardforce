@@ -1,6 +1,6 @@
 name: tags
 in: path
 required: true
-description: Comma-separated tags to add to the application.
+description: Comma-separated list of tags to add to the application. Surrounding whitespace is trimmed from each tag and empty values are ignored. A tag cannot contain a comma or a forward slash.
 schema:
   type: string
