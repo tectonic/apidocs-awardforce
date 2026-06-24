@@ -1,6 +1,7 @@
 name: field_slug
 in: path
 required: true
-description: Field slug
+description: Slug of the field.
 schema:
   type: string
+  pattern: '^[A-Za-z]{8}$'
