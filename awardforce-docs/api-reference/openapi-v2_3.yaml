@@ -1463,7 +1463,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Uploads a file to the specified field for the entry identified by the specified slug.
+      requestBody:
+        $ref: '#/components/requestBodies/FileUpload'
+      x-mint:
+        content: |-
+          Use this operation to upload a file to a file field on the entry.
+
+          <Warning>
+          The uploaded file is validated and stored before the response is returned; the file itself is processed shortly after. A `GET` on the returned `Location` immediately after the `201` may briefly return a response with a `null` body until processing is complete.
+          </Warning>
   /entry/{entry_slug}/tag/{tags}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
@@ -3030,9 +3053,10 @@ components:
       name: field_slug
       in: path
       required: true
-      description: Field slug
+      description: Slug of the field.
       schema:
         type: string
+        pattern: ^[A-Za-z]{8}$
     entryTagsToAdd:
       name: tags
       in: path
@@ -7684,6 +7708,29 @@ components:
                 format: date
                 description: Date when the grant ends. Available when the grants feature is enabled.
       required: true
+    FileUpload:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - filename
+              - data
+            properties:
+              filename:
+                type: string
+                description: Original filename of the uploaded file, including the extension.
+              data:
+                type: string
+                format: byte
+                description: |-
+                  Base64-encoded contents of the file.
+
+                  The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
+      description: |-
+        File payload for an upload operation.
+
+        `filename` and `data` are required.
     EntryTitleUpdate:
       description: Entry title update payload.
       content:
@@ -7851,29 +7898,6 @@ components:
                 description: 'User field values, keyed by field slug. For example, `{ "fJkIjGmB": "Test value" }`.'
                 additionalProperties:
                   type: string
-    FileUpload:
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - filename
-              - data
-            properties:
-              filename:
-                type: string
-                description: Original filename of the uploaded file, including the extension.
-              data:
-                type: string
-                format: byte
-                description: |-
-                  Base64-encoded contents of the file.
-
-                  The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
-      description: |-
-        File payload for an upload operation.
-
-        `filename` and `data` are required.
     WebhookCreate:
       description: Webhook create payload.
       content:
