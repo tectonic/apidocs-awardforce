@@ -1317,7 +1317,7 @@ paths:
       description: Creates an entry.
   /application/{application_slug}:
     parameters:
-      - $ref: '#/components/parameters/entryIdentifier'
+      - $ref: '#/components/parameters/entrySlug'
     get:
       summary: Retrieve an entry
       operationId: GetEntryV23
@@ -1342,14 +1342,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
-      description: Retrieves the entry identified by the specified slug or title.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves the entry identified by the specified slug.
     put:
       summary: Update an entry
       operationId: PutEntryV23
       tags:
         - Application
       parameters:
-        - $ref: '#/components/parameters/entrySlug'
         - $ref: '#/components/parameters/Accept'
       requestBody:
         $ref: '#/components/requestBodies/EntryUpdate'
@@ -1369,6 +1380,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the entry identified by the specified slug.
     delete:
       summary: Delete an entry
@@ -1376,7 +1401,6 @@ paths:
       tags:
         - Application
       parameters:
-        - $ref: '#/components/parameters/entrySlug'
         - $ref: '#/components/parameters/Accept'
       responses:
         '204':
@@ -1388,6 +1412,18 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the entry identified by the specified slug.
   /application/{application_slug}/upload/{field_slug}:
     parameters:
@@ -2981,13 +3017,6 @@ components:
           - parent_category
           - title
           - updated
-    entryIdentifier:
-      name: application_slug
-      in: path
-      required: true
-      description: Slug or title of the application.
-      schema:
-        type: string
     fieldSlug:
       name: field_slug
       in: path
