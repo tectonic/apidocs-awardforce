@@ -1424,7 +1424,7 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-      description: Deletes the entry identified by the specified slug.
+      description: Deletes the entry identified by the specified slug. The entry is moved to the trash and can be restored; it is not permanently removed.
   /application/{application_slug}/upload/{field_slug}:
     parameters:
       - $ref: '#/components/parameters/entrySlug'
