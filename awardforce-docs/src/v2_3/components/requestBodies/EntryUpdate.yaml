@@ -3,15 +3,19 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       properties:
         category:
           type: string
+          pattern: '^[A-Za-z]{8}$'
           description: Slug of the category.
         chapter:
           type: string
+          pattern: '^[A-Za-z]{8}$'
           description: Slug of the chapter.
         entrant:
           type: string
+          pattern: '^[A-Za-z]{8}$'
           description: Slug of the entrant.
         title:
           type: string
@@ -33,9 +37,18 @@ content:
             - rejected
         entry_fields:
           type: object
-          description: Object of entry field values keyed by field slug.
-          additionalProperties:
-            type: string
+          description: Entry field values keyed by field slug. Each key must be a valid 8-letter field slug. The value type depends on the field type.
+          additionalProperties: {}
         custom_deadline:
           type: string
-          description: Custom deadline in `yyyy-mm-dd hh:mm` format.
+          nullable: true
+          description: Custom deadline in `yyyy-mm-dd hh:mm` format, or `null` to clear it.
+        grant_status:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the grant status. Available when the grants feature is enabled.
+        grant_end_date:
+          type: string
+          format: date
+          description: Date when the grant ends. Available when the grants feature is enabled.
+required: true

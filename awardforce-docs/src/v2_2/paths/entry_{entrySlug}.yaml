@@ -50,7 +50,7 @@ put:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/EntryUpdateResult.yaml
+            $ref: ../components/schemas/Entry.yaml
   description: Updates the entry identified by the specified slug.
 delete:
   summary: Delete an entry
