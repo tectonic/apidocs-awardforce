@@ -3,3 +3,12 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
+      required:
+        - category
+      properties:
+        category:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the category.
+required: true
