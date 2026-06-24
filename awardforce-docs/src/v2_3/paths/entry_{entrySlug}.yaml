@@ -106,4 +106,4 @@ delete:
       $ref: ../components/responses/TooManyRequests.yaml
     '503':
       $ref: ../components/responses/ServiceUnavailable.yaml
-  description: Deletes the entry identified by the specified slug.
+  description: Deletes the entry identified by the specified slug. The entry is moved to the trash and can be restored; it is not permanently removed.
