@@ -1395,6 +1395,15 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the entry identified by the specified slug.
+      x-mint:
+        content: |-
+          <Note>
+          Only the properties you include in the request body are updated; omitted properties keep their current values.
+          </Note>
+
+          <Note>
+          Within `entry_fields`, only the field slugs you include are updated, and any field slug that does not exist on the entry's form is ignored. For most field types the value you supply replaces the stored value. Table fields are merged cell by cell: include only the cells you want to change, and send a cell with an empty value to clear it.
+          </Note>
     delete:
       summary: Delete an entry
       operationId: DeleteEntryV23
