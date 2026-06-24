@@ -1716,7 +1716,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/EntryChapterUpdate'
       responses:
-        default:
+        '200':
           description: Entry chapter updated.
           headers:
             ETag:
@@ -1727,6 +1727,24 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the chapter for the entry identified by the specified slug.
   /attachment/{token}/update-field/{field_slug}:
     parameters:
@@ -7610,6 +7628,15 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
+            required:
+              - chapter
+            properties:
+              chapter:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the chapter.
+      required: true
     AttachmentFieldUpdate:
       content:
         application/json:
