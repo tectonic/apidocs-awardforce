@@ -77,7 +77,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/EntryCreateResult.yaml
+            $ref: ../components/schemas/Entry.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
