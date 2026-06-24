@@ -1,0 +1,214 @@
+type: object
+description: Detailed entry collections returned only for a single entry.
+properties:
+  entry_fields:
+    type: array
+    description: Form field responses captured on the entry.
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: URL-safe identifier of the field.
+        link:
+          type: string
+          format: uri
+          description: URL of the field resource.
+        label:
+          type: object
+          description: |-
+            Label of the field, as an HTML fragment.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        title:
+          type: object
+          description: |-
+            Plain-text title of the field.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        value:
+          description: Value submitted for the field. Type varies by field type and is `null` when no value is recorded.
+        token:
+          type: string
+          description: File token for the uploaded file, present on file fields.
+        dynamicRows:
+          type: array
+          description: Rows captured for a table field.
+          items: {}
+        values:
+          type: object
+          description: Cell values for a table field, keyed by cell reference.
+          additionalProperties:
+            type: string
+        translated:
+          type: object
+          description: |-
+            Translated value submitted for the field.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        download:
+          type: string
+          format: uri
+          description: Temporary download URL for the uploaded file, present on file fields.
+  attachments:
+    type: array
+    description: Files attached to the entry.
+    items:
+      type: object
+      properties:
+        token:
+          type: string
+          description: URL-safe identifier of the attachment.
+        link:
+          type: string
+          format: uri
+          description: URL of the attachment resource.
+        file:
+          type: object
+          description: File stored for the attachment.
+          properties:
+            token:
+              type: string
+              description: URL-safe identifier of the file.
+            link:
+              type: string
+              format: uri
+              description: URL of the file resource.
+            filename:
+              type: string
+              description: Original name of the uploaded file.
+            download:
+              type: string
+              format: uri
+              description: Temporary download URL for the file.
+        attachment_fields:
+          type: array
+          description: Field responses captured against the attachment.
+          items:
+            type: object
+            properties:
+              slug:
+                type: string
+                description: URL-safe identifier of the field.
+              link:
+                type: string
+                format: uri
+                description: URL of the field resource.
+              label:
+                type: object
+                description: |-
+                  Label of the field, as an HTML fragment.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+              title:
+                type: object
+                description: |-
+                  Plain-text title of the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+              value:
+                type: string
+                description: Value submitted for the field.
+              translated:
+                type: object
+                description: |-
+                  Translated value submitted for the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+        tab:
+          type: object
+          description: Form tab the attachment belongs to.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the tab.
+            type:
+              type: string
+              description: Type of the tab.
+            created_at:
+              type: string
+              format: date-time
+              description: Date and time when the tab was created.
+            updated_at:
+              type: string
+              format: date-time
+              description: Date and time when the tab was last updated.
+  contributors:
+    type: array
+    description: Contributors linked to the entry.
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: URL-safe identifier of the contributor.
+        tab:
+          type: object
+          description: Form tab the contributor belongs to.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the tab.
+            type:
+              type: string
+              description: Type of the tab.
+            created_at:
+              type: string
+              format: date-time
+              description: Date and time when the tab was created.
+            updated_at:
+              type: string
+              format: date-time
+              description: Date and time when the tab was last updated.
+        contributor_fields:
+          type: array
+          description: Field responses captured against the contributor.
+          items:
+            type: object
+            properties:
+              slug:
+                type: string
+                description: URL-safe identifier of the field.
+              link:
+                type: string
+                format: uri
+                description: URL of the field resource.
+              label:
+                type: object
+                description: |-
+                  Label of the field, as an HTML fragment.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+              title:
+                type: object
+                description: |-
+                  Plain-text title of the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+              value:
+                type: string
+                description: Value submitted for the field.
+              translated:
+                type: object
+                description: |-
+                  Translated value submitted for the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
