@@ -244,7 +244,7 @@ properties:
     description: URL-safe identifier of the entry.
   status:
     type: string
-    description: Submission status of the entry.
+    description: Submission status of the entry. Possible values include `submitted`, `in_progress`, `resubmission_required`, `resubmitted`, `invited`, and `not_approved_for_submission`.
   submitted:
     type: string
     format: date-time
