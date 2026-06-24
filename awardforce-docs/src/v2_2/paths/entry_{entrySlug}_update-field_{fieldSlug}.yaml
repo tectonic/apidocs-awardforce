@@ -11,7 +11,7 @@ put:
   requestBody:
     $ref: ../components/requestBodies/EntryFieldUpdate.yaml
   responses:
-    default:
+    '200':
       description: Entry field updated.
       headers:
         ETag:
@@ -22,4 +22,22 @@ put:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Entry.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Updates a field for the entry identified by the specified slug.

@@ -3,3 +3,10 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
+      required:
+        - value
+      properties:
+        value:
+          description: New value for the field. The type depends on the field type.
+required: true
