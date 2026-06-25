@@ -1,0 +1,72 @@
+content:
+  application/json:
+    schema:
+      type: object
+      additionalProperties: false
+      required:
+        - type
+        - tab
+        - form
+        - translated
+      properties:
+        type:
+          type: string
+          description: Type of the field.
+          enum:
+            - checkbox
+            - checkboxlist
+            - content
+            - country
+            - currency
+            - date
+            - datetime
+            - drop-down-list
+            - email
+            - file
+            - lookup
+            - numeric
+            - phone
+            - radio
+            - table
+            - text
+            - textarea
+            - time
+            - url
+        tab:
+          type: string
+          description: Slug of the tab the field belongs to.
+        form:
+          type: string
+          description: |-
+            Slug of the form the field belongs to.
+
+            The form must be valid for the active season and the field type.
+        currency:
+          type: string
+          description: |-
+            Currency code.
+
+            Required when `type` is `currency`.
+        translated:
+          type: object
+          description: Translated field values keyed by field name.
+          additionalProperties: false
+          required:
+            - title
+          properties:
+            title:
+              type: object
+              description: |-
+                Field title, keyed by language code.
+
+                A value for the account default language is required.
+              additionalProperties:
+                type: string
+            help_text: &translatedField
+              type: object
+              description: Values keyed by existing and enabled language code.
+              additionalProperties:
+                type: string
+            hint_text: *translatedField
+description: Field creation payload.
+required: true
