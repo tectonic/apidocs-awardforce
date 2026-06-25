@@ -4,17 +4,20 @@ properties:
     type: string
     description: Download URL for the file.
   duration:
+    type: number
     nullable: true
-    description: Duration of the file.
+    description: Duration of the file in seconds, or `null` for files without a duration (such as images and documents).
   filename:
     type: string
     description: Name of the file.
   image_height:
+    type: integer
     nullable: true
-    description: Height of the image in pixels.
+    description: Height of the image in pixels, or `null` when not available.
   image_width:
+    type: integer
     nullable: true
-    description: Width of the image in pixels.
+    description: Width of the image in pixels, or `null` when not available.
   metadata:
     type: object
     description: Metadata associated with the file.
@@ -66,7 +69,7 @@ properties:
     description: Size of the file.
   transcoding:
     type: array
-    description: Transcoded file variants.
+    description: Transcoded file variants. Empty when the file is not a video.
     items:
       type: object
       properties:
@@ -81,7 +84,7 @@ properties:
           description: File extension of the transcoded file.
         timestamp:
           type: integer
-          description: Timestamp of the transcoded file.
+          description: Unix timestamp, in seconds since the epoch, of the transcoded file's last modification.
         size:
           type: integer
           description: Size of the transcoded file.
