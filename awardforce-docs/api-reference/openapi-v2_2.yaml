@@ -1850,6 +1850,7 @@ paths:
         - $ref: '#/components/parameters/categoryFilter'
         - $ref: '#/components/parameters/formFilter'
         - $ref: '#/components/parameters/tabFilter'
+        - $ref: '#/components/parameters/seasonFilter'
         - $ref: '#/components/parameters/deletedFilter'
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/perPage'
@@ -1858,7 +1859,7 @@ paths:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/X-Api-Language'
       responses:
-        default:
+        '200':
           description: Fields retrieved.
           headers:
             ETag:
@@ -1873,6 +1874,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FieldList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves fields.
   /file/{token}:
     parameters:
@@ -3289,6 +3300,9 @@ components:
           - categories
           - order
           - tab
+          - form
+          - auto_scoring
+          - category_count
     leaderboardScoreSetFilter:
       name: score_set
       in: query
@@ -6058,128 +6072,200 @@ components:
       type: object
       properties:
         applicant_read_access:
-          type: string
+          type: boolean
+          description: Whether applicants can view this field.
         applicant_write_access:
-          type: string
+          type: boolean
+          description: Whether applicants can edit this field.
         auto_scoring:
           type: integer
+          description: Score awarded automatically for the field, or `0` when automatic scoring is not configured.
         categories:
           type: array
+          description: Category slugs the field is associated with. The single-element array `["*"]` indicates the field applies to every category.
           items:
             type: string
         category_count:
-          type: string
+          description: Number of categories the field is associated with. The string `all` indicates the field applies to every category (paired with `categories` of `["*"]`). `null` when the field is not category-scoped.
         conditional_field:
-          nullable: true
-        created:
-          type: string
-          format: date-time
-        file_types:
-          type: array
-          items: {}
-        form:
           type: object
+          nullable: true
+          description: Field whose value controls whether this field is shown, or `null` when the field is not conditional.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the controlling field.
             link:
               type: string
               format: uri
+              description: Canonical URL for the controlling field resource.
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
+              description: |-
+                Display name of the controlling field.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        created:
+          type: string
+          format: date-time
+          description: Date and time when the field was created.
+        file_types:
+          type: array
+          description: Permitted file extensions for file fields. Empty when the field does not accept file uploads or no restriction applies.
+          items:
+            type: string
+        form:
+          type: object
+          nullable: true
+          description: Form the field belongs to, or `null` when the field is not attached to a form.
+          properties:
+            slug:
+              type: string
+              description: Short URL-safe identifier for the form.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL for the form resource.
+            name:
+              type: object
+              description: |-
+                Display name of the form.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         help_text:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: |-
+            Help text shown for the field, as an HTML fragment.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         hint_text:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: |-
+            Hint text shown for the field, as an HTML fragment.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         label:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: |-
+            Label of the field, as an HTML fragment.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         max_file_size:
+          type: integer
           nullable: true
+          description: Maximum upload size in megabytes for file fields, or `null` when no limit applies.
         maximum_characters:
+          type: integer
           nullable: true
+          description: Maximum number of characters accepted, or `null` when no limit applies.
         maximum_words:
+          type: integer
           nullable: true
+          description: Maximum number of words accepted, or `null` when no limit applies.
         minimum_characters:
+          type: integer
           nullable: true
+          description: Minimum number of characters required, or `null` when no limit applies.
         minimum_words:
+          type: integer
           nullable: true
+          description: Minimum number of words required, or `null` when no limit applies.
         options:
           type: array
+          description: Selectable options for choice fields (for example, drop-down or radio). Empty when the field type has no options.
           items:
             type: string
         order:
           type: integer
+          description: Position of the field within its tab, used for ordering.
         protection:
           type: string
+          description: Protection level governing access to the field's data (for example, `standard`, `elevated`, or `maximum`).
         registration:
+          type: string
           nullable: true
+          description: Registration attribute the field is mapped to, or `null` when the field is not mapped to a registration attribute.
         required:
           type: boolean
+          description: Whether a value is required for the field.
         resource:
           type: string
-        scores:
-          type: object
-          properties:
-            'Yes':
-              type: integer
-            'No':
-              type: integer
+          description: Resource the field collects data for (for example, the entry or application, `contributors`, `referees`, `attachments`, or `users`).
         searchable:
           type: boolean
+          description: Whether the field is included in search.
         season:
           type: object
+          description: Season the field belongs to.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the season.
             link:
               type: string
               format: uri
+              description: Canonical URL for the season resource.
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
-                  format: utc-millisec
+              description: |-
+                Display name of the season.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         slug:
           type: string
+          description: Short URL-safe identifier for the field.
         tab:
           type: object
+          nullable: true
+          description: Tab the field belongs to, or `null` when the field is not attached to a tab.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the tab.
             link:
               type: string
               format: uri
+              description: Canonical URL for the tab resource.
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
+              description: |-
+                Display name of the tab.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         title:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: |-
+            Plain-text title of the field.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         type:
           type: string
+          description: Field type (for example, `text`, `textarea`, `drop-down-list`, `file`, `currency`, or `date`).
         updated:
           type: string
           format: date-time
+          description: Date and time when the field was last updated.
         visibility:
           type: array
-          items: {}
+          description: Contexts in which the field is visible (for example, `qualifying`, `top_pick`, `voting`, `gallery`, or `scoring`).
+          items:
+            type: string
     FieldList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
