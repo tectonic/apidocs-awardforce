@@ -2,4 +2,14 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
+      required:
+        - value
+      properties:
+        value:
+          description: |-
+            New value for the contributor field identified by `field_slug`. The accepted value depends on the type and configuration of the field.
+
+            Use a string for text fields, a number for numeric fields, an ISO 8601 date for date fields, and an option slug for choice fields. A value outside the option set of a choice field returns a `422` response. For file-type fields, use an object containing the base64-encoded file data and a filename.
 description: Contributor field update payload.
+required: true
