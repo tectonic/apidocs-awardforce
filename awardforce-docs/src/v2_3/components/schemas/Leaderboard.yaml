@@ -1,0 +1,207 @@
+title: Leaderboard
+description: |-
+  Single row in a score-set leaderboard, representing one entry and its scores under the selected score set.
+
+  Combines the entry's identifying details (title, category, chapter, division, and tags) with its auto-score, status, and a `scores` object whose shape depends on the score set's mode.
+type: object
+properties:
+  slug:
+    type: string
+    description: Short URL-safe identifier for the entry.
+  title:
+    type: string
+    description: Title of the entry as submitted by the entrant.
+  tags:
+    type: string
+    description: |-
+      Comma-separated tags applied to the entry.
+
+      Empty string when no tags are applied.
+  category:
+    type: object
+    nullable: true
+    description: |-
+      Category the entry was submitted to.
+
+      `null` when the entry is not assigned to a category.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the category.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the category resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  chapter:
+    type: object
+    nullable: true
+    description: |-
+      Chapter the entry belongs to.
+
+      `null` when the entry is not assigned to a chapter.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the chapter.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the chapter resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  division:
+    type: string
+    nullable: true
+    description: |-
+      Division the entry is assigned to.
+
+      `null` when the entry is not assigned to a division.
+  submitted:
+    type: string
+    format: date-time
+    description: Date and time the entry was submitted, in ISO 8601 format.
+  auto_score:
+    type: number
+    nullable: true
+    description: |-
+      Automated score calculated from the entry's auto-scored fields.
+
+      `null` when the entry has no auto-scored fields.
+  status:
+    type: string
+    description: Submission status of the entry.
+  grant_status:
+    type: string
+    nullable: true
+    description: |-
+      Grant status of the entry.
+
+      `null` unless grants are enabled on the account.
+  link:
+    type: string
+    format: uri
+    description: Canonical URL for the entry resource.
+  scores:
+    description: |-
+      Scores for the entry under the selected score set.
+
+      The shape depends on the score set's mode: `voting`, `qualifying`, `vip_judging`, or `top_pick`.
+    anyOf:
+      - title: Voting
+        type: object
+        description: Scores returned for a `voting` score set.
+        properties:
+          total_votes:
+            type: integer
+            description: Total number of votes the entry received.
+      - title: Qualifying
+        type: object
+        description: Scores returned for a `qualifying` score set.
+        properties:
+          final_decision:
+            type: string
+            nullable: true
+            enum:
+              - pass
+              - fail
+              - unsure
+            description: |-
+              Qualifying decision recorded for the entry.
+
+              `null` when no decision has been recorded.
+      - title: VIP judging
+        type: object
+        description: Scores returned for a `vip_judging` score set.
+        properties:
+          total_score:
+            type: object
+            description: Aggregated score across all criteria.
+            properties:
+              value:
+                type: number
+                description: Total score awarded across all criteria.
+              max_score:
+                oneOf:
+                  - type: integer
+                  - type: string
+                description: |-
+                  Maximum achievable total score.
+
+                  Empty string when no maximum is configured.
+              final_score:
+                type: string
+                description: Formatted total score, such as `8/10`. Returns `-` when no maximum is configured.
+          criteria:
+            type: array
+            description: Per-criterion scores making up the total.
+            items:
+              type: object
+              properties:
+                name:
+                  type: object
+                  description: |-
+                    Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                  additionalProperties:
+                    type: string
+                value:
+                  type: number
+                  description: Score awarded for the criterion.
+                max_score:
+                  type: integer
+                  description: Maximum achievable score for the criterion.
+                final_score:
+                  type: string
+                  description: Formatted criterion score, such as `4/5`.
+                weight:
+                  type: number
+                  description: Relative weight of the criterion in the total.
+      - title: Top pick
+        type: object
+        description: |-
+          Scores returned for a `top_pick` score set.
+
+          Keyed by preference position (for example, `preference_1`), with the number of judges who ranked the entry at that position.
+        additionalProperties:
+          type: integer
+example:
+  slug: AbCdEfGh
+  title: Sustainable Cities Initiative
+  tags: ''
+  category:
+    slug: IjKlMnOp
+    link: https://api.au.cr4ce.com/category/IjKlMnOp
+    name:
+      en_GB: Documentary
+  chapter:
+    slug: QrStUvWx
+    link: https://api.au.cr4ce.com/chapter/QrStUvWx
+    name:
+      en_GB: United Kingdom
+  division: null
+  submitted: '2026-01-15T09:00:00Z'
+  auto_score: 0
+  status: submitted
+  grant_status: null
+  link: https://api.au.cr4ce.com/entry/AbCdEfGh
+  scores:
+    total_score:
+      value: 8
+      max_score: 10
+      final_score: 8/10
+    criteria:
+      - name:
+          en_GB: Originality
+        value: 4
+        max_score: 5
+        final_score: 4/5
+        weight: 1

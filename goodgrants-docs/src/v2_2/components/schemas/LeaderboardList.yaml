@@ -1,0 +1,142 @@
+title: Leaderboard list
+description: |-
+  Paginated leaderboard for a single score set.
+
+  Wraps the ranked applications in `data` with the score set and season they belong to, alongside the standard pagination envelope.
+allOf:
+  - $ref: ./Pagination.yaml
+  - type: object
+    properties:
+      data:
+        type: array
+        description: Leaderboard rows for the current page.
+        items:
+          $ref: ./Leaderboard.yaml
+      score_set:
+        type: object
+        description: Score set the leaderboard is calculated for.
+        properties:
+          slug:
+            type: string
+            description: Short URL-safe identifier for the score set.
+          name:
+            type: object
+            description: |-
+              Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+            additionalProperties:
+              type: string
+          mode:
+            type: string
+            enum:
+              - voting
+              - qualifying
+              - vip_judging
+              - top_pick
+            description: |-
+              Scoring mode of the score set.
+
+              Determines the shape of each row's `scores` object.
+          form:
+            type: object
+            description: Form the score set scores applications from.
+            properties:
+              slug:
+                type: string
+                description: Short URL-safe identifier for the form.
+              link:
+                type: string
+                format: uri
+                description: Canonical URL for the form resource.
+              name:
+                type: object
+                description: |-
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+      season:
+        type: object
+        description: Season the leaderboard belongs to.
+        properties:
+          slug:
+            type: string
+            description: Short URL-safe identifier for the season.
+          link:
+            type: string
+            format: uri
+            description: Canonical URL for the season resource.
+          name:
+            type: object
+            description: |-
+              Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+            additionalProperties:
+              type: string
+example:
+  current_page: 1
+  data:
+    - slug: AbCdEfGh
+      title: Sustainable Cities Initiative
+      tags: ''
+      category:
+        slug: IjKlMnOp
+        link: https://api.au.cr4ce.com/category/IjKlMnOp
+        name:
+          en_GB: Documentary
+      chapter:
+        slug: QrStUvWx
+        link: https://api.au.cr4ce.com/chapter/QrStUvWx
+        name:
+          en_GB: United Kingdom
+      division: null
+      submitted: '2026-01-15T09:00:00Z'
+      auto_score: 0
+      status: submitted
+      grant_status: null
+      link: https://api.au.cr4ce.com/application/AbCdEfGh
+      scores:
+        total_votes: 12
+    - slug: MnOpQrSt
+      title: Ocean Cleanup Documentary
+      tags: ''
+      category:
+        slug: IjKlMnOp
+        link: https://api.au.cr4ce.com/category/IjKlMnOp
+        name:
+          en_GB: Documentary
+      chapter:
+        slug: QrStUvWx
+        link: https://api.au.cr4ce.com/chapter/QrStUvWx
+        name:
+          en_GB: United Kingdom
+      division: null
+      submitted: '2026-01-12T14:20:00Z'
+      auto_score: 0
+      status: submitted
+      grant_status: null
+      link: https://api.au.cr4ce.com/application/MnOpQrSt
+      scores:
+        total_votes: 9
+  first_page_url: https://api.au.cr4ce.com/leaderboard?score_set=UvWxYzAb&page=1
+  from: 1
+  last_page: 1
+  last_page_url: https://api.au.cr4ce.com/leaderboard?score_set=UvWxYzAb&page=1
+  next_page_url: ''
+  path: https://api.au.cr4ce.com/leaderboard
+  per_page: 10
+  prev_page_url: ''
+  to: 2
+  total: 2
+  score_set:
+    slug: UvWxYzAb
+    name:
+      en_GB: Voting
+    mode: voting
+    form:
+      slug: GhIjKlMn
+      link: https://api.au.cr4ce.com/form/GhIjKlMn
+      name:
+        en_GB: Application form
+  season:
+    slug: CdEfGhIj
+    link: https://api.au.cr4ce.com/season/CdEfGhIj
+    name:
+      en_GB: '2025'
