@@ -91,3 +91,26 @@ properties:
         etag:
           type: string
           description: ETag of the transcoded file.
+example:
+  download_link: https://files.au.cr4ce.com/file/TwLgErBMhoQrStUv/squirrel-on-log.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+  duration: null
+  filename: squirrel-on-log.jpg
+  image_height: null
+  image_width: null
+  metadata:
+    title: ''
+    caption: ''
+    copyright: ''
+    created: ''
+    city: ''
+    country: ''
+    state: ''
+    camera: ''
+    exposure: ''
+    iso: ''
+    fstop: ''
+    focal_length: ''
+    size: 768 x 574
+  mime: image/jpeg
+  size: 26513
+  transcoding: []

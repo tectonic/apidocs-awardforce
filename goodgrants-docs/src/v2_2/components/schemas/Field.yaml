@@ -197,3 +197,54 @@ properties:
     description: Contexts in which the field is visible (for example, `qualifying`, `top_pick`, `voting`, `gallery`, or `scoring`).
     items:
       type: string
+example:
+  applicant_read_access: true
+  applicant_write_access: true
+  auto_scoring: 0
+  categories:
+    - '*'
+  category_count: all
+  conditional_field: null
+  created: '2025-01-15T09:00:00Z'
+  file_types: []
+  form:
+    slug: GhIjKlMn
+    link: https://api.au.cr4ce.com/form/GhIjKlMn
+    name:
+      en_GB: Application form
+  help_text:
+    en_GB: <p>Provide a concise summary of your work.</p>
+  hint_text:
+    en_GB: <p>Up to 500 words.</p>
+  label:
+    en_GB: <p>Summary</p>
+  max_file_size: null
+  maximum_characters: null
+  maximum_words: 500
+  minimum_characters: null
+  minimum_words: null
+  options: []
+  order: 1
+  protection: standard
+  registration: null
+  required: true
+  resource: applications
+  searchable: true
+  season:
+    slug: QrStUvWx
+    link: https://api.au.cr4ce.com/season/QrStUvWx
+    name:
+      en_GB: '2025'
+  slug: AbCdEfGh
+  tab:
+    slug: StUvWxYz
+    link: https://api.au.cr4ce.com/tab/StUvWxYz
+    name:
+      en_GB: About you
+  title:
+    en_GB: Summary
+  type: textarea
+  updated: '2025-06-20T14:30:00Z'
+  visibility:
+    - qualifying
+    - scoring
