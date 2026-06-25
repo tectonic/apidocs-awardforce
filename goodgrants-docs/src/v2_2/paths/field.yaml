@@ -11,6 +11,7 @@ get:
     - $ref: ../components/parameters/categoryFilter.yaml
     - $ref: ../components/parameters/formFilter.yaml
     - $ref: ../components/parameters/tabFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
     - $ref: ../components/parameters/deletedFilter.yaml
     - $ref: ../components/parameters/page.yaml
     - $ref: ../components/parameters/perPage.yaml
@@ -19,7 +20,7 @@ get:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
-    default:
+    '200':
       description: Fields retrieved.
       headers:
         ETag:
@@ -34,4 +35,14 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/FieldList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves fields.

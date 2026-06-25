@@ -13,3 +13,6 @@ schema:
     - categories
     - order
     - tab
+    - form
+    - auto_scoring
+    - category_count
