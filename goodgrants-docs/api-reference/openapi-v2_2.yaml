@@ -2028,6 +2028,7 @@ paths:
         - $ref: '#/components/parameters/orderOrder'
         - $ref: '#/components/parameters/sortDirection'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '200':
           description: Orders retrieved.
@@ -2044,6 +2045,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves orders.
   /order/{order_slug}:
     parameters:
@@ -3429,12 +3440,8 @@ components:
       schema:
         type: string
         enum:
-          - date
-          - email
-          - first_name
-          - last_name
-          - local_id
-          - number
+          - created_at
+          - invoice_number
           - payment_method
           - payment_status
           - season
@@ -6919,170 +6926,416 @@ components:
           name:
             en_GB: '2025'
     Order:
+      title: Order
+      description: Order recording a purchase made on the account, including billing details, line items, applied discounts, tax and fees, totals, and payment and transaction status.
       type: object
       properties:
         address:
           type: string
+          description: Billing street address supplied for the order.
         city:
           type: string
+          description: Billing city supplied for the order.
         comments:
           type: string
+          description: Free-text comments recorded against the order.
         company:
           type: string
+          description: Billing company name supplied for the order.
         country:
           type: string
+          description: Billing country supplied for the order.
         created_at:
           type: string
           format: date-time
+          description: Date and time the order was created, in ISO 8601 format.
         currency:
           type: string
+          description: Currency the order amounts are denominated in, as an ISO 4217 code.
         discount:
-          type: integer
+          type: number
+          description: Total discount applied to the order, in the order currency.
         discount_code:
           type: string
+          description: |-
+            Discount code applied to the order.
+
+            Empty string when no code was applied.
+        e_invoice_status:
+          type: string
+          description: Electronic invoicing status of the order.
         invoice_number:
           type: string
+          description: Invoice number assigned to the order.
         ip_address:
           type: string
           format: ip-address
+          description: IP address the order was placed from.
         items:
           type: string
+          description: HTML-formatted summary of the order's line items, suitable for display.
         items_array:
           type: array
+          description: Structured list of the order's line items.
           items:
             type: object
             properties:
               amount:
                 type: string
+                description: Formatted line amount, including currency symbol.
               description:
                 type: string
+                description: Description of the line item.
               discount:
                 type: string
-              entry:
+                description: Formatted discount applied to the line item, including currency symbol.
+              application:
                 type: object
+                description: |-
+                  Application the line item relates to.
+
+                  Present for application line items.
                 properties:
                   slug:
                     type: string
+                    description: Short URL-safe identifier for the application.
                   link:
                     type: string
                     format: uri
+                    description: Canonical URL for the application resource.
                   title:
                     type: string
+                    description: Title of the application.
               item_type:
                 type: string
+                description: Type of the line item.
               name:
                 type: string
+                description: Display name of the line item.
               price:
                 type: object
+                description: Price the line item was charged at.
                 properties:
                   slug:
                     type: string
+                    description: Short URL-safe identifier for the price.
                   link:
                     type: string
                     format: uri
+                    description: Canonical URL for the price resource.
                   title:
                     type: object
-                    properties:
-                      en_GB:
-                        type: string
+                    description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                    additionalProperties:
+                      type: string
               quantity:
                 type: integer
+                description: Number of units purchased for the line item.
         member_number:
           type: string
+          description: Membership number recorded against the order.
         payment_method:
           type: string
+          description: Method used to pay for the order.
         payment_status:
           type: string
+          description: Payment status of the order.
         postcode:
           type: string
+          description: Billing postcode supplied for the order.
         processing_fee:
           type: number
+          description: Processing fee charged on the order, in the order currency.
         processing_fee_rate:
           type: number
+          nullable: true
+          description: |-
+            Rate used to calculate the processing fee, as a percentage.
+
+            `null` when no processing fee applies.
         region:
           type: string
+          description: Billing region supplied for the order.
         season:
           type: object
+          description: Season the order was placed in.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the season.
             link:
               type: string
               format: uri
+              description: Canonical URL for the season resource.
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
+              description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         slug:
           type: string
+          description: Short URL-safe identifier for the order.
         state:
           type: string
+          description: Billing state supplied for the order.
         subtotal:
           type: number
+          description: Order subtotal before tax and fees, in the order currency.
         tax:
           type: number
+          description: Total tax charged on the order, in the order currency.
         tax_rate:
-          type: integer
+          type: number
+          nullable: true
+          description: |-
+            Rate used to calculate tax, as a percentage.
+
+            `null` when no tax applies.
         tax_rate_details:
           type: object
+          description: Details of the tax rate applied to the order.
           properties:
             country:
               type: string
+              description: Country the tax rate applies to.
             link:
               type: string
               format: uri
+              description: Canonical URL for the tax rate resource.
             name:
               type: string
+              description: Name of the tax rate.
             rate:
-              type: integer
+              type: number
+              description: Tax rate, as a percentage.
             region:
+              type: string
               nullable: true
+              description: |-
+                Region the tax rate applies to.
+
+                `null` when the tax rate is not region-specific.
             slug:
               type: string
+              description: Short URL-safe identifier for the tax rate.
             term:
               type: string
+              description: Display term for the tax, such as `VAT` or `GST`.
         tax_term:
           type: string
+          description: Display term used for tax on the order, such as `VAT` or `GST`.
         total:
           type: number
+          description: Order total including tax and fees, in the order currency.
         transaction_date:
           type: string
           format: date-time
+          nullable: true
+          description: |-
+            Date and time of the payment transaction, in ISO 8601 format.
+
+            `null` when the order has no recorded payment transaction.
         transaction_provider:
           type: string
+          description: Payment provider that processed the transaction.
         transaction_reference:
           type: string
+          description: Reference assigned to the transaction by the payment provider.
         transaction_status:
           type: string
+          description: Status of the payment transaction.
         user:
           type: object
+          description: User who placed the order.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the user.
             link:
               type: string
               format: uri
+              description: Canonical URL for the user resource.
             name:
               type: string
+              description: Display name of the user.
             first_name:
               type: string
+              description: First name of the user.
             last_name:
               type: string
+              description: Last name of the user.
             email:
               type: string
               format: email
+              description: Email address of the user.
         vat_number:
           type: string
+          description: VAT number supplied for the order.
+      example:
+        address: 12 Example Street
+        city: London
+        comments: ''
+        company: Example Productions Ltd
+        country: United Kingdom
+        created_at: '2026-01-15T09:00:00Z'
+        currency: GBP
+        discount: 0
+        discount_code: ''
+        e_invoice_status: none
+        invoice_number: INV-001234
+        ip_address: 203.0.113.42
+        items: <ul><li>Standard application &times; 1 &mdash; &pound;50.00</li></ul>
+        items_array:
+          - amount: £50.00
+            description: Standard application
+            discount: £0.00
+            application:
+              slug: AbCdEfGh
+              link: https://api.au.cr4ce.com/application/AbCdEfGh
+              title: Sustainable Cities Initiative
+            item_type: entry
+            name: Standard application
+            price:
+              slug: IjKlMnOp
+              link: https://api.au.cr4ce.com/price/IjKlMnOp
+              title:
+                en_GB: Standard application
+            quantity: 1
+        member_number: ''
+        payment_method: card
+        payment_status: paid
+        postcode: EC1A 1BB
+        processing_fee: 1.5
+        processing_fee_rate: 3
+        region: ''
+        season:
+          slug: QrStUvWx
+          link: https://api.au.cr4ce.com/season/QrStUvWx
+          name:
+            en_GB: '2025'
+        slug: YzAbCdEf
+        state: ''
+        subtotal: 50
+        tax: 10
+        tax_rate: 20
+        tax_rate_details:
+          country: GB
+          link: https://api.au.cr4ce.com/tax/GhIjKlMn
+          name: VAT
+          rate: 20
+          region: null
+          slug: GhIjKlMn
+          term: VAT
+        tax_term: VAT
+        total: 61.5
+        transaction_date: '2026-01-15T09:01:00Z'
+        transaction_provider: stripe
+        transaction_reference: REDACTED
+        transaction_status: succeeded
+        user:
+          slug: OpQrStUv
+          link: https://api.au.cr4ce.com/user/OpQrStUv
+          name: Jane Smith
+          first_name: Jane
+          last_name: Smith
+          email: jane.smith@example.com
+        vat_number: GB123456789
     OrderList:
+      title: Order list
+      description: |-
+        Paginated list of orders.
+
+        Wraps the orders in `data` alongside the standard pagination envelope.
       allOf:
         - $ref: '#/components/schemas/Pagination'
         - type: object
           properties:
             data:
               type: array
+              description: Orders for the current page.
               items:
                 $ref: '#/components/schemas/Order'
+      example:
+        current_page: 1
+        data:
+          - address: 12 Example Street
+            city: London
+            comments: ''
+            company: Example Productions Ltd
+            country: United Kingdom
+            created_at: '2026-01-15T09:00:00Z'
+            currency: GBP
+            discount: 0
+            discount_code: ''
+            e_invoice_status: none
+            invoice_number: INV-001234
+            ip_address: 203.0.113.42
+            items: <ul><li>Standard application &times; 1 &mdash; &pound;50.00</li></ul>
+            items_array:
+              - amount: £50.00
+                description: Standard application
+                discount: £0.00
+                application:
+                  slug: AbCdEfGh
+                  link: https://api.au.cr4ce.com/application/AbCdEfGh
+                  title: Sustainable Cities Initiative
+                item_type: entry
+                name: Standard application
+                price:
+                  slug: IjKlMnOp
+                  link: https://api.au.cr4ce.com/price/IjKlMnOp
+                  title:
+                    en_GB: Standard application
+                quantity: 1
+            member_number: ''
+            payment_method: card
+            payment_status: paid
+            postcode: EC1A 1BB
+            processing_fee: 1.5
+            processing_fee_rate: 3
+            region: ''
+            season:
+              slug: QrStUvWx
+              link: https://api.au.cr4ce.com/season/QrStUvWx
+              name:
+                en_GB: '2025'
+            slug: YzAbCdEf
+            state: ''
+            subtotal: 50
+            tax: 10
+            tax_rate: 20
+            tax_rate_details:
+              country: GB
+              link: https://api.au.cr4ce.com/tax/GhIjKlMn
+              name: VAT
+              rate: 20
+              region: null
+              slug: GhIjKlMn
+              term: VAT
+            tax_term: VAT
+            total: 61.5
+            transaction_date: '2026-01-15T09:01:00Z'
+            transaction_provider: stripe
+            transaction_reference: REDACTED
+            transaction_status: succeeded
+            user:
+              slug: OpQrStUv
+              link: https://api.au.cr4ce.com/user/OpQrStUv
+              name: Jane Smith
+              first_name: Jane
+              last_name: Smith
+              email: jane.smith@example.com
+            vat_number: GB123456789
+        first_page_url: https://api.au.cr4ce.com/order?page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.au.cr4ce.com/order?page=1
+        next_page_url: ''
+        path: https://api.au.cr4ce.com/order
+        per_page: 10
+        prev_page_url: ''
+        to: 1
+        total: 1
     Round:
       type: object
       properties:
