@@ -74,6 +74,8 @@ paths:
     $ref: paths/order.yaml
   /order/{order_slug}:
     $ref: paths/order_{orderSlug}.yaml
+  /order/{order_slug}/items:
+    $ref: paths/order_{orderSlug}_items.yaml
   /review-task:
     $ref: paths/review-task.yaml
   /review-task/{token}:

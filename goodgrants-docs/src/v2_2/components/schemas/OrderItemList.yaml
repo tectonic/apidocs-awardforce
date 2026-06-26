@@ -1,0 +1,79 @@
+title: Order item list
+description: |-
+  Paginated list of an order's line items.
+
+  Wraps the line items in `data` alongside the standard pagination envelope.
+allOf:
+  - $ref: ./Pagination.yaml
+  - type: object
+    properties:
+      data:
+        type: array
+        description: Line items for the current page.
+        items:
+          $ref: ./OrderItem.yaml
+example:
+  current_page: 1
+  data:
+    - address: 12 Example Street
+      application_name: Sustainable Cities Initiative
+      application_slug: AbCdEfGh
+      category:
+        slug: QvRkXaBq
+        link: https://api.au.cr4ce.com/category/QvRkXaBq
+        name:
+          en_GB: Photography
+      chapter:
+        slug: VbAeRkDp
+        link: https://api.au.cr4ce.com/chapter/VbAeRkDp
+        name:
+          en_GB: National
+      city: London
+      company: Example Productions Ltd
+      country: United Kingdom
+      created_at: '2026-01-15T09:00:00Z'
+      currency: GBP
+      description: 'Application: Sustainable Cities Initiative | Chapter: National | Category: Photography'
+      discount: 0
+      discount_code: ''
+      invoice_number: INV-001234
+      ip_address: 203.0.113.42
+      member_number: ''
+      parent_category: null
+      payment_method: card
+      payment_status: paid
+      postcode: EC1A 1BB
+      price: Standard application
+      region: ''
+      season:
+        slug: QrStUvWx
+        link: https://api.au.cr4ce.com/season/QrStUvWx
+        name:
+          en_GB: '2025'
+      slug: YzAbCdEf
+      state: ''
+      subtotal: 50
+      tax_term: VAT
+      transaction_date: '2026-01-15T09:01:00Z'
+      transaction_provider: stripe
+      transaction_reference: REDACTED
+      transaction_status: succeeded
+      type: Entry
+      user:
+        slug: OpQrStUv
+        link: https://api.au.cr4ce.com/user/OpQrStUv
+        name: Jane Smith
+        first_name: Jane
+        last_name: Smith
+        email: jane.smith@example.com
+      vat_number: GB123456789
+  first_page_url: https://api.au.cr4ce.com/order/YzAbCdEf/items?page=1
+  from: 1
+  last_page: 1
+  last_page_url: https://api.au.cr4ce.com/order/YzAbCdEf/items?page=1
+  next_page_url: ''
+  path: https://api.au.cr4ce.com/order/YzAbCdEf/items
+  per_page: 10
+  prev_page_url: ''
+  to: 1
+  total: 1
