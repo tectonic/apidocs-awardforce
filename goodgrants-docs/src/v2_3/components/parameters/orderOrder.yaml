@@ -5,12 +5,8 @@ description: Sort by a supported order field.
 schema:
   type: string
   enum:
-    - date
-    - email
-    - first_name
-    - last_name
-    - local_id
-    - number
+    - created_at
+    - invoice_number
     - payment_method
     - payment_status
     - season

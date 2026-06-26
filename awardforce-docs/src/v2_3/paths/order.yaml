@@ -13,6 +13,7 @@ get:
     - $ref: ../components/parameters/orderOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
       description: Orders retrieved.
@@ -29,4 +30,14 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/OrderList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves orders.
