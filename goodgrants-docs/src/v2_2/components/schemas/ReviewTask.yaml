@@ -1,0 +1,137 @@
+title: Review task
+description: |-
+  Single review task: an entry paired with a review stage, listing the reviewers responsible for actioning it.
+type: object
+properties:
+  action_at:
+    type: string
+    format: date-time
+    nullable: true
+    description: |-
+      Date and time the review task was actioned, in ISO 8601 format.
+
+      `null` when the task has not yet been actioned.
+  category:
+    type: object
+    description: Category the entry belongs to.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the category.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the category resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  created:
+    type: string
+    format: date-time
+    description: Date and time the review task was created, in ISO 8601 format.
+  decision:
+    type: string
+    nullable: true
+    description: |-
+      Decision recorded against the review task.
+
+      `null` when no decision has been recorded.
+  entry:
+    type: object
+    description: Entry the review task relates to.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the entry.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the entry resource.
+      title:
+        type: string
+        description: Title of the entry.
+  review_stage:
+    type: object
+    description: Review stage the task belongs to.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the review stage.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the review stage resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  reviewer:
+    type: array
+    description: Reviewers responsible for actioning the review task.
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Display name of the reviewer.
+        email:
+          type: string
+          format: email
+          description: Email address of the reviewer.
+  season:
+    type: object
+    description: Season the entry belongs to.
+    properties:
+      slug:
+        type: string
+        description: Short URL-safe identifier for the season.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the season resource.
+      name:
+        type: object
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  token:
+    type: string
+    description: Token uniquely identifying the review task.
+  updated:
+    type: string
+    format: date-time
+    description: Date and time the review task was last updated, in ISO 8601 format.
+example:
+  action_at: null
+  category:
+    slug: QvRkXaBq
+    link: https://api.au.cr4ce.com/category/QvRkXaBq
+    name:
+      en_GB: Photography
+  created: '2026-01-15T09:00:00Z'
+  decision: null
+  entry:
+    slug: AbCdEfGh
+    link: https://api.au.cr4ce.com/entry/AbCdEfGh
+    title: Sustainable Cities Initiative
+  review_stage:
+    slug: DrDgobBw
+    link: https://api.au.cr4ce.com/review-stage/DrDgobBw
+    name:
+      en_GB: First round
+  reviewer:
+    - name: Jane Smith
+      email: jane.smith@example.com
+  season:
+    slug: QrStUvWx
+    link: https://api.au.cr4ce.com/season/QrStUvWx
+    name:
+      en_GB: '2025'
+  token: fuv1ZQRAn37Grsl2QQZbCq7eUxRY4QDX
+  updated: '2026-01-15T09:00:00Z'

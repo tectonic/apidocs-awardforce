@@ -1,0 +1,21 @@
+description: Review task creation payload.
+content:
+  application/json:
+    schema:
+      type: object
+      additionalProperties: false
+      required:
+        - review_stage
+        - entry
+      properties:
+        review_stage:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: |-
+            Slug of the review stage.
+            Review stages reviewed by referees cannot be used to create review tasks.
+        entry:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the entry.
+required: true

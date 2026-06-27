@@ -1,0 +1,21 @@
+description: Action task creation payload.
+content:
+  application/json:
+    schema:
+      type: object
+      additionalProperties: false
+      required:
+        - action_stage
+        - application
+      properties:
+        action_stage:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: |-
+            Slug of the action stage.
+            Action stages reviewed by referees cannot be used to create action tasks.
+        application:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the application.
+required: true

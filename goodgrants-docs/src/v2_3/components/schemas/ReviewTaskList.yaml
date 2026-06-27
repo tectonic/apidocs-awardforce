@@ -1,0 +1,54 @@
+title: Review task list
+description: |-
+  Paginated list of review tasks.
+
+  Wraps the review tasks in `data` alongside the standard pagination envelope.
+allOf:
+  - $ref: ./Pagination.yaml
+  - type: object
+    properties:
+      data:
+        type: array
+        description: Review tasks for the current page.
+        items:
+          $ref: ./ReviewTask.yaml
+example:
+  current_page: 1
+  data:
+    - action_at: null
+      category:
+        slug: QvRkXaBq
+        link: https://api.au.cr4ce.com/category/QvRkXaBq
+        name:
+          en_GB: Photography
+      created: '2026-01-15T09:00:00Z'
+      decision: null
+      entry:
+        slug: AbCdEfGh
+        link: https://api.au.cr4ce.com/entry/AbCdEfGh
+        title: Sustainable Cities Initiative
+      review_stage:
+        slug: DrDgobBw
+        link: https://api.au.cr4ce.com/review-stage/DrDgobBw
+        name:
+          en_GB: First round
+      reviewer:
+        - name: Jane Smith
+          email: jane.smith@example.com
+      season:
+        slug: QrStUvWx
+        link: https://api.au.cr4ce.com/season/QrStUvWx
+        name:
+          en_GB: '2025'
+      token: fuv1ZQRAn37Grsl2QQZbCq7eUxRY4QDX
+      updated: '2026-01-15T09:00:00Z'
+  first_page_url: https://api.au.cr4ce.com/review-task?page=1
+  from: 1
+  last_page: 1
+  last_page_url: https://api.au.cr4ce.com/review-task?page=1
+  next_page_url: ''
+  path: https://api.au.cr4ce.com/review-task
+  per_page: 10
+  prev_page_url: ''
+  to: 1
+  total: 1

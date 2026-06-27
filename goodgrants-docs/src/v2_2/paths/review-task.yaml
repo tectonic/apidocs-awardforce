@@ -5,11 +5,10 @@ post:
     - Action task
   parameters:
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
-    default:
-      description: |-
-        Review task created.
-        TBD: response schema pending API verification.
+    '200':
+      description: Review task created.
       headers:
         ETag:
           $ref: ../components/headers/ETag.yaml
@@ -19,6 +18,24 @@ post:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ReviewTask.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  requestBody:
+    $ref: ../components/requestBodies/ReviewTaskCreate.yaml
   description: Creates a review task.
 get:
   summary: Retrieve review tasks
@@ -37,11 +54,10 @@ get:
     - $ref: ../components/parameters/page.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
-    default:
-      description: |-
-        Review tasks retrieved.
-        TBD: response schema pending API verification.
+    '200':
+      description: Review tasks retrieved.
       headers:
         ETag:
           $ref: ../components/headers/ETag.yaml
@@ -51,4 +67,18 @@ get:
           $ref: ../components/headers/X-RateLimit-Remaining.yaml
         X-RateLimit-Reset:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ReviewTaskList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves review tasks.
