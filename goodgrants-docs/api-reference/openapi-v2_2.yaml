@@ -2187,11 +2187,10 @@ paths:
         - Action task
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
-        default:
-          description: |-
-            Review task created.
-            TBD: response schema pending API verification.
+        '200':
+          description: Review task created.
           headers:
             ETag:
               $ref: '#/components/headers/ETag'
@@ -2201,6 +2200,24 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewTask'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      requestBody:
+        $ref: '#/components/requestBodies/ReviewTaskCreate'
       description: Creates a review task.
     get:
       summary: Retrieve review tasks
@@ -2219,11 +2236,10 @@ paths:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/perPage'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
-        default:
-          description: |-
-            Review tasks retrieved.
-            TBD: response schema pending API verification.
+        '200':
+          description: Review tasks retrieved.
           headers:
             ETag:
               $ref: '#/components/headers/ETag'
@@ -2233,6 +2249,20 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewTaskList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves review tasks.
   /action-task/{token}:
     parameters:
@@ -2244,11 +2274,10 @@ paths:
         - Action task
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
-        default:
-          description: |-
-            Review task retrieved.
-            TBD: response schema pending API verification.
+        '200':
+          description: Review task retrieved.
           headers:
             ETag:
               $ref: '#/components/headers/ETag'
@@ -2258,6 +2287,22 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewTask'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the review task identified by the specified token.
   /round:
     get:
@@ -7756,6 +7801,195 @@ components:
         prev_page_url: ''
         to: 1
         total: 1
+    ReviewTask:
+      title: Review task
+      description: 'Single review task: an entry paired with a review stage, listing the reviewers responsible for actioning it.'
+      type: object
+      properties:
+        action_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: |-
+            Date and time the review task was actioned, in ISO 8601 format.
+
+            `null` when the task has not yet been actioned.
+        category:
+          type: object
+          description: Category the entry belongs to.
+          properties:
+            slug:
+              type: string
+              description: Short URL-safe identifier for the category.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL for the category resource.
+            name:
+              type: object
+              description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        created:
+          type: string
+          format: date-time
+          description: Date and time the review task was created, in ISO 8601 format.
+        decision:
+          type: string
+          nullable: true
+          description: |-
+            Decision recorded against the review task.
+
+            `null` when no decision has been recorded.
+        entry:
+          type: object
+          description: Entry the review task relates to.
+          properties:
+            slug:
+              type: string
+              description: Short URL-safe identifier for the entry.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL for the entry resource.
+            title:
+              type: string
+              description: Title of the entry.
+        review_stage:
+          type: object
+          description: Review stage the task belongs to.
+          properties:
+            slug:
+              type: string
+              description: Short URL-safe identifier for the review stage.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL for the review stage resource.
+            name:
+              type: object
+              description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        reviewer:
+          type: array
+          description: Reviewers responsible for actioning the review task.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Display name of the reviewer.
+              email:
+                type: string
+                format: email
+                description: Email address of the reviewer.
+        season:
+          type: object
+          description: Season the entry belongs to.
+          properties:
+            slug:
+              type: string
+              description: Short URL-safe identifier for the season.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL for the season resource.
+            name:
+              type: object
+              description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        token:
+          type: string
+          description: Token uniquely identifying the review task.
+        updated:
+          type: string
+          format: date-time
+          description: Date and time the review task was last updated, in ISO 8601 format.
+      example:
+        action_at: null
+        category:
+          slug: QvRkXaBq
+          link: https://api.au.cr4ce.com/category/QvRkXaBq
+          name:
+            en_GB: Photography
+        created: '2026-01-15T09:00:00Z'
+        decision: null
+        entry:
+          slug: AbCdEfGh
+          link: https://api.au.cr4ce.com/entry/AbCdEfGh
+          title: Sustainable Cities Initiative
+        review_stage:
+          slug: DrDgobBw
+          link: https://api.au.cr4ce.com/review-stage/DrDgobBw
+          name:
+            en_GB: First round
+        reviewer:
+          - name: Jane Smith
+            email: jane.smith@example.com
+        season:
+          slug: QrStUvWx
+          link: https://api.au.cr4ce.com/season/QrStUvWx
+          name:
+            en_GB: '2025'
+        token: fuv1ZQRAn37Grsl2QQZbCq7eUxRY4QDX
+        updated: '2026-01-15T09:00:00Z'
+    ReviewTaskList:
+      title: Review task list
+      description: |-
+        Paginated list of review tasks.
+
+        Wraps the review tasks in `data` alongside the standard pagination envelope.
+      allOf:
+        - $ref: '#/components/schemas/Pagination'
+        - type: object
+          properties:
+            data:
+              type: array
+              description: Review tasks for the current page.
+              items:
+                $ref: '#/components/schemas/ReviewTask'
+      example:
+        current_page: 1
+        data:
+          - action_at: null
+            category:
+              slug: QvRkXaBq
+              link: https://api.au.cr4ce.com/category/QvRkXaBq
+              name:
+                en_GB: Photography
+            created: '2026-01-15T09:00:00Z'
+            decision: null
+            entry:
+              slug: AbCdEfGh
+              link: https://api.au.cr4ce.com/entry/AbCdEfGh
+              title: Sustainable Cities Initiative
+            review_stage:
+              slug: DrDgobBw
+              link: https://api.au.cr4ce.com/review-stage/DrDgobBw
+              name:
+                en_GB: First round
+            reviewer:
+              - name: Jane Smith
+                email: jane.smith@example.com
+            season:
+              slug: QrStUvWx
+              link: https://api.au.cr4ce.com/season/QrStUvWx
+              name:
+                en_GB: '2025'
+            token: fuv1ZQRAn37Grsl2QQZbCq7eUxRY4QDX
+            updated: '2026-01-15T09:00:00Z'
+        first_page_url: https://api.au.cr4ce.com/review-task?page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.au.cr4ce.com/review-task?page=1
+        next_page_url: ''
+        path: https://api.au.cr4ce.com/review-task
+        per_page: 10
+        prev_page_url: ''
+        to: 1
+        total: 1
     Round:
       type: object
       properties:
@@ -9132,6 +9366,28 @@ components:
                 type: string
                 description: Annotation on the order.
       description: Order update payload.
+    ReviewTaskCreate:
+      description: Action task creation payload.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - action_stage
+              - application
+            properties:
+              action_stage:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: |-
+                  Slug of the action stage.
+                  Action stages reviewed by referees cannot be used to create action tasks.
+              application:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the application.
+      required: true
     UserCreate:
       description: User create payload.
       content:
