@@ -2475,6 +2475,7 @@ paths:
         - Score set
       parameters:
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '200':
           description: Score set retrieved.
@@ -2491,6 +2492,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScoreSet'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the score set identified by the specified slug.
   /season:
     get:
