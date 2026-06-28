@@ -1,0 +1,12 @@
+name: order
+in: query
+required: false
+description: |-
+  Sort by a supported score set field.
+schema:
+  type: string
+  enum:
+    - created
+    - mode
+    - name
+    - updated

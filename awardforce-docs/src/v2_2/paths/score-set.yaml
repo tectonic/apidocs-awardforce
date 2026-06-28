@@ -7,9 +7,14 @@ get:
     - $ref: ../components/parameters/scoreSetModeFilter.yaml
     - $ref: ../components/parameters/formFilter.yaml
     - $ref: ../components/parameters/seasonFilter.yaml
+    - $ref: ../components/parameters/scoreSetOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
+    - $ref: ../components/parameters/archivedFilter.yaml
+    - $ref: ../components/parameters/trashedFilter.yaml
     - $ref: ../components/parameters/page.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '200':
       description: Score sets retrieved.
@@ -26,4 +31,14 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/ScoreSetList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves score sets.
