@@ -1,0 +1,14 @@
+name: order
+in: query
+required: false
+description: |-
+  Sort by a supported round field.
+schema:
+  type: string
+  enum:
+    - created
+    - end_date
+    - name
+    - start_date
+    - type
+    - updated

@@ -1,53 +1,102 @@
+title: Round
+description: |-
+  Single round: a phase of a season with its own type, dates, form, and chapters.
 type: object
 properties:
   chapters:
     type: array
+    description: Chapters associated with the round.
     items:
       type: object
       properties:
         slug:
           type: string
+          description: Short URL-safe identifier for the chapter.
         link:
           type: string
           format: uri
+          description: Canonical URL for the chapter resource.
         name:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: |-
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
   created:
     type: string
     format: date-time
+    description: Date and time the round was created, in ISO 8601 format.
   end_date:
     type: string
-    format: date-time
+    nullable: true
+    description: |-
+      Date and time the round closes, in `YYYY-MM-DD HH:MM:SS` format. This value carries no timezone offset.
+
+      `null` when no close date is set.
   form:
     type: string
+    description: Slug of the form associated with the round.
   name:
     type: object
-    properties:
-      en_GB:
-        type: string
+    description: |-
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
   season:
     type: object
+    description: Season the round belongs to.
     properties:
       slug:
         type: string
+        description: Short URL-safe identifier for the season.
       link:
         type: string
         format: uri
+        description: Canonical URL for the season resource.
       name:
         type: object
-        properties:
-          en_GB:
-            type: string
+        description: |-
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
   slug:
     type: string
+    description: Short URL-safe identifier for the round.
   start_date:
     type: string
-    format: date-time
+    nullable: true
+    description: |-
+      Date and time the round opens, in `YYYY-MM-DD HH:MM:SS` format. This value carries no timezone offset.
+
+      `null` when no open date is set.
   type:
     type: string
+    description: Type of the round.
+    enum:
+      - entry
+      - judge
+      - feedback
   updated:
     type: string
     format: date-time
+    description: Date and time the round was last updated, in ISO 8601 format.
+example:
+  chapters:
+    - slug: QvRkXaBq
+      link: https://api.au.cr4ce.com/chapter/QvRkXaBq
+      name:
+        en_GB: Open
+  created: '2026-01-15T09:00:00Z'
+  end_date: '2026-03-31 23:59:59'
+  form: AbCdEfGh
+  name:
+    en_GB: Entry round
+  season:
+    slug: QrStUvWx
+    link: https://api.au.cr4ce.com/season/QrStUvWx
+    name:
+      en_GB: '2025'
+  slug: RnDpQwEr
+  start_date: '2026-01-01 00:00:00'
+  type: entry
+  updated: '2026-01-15T09:00:00Z'
