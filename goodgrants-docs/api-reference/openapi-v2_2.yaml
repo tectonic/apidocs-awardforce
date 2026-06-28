@@ -2345,10 +2345,15 @@ paths:
         - $ref: '#/components/parameters/roundTypeFilter'
         - $ref: '#/components/parameters/formFilter'
         - $ref: '#/components/parameters/seasonFilter'
+        - $ref: '#/components/parameters/roundSlugFilter'
+        - $ref: '#/components/parameters/keywords'
+        - $ref: '#/components/parameters/roundOrder'
+        - $ref: '#/components/parameters/sortDirection'
+        - $ref: '#/components/parameters/trashedFilter'
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/perPage'
-        - $ref: '#/components/parameters/sortDirection'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '200':
           description: Rounds retrieved.
@@ -2365,6 +2370,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RoundList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves rounds.
   /round/{round_slug}:
     parameters:
@@ -3671,6 +3686,35 @@ components:
           - entry
           - judge
           - feedback
+    roundSlugFilter:
+      name: slug
+      in: query
+      required: false
+      description: Filter to a single round by slug. Returns at most one item.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
+    keywords:
+      name: keywords
+      in: query
+      required: false
+      description: Free-text search. Each space-separated term is matched independently against the resource's searchable text fields.
+      schema:
+        type: string
+    roundOrder:
+      name: order
+      in: query
+      required: false
+      description: Sort by a supported round field.
+      schema:
+        type: string
+        enum:
+          - created
+          - end_date
+          - name
+          - start_date
+          - type
+          - updated
     roundSlug:
       name: round_slug
       in: path
@@ -8022,59 +8066,104 @@ components:
         to: 1
         total: 1
     Round:
+      title: Round
+      description: 'Single round: a phase of a season with its own type, dates, form, and chapters.'
       type: object
       properties:
         chapters:
           type: array
+          description: Chapters associated with the round.
           items:
             type: object
             properties:
               slug:
                 type: string
+                description: Short URL-safe identifier for the chapter.
               link:
                 type: string
                 format: uri
+                description: Canonical URL for the chapter resource.
               name:
                 type: object
-                properties:
-                  en_GB:
-                    type: string
+                description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
         created:
           type: string
           format: date-time
+          description: Date and time the round was created, in ISO 8601 format.
         end_date:
           type: string
-          format: date-time
+          nullable: true
+          description: |-
+            Date and time the round closes, in `YYYY-MM-DD HH:MM:SS` format. This value carries no timezone offset.
+
+            `null` when no close date is set.
         form:
           type: string
+          description: Slug of the form associated with the round.
         name:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         season:
           type: object
+          description: Season the round belongs to.
           properties:
             slug:
               type: string
+              description: Short URL-safe identifier for the season.
             link:
               type: string
               format: uri
+              description: Canonical URL for the season resource.
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
+              description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         slug:
           type: string
+          description: Short URL-safe identifier for the round.
         start_date:
           type: string
-          format: date-time
+          nullable: true
+          description: |-
+            Date and time the round opens, in `YYYY-MM-DD HH:MM:SS` format. This value carries no timezone offset.
+
+            `null` when no open date is set.
         type:
           type: string
+          description: Type of the round.
+          enum:
+            - entry
+            - judge
+            - feedback
         updated:
           type: string
           format: date-time
+          description: Date and time the round was last updated, in ISO 8601 format.
+      example:
+        chapters:
+          - slug: QvRkXaBq
+            link: https://api.au.cr4ce.com/chapter/QvRkXaBq
+            name:
+              en_GB: Open
+        created: '2026-01-15T09:00:00Z'
+        end_date: '2026-03-31 23:59:59'
+        form: AbCdEfGh
+        name:
+          en_GB: Entry round
+        season:
+          slug: QrStUvWx
+          link: https://api.au.cr4ce.com/season/QrStUvWx
+          name:
+            en_GB: '2025'
+        slug: RnDpQwEr
+        start_date: '2026-01-01 00:00:00'
+        type: entry
+        updated: '2026-01-15T09:00:00Z'
     RoundList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
