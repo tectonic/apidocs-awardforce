@@ -2430,9 +2430,14 @@ paths:
         - $ref: '#/components/parameters/scoreSetModeFilter'
         - $ref: '#/components/parameters/formFilter'
         - $ref: '#/components/parameters/seasonFilter'
+        - $ref: '#/components/parameters/scoreSetOrder'
+        - $ref: '#/components/parameters/sortDirection'
+        - $ref: '#/components/parameters/archivedFilter'
+        - $ref: '#/components/parameters/trashedFilter'
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/perPage'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '200':
           description: Score sets retrieved.
@@ -2449,6 +2454,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScoreSetList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves score sets.
   /score-set/{score_set_slug}:
     parameters:
@@ -3741,6 +3756,18 @@ components:
           - vip_judging
           - voting
           - gallery
+    scoreSetOrder:
+      name: order
+      in: query
+      required: false
+      description: Sort by a supported score set field.
+      schema:
+        type: string
+        enum:
+          - created
+          - mode
+          - name
+          - updated
     scoreSetSlug:
       name: score_set_slug
       in: path
@@ -8188,13 +8215,20 @@ components:
           type: string
         mode:
           type: string
+          enum:
+            - qualifying
+            - top_pick
+            - vip_judging
+            - voting
+            - gallery
         name:
           type: object
-          properties:
-            en_GB:
-              type: string
+          description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
         order:
           type: integer
+          nullable: true
         season:
           type: object
           properties:
@@ -8205,14 +8239,28 @@ components:
               format: uri
             name:
               type: object
-              properties:
-                en_GB:
-                  type: string
+              description: Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
         slug:
           type: string
         updated:
           type: string
           format: date-time
+      example:
+        created: '2026-03-19T08:05:41Z'
+        form: vAyNpPvN
+        mode: top_pick
+        name:
+          en_GB: Top pick test
+        order: null
+        season:
+          slug: wboyrBmo
+          link: https://api.au.cr4ce.com/season/wboyrBmo
+          name:
+            en_GB: '2026'
+        slug: oJLDVarQ
+        updated: '2026-06-03T06:50:18Z'
     ScoreSetList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
