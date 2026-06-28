@@ -2304,6 +2304,37 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the review task identified by the specified token.
+    delete:
+      summary: Delete a review task
+      operationId: DeleteReviewTaskV23
+      tags:
+        - Action task
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '204':
+          description: Review task deleted.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Deletes the review task identified by the specified token.
   /round:
     get:
       summary: Retrieve rounds
