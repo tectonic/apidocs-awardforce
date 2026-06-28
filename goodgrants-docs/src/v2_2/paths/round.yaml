@@ -8,7 +8,6 @@ get:
     - $ref: ../components/parameters/formFilter.yaml
     - $ref: ../components/parameters/seasonFilter.yaml
     - $ref: ../components/parameters/roundSlugFilter.yaml
-    - $ref: ../components/parameters/keywords.yaml
     - $ref: ../components/parameters/roundOrder.yaml
     - $ref: ../components/parameters/sortDirection.yaml
     - $ref: ../components/parameters/trashedFilter.yaml

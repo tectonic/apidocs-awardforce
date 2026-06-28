@@ -1,7 +1,0 @@
-name: keywords
-in: query
-required: false
-description: |-
-  Free-text search. Each space-separated term is matched independently against the resource's searchable text fields.
-schema:
-  type: string
