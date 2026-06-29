@@ -5,6 +5,31 @@ properties:
     description: Subscription events that trigger this webhook.
     items:
       type: string
+  fields:
+    type: array
+    description: Fields included in the webhook payload.
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: Short URL-safe identifier for the field.
+        link:
+          type: string
+          format: uri
+          description: Canonical URL for the field resource.
+        title:
+          type: object
+          description: |-
+            Plain-text title of the field.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+  form:
+    type: string
+    nullable: true
+    description: Slug of the form the webhook is scoped to. `null` when the webhook is not scoped to a specific form.
   method:
     type: string
     description: HTTP method used to call the webhook URL.
@@ -24,6 +49,10 @@ properties:
     type: string
     format: uri
     description: URL that receives the webhook payload.
+  created:
+    type: string
+    format: date-time
+    description: Date and time the webhook was created.
   updated:
     type: string
     format: date-time

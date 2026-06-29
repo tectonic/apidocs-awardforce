@@ -16,7 +16,11 @@ schema:
     - document_created
     - document_deleted
     - document_updated
+    - entry_category_changed
+    - entry_chapter_changed
+    - entry_copied
     - entry_created
+    - entry_deleted
     - entry_eligible
     - entry_ineligible
     - entry_moderated

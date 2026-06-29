@@ -28,6 +28,16 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/WebhookList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves webhooks.
 post:
   summary: Create a webhook
@@ -68,21 +78,28 @@ post:
       - allocation_payment_deleted
       - allocation_payment_status_changed
       - allocation_payment_updated
+      - application_category_changed
+      - application_chapter_changed
+      - application_copied
+      - application_created
+      - application_deleted
+      - application_eligible
+      - application_ineligible
+      - application_moderated
+      - application_resubmitted
+      - application_submitted
+      - application_tagged
+      - application_updated
       - assignment_completed
       - assignment_created
       - collaborator_invited
       - document_created
       - document_deleted
       - document_updated
-      - entry_created
-      - entry_eligible
-      - entry_ineligible
-      - entry_moderated
-      - entry_resubmitted
-      - entry_submitted
-      - entry_tagged
-      - entry_updated
       - field_value_updated
+      - grant_report_created
+      - grant_report_submitted
+      - grant_status_changed
       - membership_registered (user created)
       - payment_pending
       - payment_success
