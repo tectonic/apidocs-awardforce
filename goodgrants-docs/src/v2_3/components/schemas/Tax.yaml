@@ -2,23 +2,45 @@ type: object
 properties:
   country:
     type: string
+    description: Country the tax applies to.
   country_name:
     type: string
+    description: Localised name of the country the tax applies to.
   created:
     type: string
     format: date-time
   name:
     type: string
+    nullable: true
+    description: Name of the tax.
   rate:
-    type: integer
+    type: number
+    format: float
+    description: Tax rate as a percentage.
   region:
+    type: string
     nullable: true
+    description: Region code the tax applies to.
   region_name:
+    type: string
     nullable: true
+    description: Localised name of the region the tax applies to.
   slug:
     type: string
   term:
     type: string
+    description: Tax term label, such as GST or VAT.
   updated:
     type: string
     format: date-time
+example:
+  country: GB
+  country_name: United Kingdom
+  created: '2024-12-09T08:36:57Z'
+  name: VAT
+  rate: 20
+  region: null
+  region_name: null
+  slug: vQWmGBAy
+  term: VAT
+  updated: '2025-05-19T12:35:40Z'

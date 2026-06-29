@@ -1,0 +1,17 @@
+name: order
+in: query
+required: false
+description: |-
+  Column name to order by. An unrecognised value falls back to the default sort order.
+schema:
+  type: string
+  enum:
+    - country
+    - country_name
+    - created
+    - name
+    - rate
+    - region
+    - region_name
+    - term
+    - updated
