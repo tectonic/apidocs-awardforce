@@ -12,14 +12,17 @@ content:
           description: User's last name.
         password:
           type: string
-          description: Password for accessing the account.
+          description: |-
+            New password for the user. The minimum length and complexity requirements are configured per account. A user who belongs to more than one account cannot have their password changed through this endpoint. If the user owns an account, only that same user can change the password.
         email:
           type: string
           format: email
-          description: User's email address.
+          description: |-
+            User's email address. Must be unique across all users; the request is rejected if another user already uses it. A user who belongs to more than one account cannot have their email address changed through this endpoint. If the user owns an account, only that same user can change the email address.
         mobile:
           type: string
-          description: User's mobile number.
+          description: |-
+            User's mobile number in E.164 international format, such as `+14155552671`. Must be unique across all users; the request is rejected if another user already uses it. A user who belongs to more than one account cannot have their mobile number changed through this endpoint. If the user owns an account, only that same user can change the mobile number.
         roles:
           type: array
           description: Array of role slugs.
@@ -35,6 +38,20 @@ content:
               type: boolean
             notification_sms:
               type: boolean
+        cookies:
+          type: object
+          description: |-
+            Cookie consent preferences. Applied only on accounts where cookie consent is enabled.
+          properties:
+            analytics_cookies:
+              type: boolean
+              description: Specifies whether the user consents to analytics cookies.
+            marketing_cookies:
+              type: boolean
+              description: Specifies whether the user consents to marketing cookies.
+            necessary_cookies:
+              type: boolean
+              description: Specifies whether the user consents to necessary cookies.
         user_fields:
           type: object
           description: |-
