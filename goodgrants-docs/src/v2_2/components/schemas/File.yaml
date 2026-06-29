@@ -92,7 +92,7 @@ properties:
           type: string
           description: ETag of the transcoded file.
 example:
-  download_link: https://files.au.cr4ce.com/file/TwLgErBMhoQrStUv/squirrel-on-log.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+  download_link: https://files.au.cr4ce.com/file/AbCdEfGhIjKlMnOp/squirrel-on-log.jpg?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
   duration: null
   filename: squirrel-on-log.jpg
   image_height: null

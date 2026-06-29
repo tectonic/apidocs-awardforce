@@ -17,8 +17,8 @@ example:
   data:
     - action_at: null
       category:
-        slug: QvRkXaBq
-        link: https://api.au.cr4ce.com/category/QvRkXaBq
+        slug: CdEfGhIj
+        link: https://api.au.cr4ce.com/category/CdEfGhIj
         name:
           en_GB: Photography
       created: '2026-01-15T09:00:00Z'
@@ -28,8 +28,8 @@ example:
         link: https://api.au.cr4ce.com/entry/AbCdEfGh
         title: Sustainable Cities Initiative
       review_stage:
-        slug: DrDgobBw
-        link: https://api.au.cr4ce.com/review-stage/DrDgobBw
+        slug: EfGhIjKl
+        link: https://api.au.cr4ce.com/review-stage/EfGhIjKl
         name:
           en_GB: First round
       reviewer:
@@ -40,7 +40,7 @@ example:
         link: https://api.au.cr4ce.com/season/QrStUvWx
         name:
           en_GB: '2025'
-      token: fuv1ZQRAn37Grsl2QQZbCq7eUxRY4QDX
+      token: REDACTED
       updated: '2026-01-15T09:00:00Z'
   first_page_url: https://api.au.cr4ce.com/review-task?page=1
   from: 1

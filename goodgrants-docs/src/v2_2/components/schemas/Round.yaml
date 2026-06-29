@@ -82,8 +82,8 @@ properties:
     description: Date and time the round was last updated, in ISO 8601 format.
 example:
   chapters:
-    - slug: QvRkXaBq
-      link: https://api.au.cr4ce.com/chapter/QvRkXaBq
+    - slug: CdEfGhIj
+      link: https://api.au.cr4ce.com/chapter/CdEfGhIj
       name:
         en_GB: Open
   created: '2026-01-15T09:00:00Z'
@@ -96,7 +96,7 @@ example:
     link: https://api.au.cr4ce.com/season/QrStUvWx
     name:
       en_GB: '2025'
-  slug: RnDpQwEr
+  slug: EfGhIjKl
   start_date: '2026-01-01 00:00:00'
   type: entry
   updated: '2026-01-15T09:00:00Z'

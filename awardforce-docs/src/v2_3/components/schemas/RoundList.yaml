@@ -10,40 +10,40 @@ example:
   current_page: 1
   data:
     - chapters:
-        - slug: VbaERKdP
-          link: https://api.eu.staging.cr4ce.com/chapter/VbaERKdP
+        - slug: AbCdEfGh
+          link: https://api.eu.staging.cr4ce.com/chapter/AbCdEfGh
           name:
             en_GB: lecht
-        - slug: lZyDyPzP
-          link: https://api.eu.staging.cr4ce.com/chapter/lZyDyPzP
+        - slug: CdEfGhIj
+          link: https://api.eu.staging.cr4ce.com/chapter/CdEfGhIj
           name:
             en_GB: Glencoe
       created: '2026-06-24T13:57:52Z'
       end_date: null
-      form: vZewbPwM
+      form: EfGhIjKl
       name:
         en_GB: form 15
       season:
-        slug: wboyrBmo
-        link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+        slug: GhIjKlMn
+        link: https://api.eu.staging.cr4ce.com/season/GhIjKlMn
         name:
           en_GB: '2026'
-      slug: MvzgDZkA
+      slug: IjKlMnOp
       start_date: null
       type: entry
       updated: '2026-06-24T13:57:52Z'
     - chapters: []
       created: '2025-02-13T11:41:26Z'
       end_date: '2026-04-22 07:43:00'
-      form: WvmnJgjV
+      form: KlMnOpQr
       name:
         en_GB: Cycling grants judging
       season:
-        slug: wboyrBmo
-        link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+        slug: GhIjKlMn
+        link: https://api.eu.staging.cr4ce.com/season/GhIjKlMn
         name:
           en_GB: '2026'
-      slug: xaDrgaJR
+      slug: MnOpQrSt
       start_date: '2025-03-07 08:43:00'
       type: judge
       updated: '2026-04-08T15:24:34Z'

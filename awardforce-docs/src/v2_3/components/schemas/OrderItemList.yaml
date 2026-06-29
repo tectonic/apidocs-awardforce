@@ -17,13 +17,13 @@ example:
   data:
     - address: 12 Example Street
       category:
-        slug: QvRkXaBq
-        link: https://api.au.cr4ce.com/category/QvRkXaBq
+        slug: CdEfGhIj
+        link: https://api.au.cr4ce.com/category/CdEfGhIj
         name:
           en_GB: Photography
       chapter:
-        slug: VbAeRkDp
-        link: https://api.au.cr4ce.com/chapter/VbAeRkDp
+        slug: EfGhIjKl
+        link: https://api.au.cr4ce.com/chapter/EfGhIjKl
         name:
           en_GB: National
       city: London

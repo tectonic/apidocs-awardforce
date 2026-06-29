@@ -43,15 +43,15 @@ properties:
     format: date-time
 example:
   created: '2026-03-19T08:05:41Z'
-  form: vAyNpPvN
+  form: AbCdEfGh
   mode: top_pick
   name:
     en_GB: Top pick test
   order: null
   season:
-    slug: wboyrBmo
-    link: https://api.au.cr4ce.com/season/wboyrBmo
+    slug: CdEfGhIj
+    link: https://api.au.cr4ce.com/season/CdEfGhIj
     name:
       en_GB: '2026'
-  slug: oJLDVarQ
+  slug: EfGhIjKl
   updated: '2026-06-03T06:50:18Z'

@@ -129,11 +129,11 @@ example:
   image_heading:
     en_GB: Category image
   images:
-    - token: H6eSZxAbZZPr8z8I
-      link: https://api.au.cr4ce.com/file/H6eSZxAbZZPr8z8I
+    - token: AbCdEfGhIjKlMnOp
+      link: https://api.au.cr4ce.com/file/AbCdEfGhIjKlMnOp
       filename: example.png
       name: Category image
-      download: https://files.au.cr4ce.com/file/H6eSZxAbZZPr8z8I/example.png?Expires=1781657570&Signature=REDACTED&Key-Pair-Id=REDACTED
+      download: https://files.au.cr4ce.com/file/AbCdEfGhIjKlMnOp/example.png?Expires=1781657570&Signature=REDACTED&Key-Pair-Id=REDACTED
   max_image_width: 300
   packing_slip_instructions:
     en_GB: Attach this slip to each physical submission.

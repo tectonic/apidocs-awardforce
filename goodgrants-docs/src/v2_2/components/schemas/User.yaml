@@ -4,20 +4,20 @@ allOf:
 example:
   analytics_cookies: true
   broadcast_emails: true
-  comments: 'Rachel Martin (2025-05-21T15:25:39+00:00): User comment'
+  comments: 'Jane Doe (2025-05-21T15:25:39+00:00): User comment'
   confirmation: Confirmed
   confirmed_at: '2018-04-17T00:00:00Z'
   created_at: '2024-06-24T06:34:30Z'
   created_by: manual
-  email: rachelmartin@awardforce.com
-  first_name: Rachel
+  email: jane.doe@example.com
+  first_name: Jane
   language:
     code: en_GB
     language: English (United Kingdom)
-  last_name: Martin
+  last_name: Doe
   marketing_cookies: true
   mobile: ''
-  name: Rachel Martin
+  name: Jane Doe
   necessary_cookies: true
   notification_emails: true
   notification_sms: true
@@ -26,20 +26,20 @@ example:
     notification_emails: true
     notification_sms: true
   roles:
-    - slug: gakoqKNr
-      link: https://api.eu.staging.cr4ce.com/role/gakoqKNr
+    - slug: AbCdEfGh
+      link: https://api.eu.staging.cr4ce.com/role/AbCdEfGh
       name:
         en_GB: Entrant
-    - slug: Kggmdnrk
-      link: https://api.eu.staging.cr4ce.com/role/Kggmdnrk
+    - slug: CdEfGhIj
+      link: https://api.eu.staging.cr4ce.com/role/CdEfGhIj
       name:
         en_GB: Program manager
-  slug: BwXxQawR
+  slug: EfGhIjKl
   social_sharing: true
   updated: '2026-06-26T07:50:46Z'
   user_fields:
-    - slug: rmlpVqKg
-      link: https://api.eu.staging.cr4ce.com/field/rmlpVqKg
+    - slug: GhIjKlMn
+      link: https://api.eu.staging.cr4ce.com/field/GhIjKlMn
       label:
         en_GB: <p>Title</p>
       title:
@@ -47,8 +47,8 @@ example:
       value: Ms
       translated:
         en_GB: ''
-    - slug: nPBLvMaR
-      link: https://api.eu.staging.cr4ce.com/field/nPBLvMaR
+    - slug: IjKlMnOp
+      link: https://api.eu.staging.cr4ce.com/field/IjKlMnOp
       label:
         en_GB: <p>user file upload</p>
       title:

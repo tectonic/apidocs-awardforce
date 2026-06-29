@@ -79,21 +79,21 @@ example:
   description:
     en_GB: Chapter for the Glenlivet region.
   managers:
-    - slug: MrKnBLed
-      link: https://api.au.cr4ce.com/user/MrKnBLed
+    - slug: AbCdEfGh
+      link: https://api.au.cr4ce.com/user/AbCdEfGh
       first_name: John
       last_name: Smith
-    - slug: EAwQLyWN
-      link: https://api.au.cr4ce.com/user/EAwQLyWN
+    - slug: CdEfGhIj
+      link: https://api.au.cr4ce.com/user/CdEfGhIj
       first_name: Carol
       last_name: Murphy
   name:
     en_GB: Glenlivet
   season:
-    slug: wboyrBmo
-    link: https://api.au.cr4ce.com/season/wboyrBmo
+    slug: EfGhIjKl
+    link: https://api.au.cr4ce.com/season/EfGhIjKl
     name:
       en_GB: '2026'
-  slug: WPaxbzgQ
+  slug: GhIjKlMn
   status: Active
   updated: '2026-04-13T13:45:50Z'

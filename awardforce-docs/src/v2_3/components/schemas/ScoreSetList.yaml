@@ -10,30 +10,30 @@ example:
   current_page: 1
   data:
     - created: '2026-06-24T13:43:50Z'
-      form: vAyNpPvN
+      form: AbCdEfGh
       mode: vip_judging
       name:
         en_GB: Assignments view testing
       order: null
       season:
-        slug: wboyrBmo
-        link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+        slug: CdEfGhIj
+        link: https://api.eu.staging.cr4ce.com/season/CdEfGhIj
         name:
           en_GB: '2026'
-      slug: xNPKoAJL
+      slug: EfGhIjKl
       updated: '2026-06-24T13:43:50Z'
     - created: '2025-04-02T16:00:58Z'
-      form: vAyNpPvN
+      form: AbCdEfGh
       mode: voting
       name:
         en_GB: Voting
       order: null
       season:
-        slug: wboyrBmo
-        link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+        slug: CdEfGhIj
+        link: https://api.eu.staging.cr4ce.com/season/CdEfGhIj
         name:
           en_GB: '2026'
-      slug: zpwGqelV
+      slug: GhIjKlMn
       updated: '2026-06-23T15:22:33Z'
   first_page_url: https://api.eu.staging.cr4ce.com/score-set?per_page=100&page=1
   from: 1

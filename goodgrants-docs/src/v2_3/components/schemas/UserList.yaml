@@ -16,24 +16,24 @@ example:
       confirmed_at: '2025-08-05T00:00:00Z'
       created_at: '2025-08-05T09:00:58Z'
       created_by: invited
-      email: sean@creativeforce.team
-      first_name: Sean
+      email: john.doe@example.com
+      first_name: John
       language:
         code: en_GB
         language: English (United Kingdom)
-      last_name: Judd
+      last_name: Doe
       marketing_cookies: true
       mobile: ''
-      name: Sean Judd
+      name: John Doe
       necessary_cookies: true
       notification_emails: true
       notification_sms: true
       roles:
-        - slug: gakoqKNr
-          link: https://api.eu.staging.cr4ce.com/role/gakoqKNr
+        - slug: AbCdEfGh
+          link: https://api.eu.staging.cr4ce.com/role/AbCdEfGh
           name:
             en_GB: Entrant
-      slug: OZWxqzDa
+      slug: KlMnOpQr
       updated: '2026-06-28T08:03:58Z'
     - analytics_cookies: false
       broadcast_emails: false
@@ -42,28 +42,28 @@ example:
       confirmed_at: '2025-04-01T00:00:00Z'
       created_at: '2025-04-23T12:36:32Z'
       created_by: manual
-      email: adamorlowski@creativeforce.team
-      first_name: Adam
+      email: jane.roe@example.com
+      first_name: Jane
       language:
         code: en_GB
         language: English (United Kingdom)
-      last_name: Orlowski
+      last_name: Roe
       marketing_cookies: false
       mobile: ''
-      name: Adam Orlowski
+      name: Jane Roe
       necessary_cookies: true
       notification_emails: false
       notification_sms: false
       roles:
-        - slug: gakoqKNr
-          link: https://api.eu.staging.cr4ce.com/role/gakoqKNr
+        - slug: AbCdEfGh
+          link: https://api.eu.staging.cr4ce.com/role/AbCdEfGh
           name:
             en_GB: Entrant
-        - slug: Kggmdnrk
-          link: https://api.eu.staging.cr4ce.com/role/Kggmdnrk
+        - slug: CdEfGhIj
+          link: https://api.eu.staging.cr4ce.com/role/CdEfGhIj
           name:
             en_GB: Program manager
-      slug: eVVYmmRV
+      slug: MnOpQrSt
       updated: '2026-06-25T15:39:46Z'
   first_page_url: https://api.eu.staging.cr4ce.com/user?per_page=100&page=1
   from: 1
