@@ -1,7 +1,7 @@
 type: object
 title: UploadResult
 description: |-
-  Receipt returned when a file is uploaded to a category, chapter, entry, or user field.
+  Receipt returned when a file is uploaded to a category, chapter, application, or user field.
 
   Carries the original filename, a short opaque token that addresses the stored file, and the canonical URL through which the file can be retrieved.
 properties:

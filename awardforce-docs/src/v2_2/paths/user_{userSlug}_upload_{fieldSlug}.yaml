@@ -10,7 +10,7 @@ post:
     - $ref: ../components/parameters/Accept.yaml
   responses:
     '201':
-      description: File uploaded.
+      description: User file uploaded.
       headers:
         Location:
           $ref: ../components/headers/Location.yaml
@@ -26,6 +26,27 @@ post:
         application/json:
           schema:
             $ref: ../components/schemas/UploadResult.yaml
-  description: Uploads a file to the specified user field.
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Uploads a file to the specified field for the user identified by the specified slug.
   requestBody:
     $ref: ../components/requestBodies/FileUpload.yaml
+  x-mint:
+    content: |-
+      Use this operation to upload a file to a file field on the user.
+
+      <Warning>
+      The uploaded file is validated and stored before the response is returned; the file itself is processed shortly after. A `GET` on the returned `Location` immediately after the `201` may briefly return a response with a `null` body until processing is complete.
+      </Warning>

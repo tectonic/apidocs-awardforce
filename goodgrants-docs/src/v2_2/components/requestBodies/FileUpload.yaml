@@ -16,6 +16,9 @@ content:
             Base64-encoded contents of the file.
 
             The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
+      example:
+        filename: example.pdf
+        data: aGVsbG8gd29ybGQ=
 description: |-
   File payload for an upload operation.
 
