@@ -8283,6 +8283,57 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Round'
+      example:
+        current_page: 1
+        data:
+          - chapters:
+              - slug: VbaERKdP
+                link: https://api.eu.staging.cr4ce.com/chapter/VbaERKdP
+                name:
+                  en_GB: lecht
+              - slug: lZyDyPzP
+                link: https://api.eu.staging.cr4ce.com/chapter/lZyDyPzP
+                name:
+                  en_GB: Glencoe
+            created: '2026-06-24T13:57:52Z'
+            end_date: null
+            form: vZewbPwM
+            name:
+              en_GB: form 15
+            season:
+              slug: wboyrBmo
+              link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: MvzgDZkA
+            start_date: null
+            type: entry
+            updated: '2026-06-24T13:57:52Z'
+          - chapters: []
+            created: '2025-02-13T11:41:26Z'
+            end_date: '2026-04-22 07:43:00'
+            form: WvmnJgjV
+            name:
+              en_GB: Cycling grants judging
+            season:
+              slug: wboyrBmo
+              link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: xaDrgaJR
+            start_date: '2025-03-07 08:43:00'
+            type: judge
+            updated: '2026-04-08T15:24:34Z'
+        first_page_url: https://api.eu.staging.cr4ce.com/round?per_page=100&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.eu.staging.cr4ce.com/round?per_page=100&page=1
+        next_page_url: ''
+        path: https://api.eu.staging.cr4ce.com/round
+        per_page: 100
+        prev_page_url: ''
+        to: 29
+        total: 29
     ScoreSet:
       type: object
       properties:
@@ -8348,6 +8399,45 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/ScoreSet'
+      example:
+        current_page: 1
+        data:
+          - created: '2026-06-24T13:43:50Z'
+            form: vAyNpPvN
+            mode: vip_judging
+            name:
+              en_GB: Assignments view testing
+            order: null
+            season:
+              slug: wboyrBmo
+              link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: xNPKoAJL
+            updated: '2026-06-24T13:43:50Z'
+          - created: '2025-04-02T16:00:58Z'
+            form: vAyNpPvN
+            mode: voting
+            name:
+              en_GB: Voting
+            order: null
+            season:
+              slug: wboyrBmo
+              link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: zpwGqelV
+            updated: '2026-06-23T15:22:33Z'
+        first_page_url: https://api.eu.staging.cr4ce.com/score-set?per_page=100&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.eu.staging.cr4ce.com/score-set?per_page=100&page=1
+        next_page_url: ''
+        path: https://api.eu.staging.cr4ce.com/score-set
+        per_page: 100
+        prev_page_url: ''
+        to: 21
+        total: 21
     Season:
       type: object
       properties:
@@ -8388,6 +8478,31 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Season'
+      example:
+        current_page: 1
+        data:
+          - created: '2023-01-16T10:01:11Z'
+            name:
+              en_GB: '2026'
+            slug: wboyrBmo
+            status: active
+            updated: '2026-06-03T06:50:16Z'
+          - created: '2026-06-02T14:11:32Z'
+            name:
+              en_GB: copy test 2 june
+            slug: kWGojenq
+            status: archived
+            updated: '2026-06-03T06:50:16Z'
+        first_page_url: https://api.eu.staging.cr4ce.com/season?per_page=100&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.eu.staging.cr4ce.com/season?per_page=100&page=1
+        next_page_url: ''
+        path: https://api.eu.staging.cr4ce.com/season
+        per_page: 100
+        prev_page_url: ''
+        to: 8
+        total: 8
     Tax:
       type: object
       properties:
