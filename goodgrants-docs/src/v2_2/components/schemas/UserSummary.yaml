@@ -1,0 +1,94 @@
+type: object
+description: Core user fields shared by the list and single-user responses.
+properties:
+  analytics_cookies:
+    type: boolean
+    description: Specifies whether the user accepted analytics cookies.
+  broadcast_emails:
+    type: boolean
+    description: Specifies whether the user accepted broadcast emails.
+  comments:
+    type: string
+    description: Administrative notes recorded against the user, formatted for export.
+  confirmation:
+    type: string
+    description: Account confirmation status of the user, such as `Confirmed` or `Invited`.
+  confirmed_at:
+    type: string
+    format: date-time
+    nullable: true
+    description: Date and time when the user confirmed the account. Value is `null` for an invited user who has not yet confirmed.
+  created_at:
+    type: string
+    format: date-time
+    description: Date and time when the user account was created.
+  created_by:
+    type: string
+    description: Method by which the user account was created, such as `manual` or `registration`.
+  email:
+    type: string
+    format: email
+    nullable: true
+    description: Email address of the user. Value is `null` when no email address is recorded.
+  first_name:
+    type: string
+    description: First name of the user.
+  language:
+    type: object
+    description: Preferred language of the user.
+    properties:
+      code:
+        type: string
+        description: Locale code of the language, such as `en_GB`.
+      language:
+        type: string
+        description: Display name of the language, such as `English (United Kingdom)`.
+  last_name:
+    type: string
+    description: Last name of the user.
+  marketing_cookies:
+    type: boolean
+    description: Specifies whether the user accepted marketing cookies.
+  mobile:
+    type: string
+    description: Mobile phone number of the user.
+  name:
+    type: string
+    description: Full name of the user.
+  necessary_cookies:
+    type: boolean
+    description: Specifies whether the user accepted necessary cookies.
+  notification_emails:
+    type: boolean
+    description: Specifies whether the user accepted notification emails.
+  notification_sms:
+    type: boolean
+    description: Specifies whether the user accepted notification text messages.
+  roles:
+    type: array
+    description: Roles assigned to the user within the account.
+    items:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: URL-safe identifier of the role.
+        link:
+          type: string
+          format: uri
+          description: URL of the role resource.
+        name:
+          type: object
+          description: |-
+            Name of the role.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+  slug:
+    type: string
+    description: URL-safe identifier of the user.
+  updated:
+    type: string
+    format: date-time
+    description: Date and time when the user account was last updated.

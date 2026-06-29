@@ -1,93 +1,59 @@
-type: object
-properties:
-  analytics_cookies:
-    type: boolean
-  broadcast_emails:
-    type: boolean
-  confirmed_at:
-    type: string
-    format: date-time
-  created_at:
-    type: string
-    format: date-time
-  created_by:
-    type: string
-  email:
-    type: string
-    format: email
-  first_name:
-    type: string
+allOf:
+  - $ref: ./UserSummary.yaml
+  - $ref: ./UserDetail.yaml
+example:
+  analytics_cookies: true
+  broadcast_emails: true
+  comments: 'Rachel Martin (2025-05-21T15:25:39+00:00): User comment'
+  confirmation: Confirmed
+  confirmed_at: '2018-04-17T00:00:00Z'
+  created_at: '2024-06-24T06:34:30Z'
+  created_by: manual
+  email: rachelmartin@awardforce.com
+  first_name: Rachel
   language:
-    type: object
-    properties:
-      code:
-        type: string
-      language:
-        type: string
-  last_name:
-    type: string
-  marketing_cookies:
-    type: boolean
-  mobile:
-    type: string
-  name:
-    type: string
-  necessary_cookies:
-    type: boolean
-  notification_emails:
-    type: boolean
-  notification_sms:
-    type: boolean
+    code: en_GB
+    language: English (United Kingdom)
+  last_name: Martin
+  marketing_cookies: true
+  mobile: ''
+  name: Rachel Martin
+  necessary_cookies: true
+  notification_emails: true
+  notification_sms: true
   preferences:
-    type: object
-    properties:
-      broadcast_emails:
-        type: boolean
-      notification_emails:
-        type: boolean
-      notification_sms:
-        type: boolean
+    broadcast_emails: true
+    notification_emails: true
+    notification_sms: true
   roles:
-    type: array
-    items:
-      type: object
-      properties:
-        slug:
-          type: string
-        link:
-          type: string
-          format: uri
-        name:
-          type: object
-          properties:
-            en_GB:
-              type: string
-  slug:
-    type: string
-  social_sharing:
-    type: boolean
-  updated:
-    type: string
-    format: date-time
+    - slug: gakoqKNr
+      link: https://api.eu.staging.cr4ce.com/role/gakoqKNr
+      name:
+        en_GB: Entrant
+    - slug: Kggmdnrk
+      link: https://api.eu.staging.cr4ce.com/role/Kggmdnrk
+      name:
+        en_GB: Program manager
+  slug: BwXxQawR
+  social_sharing: true
+  updated: '2026-06-26T07:50:46Z'
   user_fields:
-    type: array
-    items:
-      type: object
-      properties:
-        slug:
-          type: string
-        link:
-          type: string
-          format: uri
-        label:
-          type: object
-          properties:
-            en_GB:
-              type: string
-        value:
-          type: string
-        translated:
-          type: object
-          properties:
-            en_GB:
-              type: string
+    - slug: rmlpVqKg
+      link: https://api.eu.staging.cr4ce.com/field/rmlpVqKg
+      label:
+        en_GB: <p>Title</p>
+      title:
+        en_GB: Title
+      value: Ms
+      translated:
+        en_GB: ''
+    - slug: nPBLvMaR
+      link: https://api.eu.staging.cr4ce.com/field/nPBLvMaR
+      label:
+        en_GB: <p>user file upload</p>
+      title:
+        en_GB: user file upload
+      value: https://api.eu.staging.cr4ce.com/file/
+      token: ''
+      translated:
+        en_GB: ''

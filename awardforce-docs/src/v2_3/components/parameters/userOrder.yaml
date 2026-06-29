@@ -1,12 +1,17 @@
 name: order
 in: query
 required: false
-description: Column to sort by.
+description: |-
+  Column name to order by. An unrecognised value falls back to the default sort by `updated`.
 schema:
   type: string
   enum:
     - confirmed_at
+    - created_at
+    - created_by
     - email
+    - first_name
+    - last_name
     - mobile
     - name
     - updated

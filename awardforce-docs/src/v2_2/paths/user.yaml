@@ -11,6 +11,7 @@ get:
     - $ref: ../components/parameters/userRoleFilter.yaml
     - $ref: ../components/parameters/userSeasonJoinedFilter.yaml
     - $ref: ../components/parameters/deletedFilter.yaml
+    - $ref: ../components/parameters/trashedFilter.yaml
     - $ref: ../components/parameters/page.yaml
     - $ref: ../components/parameters/perPage.yaml
     - $ref: ../components/parameters/userOrder.yaml
@@ -33,6 +34,16 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/UserList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves users.
 post:
   summary: Create a user
