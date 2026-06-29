@@ -2970,6 +2970,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves webhooks.
     post:
       summary: Create a webhook
@@ -3010,21 +3020,28 @@ paths:
           - allocation_payment_deleted
           - allocation_payment_status_changed
           - allocation_payment_updated
+          - application_category_changed
+          - application_chapter_changed
+          - application_copied
+          - application_created
+          - application_deleted
+          - application_eligible
+          - application_ineligible
+          - application_moderated
+          - application_resubmitted
+          - application_submitted
+          - application_tagged
+          - application_updated
           - assignment_completed
           - assignment_created
           - collaborator_invited
           - document_created
           - document_deleted
           - document_updated
-          - entry_created
-          - entry_eligible
-          - entry_ineligible
-          - entry_moderated
-          - entry_resubmitted
-          - entry_submitted
-          - entry_tagged
-          - entry_updated
           - field_value_updated
+          - grant_report_created
+          - grant_report_submitted
+          - grant_status_changed
           - membership_registered (user created)
           - payment_pending
           - payment_success
@@ -4076,21 +4093,28 @@ components:
           - allocation_payment_deleted
           - allocation_payment_status_changed
           - allocation_payment_updated
+          - application_category_changed
+          - application_chapter_changed
+          - application_copied
+          - application_created
+          - application_deleted
+          - application_eligible
+          - application_ineligible
+          - application_moderated
+          - application_resubmitted
+          - application_submitted
+          - application_tagged
+          - application_updated
           - assignment_completed
           - assignment_created
           - collaborator_invited
           - document_created
           - document_deleted
           - document_updated
-          - entry_created
-          - entry_eligible
-          - entry_ineligible
-          - entry_moderated
-          - entry_resubmitted
-          - entry_submitted
-          - entry_tagged
-          - entry_updated
           - field_value_updated
+          - grant_report_created
+          - grant_report_submitted
+          - grant_status_changed
           - membership_registered
           - payment_pending
           - payment_success
@@ -9004,6 +9028,31 @@ components:
           description: Subscription events that trigger this webhook.
           items:
             type: string
+        fields:
+          type: array
+          description: Fields included in the webhook payload.
+          items:
+            type: object
+            properties:
+              slug:
+                type: string
+                description: Short URL-safe identifier for the field.
+              link:
+                type: string
+                format: uri
+                description: Canonical URL for the field resource.
+              title:
+                type: object
+                description: |-
+                  Plain-text title of the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+        form:
+          type: string
+          nullable: true
+          description: Slug of the form the webhook is scoped to. `null` when the webhook is not scoped to a specific form.
         method:
           type: string
           description: HTTP method used to call the webhook URL.
@@ -9023,6 +9072,10 @@ components:
           type: string
           format: uri
           description: URL that receives the webhook payload.
+        created:
+          type: string
+          format: date-time
+          description: Date and time the webhook was created.
         updated:
           type: string
           format: date-time
