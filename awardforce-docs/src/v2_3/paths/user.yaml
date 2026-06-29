@@ -56,7 +56,13 @@ post:
     $ref: ../components/requestBodies/UserCreate.yaml
   responses:
     '201':
-      description: User created.
+      description: |-
+        User created, or an existing user added to the account.
+
+        Two outcomes share this status code:
+
+        - **New user** — a new user record is created. The body is the full user resource and the `Location` header links to it.
+        - **Existing user** — the email or mobile already belongs to a user on another account, so that user is added to the current account instead. The body is a confirmation message and no `Location` header is returned.
       headers:
         Location:
           $ref: ../components/headers/Location.yaml
@@ -71,5 +77,24 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/User.yaml
+            oneOf:
+              - $ref: ../components/schemas/User.yaml
+              - type: object
+                description: Confirmation returned when an existing user is added to the account.
+                properties:
+                  message:
+                    type: string
+                    description: Confirmation that an existing user was added to the account.
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Creates a user.

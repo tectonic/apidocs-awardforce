@@ -2684,7 +2684,13 @@ paths:
         $ref: '#/components/requestBodies/UserCreate'
       responses:
         '201':
-          description: User created.
+          description: |-
+            User created, or an existing user added to the account.
+
+            Two outcomes share this status code:
+
+            - **New user** — a new user record is created. The body is the full user resource and the `Location` header links to it.
+            - **Existing user** — the email or mobile already belongs to a user on another account, so that user is added to the current account instead. The body is a confirmation message and no `Location` header is returned.
           headers:
             Location:
               $ref: '#/components/headers/Location'
@@ -2699,7 +2705,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                oneOf:
+                  - $ref: '#/components/schemas/User'
+                  - type: object
+                    description: Confirmation returned when an existing user is added to the account.
+                    properties:
+                      message:
+                        type: string
+                        description: Confirmation that an existing user was added to the account.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Creates a user.
   /user/{user_slug}:
     get:
@@ -2726,6 +2751,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the user identified by the specified slug or email address.
       x-mint:
         content: The response includes all user fields. File fields include a download link.
@@ -9980,17 +10017,17 @@ components:
                 description: User's last name.
               password:
                 type: string
-                description: Password for accessing the account.
+                description: Password for the new user. The minimum length and complexity requirements are configured per account, so a value accepted on one account may be rejected on another.
               email:
                 type: string
                 format: email
                 description: User's email address. Required if `mobile` is not set.
               mobile:
                 type: string
-                description: User's mobile number. Required if `email` is not set.
+                description: User's mobile number in E.164 international format, such as `+14155552671`. Required if `email` is not set.
               roles:
                 type: array
-                description: Array of role slugs.
+                description: Role slugs to assign to the user. If omitted or empty, the account's default role is assigned instead, so the user is never left without a role.
                 items:
                   type: string
               preferences:
@@ -9999,15 +10036,22 @@ components:
                 properties:
                   broadcast_emails:
                     type: boolean
+                    description: Specifies whether the user receives broadcast emails.
                   notification_emails:
                     type: boolean
+                    description: Specifies whether the user receives notification emails.
                   notification_sms:
                     type: boolean
+                    description: Specifies whether the user receives notification text messages.
               user_fields:
                 type: object
-                description: 'User field values, keyed by field slug. For example, `{ "fJkIjGmB": "Test value" }`.'
+                description: 'User field values, keyed by field slug. For example, `{ "fJkIjGmB": "Test value" }`. Single-value fields take a string; multi-value fields, such as checkbox or multi-select, take an array of strings.'
                 additionalProperties:
-                  type: string
+                  oneOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
     UserUpdate:
       description: User update payload.
       content:
