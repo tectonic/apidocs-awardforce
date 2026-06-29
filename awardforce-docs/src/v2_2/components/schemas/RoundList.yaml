@@ -6,3 +6,54 @@ allOf:
         type: array
         items:
           $ref: ./Round.yaml
+example:
+  current_page: 1
+  data:
+    - chapters:
+        - slug: VbaERKdP
+          link: https://api.eu.staging.cr4ce.com/chapter/VbaERKdP
+          name:
+            en_GB: lecht
+        - slug: lZyDyPzP
+          link: https://api.eu.staging.cr4ce.com/chapter/lZyDyPzP
+          name:
+            en_GB: Glencoe
+      created: '2026-06-24T13:57:52Z'
+      end_date: null
+      form: vZewbPwM
+      name:
+        en_GB: form 15
+      season:
+        slug: wboyrBmo
+        link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+        name:
+          en_GB: '2026'
+      slug: MvzgDZkA
+      start_date: null
+      type: entry
+      updated: '2026-06-24T13:57:52Z'
+    - chapters: []
+      created: '2025-02-13T11:41:26Z'
+      end_date: '2026-04-22 07:43:00'
+      form: WvmnJgjV
+      name:
+        en_GB: Cycling grants judging
+      season:
+        slug: wboyrBmo
+        link: https://api.eu.staging.cr4ce.com/season/wboyrBmo
+        name:
+          en_GB: '2026'
+      slug: xaDrgaJR
+      start_date: '2025-03-07 08:43:00'
+      type: judge
+      updated: '2026-04-08T15:24:34Z'
+  first_page_url: https://api.eu.staging.cr4ce.com/round?per_page=100&page=1
+  from: 1
+  last_page: 1
+  last_page_url: https://api.eu.staging.cr4ce.com/round?per_page=100&page=1
+  next_page_url: ''
+  path: https://api.eu.staging.cr4ce.com/round
+  per_page: 100
+  prev_page_url: ''
+  to: 29
+  total: 29

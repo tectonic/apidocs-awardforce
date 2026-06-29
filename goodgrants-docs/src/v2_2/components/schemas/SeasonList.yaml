@@ -6,3 +6,28 @@ allOf:
         type: array
         items:
           $ref: ./Season.yaml
+example:
+  current_page: 1
+  data:
+    - created: '2023-01-16T10:01:11Z'
+      name:
+        en_GB: '2026'
+      slug: wboyrBmo
+      status: active
+      updated: '2026-06-03T06:50:16Z'
+    - created: '2026-06-02T14:11:32Z'
+      name:
+        en_GB: copy test 2 june
+      slug: kWGojenq
+      status: archived
+      updated: '2026-06-03T06:50:16Z'
+  first_page_url: https://api.eu.staging.cr4ce.com/season?per_page=100&page=1
+  from: 1
+  last_page: 1
+  last_page_url: https://api.eu.staging.cr4ce.com/season?per_page=100&page=1
+  next_page_url: ''
+  path: https://api.eu.staging.cr4ce.com/season
+  per_page: 100
+  prev_page_url: ''
+  to: 8
+  total: 8
