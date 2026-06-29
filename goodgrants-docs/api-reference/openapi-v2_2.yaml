@@ -2914,10 +2914,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  auth_token:
-                    type: string
+                $ref: '#/components/schemas/AuthToken'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves an SSO auth token for the specified user.
       x-mint:
         content: |-
@@ -2926,9 +2935,9 @@ paths:
           <Card
             title="Creating your own SSO integration"
             icon="key"
-            href="https://support.awardforce.com/hc/en-us/articles/360002282716-Creating-your-own-SSO-integration"
+            href="https://help.goodgrants.com/hc/en-gb/articles/4409758071055-3rd-party-authentication"
           >
-            Learn how to integrate Award Force with your own SSO provider.
+            Learn how to integrate Good Grants with your own SSO provider.
           </Card>
   /webhook:
     get:
@@ -8974,6 +8983,19 @@ components:
             token: ''
             translated:
               en_GB: ''
+    AuthToken:
+      type: object
+      title: AuthToken
+      description: |-
+        Single-use SSO auth token for the specified user.
+
+        Use the token to log the user into the app via SSO.
+      properties:
+        auth_token:
+          type: string
+          description: Opaque SSO auth token for the user.
+      example:
+        auth_token: AbCdEfGhIjKlMnOpQrStUvWxYz012345
     Webhook:
       type: object
       properties:
