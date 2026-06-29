@@ -1402,7 +1402,7 @@ paths:
           </Note>
 
           <Note>
-          Within `entry_fields`, only the field slugs you include are updated, and any field slug that does not exist on the entry's form is ignored. For most field types the value you supply replaces the stored value. Table fields are merged cell by cell: include only the cells you want to change, and send a cell with an empty value to clear it.
+          Within `entry_fields`, only the field slugs you include are updated, and any field slug that does not exist on the form for the entry is ignored. For most field types the value you supply replaces the stored value. Table fields are merged cell by cell: include only the cells you want to change, and send a cell with an empty value to clear it.
           </Note>
     delete:
       summary: Delete an entry
@@ -1571,7 +1571,7 @@ paths:
       x-mint:
         content: |-
           <Note>
-          Removing a tag that is not currently applied to the entry has no effect and still returns `201` with the entry's current tags. Inspect `tags` in the response to confirm the result.
+          Removing a tag that is not currently applied to the entry has no effect and still returns `201` with the current tags for the entry. Inspect `tags` in the response to confirm the result.
           </Note>
   /application/{application_slug}/update-title:
     parameters:
@@ -2900,7 +2900,7 @@ paths:
       description: Retrieves an SSO auth token for the specified user.
       x-mint:
         content: |-
-          The token allows the user to log into the app using SSO.
+          Use the token to log the user into the app using SSO.
 
           <Card
             title="Creating your own SSO integration"
@@ -4528,7 +4528,7 @@ components:
                 properties:
                   name:
                     type: string
-                    description: Display name of the criterion, rendered in the account's default locale (single string, not a locale map).
+                    description: Display name of the criterion, rendered in the default locale for the account (single string, not a locale map).
                   comments:
                     type: array
                     description: Comments left against this criterion.
@@ -5110,7 +5110,7 @@ components:
       description: |-
         Receipt returned after an attachment is created.
 
-        Carries the new attachment's short opaque token and canonical URL together with the underlying file record, so callers can immediately reference the new attachment and fetch the stored file.
+        Carries the short opaque token and canonical URL for the new attachment together with the underlying file record, so callers can immediately reference the new attachment and fetch the stored file.
       properties:
         token:
           type: string
@@ -5465,7 +5465,7 @@ components:
       description: |-
         Grouping that categories can be made available in.
 
-        Includes its translated name and description, the season it belongs to, and the users who manage it. Chapters let you partition a program — for example by region or division — and delegate day-to-day management to chapter managers.
+        Includes its translated name and description, the season it belongs to, and the users who manage it. Use chapters to partition a program — for example by region or division — and delegate day-to-day management to chapter managers.
       type: object
       properties:
         created:
@@ -6625,7 +6625,7 @@ components:
           description: Position of the field within its tab, used for ordering.
         protection:
           type: string
-          description: Protection level governing access to the field's data (for example, `standard`, `elevated`, or `maximum`).
+          description: Protection level governing access to the data for the field (for example, `standard`, `elevated`, or `maximum`).
         registration:
           type: string
           nullable: true
@@ -6911,7 +6911,7 @@ components:
                 description: File extension of the transcoded file.
               timestamp:
                 type: integer
-                description: Unix timestamp, in seconds since the epoch, of the transcoded file's last modification.
+                description: Unix timestamp, in seconds since the epoch, of the last modification of the transcoded file.
               size:
                 type: integer
                 description: Size of the transcoded file.
@@ -6946,7 +6946,7 @@ components:
       description: |-
         Single row in a score-set leaderboard, representing one application and its scores under the selected score set.
 
-        Combines the application's identifying details (title, category, chapter, division, and tags) with its auto-score, status, and a `scores` object whose shape depends on the score set's mode.
+        Combines the identifying details for the application (title, category, chapter, division, and tags) with its auto-score, status, and a `scores` object whose shape depends on the mode of the score set.
       type: object
       properties:
         slug:
@@ -7016,7 +7016,7 @@ components:
           type: number
           nullable: true
           description: |-
-            Automated score calculated from the application's auto-scored fields.
+            Automated score calculated from the auto-scored fields of the application.
 
             `null` when the application has no auto-scored fields.
         status:
@@ -7037,7 +7037,7 @@ components:
           description: |-
             Scores for the application under the selected score set.
 
-            The shape depends on the score set's mode: `voting`, `qualifying`, `vip_judging`, or `top_pick`.
+            The shape depends on the mode of the score set: `voting`, `qualifying`, `vip_judging`, or `top_pick`.
           anyOf:
             - title: Voting
               type: object
@@ -7334,10 +7334,10 @@ components:
           description: IP address the order was placed from.
         items:
           type: string
-          description: HTML-formatted summary of the order's line items, suitable for display.
+          description: HTML-formatted summary of the line items for the order, suitable for display.
         items_array:
           type: array
-          description: Structured list of the order's line items.
+          description: Structured list of the line items for the order.
           items:
             type: object
             properties:
@@ -7699,7 +7699,7 @@ components:
         total: 1
     OrderItem:
       title: Order item
-      description: Single line item belonging to an order, combining the line item's own details with a snapshot of the parent order's billing, payment, and transaction information.
+      description: Single line item belonging to an order, combining the details for the line item with a snapshot of the billing, payment, and transaction information for the parent order.
       type: object
       properties:
         address:
@@ -7721,7 +7721,7 @@ components:
           type: object
           nullable: true
           description: |-
-            Category the line item's application belongs to.
+            Category the application for the line item belongs to.
 
             `null` for line items that are not associated with an application.
           properties:
@@ -7741,7 +7741,7 @@ components:
           type: object
           nullable: true
           description: |-
-            Chapter the line item's application belongs to.
+            Chapter the application for the line item belongs to.
 
             `null` for line items that are not associated with an application.
           properties:
@@ -7799,7 +7799,7 @@ components:
           type: object
           nullable: true
           description: |-
-            Parent of the line item's category.
+            Parent of the category for the line item.
 
             `null` when the category has no parent or the line item is not associated with an application.
           properties:
@@ -7834,7 +7834,7 @@ components:
           type: object
           nullable: true
           description: |-
-            Season the line item's application belongs to.
+            Season the application for the line item belongs to.
 
             `null` for line items that are not associated with an application.
           properties:
@@ -7970,7 +7970,7 @@ components:
     OrderItemList:
       title: Order item list
       description: |-
-        Paginated list of an order's line items.
+        Paginated list of the line items for an order.
 
         Wraps the line items in `data` alongside the standard pagination envelope.
       allOf:
@@ -9232,11 +9232,11 @@ components:
                   - `numeric` — number.
                   - `currency` — string holding a decimal value, for example `"1234.56"`.
                   - `checkbox` — boolean (`true`/`false`; `1` and `0` are also accepted).
-                  - `radio`, `drop-down-list` — string matching one of the field's defined option keys (case-insensitive).
+                  - `radio`, `drop-down-list` — string matching one of the defined option keys for the field (case-insensitive).
                   - `checkboxlist` — array of option keys, or a comma-separated string such as `"opt1,opt2"`.
                   - `country` — ISO 3166 alpha-2 country code; lower-case codes are accepted and stored upper-cased.
                   - `date` — `YYYY-MM-DD` string or an object such as `{date: "2026-06-16"}`; the bare string form is wrapped server-side into the object form.
-                  - `datetime` — `YYYY-MM-DD HH:MM` string or an object such as `{date: "2026-06-16 14:30"}`; same wrapping behavior as `date`.
+                  - `datetime` — `YYYY-MM-DD HH:MM` string or an object such as `{date: "2026-06-16 14:30"}`; same wrapping behaviour as `date`.
                   - `time` — `HH:MM` string.
 
                   Field slugs that do not exist on the parent tab are rejected. Fields marked as required on the parent tab must be supplied; omitting them returns a 422.
@@ -9426,7 +9426,7 @@ components:
                 description: |-
                   Array of chapter slugs.
 
-                  Each chapter must belong to the category's season.
+                  Each chapter must belong to the season for the category.
                 items:
                   type: string
               divisions:
@@ -9452,7 +9452,7 @@ components:
                 description: |-
                   Slug of the parent category.
 
-                  The parent category must belong to the category's season, and cannot be the category itself or one of its descendants.
+                  The parent category must belong to the season for the category, and cannot be the category itself or one of its descendants.
               pdf_packing_slip:
                 type: boolean
                 description: |-
@@ -9482,7 +9482,7 @@ components:
 
                   The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
 
-                  Only image files are accepted: `gif`, `jpeg`, `jpg`, `png`, `tif`, `tiff`, `ico`, `webp`, and `avif`. The file size must not exceed the account's maximum file size.
+                  Only image files are accepted: `gif`, `jpeg`, `jpg`, `png`, `tif`, `tiff`, `ico`, `webp`, and `avif`. The file size must not exceed the maximum file size for the account.
             example:
               filename: logo.png
               data: aGVsbG8gd29ybGQ=
@@ -9595,7 +9595,7 @@ components:
 
                   The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
 
-                  Only image files are accepted: `gif`, `jpeg`, `jpg`, `png`, `tif`, `tiff`, `ico`, `webp`, and `avif`. The file size must not exceed the account's maximum file size.
+                  Only image files are accepted: `gif`, `jpeg`, `jpg`, `png`, `tif`, `tiff`, `ico`, `webp`, and `avif`. The file size must not exceed the maximum file size for the account.
             example:
               filename: logo.png
               data: aGVsbG8gd29ybGQ=
@@ -10047,7 +10047,7 @@ components:
                 description: User's mobile number in E.164 international format, such as `+14155552671`. Required if `email` is not set.
               roles:
                 type: array
-                description: Role slugs to assign to the user. If omitted or empty, the account's default role is assigned instead, so the user is never left without a role.
+                description: Role slugs to assign to the user. If omitted or empty, the default role for the account is assigned instead, so the user is never left without a role.
                 items:
                   type: string
               preferences:
