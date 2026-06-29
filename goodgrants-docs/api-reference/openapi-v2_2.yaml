@@ -2849,7 +2849,7 @@ paths:
         - $ref: '#/components/parameters/Accept'
       responses:
         '201':
-          description: File uploaded.
+          description: User file uploaded.
           headers:
             Location:
               $ref: '#/components/headers/Location'
@@ -2865,9 +2865,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadResult'
-      description: Uploads a file to the specified user field.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Uploads a file to the specified field for the user identified by the specified slug.
       requestBody:
         $ref: '#/components/requestBodies/FileUpload'
+      x-mint:
+        content: |-
+          Use this operation to upload a file to a file field on the user.
+
+          <Warning>
+          The uploaded file is validated and stored before the response is returned; the file itself is processed shortly after. A `GET` on the returned `Location` immediately after the `201` may briefly return a response with a `null` body until processing is complete.
+          </Warning>
   /user/{user_slug}/auth-token:
     parameters:
       - $ref: '#/components/parameters/userSlug'
@@ -5086,7 +5107,7 @@ components:
       type: object
       title: UploadResult
       description: |-
-        Receipt returned when a file is uploaded to a category, chapter, entry, or user field.
+        Receipt returned when a file is uploaded to a category, chapter, application, or user field.
 
         Carries the original filename, a short opaque token that addresses the stored file, and the canonical URL through which the file can be retrieved.
       properties:
@@ -9788,6 +9809,9 @@ components:
                   Base64-encoded contents of the file.
 
                   The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
+            example:
+              filename: example.pdf
+              data: aGVsbG8gd29ybGQ=
       description: |-
         File payload for an upload operation.
 
