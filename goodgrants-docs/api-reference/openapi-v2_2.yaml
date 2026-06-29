@@ -2639,6 +2639,7 @@ paths:
         - $ref: '#/components/parameters/userRoleFilter'
         - $ref: '#/components/parameters/userSeasonJoinedFilter'
         - $ref: '#/components/parameters/deletedFilter'
+        - $ref: '#/components/parameters/trashedFilter'
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/perPage'
         - $ref: '#/components/parameters/userOrder'
@@ -2661,6 +2662,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves users.
     post:
       summary: Create a user
@@ -3916,12 +3927,16 @@ components:
       name: order
       in: query
       required: false
-      description: Column to sort by.
+      description: Column name to order by. An unrecognised value falls back to the default sort by `updated`.
       schema:
         type: string
         enum:
           - confirmed_at
+          - created_at
+          - created_by
           - email
+          - first_name
+          - last_name
           - mobile
           - name
           - updated
@@ -8466,69 +8481,101 @@ components:
         prev_page_url: ''
         to: 2
         total: 2
-    UserListItem:
+    UserSummary:
       type: object
+      description: Core user fields shared by the list and single-user responses.
       properties:
         analytics_cookies:
           type: boolean
+          description: Specifies whether the user accepted analytics cookies.
         broadcast_emails:
           type: boolean
+          description: Specifies whether the user accepted broadcast emails.
+        comments:
+          type: string
+          description: Administrative notes recorded against the user, formatted for export.
         confirmation:
           type: string
+          description: Account confirmation status of the user, such as `Confirmed` or `Invited`.
         confirmed_at:
           type: string
           format: date-time
+          nullable: true
+          description: Date and time when the user confirmed the account. Value is `null` for an invited user who has not yet confirmed.
         created_at:
           type: string
           format: date-time
+          description: Date and time when the user account was created.
         created_by:
           type: string
+          description: Method by which the user account was created, such as `manual` or `registration`.
         email:
           type: string
           format: email
+          nullable: true
+          description: Email address of the user. Value is `null` when no email address is recorded.
         first_name:
           type: string
+          description: First name of the user.
         language:
           type: object
+          description: Preferred language of the user.
           properties:
             code:
               type: string
+              description: Locale code of the language, such as `en_GB`.
             language:
               type: string
+              description: Display name of the language, such as `English (United Kingdom)`.
         last_name:
           type: string
+          description: Last name of the user.
         marketing_cookies:
           type: boolean
+          description: Specifies whether the user accepted marketing cookies.
         mobile:
           type: string
+          description: Mobile phone number of the user.
         name:
           type: string
+          description: Full name of the user.
         necessary_cookies:
           type: boolean
+          description: Specifies whether the user accepted necessary cookies.
         notification_emails:
           type: boolean
+          description: Specifies whether the user accepted notification emails.
         notification_sms:
           type: boolean
+          description: Specifies whether the user accepted notification text messages.
         roles:
           type: array
+          description: Roles assigned to the user within the account.
           items:
             type: object
             properties:
               slug:
                 type: string
+                description: URL-safe identifier of the role.
               link:
                 type: string
                 format: uri
+                description: URL of the role resource.
               name:
                 type: object
-                properties:
-                  en_GB:
-                    type: string
+                description: |-
+                  Name of the role.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
         slug:
           type: string
+          description: URL-safe identifier of the user.
         updated:
           type: string
           format: date-time
+          description: Date and time when the user account was last updated.
     UserList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
@@ -8537,101 +8584,199 @@ components:
             data:
               type: array
               items:
-                $ref: '#/components/schemas/UserListItem'
-    User:
-      type: object
-      properties:
-        analytics_cookies:
-          type: boolean
-        broadcast_emails:
-          type: boolean
-        confirmed_at:
-          type: string
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        created_by:
-          type: string
-        email:
-          type: string
-          format: email
-        first_name:
-          type: string
-        language:
-          type: object
-          properties:
-            code:
-              type: string
+                $ref: '#/components/schemas/UserSummary'
+      example:
+        current_page: 1
+        data:
+          - analytics_cookies: true
+            broadcast_emails: true
+            comments: ''
+            confirmation: Confirmed
+            confirmed_at: '2025-08-05T00:00:00Z'
+            created_at: '2025-08-05T09:00:58Z'
+            created_by: invited
+            email: sean@creativeforce.team
+            first_name: Sean
             language:
-              type: string
-        last_name:
-          type: string
-        marketing_cookies:
-          type: boolean
-        mobile:
-          type: string
-        name:
-          type: string
-        necessary_cookies:
-          type: boolean
-        notification_emails:
-          type: boolean
-        notification_sms:
-          type: boolean
+              code: en_GB
+              language: English (United Kingdom)
+            last_name: Judd
+            marketing_cookies: true
+            mobile: ''
+            name: Sean Judd
+            necessary_cookies: true
+            notification_emails: true
+            notification_sms: true
+            roles:
+              - slug: gakoqKNr
+                link: https://api.eu.staging.cr4ce.com/role/gakoqKNr
+                name:
+                  en_GB: Entrant
+            slug: OZWxqzDa
+            updated: '2026-06-28T08:03:58Z'
+          - analytics_cookies: false
+            broadcast_emails: false
+            comments: ''
+            confirmation: Confirmed
+            confirmed_at: '2025-04-01T00:00:00Z'
+            created_at: '2025-04-23T12:36:32Z'
+            created_by: manual
+            email: adamorlowski@creativeforce.team
+            first_name: Adam
+            language:
+              code: en_GB
+              language: English (United Kingdom)
+            last_name: Orlowski
+            marketing_cookies: false
+            mobile: ''
+            name: Adam Orlowski
+            necessary_cookies: true
+            notification_emails: false
+            notification_sms: false
+            roles:
+              - slug: gakoqKNr
+                link: https://api.eu.staging.cr4ce.com/role/gakoqKNr
+                name:
+                  en_GB: Entrant
+              - slug: Kggmdnrk
+                link: https://api.eu.staging.cr4ce.com/role/Kggmdnrk
+                name:
+                  en_GB: Program manager
+            slug: eVVYmmRV
+            updated: '2026-06-25T15:39:46Z'
+        first_page_url: https://api.eu.staging.cr4ce.com/user?per_page=100&page=1
+        from: 1
+        last_page: 5
+        last_page_url: https://api.eu.staging.cr4ce.com/user?per_page=100&page=5
+        next_page_url: https://api.eu.staging.cr4ce.com/user?per_page=100&page=2
+        path: https://api.eu.staging.cr4ce.com/user
+        per_page: 100
+        prev_page_url: ''
+        to: 100
+        total: 470
+    UserDetail:
+      type: object
+      description: Detailed user fields returned only for a single user.
+      properties:
         preferences:
           type: object
+          description: Notification preferences selected by the user.
           properties:
             broadcast_emails:
               type: boolean
+              description: Specifies whether the user receives broadcast emails.
             notification_emails:
               type: boolean
+              description: Specifies whether the user receives notification emails.
             notification_sms:
               type: boolean
-        roles:
-          type: array
-          items:
-            type: object
-            properties:
-              slug:
-                type: string
-              link:
-                type: string
-                format: uri
-              name:
-                type: object
-                properties:
-                  en_GB:
-                    type: string
-        slug:
-          type: string
+              description: Specifies whether the user receives notification text messages.
         social_sharing:
           type: boolean
-        updated:
-          type: string
-          format: date-time
+          description: Specifies whether the user opted in to social sharing.
         user_fields:
           type: array
+          description: Custom field responses captured on the user profile.
           items:
             type: object
             properties:
               slug:
                 type: string
+                description: URL-safe identifier of the field.
               link:
                 type: string
                 format: uri
+                description: URL of the field resource.
               label:
                 type: object
-                properties:
-                  en_GB:
-                    type: string
+                description: |-
+                  Label of the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+              title:
+                type: object
+                description: |-
+                  Plain-text title of the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
               value:
                 type: string
+                description: Value submitted for the field.
+              token:
+                type: string
+                description: File token for the uploaded file, present on file fields.
               translated:
                 type: object
-                properties:
-                  en_GB:
-                    type: string
+                description: |-
+                  Translated value of the field.
+
+                  Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                additionalProperties:
+                  type: string
+    User:
+      allOf:
+        - $ref: '#/components/schemas/UserSummary'
+        - $ref: '#/components/schemas/UserDetail'
+      example:
+        analytics_cookies: true
+        broadcast_emails: true
+        comments: 'Rachel Martin (2025-05-21T15:25:39+00:00): User comment'
+        confirmation: Confirmed
+        confirmed_at: '2018-04-17T00:00:00Z'
+        created_at: '2024-06-24T06:34:30Z'
+        created_by: manual
+        email: rachelmartin@awardforce.com
+        first_name: Rachel
+        language:
+          code: en_GB
+          language: English (United Kingdom)
+        last_name: Martin
+        marketing_cookies: true
+        mobile: ''
+        name: Rachel Martin
+        necessary_cookies: true
+        notification_emails: true
+        notification_sms: true
+        preferences:
+          broadcast_emails: true
+          notification_emails: true
+          notification_sms: true
+        roles:
+          - slug: gakoqKNr
+            link: https://api.eu.staging.cr4ce.com/role/gakoqKNr
+            name:
+              en_GB: Entrant
+          - slug: Kggmdnrk
+            link: https://api.eu.staging.cr4ce.com/role/Kggmdnrk
+            name:
+              en_GB: Program manager
+        slug: BwXxQawR
+        social_sharing: true
+        updated: '2026-06-26T07:50:46Z'
+        user_fields:
+          - slug: rmlpVqKg
+            link: https://api.eu.staging.cr4ce.com/field/rmlpVqKg
+            label:
+              en_GB: <p>Title</p>
+            title:
+              en_GB: Title
+            value: Ms
+            translated:
+              en_GB: ''
+          - slug: nPBLvMaR
+            link: https://api.eu.staging.cr4ce.com/field/nPBLvMaR
+            label:
+              en_GB: <p>user file upload</p>
+            title:
+              en_GB: user file upload
+            value: https://api.eu.staging.cr4ce.com/file/
+            token: ''
+            translated:
+              en_GB: ''
     Webhook:
       type: object
       properties:
