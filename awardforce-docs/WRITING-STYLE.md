@@ -4,7 +4,7 @@ Use this guide when writing or editing API descriptions for Award Force.
 
 ## Core principles
 
-Prioritize technical accuracy over stylistic preference.
+Prioritise technical accuracy over stylistic preference.
 When multiple phrasings are possible, prefer the one that is clearest, simplest, and most consistent with the rest of the docs.
 
 ## Tone and wording
@@ -76,15 +76,15 @@ Avoid verbs such as `enable`, `allow`, `let`, `help`, and `prevent` when they as
 ## Acronyms and product names
 
 - Define uncommon acronyms on first use, then use the acronym consistently.
-- Capitalize proper nouns such as Award Force, Good Grants, OpenAPI, OAuth, and webhook names.
+- Capitalise proper nouns such as Award Force, Good Grants, OpenAPI, OAuth, and webhook names.
 
 ## UI labels and procedural references
 
 - When describing a product workflow, match UI labels exactly as they appear in the product.
-- Do not normalize or rewrite a button, menu, workspace, or heading label for style.
+- Do not normalise or rewrite a button, menu, workspace, or heading label for style.
 - In procedural docs, prefer formatting that makes UI references easy to scan, such as italics for navigation paths and bold for actions, when that matches the surrounding docs style.
 
-## Capitalization
+## Capitalisation
 
 - Use sentence case for descriptions and summaries.
 
@@ -186,7 +186,7 @@ Examples:
 
 ## Parameters
 
-- For `in: query` parameters, use imperative verb phrases because query parameters modify request behavior.
+- For `in: query` parameters, use imperative verb phrases because query parameters modify request behaviour.
 - For `in: path`, `in: header`, and `in: cookie` parameters, use noun phrases that describe the value.
 - Avoid starting parameter descriptions with articles.
 
@@ -214,7 +214,9 @@ Examples:
 Use these rules for broader documentation prose around the API, such as supporting pages, examples, and explanatory notes.
 If a rule here conflicts with the API-description-specific sections above, follow the API-description-specific rule.
 
-- Prefer UK English in prose unless a literal API field, UI label, or external standard requires a different spelling.
+- Use Australian English in prose unless a literal API field, UI label, or external standard requires a different spelling.
+- Use `-ise` and `-isation` endings, such as `authorise`, `authorisation`, `organise`, and `organisation`. Do not use the Oxford `-ize` or US `-ization` forms.
+- Use `-our` endings, such as `behaviour`, `colour`, and `favour`. Do not use the US `-or` forms.
 - Prefer imperative headings such as `Configure authentication` instead of gerund headings such as `Configuring authentication`.
 - Introduce lists with a short lead-in sentence and a colon.
 - Use numbered lists for ordered procedures and bulleted lists for unordered items.
@@ -230,7 +232,7 @@ If a rule here conflicts with the API-description-specific sections above, follo
 - Use correct casing for technology and product names.
 - Explain why a step, setting, or feature matters when that context helps the reader make correct decisions.
 - Use exact versions or explicit references when precision matters, instead of time-sensitive wording such as `current version`.
-- Avoid predicting future behavior or roadmap outcomes in documentation.
+- Avoid predicting future behaviour or roadmap outcomes in documentation.
 - Avoid ampersands in prose unless they are part of a literal name, code example, or operator.
 - Avoid em-dashes. Prefer a standard hyphen or rewrite the sentence for clarity.
 - Avoid formulaic AI-style patterns such as bold prefixes in bullets or overly mechanical prose.
