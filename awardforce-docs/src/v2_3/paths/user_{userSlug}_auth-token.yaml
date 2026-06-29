@@ -22,10 +22,19 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              auth_token:
-                type: string
+            $ref: ../components/schemas/AuthToken.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves an SSO auth token for the specified user.
   x-mint:
     content: |-

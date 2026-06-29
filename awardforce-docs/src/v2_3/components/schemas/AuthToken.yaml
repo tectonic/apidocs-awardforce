@@ -1,0 +1,12 @@
+type: object
+title: AuthToken
+description: |-
+  Single-use SSO auth token for the specified user.
+
+  Use the token to log the user into the app via SSO.
+properties:
+  auth_token:
+    type: string
+    description: Opaque SSO auth token for the user.
+example:
+  auth_token: AbCdEfGhIjKlMnOpQrStUvWxYz012345
