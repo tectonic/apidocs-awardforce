@@ -46,10 +46,10 @@ properties:
     description: IP address the order was placed from.
   items:
     type: string
-    description: HTML-formatted summary of the order's line items, suitable for display.
+    description: HTML-formatted summary of the line items for the order, suitable for display.
   items_array:
     type: array
-    description: Structured list of the order's line items.
+    description: Structured list of the line items for the order.
     items:
       type: object
       properties:

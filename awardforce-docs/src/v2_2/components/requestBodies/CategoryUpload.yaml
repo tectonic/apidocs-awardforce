@@ -18,7 +18,7 @@ content:
 
             The encoded payload must round-trip cleanly through standard base64 decoding; payloads with stray characters, incorrect padding, or other malformed encoding are rejected.
 
-            Only image files are accepted: `gif`, `jpeg`, `jpg`, `png`, `tif`, `tiff`, `ico`, `webp`, and `avif`. The file size must not exceed the account's maximum file size.
+            Only image files are accepted: `gif`, `jpeg`, `jpg`, `png`, `tif`, `tiff`, `ico`, `webp`, and `avif`. The file size must not exceed the maximum file size for the account.
       example:
         filename: logo.png
         data: aGVsbG8gd29ybGQ=

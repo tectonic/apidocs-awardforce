@@ -121,7 +121,7 @@ properties:
     description: Position of the field within its tab, used for ordering.
   protection:
     type: string
-    description: Protection level governing access to the field's data (for example, `standard`, `elevated`, or `maximum`).
+    description: Protection level governing access to the data for the field (for example, `standard`, `elevated`, or `maximum`).
   registration:
     type: string
     nullable: true

@@ -84,7 +84,7 @@ put:
       </Note>
 
       <Note>
-      Within `entry_fields`, only the field slugs you include are updated, and any field slug that does not exist on the entry's form is ignored. For most field types the value you supply replaces the stored value. Table fields are merged cell by cell: include only the cells you want to change, and send a cell with an empty value to clear it.
+      Within `entry_fields`, only the field slugs you include are updated, and any field slug that does not exist on the form for the entry is ignored. For most field types the value you supply replaces the stored value. Table fields are merged cell by cell: include only the cells you want to change, and send a cell with an empty value to clear it.
       </Note>
 delete:
   summary: Delete an entry

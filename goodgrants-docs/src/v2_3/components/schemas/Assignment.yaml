@@ -123,7 +123,7 @@ properties:
             name:
               type: string
               description: |-
-                Display name of the criterion, rendered in the account's default locale (single string, not a locale map).
+                Display name of the criterion, rendered in the default locale for the account (single string, not a locale map).
             comments:
               type: array
               description: Comments left against this criterion.

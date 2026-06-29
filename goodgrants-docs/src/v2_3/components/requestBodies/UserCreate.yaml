@@ -34,7 +34,7 @@ content:
         roles:
           type: array
           description: |-
-            Role slugs to assign to the user. If omitted or empty, the account's default role is assigned instead, so the user is never left without a role.
+            Role slugs to assign to the user. If omitted or empty, the default role for the account is assigned instead, so the user is never left without a role.
           items:
             type: string
         preferences:

@@ -2,7 +2,7 @@ title: Leaderboard
 description: |-
   Single row in a score-set leaderboard, representing one application and its scores under the selected score set.
 
-  Combines the application's identifying details (title, category, chapter, division, and tags) with its auto-score, status, and a `scores` object whose shape depends on the score set's mode.
+  Combines the identifying details for the application (title, category, chapter, division, and tags) with its auto-score, status, and a `scores` object whose shape depends on the mode of the score set.
 type: object
 properties:
   slug:
@@ -74,7 +74,7 @@ properties:
     type: number
     nullable: true
     description: |-
-      Automated score calculated from the application's auto-scored fields.
+      Automated score calculated from the auto-scored fields of the application.
 
       `null` when the application has no auto-scored fields.
   status:
@@ -95,7 +95,7 @@ properties:
     description: |-
       Scores for the application under the selected score set.
 
-      The shape depends on the score set's mode: `voting`, `qualifying`, `vip_judging`, or `top_pick`.
+      The shape depends on the mode of the score set: `voting`, `qualifying`, `vip_judging`, or `top_pick`.
     anyOf:
       - title: Voting
         type: object

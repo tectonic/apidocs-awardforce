@@ -81,5 +81,5 @@ delete:
   x-mint:
     content: |-
       <Note>
-      Removing a tag that is not currently applied to the entry has no effect and still returns `201` with the entry's current tags. Inspect `tags` in the response to confirm the result.
+      Removing a tag that is not currently applied to the entry has no effect and still returns `201` with the current tags for the entry. Inspect `tags` in the response to confirm the result.
       </Note>

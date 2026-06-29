@@ -3,7 +3,7 @@ title: AttachmentCreateResult
 description: |-
   Receipt returned after an attachment is created.
 
-  Carries the new attachment's short opaque token and canonical URL together with the underlying file record, so callers can immediately reference the new attachment and fetch the stored file.
+  Carries the short opaque token and canonical URL for the new attachment together with the underlying file record, so callers can immediately reference the new attachment and fetch the stored file.
 properties:
   token:
     type: string

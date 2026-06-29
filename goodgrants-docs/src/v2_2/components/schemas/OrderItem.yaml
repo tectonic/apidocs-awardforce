@@ -1,6 +1,6 @@
 title: Order item
 description: |-
-  Single line item belonging to an order, combining the line item's own details with a snapshot of the parent order's billing, payment, and transaction information.
+  Single line item belonging to an order, combining the details for the line item with a snapshot of the billing, payment, and transaction information for the parent order.
 type: object
 properties:
   address:
@@ -22,7 +22,7 @@ properties:
     type: object
     nullable: true
     description: |-
-      Category the line item's application belongs to.
+      Category the application for the line item belongs to.
 
       `null` for line items that are not associated with an application.
     properties:
@@ -43,7 +43,7 @@ properties:
     type: object
     nullable: true
     description: |-
-      Chapter the line item's application belongs to.
+      Chapter the application for the line item belongs to.
 
       `null` for line items that are not associated with an application.
     properties:
@@ -102,7 +102,7 @@ properties:
     type: object
     nullable: true
     description: |-
-      Parent of the line item's category.
+      Parent of the category for the line item.
 
       `null` when the category has no parent or the line item is not associated with an application.
     properties:
@@ -138,7 +138,7 @@ properties:
     type: object
     nullable: true
     description: |-
-      Season the line item's application belongs to.
+      Season the application for the line item belongs to.
 
       `null` for line items that are not associated with an application.
     properties:

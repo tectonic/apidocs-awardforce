@@ -84,7 +84,7 @@ properties:
           description: File extension of the transcoded file.
         timestamp:
           type: integer
-          description: Unix timestamp, in seconds since the epoch, of the transcoded file's last modification.
+          description: Unix timestamp, in seconds since the epoch, of the last modification of the transcoded file.
         size:
           type: integer
           description: Size of the transcoded file.

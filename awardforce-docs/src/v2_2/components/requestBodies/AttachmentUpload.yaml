@@ -31,11 +31,11 @@ content:
             - `numeric` — number.
             - `currency` — string holding a decimal value, for example `"1234.56"`.
             - `checkbox` — boolean (`true`/`false`; `1` and `0` are also accepted).
-            - `radio`, `drop-down-list` — string matching one of the field's defined option keys (case-insensitive).
+            - `radio`, `drop-down-list` — string matching one of the defined option keys for the field (case-insensitive).
             - `checkboxlist` — array of option keys, or a comma-separated string such as `"opt1,opt2"`.
             - `country` — ISO 3166 alpha-2 country code; lower-case codes are accepted and stored upper-cased.
             - `date` — `YYYY-MM-DD` string or an object such as `{date: "2026-06-16"}`; the bare string form is wrapped server-side into the object form.
-            - `datetime` — `YYYY-MM-DD HH:MM` string or an object such as `{date: "2026-06-16 14:30"}`; same wrapping behavior as `date`.
+            - `datetime` — `YYYY-MM-DD HH:MM` string or an object such as `{date: "2026-06-16 14:30"}`; same wrapping behaviour as `date`.
             - `time` — `HH:MM` string.
 
             Field slugs that do not exist on the parent tab are rejected. Fields marked as required on the parent tab must be supplied; omitting them returns a 422.

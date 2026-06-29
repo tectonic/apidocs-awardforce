@@ -2,7 +2,7 @@ title: Chapter
 description: |-
   Grouping that categories can be made available in.
 
-  Includes its translated name and description, the season it belongs to, and the users who manage it. Chapters let you partition a program — for example by region or division — and delegate day-to-day management to chapter managers.
+  Includes its translated name and description, the season it belongs to, and the users who manage it. Use chapters to partition a program — for example by region or division — and delegate day-to-day management to chapter managers.
 type: object
 properties:
   created:
