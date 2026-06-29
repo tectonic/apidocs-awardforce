@@ -39,7 +39,7 @@ services:
     entrypoint: ["npm"]
 
   redocly:
-    image: redocly/cli:2.32.0
+    image: redocly/cli:2.35.1
     user: "${HOST_UID}:${HOST_GID}"
     working_dir: /spec
     volumes:
