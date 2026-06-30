@@ -3070,6 +3070,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/webhookSlug'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '200':
           description: Webhook retrieved.
@@ -3086,6 +3087,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Webhook'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the webhook identified by the specified slug.
     put:
       summary: Update a webhook
@@ -4163,6 +4176,7 @@ components:
       description: Slug of the webhook.
       schema:
         type: string
+        pattern: ^[A-Za-z]{8}$
   headers:
     ETag:
       description: Entity tag for the selected representation.
@@ -9088,6 +9102,19 @@ components:
           type: string
           format: date-time
           description: Date and time the webhook was last updated.
+      example:
+        created: '2025-12-21T23:11:20Z'
+        events:
+          - application_created
+          - application_submitted
+        fields: []
+        form: null
+        method: post
+        name: Application notifications
+        signing_key: REDACTED
+        slug: AbCdEfGh
+        updated: '2025-12-21T23:11:20Z'
+        url: https://example.com/webhooks
     WebhookList:
       allOf:
         - $ref: '#/components/schemas/Pagination'
