@@ -3,6 +3,7 @@ content:
   application/json:
     schema:
       type: object
+      additionalProperties: false
       required:
         - method
         - name
@@ -11,7 +12,10 @@ content:
       properties:
         method:
           type: string
-          description: HTTP method used to call the webhook URL.
+          description: |-
+            HTTP method used to call the webhook URL.
+
+            Values are case-sensitive.
           enum:
             - get
             - post
@@ -24,10 +28,71 @@ content:
           description: URL that receives the webhook payload.
         signing_key:
           type: string
-          description: Key used to sign outgoing webhook requests so the receiver can validate the payload.
-        events:
-          type: array
+          pattern: '^[A-Za-z0-9]+$'
           description: |-
-            Subscription events that trigger this webhook. For example, `["role_granted", "allocation_created"]`.
+            Key used to sign outgoing webhook requests so the receiver can validate the payload. Must be alphanumeric (`A`–`Z`, `a`–`z`, `0`–`9`).
+
+            If omitted, the account's existing webhook signing key is reused, or a new key is generated when the account has none. Supply a unique key to isolate each receiver's trust boundary.
+        notification_emails:
+          description: |-
+            Email addresses that receive webhook delivery-failure notifications. Accepts either a single address as a string, or multiple addresses as an array of strings.
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        form:
+          type: string
+          nullable: true
+          pattern: '^[A-Za-z]{8}$'
+          description: |-
+            Slug of the form to scope the webhook to. When set, the webhook only fires for events on that form. Omit or set to `null` for an account-wide webhook.
+        fields:
+          type: array
+          description: Slugs of the fields to include in the webhook payload.
           items:
             type: string
+            pattern: '^[A-Za-z]{8}$'
+        events:
+          type: array
+          minItems: 1
+          description: |-
+            Subscription events that trigger this webhook. For example, `["application_created", "application_submitted"]`.
+          items:
+            type: string
+            enum:
+              - allocation_created
+              - allocation_payment_created
+              - allocation_payment_deleted
+              - allocation_payment_status_changed
+              - allocation_payment_updated
+              - application_category_changed
+              - application_chapter_changed
+              - application_copied
+              - application_created
+              - application_deleted
+              - application_eligible
+              - application_ineligible
+              - application_moderated
+              - application_resubmitted
+              - application_submitted
+              - application_tagged
+              - application_updated
+              - assignment_completed
+              - assignment_created
+              - collaborator_invited
+              - document_created
+              - document_deleted
+              - document_updated
+              - field_value_updated
+              - grant_report_created
+              - grant_report_submitted
+              - grant_status_changed
+              - membership_registered
+              - payment_pending
+              - payment_success
+              - review_task_created
+              - review_task_submitted
+              - role_granted
+              - user_updated
+required: true
