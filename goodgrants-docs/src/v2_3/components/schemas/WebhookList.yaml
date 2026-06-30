@@ -6,3 +6,39 @@ allOf:
         type: array
         items:
           $ref: ./Webhook.yaml
+example:
+  current_page: 1
+  data:
+    - created: '2025-12-21T23:11:20Z'
+      events:
+        - application_created
+        - application_submitted
+      fields: []
+      form: null
+      method: post
+      name: Application notifications
+      signing_key: REDACTED
+      slug: AbCdEfGh
+      updated: '2025-12-21T23:11:20Z'
+      url: https://example.com/webhooks
+    - created: '2026-04-23T10:41:29Z'
+      events:
+        - application_updated
+      fields: []
+      form: null
+      method: get
+      name: Application update notifications
+      signing_key: REDACTED
+      slug: CdEfGhIj
+      updated: '2026-04-23T10:41:29Z'
+      url: https://example.com/webhooks/updates
+  first_page_url: https://api.au.cr4ce.com/webhook?per_page=10&page=1
+  from: 1
+  last_page: 1
+  last_page_url: https://api.au.cr4ce.com/webhook?per_page=10&page=1
+  next_page_url: ''
+  path: https://api.au.cr4ce.com/webhook
+  per_page: 10
+  prev_page_url: ''
+  to: 2
+  total: 2
