@@ -3105,6 +3105,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/webhookSlug'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       requestBody:
         $ref: '#/components/requestBodies/WebhookUpdate'
       responses:
@@ -3123,6 +3124,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Webhook'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Updates the webhook identified by the specified slug.
     delete:
       summary: Delete a webhook
@@ -9118,6 +9133,42 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Webhook'
+      example:
+        current_page: 1
+        data:
+          - created: '2025-12-21T23:11:20Z'
+            events:
+              - entry_created
+              - entry_submitted
+            fields: []
+            form: null
+            method: post
+            name: Entry notifications
+            signing_key: REDACTED
+            slug: AbCdEfGh
+            updated: '2025-12-21T23:11:20Z'
+            url: https://example.com/webhooks
+          - created: '2026-04-23T10:41:29Z'
+            events:
+              - entry_updated
+            fields: []
+            form: null
+            method: get
+            name: Entry update notifications
+            signing_key: REDACTED
+            slug: CdEfGhIj
+            updated: '2026-04-23T10:41:29Z'
+            url: https://example.com/webhooks/updates
+        first_page_url: https://api.au.cr4ce.com/webhook?per_page=10&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.au.cr4ce.com/webhook?per_page=10&page=1
+        next_page_url: ''
+        path: https://api.au.cr4ce.com/webhook
+        per_page: 10
+        prev_page_url: ''
+        to: 2
+        total: 2
   responses:
     BadRequest:
       description: 'Request was rejected before the endpoint could process it. Common causes: invalid `Accept` header, unsupported `x-api-language` code, empty request body on `POST` / `PUT`, or invalid JSON in the request body.'
@@ -10360,10 +10411,14 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
             properties:
               method:
                 type: string
-                description: HTTP method used to call the webhook URL.
+                description: |-
+                  HTTP method used to call the webhook URL.
+
+                  Values are case-sensitive.
                 enum:
                   - get
                   - post
@@ -10376,9 +10431,66 @@ components:
                 description: URL that receives the webhook payload.
               signing_key:
                 type: string
-                description: Key used to sign outgoing webhook requests so the receiver can validate the payload.
-              events:
+                pattern: ^[A-Za-z0-9]+$
+                maxLength: 128
+                description: |-
+                  Key used to sign outgoing webhook requests so the receiver can validate the payload. Must be alphanumeric (`A`–`Z`, `a`–`z`, `0`–`9`).
+
+                  Omit to keep the existing key. When supplied, it replaces the current key.
+              notification_emails:
+                description: Email addresses that receive webhook delivery-failure notifications. Accepts either a single address as a string, or multiple addresses as an array of strings.
+                oneOf:
+                  - type: string
+                  - type: array
+                    items:
+                      type: string
+              form:
+                type: string
+                nullable: true
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the form to scope the webhook to. When set, the webhook only fires for events on that form. Omit or set to `null` for an account-wide webhook.
+              fields:
                 type: array
-                description: Subscription events that trigger this webhook. For example, `["role_granted", "allocation_created"]`.
+                description: Slugs of the fields to include in the webhook payload.
                 items:
                   type: string
+                  pattern: ^[A-Za-z]{8}$
+              events:
+                type: array
+                minItems: 1
+                description: Subscription events that trigger this webhook. For example, `["entry_created", "entry_submitted"]`.
+                items:
+                  type: string
+                  enum:
+                    - allocation_created
+                    - allocation_payment_created
+                    - allocation_payment_deleted
+                    - allocation_payment_status_changed
+                    - allocation_payment_updated
+                    - assignment_completed
+                    - assignment_created
+                    - collaborator_invited
+                    - document_created
+                    - document_deleted
+                    - document_updated
+                    - entry_category_changed
+                    - entry_chapter_changed
+                    - entry_copied
+                    - entry_created
+                    - entry_deleted
+                    - entry_eligible
+                    - entry_ineligible
+                    - entry_moderated
+                    - entry_resubmitted
+                    - entry_submitted
+                    - entry_tagged
+                    - entry_updated
+                    - field_value_updated
+                    - membership_registered
+                    - payment_pending
+                    - payment_success
+                    - review_task_created
+                    - review_task_submitted
+                    - role_granted
+                    - user_updated
+      required: true
