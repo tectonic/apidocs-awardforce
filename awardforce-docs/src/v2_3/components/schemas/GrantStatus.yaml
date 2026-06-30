@@ -1,0 +1,50 @@
+title: Grant status
+description: |-
+  Grant status used to track the funding-pipeline stage of grant entries.
+
+  Carries the translated name and description, its display order, and the number of entries currently assigned to it.
+type: object
+properties:
+  created:
+    type: string
+    format: date-time
+    description: Date and time when the grant status was created.
+  description:
+    type: object
+    description: |-
+      Description of the grant status.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string and may contain HTML.
+    additionalProperties:
+      type: string
+  grant_count:
+    type: integer
+    description: Number of entries currently assigned this grant status.
+  name:
+    type: object
+    description: |-
+      Name of the grant status.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
+  order:
+    type: integer
+    description: Position of the grant status in the manager-defined display order.
+  slug:
+    type: string
+    description: URL-safe identifier of the grant status.
+  updated:
+    type: string
+    format: date-time
+    description: Date and time when the grant status was last updated.
+example:
+  created: '2023-04-10T13:33:27Z'
+  description:
+    en_GB: For completed grants
+  grant_count: 6
+  name:
+    en_GB: Completed
+  order: 2
+  slug: VgyLljqj
+  updated: '2024-09-03T11:38:00Z'

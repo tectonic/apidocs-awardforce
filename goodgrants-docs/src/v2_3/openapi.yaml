@@ -75,6 +75,10 @@ paths:
     $ref: paths/field.yaml
   /file/{token}:
     $ref: paths/file_{token}.yaml
+  /grant-status:
+    $ref: paths/grant-status.yaml
+  /grant-status/{grant_status_slug}:
+    $ref: paths/grant-status_{grantStatusSlug}.yaml
   /leaderboard:
     $ref: paths/leaderboard.yaml
   /order:

@@ -1,0 +1,8 @@
+name: slug
+in: query
+required: false
+description: |-
+  Filter to a single grant status by slug. Returns at most one item.
+schema:
+  type: string
+  pattern: '^[A-Za-z]{8}$'

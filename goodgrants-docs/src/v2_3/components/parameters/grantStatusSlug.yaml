@@ -1,0 +1,7 @@
+name: grant_status_slug
+in: path
+required: true
+description: Slug of the grant status.
+schema:
+  type: string
+  pattern: '^[A-Za-z]{8}$'
