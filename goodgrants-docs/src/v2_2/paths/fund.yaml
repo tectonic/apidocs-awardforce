@@ -39,3 +39,44 @@ get:
     '503':
       $ref: ../components/responses/ServiceUnavailable.yaml
   description: Retrieves funds.
+post:
+  summary: Create a fund
+  operationId: PostFundV22
+  tags:
+    - Fund
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
+  requestBody:
+    $ref: ../components/requestBodies/FundCreate.yaml
+  responses:
+    '201':
+      description: Fund created.
+      headers:
+        Location:
+          $ref: ../components/headers/Location.yaml
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Fund.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Creates a fund.

@@ -1,0 +1,25 @@
+content:
+  application/json:
+    schema:
+      type: object
+      additionalProperties: false
+      properties:
+        budget:
+          type: number
+          description: Total budget of the fund, in the fund's currency.
+        currency:
+          type: string
+          description: ISO 4217 currency code of the fund's amounts.
+        translated:
+          type: object
+          description: Translated fund field values keyed by field name.
+          additionalProperties: false
+          properties:
+            description: &translatedField
+              type: object
+              description: Values keyed by existing and enabled language code.
+              additionalProperties:
+                type: string
+            name: *translatedField
+description: Fund update payload.
+required: true
