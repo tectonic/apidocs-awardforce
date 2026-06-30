@@ -21,6 +21,8 @@ paths:
     $ref: paths/allocation-payment.yaml
   /allocation-payment/{allocation_payment_slug}:
     $ref: paths/allocation-payment_{allocationPaymentSlug}.yaml
+  /allocation-payment/comment:
+    $ref: paths/allocation-payment_comment.yaml
   /assignment:
     $ref: paths/assignment.yaml
   /assignment/{assignment_slug}:

@@ -1,0 +1,19 @@
+content:
+  application/json:
+    schema:
+      type: object
+      additionalProperties: false
+      required:
+        - allocation_payment
+        - comment
+      properties:
+        allocation_payment:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the allocation payment to comment on.
+        comment:
+          type: string
+          maxLength: 255
+          description: Body of the comment.
+description: Allocation payment comment payload.
+required: true

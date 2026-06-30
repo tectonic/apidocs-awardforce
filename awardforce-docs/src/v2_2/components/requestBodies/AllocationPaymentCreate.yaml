@@ -1,0 +1,60 @@
+content:
+  application/json:
+    schema:
+      type: object
+      additionalProperties: false
+      required:
+        - allocation
+        - amount
+        - status
+      properties:
+        allocation:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the allocation the payment is drawn against.
+        amount:
+          type: number
+          description: |-
+            Amount of the payment, in the currency of the allocation's fund.
+
+            Cannot exceed the allocation's unscheduled balance.
+        date_due:
+          type: string
+          nullable: true
+          description: |-
+            Date the payment is due.
+
+            Accepts `Y-m-d` or `Y-m-d\TH:i:s\Z` format.
+        date_paid:
+          type: string
+          nullable: true
+          description: |-
+            Date the payment was made.
+
+            Accepts `Y-m-d` or `Y-m-d\TH:i:s\Z` format. Required when `status` is `paid`.
+        external_id:
+          type: string
+          nullable: true
+          maxLength: 255
+          description: External identifier of the payment, used to reconcile it with downstream systems.
+        payment_method:
+          type: string
+          nullable: true
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the payment method.
+        reference:
+          type: string
+          nullable: true
+          maxLength: 32
+          description: Free-text reference for the payment.
+        status:
+          type: string
+          description: Lifecycle status of the payment.
+          enum:
+            - failed
+            - failed_permanently
+            - paid
+            - processing
+            - scheduled
+description: Allocation payment creation payload.
+required: true
