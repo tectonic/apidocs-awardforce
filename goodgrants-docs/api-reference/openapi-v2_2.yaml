@@ -3258,6 +3258,40 @@ paths:
           >
             Learn how to integrate Good Grants with your own SSO provider.
           </Card>
+  /user/{user_slug}/restore:
+    parameters:
+      - $ref: '#/components/parameters/userSlug'
+    post:
+      summary: Restore a user
+      operationId: PostUserRestoreV22
+      tags:
+        - User
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '204':
+          description: User restored.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Restores the previously deleted user identified by the specified slug.
   /webhook:
     get:
       summary: Retrieve webhooks
