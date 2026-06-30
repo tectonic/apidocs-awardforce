@@ -3,6 +3,9 @@ info:
   title: Award Force API
   version: '2.3'
   description: API version 2.3
+  license:
+    name: Creative Force Client Subscription Terms
+    url: https://creativeforce.team/agreement/
 servers:
   - url: https://api.cr4ce.com
 components:
