@@ -1,0 +1,70 @@
+get:
+  summary: Retrieve a document
+  operationId: GetDocumentV23
+  tags:
+    - Document
+  parameters:
+    - $ref: ../components/parameters/documentSlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
+  responses:
+    '200':
+      description: Document retrieved.
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Document.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Retrieves the document identified by the specified slug.
+delete:
+  summary: Delete a document
+  operationId: DeleteDocumentV23
+  tags:
+    - Document
+  parameters:
+    - $ref: ../components/parameters/documentSlug.yaml
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
+  responses:
+    '204':
+      description: Document deleted.
+      headers:
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Deletes the document identified by the specified slug.

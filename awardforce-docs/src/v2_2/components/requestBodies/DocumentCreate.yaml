@@ -1,0 +1,75 @@
+description: Document create payload.
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - translated
+        - template
+        - fileType
+        - shared
+        - resource
+        - selected
+      properties:
+        translated:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: object
+              description: |-
+                Name of the document.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+            description:
+              type: object
+              description: |-
+                Description of the document.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        template:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the document template to generate the document from.
+        fileType:
+          type: string
+          enum:
+            - PDF
+            - Word
+            - accessible-pdf
+          description: |-
+            File format to generate the document in.
+
+            Use `accessible-pdf` to generate a tagged, accessible PDF.
+        shared:
+          type: boolean
+          description: Specifies whether the generated document is shared with the entrant.
+        resource:
+          type: string
+          enum:
+            - user
+            - entry
+            - allocation
+            - grant-report
+          description: Type of resource to attach the generated documents to.
+        selected:
+          type: array
+          minItems: 1
+          description: Slugs of the resources, of the type given by `resource`, to attach the generated documents to.
+          items:
+            type: string
+            pattern: '^[A-Za-z]{8}$'
+        notification:
+          type: string
+          nullable: true
+          pattern: '^[A-Za-z]{8}$'
+          description: |-
+            Slug of the notification to send when the document is created.
+
+            Omit or set to `null` to send no notification.
+required: true

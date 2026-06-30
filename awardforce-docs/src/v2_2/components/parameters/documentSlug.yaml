@@ -1,0 +1,7 @@
+name: document_slug
+in: path
+required: true
+description: Slug of the document.
+schema:
+  type: string
+  pattern: '^[A-Za-z]{8}$'

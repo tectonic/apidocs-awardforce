@@ -1,0 +1,7 @@
+name: entrant
+in: query
+required: false
+description: Filter by entrant slug.
+schema:
+  type: string
+  pattern: '^[A-Za-z]{8}$'

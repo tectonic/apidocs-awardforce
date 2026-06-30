@@ -1,0 +1,13 @@
+name: order
+in: query
+required: false
+description: Column to sort by.
+schema:
+  type: string
+  enum:
+    - created_at
+    - file
+    - file_type
+    - name
+    - shared_with_user
+    - updated_at

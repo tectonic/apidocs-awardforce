@@ -1,0 +1,80 @@
+get:
+  summary: Retrieve documents
+  operationId: GetDocumentCollectionV23
+  tags:
+    - Document
+  parameters:
+    - $ref: ../components/parameters/documentEntrantFilter.yaml
+    - $ref: ../components/parameters/deletedFilter.yaml
+    - $ref: ../components/parameters/trashedFilter.yaml
+    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
+    - $ref: ../components/parameters/documentOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
+  responses:
+    '200':
+      description: Documents retrieved.
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/DocumentList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Retrieves documents.
+post:
+  summary: Create a document
+  operationId: PostDocumentV23
+  tags:
+    - Document
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
+  requestBody:
+    $ref: ../components/requestBodies/DocumentCreate.yaml
+  responses:
+    '202':
+      description: Document creation accepted.
+      headers:
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '422':
+      $ref: ../components/responses/UnprocessableEntity.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Creates a document.
+  x-mint:
+    content: |-
+      Documents are generated asynchronously. A successful request returns `202 Accepted` with an empty body and does not include a `Location` header.
+
+      The generated document does not exist yet when the response is returned. Poll `GET /document` to retrieve it once generation completes.

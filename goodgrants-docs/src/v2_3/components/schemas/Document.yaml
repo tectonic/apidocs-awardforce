@@ -1,0 +1,145 @@
+title: Document
+description: |-
+  Document generated from a document template and attached to an application, allocation, or user.
+
+  Carries the generated file, its translated name and description, the user who created it, and the resource it is attached to.
+type: object
+properties:
+  allocation:
+    description: |-
+      Allocation the document is attached to.
+
+      Empty array when the document is not attached to an allocation.
+    oneOf:
+      - type: object
+        properties:
+          slug:
+            type: string
+            description: Short URL-safe identifier for the allocation.
+          link:
+            type: string
+            format: uri
+            description: Canonical URL for the allocation resource.
+      - type: array
+        maxItems: 0
+  application:
+    description: |-
+      Application the document is attached to.
+
+      Empty array when the document is not attached to an application.
+    oneOf:
+      - type: object
+        properties:
+          slug:
+            type: string
+            description: Short URL-safe identifier for the application.
+          link:
+            type: string
+            format: uri
+            description: Canonical URL for the application resource.
+          title:
+            type: string
+            description: Title of the application.
+      - type: array
+        maxItems: 0
+  created_at:
+    type: string
+    format: date-time
+    description: Date and time when the document was created.
+  description:
+    type: object
+    description: |-
+      Description of the document, inherited from the document template.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
+  file:
+    type: object
+    description: Generated document file.
+    properties:
+      token:
+        type: string
+        description: Token identifying the file.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the file resource.
+      name:
+        type: string
+        description: Original filename of the generated document.
+      download:
+        type: string
+        format: uri
+        description: Time-limited download URL for the file.
+  file_type:
+    type: string
+    enum:
+      - PDF
+      - Word
+    description: File format of the generated document.
+  name:
+    type: object
+    description: |-
+      Name of the document.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
+  shared_with_user:
+    type: boolean
+    description: Specifies whether the document is shared with the applicant.
+  slug:
+    type: string
+    description: URL-safe identifier of the document.
+  user:
+    description: |-
+      User who created the document.
+
+      Empty array when no user is attached.
+    oneOf:
+      - type: object
+        properties:
+          slug:
+            type: string
+            description: Short URL-safe identifier for the user.
+          link:
+            type: string
+            format: uri
+            description: Canonical URL for the user resource.
+          name:
+            type: string
+            description: Full name of the user.
+          first_name:
+            type: string
+            description: First name of the user.
+          last_name:
+            type: string
+            description: Last name of the user.
+      - type: array
+        maxItems: 0
+example:
+  allocation: []
+  application:
+    slug: AbCdEfGh
+    link: https://api.au.cr4ce.com/application/AbCdEfGh
+    title: Sustainable Cities Initiative
+  created_at: '2025-01-15T09:00:00Z'
+  description:
+    en_GB: ''
+  file:
+    token: IjKlMnOpQrStUvWx
+    link: https://api.au.cr4ce.com/file/IjKlMnOpQrStUvWx
+    name: certificate.pdf
+    download: https://files.au.cr4ce.com/file/IjKlMnOpQrStUvWx/certificate.pdf?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+  file_type: PDF
+  name:
+    en_GB: Certificate of application
+  shared_with_user: false
+  slug: QrStUvWx
+  user:
+    slug: YzAbCdEf
+    link: https://api.au.cr4ce.com/user/YzAbCdEf
+    name: Rachel Martin
+    first_name: Rachel
+    last_name: Martin

@@ -1,0 +1,68 @@
+allOf:
+  - $ref: ./Pagination.yaml
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: ./Document.yaml
+example:
+  current_page: 1
+  data:
+    - allocation: []
+      application:
+        slug: AbCdEfGh
+        link: https://api.au.cr4ce.com/application/AbCdEfGh
+        title: Sustainable Cities Initiative
+      created_at: '2025-01-15T09:00:00Z'
+      description:
+        en_GB: ''
+      file:
+        token: IjKlMnOpQrStUvWx
+        link: https://api.au.cr4ce.com/file/IjKlMnOpQrStUvWx
+        name: certificate.pdf
+        download: https://files.au.cr4ce.com/file/IjKlMnOpQrStUvWx/certificate.pdf?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+      file_type: PDF
+      name:
+        en_GB: Certificate of application
+      shared_with_user: false
+      slug: QrStUvWx
+      user:
+        slug: YzAbCdEf
+        link: https://api.au.cr4ce.com/user/YzAbCdEf
+        name: Rachel Martin
+        first_name: Rachel
+        last_name: Martin
+    - allocation:
+        slug: KlMnOpQr
+        link: https://api.au.cr4ce.com/allocation/KlMnOpQr
+      application: []
+      created_at: '2025-02-10T10:00:00Z'
+      description:
+        en_GB: ''
+      file:
+        token: StUvWxYzAbCdEfGh
+        link: https://api.au.cr4ce.com/file/StUvWxYzAbCdEfGh
+        name: grant-report.pdf
+        download: https://files.au.cr4ce.com/file/StUvWxYzAbCdEfGh/grant-report.pdf?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+      file_type: Word
+      name:
+        en_GB: Grant report
+      shared_with_user: true
+      slug: WxYzAbCd
+      user:
+        slug: YzAbCdEf
+        link: https://api.au.cr4ce.com/user/YzAbCdEf
+        name: Rachel Martin
+        first_name: Rachel
+        last_name: Martin
+  first_page_url: https://api.au.cr4ce.com/document?per_page=10&page=1
+  from: 1
+  last_page: 4
+  last_page_url: https://api.au.cr4ce.com/document?per_page=10&page=4
+  next_page_url: https://api.au.cr4ce.com/document?per_page=10&page=2
+  path: https://api.au.cr4ce.com/document
+  per_page: 10
+  prev_page_url: ''
+  to: 10
+  total: 38

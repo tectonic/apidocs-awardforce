@@ -47,6 +47,10 @@ paths:
     $ref: paths/contributor.yaml
   /contributor/{contributor_slug}:
     $ref: paths/contributor_{contributorSlug}.yaml
+  /document:
+    $ref: paths/document.yaml
+  /document/{document_slug}:
+    $ref: paths/document_{documentSlug}.yaml
   /application:
     $ref: paths/entry.yaml
   /application/{application_slug}:
