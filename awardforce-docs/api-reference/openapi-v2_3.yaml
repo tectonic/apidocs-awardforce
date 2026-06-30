@@ -47,6 +47,87 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the account associated with the API key.
+  /allocation-payment:
+    get:
+      summary: Retrieve allocation payments
+      operationId: GetAllocationPaymentCollectionV23
+      tags:
+        - Allocation payment
+      parameters:
+        - $ref: '#/components/parameters/trashedFilter'
+        - $ref: '#/components/parameters/allocationPaymentOrder'
+        - $ref: '#/components/parameters/sortDirection'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Allocation payments retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationPaymentList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves allocation payments.
+  /allocation-payment/{allocation_payment_slug}:
+    parameters:
+      - $ref: '#/components/parameters/allocationPaymentSlug'
+    get:
+      summary: Retrieve an allocation payment
+      operationId: GetAllocationPaymentV23
+      tags:
+        - Allocation payment
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Allocation payment retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationPayment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves the allocation payment identified by the specified slug.
   /assignment:
     get:
       summary: Retrieve assignments
@@ -3608,6 +3689,71 @@ components:
       example:
         - en_GB
         - fr_FR
+    trashedFilter:
+      name: trashed
+      in: query
+      required: false
+      description: |-
+        Filter by soft-deletion mode.
+        * `only` - Show only soft-deleted resources.
+        * `all` - Include soft-deleted resources alongside live ones.
+        * `none` - Exclude soft-deleted resources.
+      schema:
+        type: string
+        enum:
+          - only
+          - all
+          - none
+    allocationPaymentOrder:
+      name: order
+      in: query
+      required: false
+      description: Column name to order by. An unrecognised value falls back to the default sort by `updated`.
+      schema:
+        type: string
+        enum:
+          - amount
+          - created
+          - currency
+          - date_due
+          - date_paid
+          - external_id
+          - reference
+          - slug
+          - status
+          - updated
+    sortDirection:
+      name: dir
+      in: query
+      required: false
+      description: Sort in ascending or descending order.
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+    page:
+      name: page
+      in: query
+      required: false
+      description: Specify the page number to return.
+      schema:
+        type: string
+    perPage:
+      name: per_page
+      in: query
+      required: false
+      description: Limit the number of items returned to between 1 and 100.
+      schema:
+        type: string
+    allocationPaymentSlug:
+      name: allocation_payment_slug
+      in: path
+      required: true
+      description: Slug of the allocation payment.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
     assignmentSlugFilter:
       name: slug
       in: query
@@ -3726,35 +3872,6 @@ components:
           - only
           - included
           - none
-    trashedFilter:
-      name: trashed
-      in: query
-      required: false
-      description: |-
-        Filter by soft-deletion mode.
-        * `only` - Show only soft-deleted resources.
-        * `all` - Include soft-deleted resources alongside live ones.
-        * `none` - Exclude soft-deleted resources.
-      schema:
-        type: string
-        enum:
-          - only
-          - all
-          - none
-    page:
-      name: page
-      in: query
-      required: false
-      description: Specify the page number to return.
-      schema:
-        type: string
-    perPage:
-      name: per_page
-      in: query
-      required: false
-      description: Limit the number of items returned to between 1 and 100.
-      schema:
-        type: string
     assignmentOrder:
       name: order
       in: query
@@ -3768,16 +3885,6 @@ components:
           - method
           - status
           - updated
-    sortDirection:
-      name: dir
-      in: query
-      required: false
-      description: Sort in ascending or descending order.
-      schema:
-        type: string
-        enum:
-          - asc
-          - desc
     assignmentSlug:
       name: assignment_slug
       in: path
@@ -4876,6 +4983,336 @@ components:
         total:
           type: integer
           description: Total number of records across all pages.
+    AllocationPaymentSummary:
+      type: object
+      description: Core allocation payment fields shared by the list and single-payment responses.
+      properties:
+        allocation:
+          type: object
+          description: Allocation the payment is drawn against.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the allocation.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the allocation resource.
+        amount:
+          type: number
+          description: Amount of the payment, in the fund's currency.
+        comments:
+          type: string
+          description: 'Comment log attached to the payment, rendered as a newline-joined export string of `author (timestamp): body` entries. Empty string when the payment has no comments.'
+        created:
+          type: string
+          format: date-time
+          description: Date and time when the payment was created.
+        currency:
+          type: string
+          description: ISO 4217 currency code of the payment's amounts, drawn from the fund's currency.
+        date_due:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date and time when the payment is due. `null` when no due date is set.
+        date_paid:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date and time when the payment was made. `null` when the payment has not been made.
+        external_id:
+          type: string
+          description: External identifier of the payment, used to reconcile it with downstream systems. Empty string when none is set.
+        grant_status:
+          type: object
+          nullable: true
+          description: |-
+            Grant status of the entry the allocation belongs to.
+
+            Present only when the grants feature is enabled on the account. `null` when the entry has no grant status.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the grant status.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the grant status resource.
+            name:
+              type: object
+              description: |-
+                Name of the grant status.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        payment_method:
+          type: object
+          nullable: true
+          description: |-
+            Payment method recorded against the payment.
+
+            `null` when no payment method is set.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the payment method.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the payment method resource.
+            name:
+              type: object
+              description: |-
+                Name of the payment method.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        reference:
+          type: string
+          description: Free-text reference for the payment. Empty string when none is set.
+        season:
+          type: object
+          description: Season the payment belongs to.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the season.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the season resource.
+            name:
+              type: object
+              description: |-
+                Name of the season.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        slug:
+          type: string
+          description: URL-safe identifier of the payment.
+        status:
+          type: string
+          description: |-
+            Lifecycle status of the payment, returned as a localised label rendered in the account's language.
+
+            Typical English labels are `Scheduled`, `Processing`, `Paid`, `Failed`, and `Failed permanently`.
+        updated:
+          type: string
+          format: date-time
+          description: Date and time when the payment was last updated.
+    AllocationPaymentList:
+      allOf:
+        - $ref: '#/components/schemas/Pagination'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/AllocationPaymentSummary'
+      example:
+        current_page: 1
+        data:
+          - allocation:
+              slug: rDrYaZBk
+              link: https://api.au.cr4ce.com/allocation/rDrYaZBk
+            amount: 1000
+            comments: ''
+            created: '2026-06-01T09:07:37Z'
+            currency: EUR
+            date_due: '2026-06-01T00:00:00Z'
+            date_paid: '2026-06-01T00:00:00Z'
+            external_id: ''
+            grant_status: null
+            payment_method:
+              slug: LvdWOgqM
+              link: https://api.au.cr4ce.com/payment-method/LvdWOgqM
+              name:
+                en_GB: Bank transfer
+            reference: '1'
+            season:
+              slug: wboyrBmo
+              link: https://api.au.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: BOKLMWVn
+            status: Paid
+            updated: '2026-06-01T09:07:37Z'
+          - allocation:
+              slug: kPGawYNx
+              link: https://api.au.cr4ce.com/allocation/kPGawYNx
+            amount: 50
+            comments: ''
+            created: '2026-05-06T12:53:03Z'
+            currency: EUR
+            date_due: '2026-05-06T00:00:00Z'
+            date_paid: '2026-05-06T00:00:00Z'
+            external_id: ''
+            grant_status: null
+            payment_method:
+              slug: LvdWOgqM
+              link: https://api.au.cr4ce.com/payment-method/LvdWOgqM
+              name:
+                en_GB: Bank transfer
+            reference: '1'
+            season:
+              slug: wboyrBmo
+              link: https://api.au.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: MGPzOYmx
+            status: Scheduled
+            updated: '2026-05-06T12:53:03Z'
+        first_page_url: https://api.au.cr4ce.com/allocation-payment?per_page=10&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.au.cr4ce.com/allocation-payment?per_page=10&page=1
+        next_page_url: ''
+        path: https://api.au.cr4ce.com/allocation-payment
+        per_page: 10
+        prev_page_url: ''
+        to: 2
+        total: 2
+    AllocationPaymentDetail:
+      type: object
+      description: Additional allocation payment fields returned only for a single allocation payment.
+      properties:
+        allocation_amount:
+          type: number
+          description: Total amount of the allocation the payment is drawn against, in the fund's currency.
+        entrant:
+          type: object
+          nullable: true
+          description: |-
+            Entrant who owns the entry the allocation belongs to.
+
+            Emitted as an empty array when the entry has no entrant.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the entrant.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the entrant resource.
+            name:
+              type: string
+              description: Full display name of the entrant.
+            first_name:
+              type: string
+              description: Given name of the entrant.
+            last_name:
+              type: string
+              description: Family name of the entrant.
+            email:
+              type: string
+              description: Email address of the entrant.
+            global_id:
+              type: string
+              description: Account-independent identifier of the entrant.
+        entry:
+          type: object
+          nullable: true
+          description: |-
+            Entry the allocation belongs to.
+
+            Emitted as an empty array when the payment has no associated entry.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the entry.
+            id:
+              type: integer
+              description: Internal numeric identifier of the entry.
+            title:
+              type: string
+              description: Title of the entry as submitted by the entrant.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the entry resource.
+        fund:
+          type: object
+          description: Fund the allocation draws from.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the fund.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the fund resource.
+            name:
+              type: object
+              description: |-
+                Name of the fund.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+    AllocationPayment:
+      title: Allocation payment
+      description: |-
+        Scheduled or recorded disbursement of funds against an allocation, the entry-level grant slot drawn from a fund's budget.
+
+        Carries the payment amount and currency, its lifecycle status, the due and paid dates, and references to the related allocation, fund, season, payment method, and grant status.
+      allOf:
+        - $ref: '#/components/schemas/AllocationPaymentSummary'
+        - $ref: '#/components/schemas/AllocationPaymentDetail'
+      example:
+        allocation:
+          slug: NqqplzPl
+          link: https://api.au.cr4ce.com/allocation/NqqplzPl
+        allocation_amount: 500
+        amount: 280.65
+        comments: ''
+        created: '2024-03-19T14:00:25Z'
+        currency: GBP
+        date_due: null
+        date_paid: null
+        entrant:
+          slug: AbCdEfGh
+          link: https://api.au.cr4ce.com/user/AbCdEfGh
+          name: Ada Lovelace
+          first_name: Ada
+          last_name: Lovelace
+          email: ada.lovelace@example.com
+          global_id: 9c78dcbc-53cf-42f1-b5b3-82fe396f66e6
+        entry:
+          slug: PqRsTuVw
+          id: 4821
+          title: Project title
+          link: https://api.au.cr4ce.com/entry/PqRsTuVw
+        external_id: ''
+        fund:
+          slug: PVzOmlXO
+          link: https://api.au.cr4ce.com/fund/PVzOmlXO
+          name:
+            en_GB: Maintenance
+        grant_status: null
+        payment_method: null
+        reference: ''
+        season:
+          slug: wboyrBmo
+          link: https://api.au.cr4ce.com/season/wboyrBmo
+          name:
+            en_GB: '2026'
+        slug: oQKEeNDy
+        status: Scheduled
+        updated: '2024-03-19T14:00:35Z'
+    NotFound:
+      allOf:
+        - $ref: '#/components/schemas/BaseProblem'
+        - type: object
+          properties:
+            status_code:
+              type: integer
+              minimum: 404
+              maximum: 404
     Assignment:
       type: object
       title: Assignment
@@ -5412,15 +5849,6 @@ components:
                 type: array
                 items:
                   type: string
-    NotFound:
-      allOf:
-        - $ref: '#/components/schemas/BaseProblem'
-        - type: object
-          properties:
-            status_code:
-              type: integer
-              minimum: 404
-              maximum: 404
     Attachment:
       type: object
       title: Attachment
@@ -10160,6 +10588,19 @@ components:
                 description: Human-readable maintenance status.
             example:
               status: Maintenance in progress
+    NotFound:
+      description: Resource identified by the path slug does not exist. Returned when the slug is well-formed but no record matches it.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
     UnprocessableEntity:
       description: |-
         Request was syntactically valid but could not be processed.
@@ -10179,19 +10620,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnprocessableEntity'
-    NotFound:
-      description: Resource identified by the path slug does not exist. Returned when the slug is well-formed but no record matches it.
-      headers:
-        X-RateLimit-Limit:
-          $ref: '#/components/headers/X-RateLimit-Limit'
-        X-RateLimit-Remaining:
-          $ref: '#/components/headers/X-RateLimit-Remaining'
-        X-RateLimit-Reset:
-          $ref: '#/components/headers/X-RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
   requestBodies:
     AssignmentCreate:
       content:
