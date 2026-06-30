@@ -79,6 +79,10 @@ paths:
     $ref: paths/form.yaml
   /form/{form_slug}:
     $ref: paths/form_{formSlug}.yaml
+  /fund:
+    $ref: paths/fund.yaml
+  /fund/{fund_slug}:
+    $ref: paths/fund_{fundSlug}.yaml
   /grant-status:
     $ref: paths/grant-status.yaml
   /grant-status/{grant_status_slug}:

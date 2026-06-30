@@ -1,0 +1,16 @@
+name: order
+in: query
+required: false
+description: |-
+  Column name to order by. An unrecognised value falls back to the default sort by `updated`.
+schema:
+  type: string
+  enum:
+    - allocated
+    - available
+    - budget
+    - created
+    - currency
+    - name
+    - slug
+    - updated

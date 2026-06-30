@@ -1,0 +1,41 @@
+get:
+  summary: Retrieve funds
+  operationId: GetFundCollectionV23
+  tags:
+    - Fund
+  parameters:
+    - $ref: ../components/parameters/fundSlugFilter.yaml
+    - $ref: ../components/parameters/trashedFilter.yaml
+    - $ref: ../components/parameters/fundOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
+    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
+  responses:
+    '200':
+      description: Funds retrieved.
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/FundList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Retrieves funds.

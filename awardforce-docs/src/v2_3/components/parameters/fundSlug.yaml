@@ -1,0 +1,7 @@
+name: fund_slug
+in: path
+required: true
+description: Slug of the fund.
+schema:
+  type: string
+  pattern: '^[A-Za-z]{8}$'

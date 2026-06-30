@@ -1,0 +1,58 @@
+title: Fund
+description: |-
+  Fund holding a monetary budget, tracking the amounts allocated and still available.
+
+  Carries the translated name and description, the currency, and the budget, allocated, and available amounts.
+type: object
+properties:
+  allocated:
+    type: number
+    description: Amount allocated from the budget, in the fund's currency.
+  available:
+    type: number
+    description: Amount still available to allocate, in the fund's currency. Equal to the budget minus the allocated amount.
+  budget:
+    type: number
+    description: Total budget of the fund, in the fund's currency.
+  created:
+    type: string
+    format: date-time
+    description: Date and time when the fund was created.
+  currency:
+    type: string
+    description: ISO 4217 currency code of the fund's amounts.
+  description:
+    type: object
+    description: |-
+      Description of the fund.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
+  name:
+    type: object
+    description: |-
+      Name of the fund.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
+  slug:
+    type: string
+    description: URL-safe identifier of the fund.
+  updated:
+    type: string
+    format: date-time
+    description: Date and time when the fund was last updated.
+example:
+  allocated: 91661
+  available: 8339
+  budget: 100000
+  created: '2023-11-21T09:57:43Z'
+  currency: GBP
+  description:
+    en_GB: Seed funding for first-time applicants.
+  name:
+    en_GB: Starter
+  slug: KEmBgExL
+  updated: '2026-06-02T13:05:08Z'
