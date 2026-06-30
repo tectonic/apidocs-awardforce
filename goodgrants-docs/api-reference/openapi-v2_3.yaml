@@ -2246,14 +2246,56 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves funds.
+    post:
+      summary: Create a fund
+      operationId: PostFundV23
+      tags:
+        - Fund
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      requestBody:
+        $ref: '#/components/requestBodies/FundCreate'
+      responses:
+        '201':
+          description: Fund created.
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fund'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Creates a fund.
   /fund/{fund_slug}:
+    parameters:
+      - $ref: '#/components/parameters/fundSlug'
     get:
       summary: Retrieve a fund
       operationId: GetFundV23
       tags:
         - Fund
       parameters:
-        - $ref: '#/components/parameters/fundSlug'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/X-Api-Language'
       responses:
@@ -2285,6 +2327,77 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the fund identified by the specified slug.
+    put:
+      summary: Update a fund
+      operationId: PutFundV23
+      tags:
+        - Fund
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      requestBody:
+        $ref: '#/components/requestBodies/FundUpdate'
+      responses:
+        '200':
+          description: Fund updated.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fund'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Updates the fund identified by the specified slug.
+    delete:
+      summary: Delete a fund
+      operationId: DeleteFundV23
+      tags:
+        - Fund
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+      responses:
+        '204':
+          description: Fund deleted.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Deletes the fund identified by the specified slug.
   /grant-status:
     get:
       summary: Retrieve grant statuses
@@ -11363,6 +11476,70 @@ components:
                     additionalProperties:
                       type: string
       description: Field creation payload.
+      required: true
+    FundCreate:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - budget
+              - currency
+              - translated
+            properties:
+              budget:
+                type: number
+                description: Total budget of the fund, in the fund's currency.
+              currency:
+                type: string
+                description: ISO 4217 currency code of the fund's amounts.
+              translated:
+                type: object
+                description: Translated fund field values keyed by field name.
+                additionalProperties: false
+                properties:
+                  description:
+                    type: object
+                    description: Values keyed by existing and enabled language code.
+                    additionalProperties:
+                      type: string
+                  name:
+                    type: object
+                    description: Values keyed by existing and enabled language code.
+                    additionalProperties:
+                      type: string
+      description: Fund creation payload.
+      required: true
+    FundUpdate:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              budget:
+                type: number
+                description: Total budget of the fund, in the fund's currency.
+              currency:
+                type: string
+                description: ISO 4217 currency code of the fund's amounts.
+              translated:
+                type: object
+                description: Translated fund field values keyed by field name.
+                additionalProperties: false
+                properties:
+                  description:
+                    type: object
+                    description: Values keyed by existing and enabled language code.
+                    additionalProperties:
+                      type: string
+                  name:
+                    type: object
+                    description: Values keyed by existing and enabled language code.
+                    additionalProperties:
+                      type: string
+      description: Fund update payload.
       required: true
     OrderUpdate:
       content:
