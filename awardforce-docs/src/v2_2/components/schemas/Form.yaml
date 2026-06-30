@@ -1,0 +1,108 @@
+title: Form
+description: |-
+  Form used to collect entries within a season.
+
+  Carries the translated name and call to action, the season it belongs to, its type, and its chapter and content-block settings.
+type: object
+properties:
+  callToAction:
+    type: object
+    description: |-
+      Call to action of the form.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
+  chapter_option:
+    type: string
+    description: |-
+      How chapters are applied to the form.
+      * `all` - Available to every chapter.
+      * `select` - Available to selected chapters only.
+    enum:
+      - all
+      - select
+  content_block:
+    type: object
+    nullable: true
+    description: |-
+      Content block displayed with the form.
+
+      `null` when no content block is assigned.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the content block.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the content block resource.
+      name:
+        type: object
+        description: Translated name of the content block, keyed by locale code.
+        additionalProperties:
+          type: string
+  created:
+    type: string
+    format: date-time
+    description: Date and time when the form was created.
+  name:
+    type: object
+    description: |-
+      Name of the form.
+
+      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+    additionalProperties:
+      type: string
+  season:
+    type: object
+    nullable: true
+    description: |-
+      Season the form belongs to.
+
+      `null` when the form is not assigned to a season.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the season.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL for the season resource.
+      name:
+        type: object
+        description: Translated name of the season, keyed by locale code.
+        additionalProperties:
+          type: string
+  slug:
+    type: string
+    description: URL-safe identifier of the form.
+  type:
+    type: string
+    description: |-
+      Type of the form.
+      * `entry` - Collects entries.
+      * `report` - Collects grant reports.
+    enum:
+      - entry
+      - report
+  updated:
+    type: string
+    format: date-time
+    description: Date and time when the form was last updated.
+example:
+  callToAction:
+    en_GB: ''
+  chapter_option: select
+  content_block: null
+  created: '2024-09-30T10:11:17Z'
+  name:
+    en_GB: Cycling grants
+  season:
+    slug: wboyrBmo
+    link: https://api.au.cr4ce.com/season/wboyrBmo
+    name:
+      en_GB: '2026'
+  slug: WvmnJgjV
+  type: entry
+  updated: '2025-10-16T08:00:39Z'

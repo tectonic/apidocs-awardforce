@@ -1,0 +1,43 @@
+get:
+  summary: Retrieve forms
+  operationId: GetFormCollectionV23
+  tags:
+    - Form
+  parameters:
+    - $ref: ../components/parameters/formTypeFilter.yaml
+    - $ref: ../components/parameters/seasonFilter.yaml
+    - $ref: ../components/parameters/archivedFilter.yaml
+    - $ref: ../components/parameters/deletedFilter.yaml
+    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/perPage.yaml
+    - $ref: ../components/parameters/formOrder.yaml
+    - $ref: ../components/parameters/sortDirection.yaml
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/X-Api-Language.yaml
+  responses:
+    '200':
+      description: Forms retrieved.
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+        X-RateLimit-Limit:
+          $ref: ../components/headers/X-RateLimit-Limit.yaml
+        X-RateLimit-Remaining:
+          $ref: ../components/headers/X-RateLimit-Remaining.yaml
+        X-RateLimit-Reset:
+          $ref: ../components/headers/X-RateLimit-Reset.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/FormList.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
+    '429':
+      $ref: ../components/responses/TooManyRequests.yaml
+    '503':
+      $ref: ../components/responses/ServiceUnavailable.yaml
+  description: Retrieves forms.

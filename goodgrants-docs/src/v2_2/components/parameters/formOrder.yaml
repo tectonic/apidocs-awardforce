@@ -1,0 +1,17 @@
+name: order
+in: query
+required: false
+description: |-
+  Column name to order by. An unrecognised value falls back to the default sort by `created`.
+schema:
+  type: string
+  enum:
+    - callToAction
+    - chapter_option
+    - content_block
+    - created
+    - name
+    - season
+    - slug
+    - type
+    - updated
