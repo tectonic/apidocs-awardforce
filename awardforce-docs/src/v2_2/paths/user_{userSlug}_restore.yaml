@@ -7,7 +7,6 @@ post:
     - User
   parameters:
     - $ref: ../components/parameters/Accept.yaml
-    - $ref: ../components/parameters/X-Api-Language.yaml
   responses:
     '204':
       description: User restored.

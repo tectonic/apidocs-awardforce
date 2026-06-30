@@ -113,12 +113,12 @@ paths:
     $ref: paths/user.yaml
   /user/{user_slug}:
     $ref: paths/user_{userSlug}.yaml
-  /user/{user_slug}/upload/{field_slug}:
-    $ref: paths/user_{userSlug}_upload_{fieldSlug}.yaml
   /user/{user_slug}/auth-token:
     $ref: paths/user_{userSlug}_auth-token.yaml
   /user/{user_slug}/restore:
     $ref: paths/user_{userSlug}_restore.yaml
+  /user/{user_slug}/upload/{field_slug}:
+    $ref: paths/user_{userSlug}_upload_{fieldSlug}.yaml
   /webhook:
     $ref: paths/webhook.yaml
   /webhook/{webhook_slug}:
