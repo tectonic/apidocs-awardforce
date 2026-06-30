@@ -1,0 +1,12 @@
+type: object
+description: Result of adding a comment to an allocation payment.
+properties:
+  allocation-payment:
+    type: string
+    description: Slug of the allocation payment the comment was added to.
+  comment:
+    type: string
+    description: Body of the comment.
+  slug:
+    type: string
+    description: URL-safe identifier of the comment.

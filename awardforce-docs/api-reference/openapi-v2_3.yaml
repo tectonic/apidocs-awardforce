@@ -88,6 +88,47 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves allocation payments.
+    post:
+      summary: Create an allocation payment
+      operationId: PostAllocationPaymentV23
+      tags:
+        - Allocation payment
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      requestBody:
+        $ref: '#/components/requestBodies/AllocationPaymentCreate'
+      responses:
+        '201':
+          description: Allocation payment created.
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationPayment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Creates an allocation payment.
   /allocation-payment/{allocation_payment_slug}:
     parameters:
       - $ref: '#/components/parameters/allocationPaymentSlug'
@@ -128,6 +169,116 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the allocation payment identified by the specified slug.
+    put:
+      summary: Update an allocation payment
+      operationId: PutAllocationPaymentV23
+      tags:
+        - Allocation payment
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      requestBody:
+        $ref: '#/components/requestBodies/AllocationPaymentUpdate'
+      responses:
+        '200':
+          description: Allocation payment updated.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationPayment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Updates the allocation payment identified by the specified slug.
+    delete:
+      summary: Delete an allocation payment
+      operationId: DeleteAllocationPaymentV23
+      tags:
+        - Allocation payment
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+      responses:
+        '204':
+          description: Allocation payment deleted.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Deletes the allocation payment identified by the specified slug.
+  /allocation-payment/comment:
+    post:
+      summary: Comment on an allocation payment
+      operationId: PostAllocationPaymentCommentV23
+      tags:
+        - Allocation payment
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+      requestBody:
+        $ref: '#/components/requestBodies/AllocationPaymentComment'
+      responses:
+        '200':
+          description: Comment added to the allocation payment.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationPaymentCommentResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Adds a comment to the allocation payment identified by the slug in the request body.
   /assignment:
     get:
       summary: Retrieve assignments
@@ -5530,6 +5681,22 @@ components:
         slug: oQKEeNDy
         status: Scheduled
         updated: '2024-03-19T14:00:35Z'
+    UnprocessableEntity:
+      allOf:
+        - $ref: '#/components/schemas/BaseProblem'
+        - type: object
+          properties:
+            status_code:
+              type: integer
+              minimum: 422
+              maximum: 422
+            errors:
+              type: object
+              description: Map of request field to the list of validation messages for that field. Present only on field-level validation failures; omitted when the 422 was raised by a resource-state precondition.
+              additionalProperties:
+                type: array
+                items:
+                  type: string
     NotFound:
       allOf:
         - $ref: '#/components/schemas/BaseProblem'
@@ -5539,6 +5706,19 @@ components:
               type: integer
               minimum: 404
               maximum: 404
+    AllocationPaymentCommentResult:
+      type: object
+      description: Result of adding a comment to an allocation payment.
+      properties:
+        allocation-payment:
+          type: string
+          description: Slug of the allocation payment the comment was added to.
+        comment:
+          type: string
+          description: Body of the comment.
+        slug:
+          type: string
+          description: URL-safe identifier of the comment.
     Assignment:
       type: object
       title: Assignment
@@ -6059,22 +6239,6 @@ components:
         prev_page_url: ''
         to: 50
         total: 175
-    UnprocessableEntity:
-      allOf:
-        - $ref: '#/components/schemas/BaseProblem'
-        - type: object
-          properties:
-            status_code:
-              type: integer
-              minimum: 422
-              maximum: 422
-            errors:
-              type: object
-              description: Map of request field to the list of validation messages for that field. Present only on field-level validation failures; omitted when the 422 was raised by a resource-state precondition.
-              additionalProperties:
-                type: array
-                items:
-                  type: string
     Attachment:
       type: object
       title: Attachment
@@ -10917,19 +11081,6 @@ components:
                 description: Human-readable maintenance status.
             example:
               status: Maintenance in progress
-    NotFound:
-      description: Resource identified by the path slug does not exist. Returned when the slug is well-formed but no record matches it.
-      headers:
-        X-RateLimit-Limit:
-          $ref: '#/components/headers/X-RateLimit-Limit'
-        X-RateLimit-Remaining:
-          $ref: '#/components/headers/X-RateLimit-Remaining'
-        X-RateLimit-Reset:
-          $ref: '#/components/headers/X-RateLimit-Reset'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFound'
     UnprocessableEntity:
       description: |-
         Request was syntactically valid but could not be processed.
@@ -10949,7 +11100,154 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnprocessableEntity'
+    NotFound:
+      description: Resource identified by the path slug does not exist. Returned when the slug is well-formed but no record matches it.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
   requestBodies:
+    AllocationPaymentCreate:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - allocation
+              - amount
+              - status
+            properties:
+              allocation:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the allocation the payment is drawn against.
+              amount:
+                type: number
+                description: |-
+                  Amount of the payment, in the currency of the allocation's fund.
+
+                  Cannot exceed the allocation's unscheduled balance.
+              date_due:
+                type: string
+                nullable: true
+                description: |-
+                  Date the payment is due.
+
+                  Accepts `Y-m-d` or `Y-m-d\TH:i:s\Z` format.
+              date_paid:
+                type: string
+                nullable: true
+                description: |-
+                  Date the payment was made.
+
+                  Accepts `Y-m-d` or `Y-m-d\TH:i:s\Z` format. Required when `status` is `paid`.
+              external_id:
+                type: string
+                nullable: true
+                maxLength: 255
+                description: External identifier of the payment, used to reconcile it with downstream systems.
+              payment_method:
+                type: string
+                nullable: true
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the payment method.
+              reference:
+                type: string
+                nullable: true
+                maxLength: 32
+                description: Free-text reference for the payment.
+              status:
+                type: string
+                description: Lifecycle status of the payment.
+                enum:
+                  - failed
+                  - failed_permanently
+                  - paid
+                  - processing
+                  - scheduled
+      description: Allocation payment creation payload.
+      required: true
+    AllocationPaymentUpdate:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              amount:
+                type: number
+                description: |-
+                  Amount of the payment, in the currency of the allocation's fund.
+
+                  Cannot exceed the allocation's unscheduled balance, with the payment's current amount added back.
+              date_due:
+                type: string
+                nullable: true
+                description: |-
+                  Date the payment is due.
+
+                  Accepts `Y-m-d` or `Y-m-d\TH:i:s\Z` format.
+              date_paid:
+                type: string
+                nullable: true
+                description: |-
+                  Date the payment was made.
+
+                  Accepts `Y-m-d` or `Y-m-d\TH:i:s\Z` format. Required when `status` is `paid`.
+              external_id:
+                type: string
+                nullable: true
+                maxLength: 255
+                description: External identifier of the payment, used to reconcile it with downstream systems.
+              payment_method:
+                type: string
+                nullable: true
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the payment method.
+              reference:
+                type: string
+                nullable: true
+                maxLength: 32
+                description: Free-text reference for the payment.
+              status:
+                type: string
+                description: Lifecycle status of the payment.
+                enum:
+                  - failed
+                  - failed_permanently
+                  - paid
+                  - processing
+                  - scheduled
+      description: Allocation payment update payload.
+      required: true
+    AllocationPaymentComment:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - allocation_payment
+              - comment
+            properties:
+              allocation_payment:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the allocation payment to comment on.
+              comment:
+                type: string
+                maxLength: 255
+                description: Body of the comment.
+      description: Allocation payment comment payload.
+      required: true
     AssignmentCreate:
       content:
         application/json:
