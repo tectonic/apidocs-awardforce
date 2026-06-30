@@ -117,6 +117,8 @@ paths:
     $ref: paths/user_{userSlug}_upload_{fieldSlug}.yaml
   /user/{user_slug}/auth-token:
     $ref: paths/user_{userSlug}_auth-token.yaml
+  /user/{user_slug}/restore:
+    $ref: paths/user_{userSlug}_restore.yaml
   /webhook:
     $ref: paths/webhook.yaml
   /webhook/{webhook_slug}:
