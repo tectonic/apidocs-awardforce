@@ -29,6 +29,7 @@ content:
         signing_key:
           type: string
           pattern: '^[A-Za-z0-9]+$'
+          maxLength: 128
           description: |-
             Key used to sign outgoing webhook requests so the receiver can validate the payload. Must be alphanumeric (`A`–`Z`, `a`–`z`, `0`–`9`).
 
