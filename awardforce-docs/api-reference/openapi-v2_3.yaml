@@ -3155,59 +3155,6 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the user identified by the specified slug.
-  /user/{user_slug}/upload/{field_slug}:
-    parameters:
-      - $ref: '#/components/parameters/userSlug'
-      - $ref: '#/components/parameters/fieldSlug'
-    post:
-      summary: Upload a user file
-      operationId: PostUserUploadV23
-      tags:
-        - User
-      parameters:
-        - $ref: '#/components/parameters/Accept'
-      responses:
-        '201':
-          description: User file uploaded.
-          headers:
-            Location:
-              $ref: '#/components/headers/Location'
-            ETag:
-              $ref: '#/components/headers/ETag'
-            X-RateLimit-Limit:
-              $ref: '#/components/headers/X-RateLimit-Limit'
-            X-RateLimit-Remaining:
-              $ref: '#/components/headers/X-RateLimit-Remaining'
-            X-RateLimit-Reset:
-              $ref: '#/components/headers/X-RateLimit-Reset'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UploadResult'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '422':
-          $ref: '#/components/responses/UnprocessableEntity'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-      description: Uploads a file to the specified field for the user identified by the specified slug.
-      requestBody:
-        $ref: '#/components/requestBodies/FileUpload'
-      x-mint:
-        content: |-
-          Use this operation to upload a file to a file field on the user.
-
-          <Warning>
-          The uploaded file is validated and stored before the response is returned; the file itself is processed shortly after. A `GET` on the returned `Location` immediately after the `201` may briefly return a response with a `null` body until processing is complete.
-          </Warning>
   /user/{user_slug}/auth-token:
     parameters:
       - $ref: '#/components/parameters/userSlug'
@@ -3268,7 +3215,6 @@ paths:
         - User
       parameters:
         - $ref: '#/components/parameters/Accept'
-        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '204':
           description: User restored.
@@ -3292,6 +3238,59 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Restores the previously deleted user identified by the specified slug.
+  /user/{user_slug}/upload/{field_slug}:
+    parameters:
+      - $ref: '#/components/parameters/userSlug'
+      - $ref: '#/components/parameters/fieldSlug'
+    post:
+      summary: Upload a user file
+      operationId: PostUserUploadV23
+      tags:
+        - User
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+      responses:
+        '201':
+          description: User file uploaded.
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Uploads a file to the specified field for the user identified by the specified slug.
+      requestBody:
+        $ref: '#/components/requestBodies/FileUpload'
+      x-mint:
+        content: |-
+          Use this operation to upload a file to a file field on the user.
+
+          <Warning>
+          The uploaded file is validated and stored before the response is returned; the file itself is processed shortly after. A `GET` on the returned `Location` immediately after the `201` may briefly return a response with a `null` body until processing is complete.
+          </Warning>
   /webhook:
     get:
       summary: Retrieve webhooks
