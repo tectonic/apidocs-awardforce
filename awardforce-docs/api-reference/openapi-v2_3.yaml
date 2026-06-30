@@ -2204,6 +2204,87 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the form identified by the specified slug.
+  /fund:
+    get:
+      summary: Retrieve funds
+      operationId: GetFundCollectionV23
+      tags:
+        - Fund
+      parameters:
+        - $ref: '#/components/parameters/fundSlugFilter'
+        - $ref: '#/components/parameters/trashedFilter'
+        - $ref: '#/components/parameters/fundOrder'
+        - $ref: '#/components/parameters/sortDirection'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Funds retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves funds.
+  /fund/{fund_slug}:
+    get:
+      summary: Retrieve a fund
+      operationId: GetFundV23
+      tags:
+        - Fund
+      parameters:
+        - $ref: '#/components/parameters/fundSlug'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Fund retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fund'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves the fund identified by the specified slug.
   /grant-status:
     get:
       summary: Retrieve grant statuses
@@ -4201,6 +4282,38 @@ components:
       in: path
       required: true
       description: Slug of the form.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
+    fundSlugFilter:
+      name: slug
+      in: query
+      required: false
+      description: Filter to a single fund by slug. Returns at most one item.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
+    fundOrder:
+      name: order
+      in: query
+      required: false
+      description: Column name to order by. An unrecognised value falls back to the default sort by `updated`.
+      schema:
+        type: string
+        enum:
+          - allocated
+          - available
+          - budget
+          - created
+          - currency
+          - name
+          - slug
+          - updated
+    fundSlug:
+      name: fund_slug
+      in: path
+      required: true
+      description: Slug of the fund.
       schema:
         type: string
         pattern: ^[A-Za-z]{8}$
@@ -7866,6 +7979,109 @@ components:
         prev_page_url: ''
         to: 10
         total: 20
+    Fund:
+      title: Fund
+      description: |-
+        Fund holding a monetary budget, tracking the amounts allocated and still available.
+
+        Carries the translated name and description, the currency, and the budget, allocated, and available amounts.
+      type: object
+      properties:
+        allocated:
+          type: number
+          description: Amount allocated from the budget, in the fund's currency.
+        available:
+          type: number
+          description: Amount still available to allocate, in the fund's currency. Equal to the budget minus the allocated amount.
+        budget:
+          type: number
+          description: Total budget of the fund, in the fund's currency.
+        created:
+          type: string
+          format: date-time
+          description: Date and time when the fund was created.
+        currency:
+          type: string
+          description: ISO 4217 currency code of the fund's amounts.
+        description:
+          type: object
+          description: |-
+            Description of the fund.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        name:
+          type: object
+          description: |-
+            Name of the fund.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        slug:
+          type: string
+          description: URL-safe identifier of the fund.
+        updated:
+          type: string
+          format: date-time
+          description: Date and time when the fund was last updated.
+      example:
+        allocated: 91661
+        available: 8339
+        budget: 100000
+        created: '2023-11-21T09:57:43Z'
+        currency: GBP
+        description:
+          en_GB: Seed funding for first-time applicants.
+        name:
+          en_GB: Starter
+        slug: KEmBgExL
+        updated: '2026-06-02T13:05:08Z'
+    FundList:
+      allOf:
+        - $ref: '#/components/schemas/Pagination'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Fund'
+      example:
+        current_page: 1
+        data:
+          - allocated: 91661
+            available: 8339
+            budget: 100000
+            created: '2023-11-21T09:57:43Z'
+            currency: GBP
+            description:
+              en_GB: Seed funding for first-time applicants.
+            name:
+              en_GB: Starter
+            slug: KEmBgExL
+            updated: '2026-06-02T13:05:08Z'
+          - allocated: 5000
+            available: 395000
+            budget: 400000
+            created: '2026-04-20T14:15:30Z'
+            currency: SAR
+            description:
+              en_GB: ''
+            name:
+              en_GB: Saudi R
+            slug: EJwlkZLQ
+            updated: '2026-04-20T14:17:34Z'
+        first_page_url: https://api.au.cr4ce.com/fund?per_page=10&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.au.cr4ce.com/fund?per_page=10&page=1
+        next_page_url: ''
+        path: https://api.au.cr4ce.com/fund
+        per_page: 10
+        prev_page_url: ''
+        to: 2
+        total: 2
     GrantStatus:
       title: Grant status
       description: |-
