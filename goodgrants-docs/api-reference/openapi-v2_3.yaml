@@ -1222,6 +1222,158 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the contributor identified by the specified slug.
+  /document:
+    get:
+      summary: Retrieve documents
+      operationId: GetDocumentCollectionV23
+      tags:
+        - Document
+      parameters:
+        - $ref: '#/components/parameters/documentEntrantFilter'
+        - $ref: '#/components/parameters/deletedFilter'
+        - $ref: '#/components/parameters/trashedFilter'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/documentOrder'
+        - $ref: '#/components/parameters/sortDirection'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Documents retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves documents.
+    post:
+      summary: Create a document
+      operationId: PostDocumentV23
+      tags:
+        - Document
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      requestBody:
+        $ref: '#/components/requestBodies/DocumentCreate'
+      responses:
+        '202':
+          description: Document creation accepted.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Creates a document.
+      x-mint:
+        content: |-
+          Documents are generated asynchronously. A successful request returns `202 Accepted` with an empty body and does not include a `Location` header.
+
+          The generated document does not exist yet when the response is returned. Poll `GET /document` to retrieve it once generation completes.
+  /document/{document_slug}:
+    get:
+      summary: Retrieve a document
+      operationId: GetDocumentV23
+      tags:
+        - Document
+      parameters:
+        - $ref: '#/components/parameters/documentSlug'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Document retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves the document identified by the specified slug.
+    delete:
+      summary: Delete a document
+      operationId: DeleteDocumentV23
+      tags:
+        - Document
+      parameters:
+        - $ref: '#/components/parameters/documentSlug'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '204':
+          description: Document deleted.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Deletes the document identified by the specified slug.
   /application:
     get:
       summary: Retrieve entries
@@ -3632,6 +3784,36 @@ components:
       schema:
         type: string
         pattern: ^[A-Za-z]{8}$
+    documentEntrantFilter:
+      name: applicant
+      in: query
+      required: false
+      description: Filter by applicant slug.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
+    documentOrder:
+      name: order
+      in: query
+      required: false
+      description: Column to sort by.
+      schema:
+        type: string
+        enum:
+          - created_at
+          - file
+          - file_type
+          - name
+          - shared_with_user
+          - updated_at
+    documentSlug:
+      name: document_slug
+      in: path
+      required: true
+      description: Slug of the document.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
     entryEntrantFilter:
       name: entrant
       in: query
@@ -5946,6 +6128,221 @@ components:
         prev_page_url: ''
         to: 10
         total: 14
+    Document:
+      title: Document
+      description: |-
+        Document generated from a document template and attached to an application, allocation, or user.
+
+        Carries the generated file, its translated name and description, the user who created it, and the resource it is attached to.
+      type: object
+      properties:
+        allocation:
+          description: |-
+            Allocation the document is attached to.
+
+            Empty array when the document is not attached to an allocation.
+          oneOf:
+            - type: object
+              properties:
+                slug:
+                  type: string
+                  description: Short URL-safe identifier for the allocation.
+                link:
+                  type: string
+                  format: uri
+                  description: Canonical URL for the allocation resource.
+            - type: array
+              maxItems: 0
+        application:
+          description: |-
+            Application the document is attached to.
+
+            Empty array when the document is not attached to an application.
+          oneOf:
+            - type: object
+              properties:
+                slug:
+                  type: string
+                  description: Short URL-safe identifier for the application.
+                link:
+                  type: string
+                  format: uri
+                  description: Canonical URL for the application resource.
+                title:
+                  type: string
+                  description: Title of the application.
+            - type: array
+              maxItems: 0
+        created_at:
+          type: string
+          format: date-time
+          description: Date and time when the document was created.
+        description:
+          type: object
+          description: |-
+            Description of the document, inherited from the document template.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        file:
+          type: object
+          description: Generated document file.
+          properties:
+            token:
+              type: string
+              description: Token identifying the file.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL for the file resource.
+            name:
+              type: string
+              description: Original filename of the generated document.
+            download:
+              type: string
+              format: uri
+              description: Time-limited download URL for the file.
+        file_type:
+          type: string
+          enum:
+            - PDF
+            - Word
+          description: File format of the generated document.
+        name:
+          type: object
+          description: |-
+            Name of the document.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        shared_with_user:
+          type: boolean
+          description: Specifies whether the document is shared with the applicant.
+        slug:
+          type: string
+          description: URL-safe identifier of the document.
+        user:
+          description: |-
+            User who created the document.
+
+            Empty array when no user is attached.
+          oneOf:
+            - type: object
+              properties:
+                slug:
+                  type: string
+                  description: Short URL-safe identifier for the user.
+                link:
+                  type: string
+                  format: uri
+                  description: Canonical URL for the user resource.
+                name:
+                  type: string
+                  description: Full name of the user.
+                first_name:
+                  type: string
+                  description: First name of the user.
+                last_name:
+                  type: string
+                  description: Last name of the user.
+            - type: array
+              maxItems: 0
+      example:
+        allocation: []
+        application:
+          slug: AbCdEfGh
+          link: https://api.au.cr4ce.com/application/AbCdEfGh
+          title: Sustainable Cities Initiative
+        created_at: '2025-01-15T09:00:00Z'
+        description:
+          en_GB: ''
+        file:
+          token: IjKlMnOpQrStUvWx
+          link: https://api.au.cr4ce.com/file/IjKlMnOpQrStUvWx
+          name: certificate.pdf
+          download: https://files.au.cr4ce.com/file/IjKlMnOpQrStUvWx/certificate.pdf?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+        file_type: PDF
+        name:
+          en_GB: Certificate of application
+        shared_with_user: false
+        slug: QrStUvWx
+        user:
+          slug: YzAbCdEf
+          link: https://api.au.cr4ce.com/user/YzAbCdEf
+          name: Rachel Martin
+          first_name: Rachel
+          last_name: Martin
+    DocumentList:
+      allOf:
+        - $ref: '#/components/schemas/Pagination'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Document'
+      example:
+        current_page: 1
+        data:
+          - allocation: []
+            application:
+              slug: AbCdEfGh
+              link: https://api.au.cr4ce.com/application/AbCdEfGh
+              title: Sustainable Cities Initiative
+            created_at: '2025-01-15T09:00:00Z'
+            description:
+              en_GB: ''
+            file:
+              token: IjKlMnOpQrStUvWx
+              link: https://api.au.cr4ce.com/file/IjKlMnOpQrStUvWx
+              name: certificate.pdf
+              download: https://files.au.cr4ce.com/file/IjKlMnOpQrStUvWx/certificate.pdf?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+            file_type: PDF
+            name:
+              en_GB: Certificate of application
+            shared_with_user: false
+            slug: QrStUvWx
+            user:
+              slug: YzAbCdEf
+              link: https://api.au.cr4ce.com/user/YzAbCdEf
+              name: Rachel Martin
+              first_name: Rachel
+              last_name: Martin
+          - allocation:
+              slug: KlMnOpQr
+              link: https://api.au.cr4ce.com/allocation/KlMnOpQr
+            application: []
+            created_at: '2025-02-10T10:00:00Z'
+            description:
+              en_GB: ''
+            file:
+              token: StUvWxYzAbCdEfGh
+              link: https://api.au.cr4ce.com/file/StUvWxYzAbCdEfGh
+              name: grant-report.pdf
+              download: https://files.au.cr4ce.com/file/StUvWxYzAbCdEfGh/grant-report.pdf?Expires=1781485359&Signature=REDACTED&Key-Pair-Id=REDACTED
+            file_type: Word
+            name:
+              en_GB: Grant report
+            shared_with_user: true
+            slug: WxYzAbCd
+            user:
+              slug: YzAbCdEf
+              link: https://api.au.cr4ce.com/user/YzAbCdEf
+              name: Rachel Martin
+              first_name: Rachel
+              last_name: Martin
+        first_page_url: https://api.au.cr4ce.com/document?per_page=10&page=1
+        from: 1
+        last_page: 4
+        last_page_url: https://api.au.cr4ce.com/document?per_page=10&page=4
+        next_page_url: https://api.au.cr4ce.com/document?per_page=10&page=2
+        path: https://api.au.cr4ce.com/document
+        per_page: 10
+        prev_page_url: ''
+        to: 10
+        total: 38
     EntrySummary:
       type: object
       description: Core entry fields shared by the list and single-entry responses.
@@ -9844,6 +10241,82 @@ components:
                 additionalProperties:
                   description: Value to submit for the field. The type depends on the field type — for example, a string for text fields or a boolean for checkbox fields.
       description: Contributor update payload.
+      required: true
+    DocumentCreate:
+      description: Document create payload.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - translated
+              - template
+              - fileType
+              - shared
+              - resource
+              - selected
+            properties:
+              translated:
+                type: object
+                required:
+                  - name
+                properties:
+                  name:
+                    type: object
+                    description: |-
+                      Name of the document.
+
+                      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                    additionalProperties:
+                      type: string
+                  description:
+                    type: object
+                    description: |-
+                      Description of the document.
+
+                      Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+                    additionalProperties:
+                      type: string
+              template:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the document template to generate the document from.
+              fileType:
+                type: string
+                enum:
+                  - PDF
+                  - Word
+                  - accessible-pdf
+                description: |-
+                  File format to generate the document in.
+
+                  Use `accessible-pdf` to generate a tagged, accessible PDF.
+              shared:
+                type: boolean
+                description: Specifies whether the generated document is shared with the applicant.
+              resource:
+                type: string
+                enum:
+                  - user
+                  - application
+                  - allocation
+                  - grant-report
+                description: Type of resource to attach the generated documents to.
+              selected:
+                type: array
+                minItems: 1
+                description: Slugs of the resources, of the type given by `resource`, to attach the generated documents to.
+                items:
+                  type: string
+                  pattern: ^[A-Za-z]{8}$
+              notification:
+                type: string
+                nullable: true
+                pattern: ^[A-Za-z]{8}$
+                description: |-
+                  Slug of the notification to send when the document is created.
+
+                  Omit or set to `null` to send no notification.
       required: true
     EntryCreate:
       description: Entry creation payload.
