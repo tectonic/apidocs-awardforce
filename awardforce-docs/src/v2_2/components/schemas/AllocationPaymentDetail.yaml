@@ -1,0 +1,76 @@
+type: object
+description: Additional allocation payment fields returned only for a single allocation payment.
+properties:
+  allocation_amount:
+    type: number
+    description: Total amount of the allocation the payment is drawn against, in the fund's currency.
+  entrant:
+    type: object
+    nullable: true
+    description: |-
+      Entrant who owns the entry the allocation belongs to.
+
+      Emitted as an empty array when the entry has no entrant.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the entrant.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the entrant resource.
+      name:
+        type: string
+        description: Full display name of the entrant.
+      first_name:
+        type: string
+        description: Given name of the entrant.
+      last_name:
+        type: string
+        description: Family name of the entrant.
+      email:
+        type: string
+        description: Email address of the entrant.
+      global_id:
+        type: string
+        description: Account-independent identifier of the entrant.
+  entry:
+    type: object
+    nullable: true
+    description: |-
+      Entry the allocation belongs to.
+
+      Emitted as an empty array when the payment has no associated entry.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the entry.
+      id:
+        type: integer
+        description: Internal numeric identifier of the entry.
+      title:
+        type: string
+        description: Title of the entry as submitted by the entrant.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the entry resource.
+  fund:
+    type: object
+    description: Fund the allocation draws from.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the fund.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the fund resource.
+      name:
+        type: object
+        description: |-
+          Name of the fund.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string

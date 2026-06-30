@@ -1,0 +1,71 @@
+allOf:
+  - $ref: ./Pagination.yaml
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: ./AllocationPaymentSummary.yaml
+example:
+  current_page: 1
+  data:
+    - allocation:
+        slug: rDrYaZBk
+        link: https://api.au.cr4ce.com/allocation/rDrYaZBk
+      amount: 1000
+      comments: ''
+      created: '2026-06-01T09:07:37Z'
+      currency: EUR
+      date_due: '2026-06-01T00:00:00Z'
+      date_paid: '2026-06-01T00:00:00Z'
+      external_id: ''
+      grant_status: null
+      payment_method:
+        slug: LvdWOgqM
+        link: https://api.au.cr4ce.com/payment-method/LvdWOgqM
+        name:
+          en_GB: Bank transfer
+      reference: '1'
+      season:
+        slug: wboyrBmo
+        link: https://api.au.cr4ce.com/season/wboyrBmo
+        name:
+          en_GB: '2026'
+      slug: BOKLMWVn
+      status: Paid
+      updated: '2026-06-01T09:07:37Z'
+    - allocation:
+        slug: kPGawYNx
+        link: https://api.au.cr4ce.com/allocation/kPGawYNx
+      amount: 50
+      comments: ''
+      created: '2026-05-06T12:53:03Z'
+      currency: EUR
+      date_due: '2026-05-06T00:00:00Z'
+      date_paid: '2026-05-06T00:00:00Z'
+      external_id: ''
+      grant_status: null
+      payment_method:
+        slug: LvdWOgqM
+        link: https://api.au.cr4ce.com/payment-method/LvdWOgqM
+        name:
+          en_GB: Bank transfer
+      reference: '1'
+      season:
+        slug: wboyrBmo
+        link: https://api.au.cr4ce.com/season/wboyrBmo
+        name:
+          en_GB: '2026'
+      slug: MGPzOYmx
+      status: Scheduled
+      updated: '2026-05-06T12:53:03Z'
+  first_page_url: https://api.au.cr4ce.com/allocation-payment?per_page=10&page=1
+  from: 1
+  last_page: 1
+  last_page_url: https://api.au.cr4ce.com/allocation-payment?per_page=10&page=1
+  next_page_url: ''
+  path: https://api.au.cr4ce.com/allocation-payment
+  per_page: 10
+  prev_page_url: ''
+  to: 2
+  total: 2

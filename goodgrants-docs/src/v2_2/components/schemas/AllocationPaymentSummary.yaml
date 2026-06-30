@@ -1,0 +1,122 @@
+type: object
+description: Core allocation payment fields shared by the list and single-payment responses.
+properties:
+  allocation:
+    type: object
+    description: Allocation the payment is drawn against.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the allocation.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the allocation resource.
+  amount:
+    type: number
+    description: Amount of the payment, in the fund's currency.
+  comments:
+    type: string
+    description: |-
+      Comment log attached to the payment, rendered as a newline-joined export string of `author (timestamp): body` entries. Empty string when the payment has no comments.
+  created:
+    type: string
+    format: date-time
+    description: Date and time when the payment was created.
+  currency:
+    type: string
+    description: ISO 4217 currency code of the payment's amounts, drawn from the fund's currency.
+  date_due:
+    type: string
+    format: date-time
+    nullable: true
+    description: Date and time when the payment is due. `null` when no due date is set.
+  date_paid:
+    type: string
+    format: date-time
+    nullable: true
+    description: Date and time when the payment was made. `null` when the payment has not been made.
+  external_id:
+    type: string
+    description: External identifier of the payment, used to reconcile it with downstream systems. Empty string when none is set.
+  grant_status:
+    type: object
+    nullable: true
+    description: |-
+      Grant status of the application the allocation belongs to.
+
+      Present only when the grants feature is enabled on the account. `null` when the application has no grant status.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the grant status.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the grant status resource.
+      name:
+        type: object
+        description: |-
+          Name of the grant status.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  payment_method:
+    type: object
+    nullable: true
+    description: |-
+      Payment method recorded against the payment.
+
+      `null` when no payment method is set.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the payment method.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the payment method resource.
+      name:
+        type: object
+        description: |-
+          Name of the payment method.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  reference:
+    type: string
+    description: Free-text reference for the payment. Empty string when none is set.
+  season:
+    type: object
+    description: Season the payment belongs to.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the season.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the season resource.
+      name:
+        type: object
+        description: |-
+          Name of the season.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  slug:
+    type: string
+    description: URL-safe identifier of the payment.
+  status:
+    type: string
+    description: |-
+      Lifecycle status of the payment, returned as a localised label rendered in the account's language.
+
+      Typical English labels are `Scheduled`, `Processing`, `Paid`, `Failed`, and `Failed permanently`.
+  updated:
+    type: string
+    format: date-time
+    description: Date and time when the payment was last updated.
