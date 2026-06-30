@@ -3150,6 +3150,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/webhookSlug'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
       responses:
         '204':
           description: Webhook deleted.
@@ -3160,6 +3161,18 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Remaining'
             X-RateLimit-Reset:
               $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Deletes the webhook identified by the specified slug.
 components:
   securitySchemes:
@@ -9177,7 +9190,7 @@ components:
         total: 2
   responses:
     BadRequest:
-      description: 'Request was rejected before the endpoint could process it. Common causes: invalid `Accept` header, unsupported `x-api-language` code, empty request body on `POST` / `PUT`, or invalid JSON in the request body.'
+      description: 'Request was rejected before the endpoint could process it. Common causes: invalid `Accept` header, unsupported `x-api-language` code, empty request body on `POST` / `PUT`, invalid JSON in the request body, or an invalid slug format in a path parameter.'
       headers:
         X-RateLimit-Limit:
           $ref: '#/components/headers/X-RateLimit-Limit'
