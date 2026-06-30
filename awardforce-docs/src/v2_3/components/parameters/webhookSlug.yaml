@@ -4,3 +4,4 @@ required: true
 description: Slug of the webhook.
 schema:
   type: string
+  pattern: '^[A-Za-z]{8}$'

@@ -57,3 +57,16 @@ properties:
     type: string
     format: date-time
     description: Date and time the webhook was last updated.
+example:
+  created: '2025-12-21T23:11:20Z'
+  events:
+    - entry_created
+    - entry_submitted
+  fields: []
+  form: null
+  method: post
+  name: Entry notifications
+  signing_key: REDACTED
+  slug: AbCdEfGh
+  updated: '2025-12-21T23:11:20Z'
+  url: https://example.com/webhooks
