@@ -1,0 +1,26 @@
+content:
+  application/json:
+    schema:
+      type: object
+      additionalProperties: false
+      required:
+        - amount
+        - entry
+        - fund
+      properties:
+        amount:
+          type: number
+          description: |-
+            Amount to allocate to the entry, in the fund's currency.
+
+            Cannot exceed the fund's available budget.
+        entry:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the entry to allocate funds to.
+        fund:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the fund to draw the allocation from.
+description: Allocation creation payload.
+required: true

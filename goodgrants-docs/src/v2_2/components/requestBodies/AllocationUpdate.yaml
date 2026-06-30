@@ -1,0 +1,21 @@
+content:
+  application/json:
+    schema:
+      type: object
+      additionalProperties: false
+      properties:
+        amount:
+          type: number
+          description: |-
+            New amount to allocate, in the fund's currency.
+
+            Cannot exceed the fund's available budget.
+        fund:
+          type: string
+          pattern: '^[A-Za-z]{8}$'
+          description: Slug of the fund to draw the allocation from.
+description: |-
+  Allocation update payload.
+
+  The application cannot be reassigned. To move an allocation to a different application, delete it and create a new one.
+required: true

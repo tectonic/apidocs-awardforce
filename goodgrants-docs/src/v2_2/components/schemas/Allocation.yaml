@@ -1,0 +1,191 @@
+title: Allocation
+description: |-
+  Award of funds from a fund's budget to an application, forming the application-level grant slot that allocation payments are drawn against.
+
+  Carries the allocated amount and the fund's currency, the outstanding balance due, and references to the related applicant, application, fund, chapter, and season.
+type: object
+properties:
+  amount:
+    type: number
+    description: Total amount allocated to the application from the fund, in the fund's currency.
+  applicant:
+    type: object
+    nullable: true
+    description: |-
+      Applicant who owns the application the allocation belongs to.
+
+      Emitted as an empty array when the application has no applicant.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the applicant.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the applicant resource.
+      name:
+        type: string
+        description: Full display name of the applicant.
+      first_name:
+        type: string
+        description: Given name of the applicant.
+      last_name:
+        type: string
+        description: Family name of the applicant.
+  application:
+    type: object
+    nullable: true
+    description: |-
+      Application the allocation belongs to.
+
+      Emitted as an empty array when the allocation has no associated application.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the application.
+      id:
+        type: integer
+        description: Internal numeric identifier of the application.
+      title:
+        type: string
+        description: Title of the application as submitted by the applicant.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the application resource.
+  chapter:
+    type: object
+    description: |-
+      Chapter the application belongs to.
+
+      Emitted as an empty array when the application has no chapter.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the chapter.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the chapter resource.
+      name:
+        type: object
+        description: |-
+          Name of the chapter.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  created:
+    type: string
+    format: date-time
+    description: Date and time when the allocation was created.
+  currency:
+    type: string
+    description: ISO 4217 currency code of the allocation's amounts, drawn from the fund's currency.
+  entry:
+    type: object
+    nullable: true
+    description: |-
+      Application the allocation belongs to, linking to its management view.
+
+      Emitted as an empty array when the allocation has no associated application.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the application.
+      id:
+        type: integer
+        description: Internal numeric identifier of the application.
+      title:
+        type: string
+        description: Title of the application as submitted by the applicant.
+      link:
+        type: string
+        format: uri
+        description: URL of the application's management view.
+  fund:
+    type: object
+    description: Fund the allocation draws from.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the fund.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the fund resource.
+      name:
+        type: object
+        description: |-
+          Name of the fund.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  paid:
+    type: number
+    description: Outstanding amount due on the allocation, in the fund's currency, after deducting payments already made.
+  season:
+    type: object
+    description: Season the allocation belongs to.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the season.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the season resource.
+      name:
+        type: object
+        description: |-
+          Name of the season.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  slug:
+    type: string
+    description: URL-safe identifier of the allocation.
+  updated:
+    type: string
+    format: date-time
+    description: Date and time when the allocation was last updated.
+example:
+  amount: 1000
+  applicant:
+    slug: BwXxQawR
+    link: https://api.au.cr4ce.com/user/BwXxQawR
+    name: Rachel Martin
+    first_name: Rachel
+    last_name: Martin
+  application:
+    slug: DeqEWpwO
+    id: 69146
+    title: Project title
+    link: https://api.au.cr4ce.com/entry/DeqEWpwO
+  chapter:
+    slug: VbaERKdP
+    link: https://api.au.cr4ce.com/chapter/VbaERKdP
+    name:
+      en_GB: Glenlivet
+  created: '2026-06-02T13:05:18Z'
+  currency: USD
+  entry:
+    slug: DeqEWpwO
+    id: 69146
+    title: Project title
+    link: https://api.au.cr4ce.com/entry/manager/DeqEWpwO
+  fund:
+    slug: KYEKONwe
+    link: https://api.au.cr4ce.com/fund/KYEKONwe
+    name:
+      en_GB: USD
+  paid: 250
+  season:
+    slug: wboyrBmo
+    link: https://api.au.cr4ce.com/season/wboyrBmo
+    name:
+      en_GB: '2026'
+  slug: NxlGMaaj
+  updated: '2026-06-02T13:05:18Z'

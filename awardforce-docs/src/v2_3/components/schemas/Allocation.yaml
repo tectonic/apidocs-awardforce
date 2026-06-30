@@ -1,0 +1,165 @@
+title: Allocation
+description: |-
+  Award of funds from a fund's budget to an entry, forming the entry-level grant slot that allocation payments are drawn against.
+
+  Carries the allocated amount and the fund's currency, the outstanding balance due, and references to the related entrant, entry, fund, chapter, and season.
+type: object
+properties:
+  amount:
+    type: number
+    description: Total amount allocated to the entry from the fund, in the fund's currency.
+  chapter:
+    type: object
+    description: |-
+      Chapter the entry belongs to.
+
+      Emitted as an empty array when the entry has no chapter.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the chapter.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the chapter resource.
+      name:
+        type: object
+        description: |-
+          Name of the chapter.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  created:
+    type: string
+    format: date-time
+    description: Date and time when the allocation was created.
+  currency:
+    type: string
+    description: ISO 4217 currency code of the allocation's amounts, drawn from the fund's currency.
+  entrant:
+    type: object
+    nullable: true
+    description: |-
+      Entrant who owns the entry the allocation belongs to.
+
+      Emitted as an empty array when the entry has no entrant.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the entrant.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the entrant resource.
+      name:
+        type: string
+        description: Full display name of the entrant.
+      first_name:
+        type: string
+        description: Given name of the entrant.
+      last_name:
+        type: string
+        description: Family name of the entrant.
+  entry:
+    type: object
+    nullable: true
+    description: |-
+      Entry the allocation belongs to.
+
+      Emitted as an empty array when the allocation has no associated entry.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the entry.
+      id:
+        type: integer
+        description: Internal numeric identifier of the entry.
+      title:
+        type: string
+        description: Title of the entry as submitted by the entrant.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the entry resource.
+  fund:
+    type: object
+    description: Fund the allocation draws from.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the fund.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the fund resource.
+      name:
+        type: object
+        description: |-
+          Name of the fund.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  paid:
+    type: number
+    description: Outstanding amount due on the allocation, in the fund's currency, after deducting payments already made.
+  season:
+    type: object
+    description: Season the allocation belongs to.
+    properties:
+      slug:
+        type: string
+        description: URL-safe identifier of the season.
+      link:
+        type: string
+        format: uri
+        description: Canonical URL of the season resource.
+      name:
+        type: object
+        description: |-
+          Name of the season.
+
+          Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+        additionalProperties:
+          type: string
+  slug:
+    type: string
+    description: URL-safe identifier of the allocation.
+  updated:
+    type: string
+    format: date-time
+    description: Date and time when the allocation was last updated.
+example:
+  amount: 1000
+  chapter:
+    slug: VbaERKdP
+    link: https://api.au.cr4ce.com/chapter/VbaERKdP
+    name:
+      en_GB: Glenlivet
+  created: '2026-06-02T13:05:18Z'
+  currency: USD
+  entrant:
+    slug: BwXxQawR
+    link: https://api.au.cr4ce.com/user/BwXxQawR
+    name: Rachel Martin
+    first_name: Rachel
+    last_name: Martin
+  entry:
+    slug: DeqEWpwO
+    id: 69146
+    title: Project title
+    link: https://api.au.cr4ce.com/entry/DeqEWpwO
+  fund:
+    slug: KYEKONwe
+    link: https://api.au.cr4ce.com/fund/KYEKONwe
+    name:
+      en_GB: USD
+  paid: 250
+  season:
+    slug: wboyrBmo
+    link: https://api.au.cr4ce.com/season/wboyrBmo
+    name:
+      en_GB: '2026'
+  slug: NxlGMaaj
+  updated: '2026-06-02T13:05:18Z'
