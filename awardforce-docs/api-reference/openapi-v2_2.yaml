@@ -10766,7 +10766,6 @@ components:
             required:
               - type
               - tab
-              - form
               - translated
             properties:
               type:
@@ -10794,9 +10793,11 @@ components:
                   - url
               tab:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: Slug of the tab the field belongs to.
               form:
                 type: string
+                pattern: ^[A-Za-z]{8}$
                 description: |-
                   Slug of the form the field belongs to.
 
