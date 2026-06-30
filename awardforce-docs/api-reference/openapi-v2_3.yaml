@@ -3008,6 +3008,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Webhook'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
       description: Creates a webhook.
       x-mint:
         content: |-
@@ -10227,6 +10239,7 @@ components:
         application/json:
           schema:
             type: object
+            additionalProperties: false
             required:
               - method
               - name
@@ -10235,7 +10248,10 @@ components:
             properties:
               method:
                 type: string
-                description: HTTP method used to call the webhook URL.
+                description: |-
+                  HTTP method used to call the webhook URL.
+
+                  Values are case-sensitive.
                 enum:
                   - get
                   - post
@@ -10248,12 +10264,68 @@ components:
                 description: URL that receives the webhook payload.
               signing_key:
                 type: string
-                description: Key used to sign outgoing webhook requests so the receiver can validate the payload.
-              events:
+                pattern: ^[A-Za-z0-9]+$
+                description: |-
+                  Key used to sign outgoing webhook requests so the receiver can validate the payload. Must be alphanumeric (`A`–`Z`, `a`–`z`, `0`–`9`).
+
+                  If omitted, the account's existing webhook signing key is reused, or a new key is generated when the account has none. Supply a unique key to isolate each receiver's trust boundary.
+              notification_emails:
+                description: Email addresses that receive webhook delivery-failure notifications. Accepts either a single address as a string, or multiple addresses as an array of strings.
+                oneOf:
+                  - type: string
+                  - type: array
+                    items:
+                      type: string
+              form:
+                type: string
+                nullable: true
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the form to scope the webhook to. When set, the webhook only fires for events on that form. Omit or set to `null` for an account-wide webhook.
+              fields:
                 type: array
-                description: Subscription events that trigger this webhook. For example, `["role_granted", "allocation_created"]`.
+                description: Slugs of the fields to include in the webhook payload.
                 items:
                   type: string
+                  pattern: ^[A-Za-z]{8}$
+              events:
+                type: array
+                minItems: 1
+                description: Subscription events that trigger this webhook. For example, `["entry_created", "entry_submitted"]`.
+                items:
+                  type: string
+                  enum:
+                    - allocation_created
+                    - allocation_payment_created
+                    - allocation_payment_deleted
+                    - allocation_payment_status_changed
+                    - allocation_payment_updated
+                    - assignment_completed
+                    - assignment_created
+                    - collaborator_invited
+                    - document_created
+                    - document_deleted
+                    - document_updated
+                    - entry_category_changed
+                    - entry_chapter_changed
+                    - entry_copied
+                    - entry_created
+                    - entry_deleted
+                    - entry_eligible
+                    - entry_ineligible
+                    - entry_moderated
+                    - entry_resubmitted
+                    - entry_submitted
+                    - entry_tagged
+                    - entry_updated
+                    - field_value_updated
+                    - membership_registered
+                    - payment_pending
+                    - payment_success
+                    - review_task_created
+                    - review_task_submitted
+                    - role_granted
+                    - user_updated
+      required: true
     WebhookUpdate:
       description: Webhook update payload.
       content:
