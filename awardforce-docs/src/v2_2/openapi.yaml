@@ -17,6 +17,10 @@ security:
 paths:
   /account:
     $ref: paths/account.yaml
+  /allocation-payment:
+    $ref: paths/allocation-payment.yaml
+  /allocation-payment/{allocation_payment_slug}:
+    $ref: paths/allocation-payment_{allocationPaymentSlug}.yaml
   /assignment:
     $ref: paths/assignment.yaml
   /assignment/{assignment_slug}:

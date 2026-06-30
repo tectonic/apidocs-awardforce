@@ -1,0 +1,49 @@
+title: Allocation payment
+description: |-
+  Scheduled or recorded disbursement of funds against an allocation, the entry-level grant slot drawn from a fund's budget.
+
+  Carries the payment amount and currency, its lifecycle status, the due and paid dates, and references to the related allocation, fund, season, payment method, and grant status.
+allOf:
+  - $ref: ./AllocationPaymentSummary.yaml
+  - $ref: ./AllocationPaymentDetail.yaml
+example:
+  allocation:
+    slug: NqqplzPl
+    link: https://api.au.cr4ce.com/allocation/NqqplzPl
+  allocation_amount: 500
+  amount: 280.65
+  comments: ''
+  created: '2024-03-19T14:00:25Z'
+  currency: GBP
+  date_due: null
+  date_paid: null
+  entrant:
+    slug: AbCdEfGh
+    link: https://api.au.cr4ce.com/user/AbCdEfGh
+    name: Ada Lovelace
+    first_name: Ada
+    last_name: Lovelace
+    email: ada.lovelace@example.com
+    global_id: 9c78dcbc-53cf-42f1-b5b3-82fe396f66e6
+  entry:
+    slug: PqRsTuVw
+    id: 4821
+    title: Project title
+    link: https://api.au.cr4ce.com/entry/PqRsTuVw
+  external_id: ''
+  fund:
+    slug: PVzOmlXO
+    link: https://api.au.cr4ce.com/fund/PVzOmlXO
+    name:
+      en_GB: Maintenance
+  grant_status: null
+  payment_method: null
+  reference: ''
+  season:
+    slug: wboyrBmo
+    link: https://api.au.cr4ce.com/season/wboyrBmo
+    name:
+      en_GB: '2026'
+  slug: oQKEeNDy
+  status: Scheduled
+  updated: '2024-03-19T14:00:35Z'
