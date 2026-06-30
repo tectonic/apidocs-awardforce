@@ -2121,6 +2121,87 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves file information for the file identified by the specified token.
+  /grant-status:
+    get:
+      summary: Retrieve grant statuses
+      operationId: GetGrantStatusCollectionV23
+      tags:
+        - Grant status
+      parameters:
+        - $ref: '#/components/parameters/grantStatusSlugFilter'
+        - $ref: '#/components/parameters/trashedFilter'
+        - $ref: '#/components/parameters/grantStatusOrder'
+        - $ref: '#/components/parameters/sortDirection'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Grant statuses retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrantStatusList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves grant statuses.
+  /grant-status/{grant_status_slug}:
+    get:
+      summary: Retrieve a grant status
+      operationId: GetGrantStatusV23
+      tags:
+        - Grant status
+      parameters:
+        - $ref: '#/components/parameters/grantStatusSlug'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Grant status retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrantStatus'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves the grant status identified by the specified slug.
   /leaderboard:
     get:
       summary: Retrieve leaderboard results
@@ -3975,6 +4056,36 @@ components:
           - form
           - auto_scoring
           - category_count
+    grantStatusSlugFilter:
+      name: slug
+      in: query
+      required: false
+      description: Filter to a single grant status by slug. Returns at most one item.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
+    grantStatusOrder:
+      name: order
+      in: query
+      required: false
+      description: Column name to order by. An unrecognised value falls back to the default sort by `updated`.
+      schema:
+        type: string
+        enum:
+          - created
+          - grant_count
+          - name
+          - order
+          - slug
+          - updated
+    grantStatusSlug:
+      name: grant_status_slug
+      in: path
+      required: true
+      description: Slug of the grant status.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
     leaderboardScoreSetFilter:
       name: score_set
       in: query
@@ -7449,6 +7560,97 @@ components:
         mime: image/jpeg
         size: 26513
         transcoding: []
+    GrantStatus:
+      title: Grant status
+      description: |-
+        Grant status used to track the funding-pipeline stage of grant applications.
+
+        Carries the translated name and description, its display order, and the number of applications currently assigned to it.
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+          description: Date and time when the grant status was created.
+        description:
+          type: object
+          description: |-
+            Description of the grant status.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string and may contain HTML.
+          additionalProperties:
+            type: string
+        grant_count:
+          type: integer
+          description: Number of applications currently assigned this grant status.
+        name:
+          type: object
+          description: |-
+            Name of the grant status.
+
+            Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+          additionalProperties:
+            type: string
+        order:
+          type: integer
+          description: Position of the grant status in the manager-defined display order.
+        slug:
+          type: string
+          description: URL-safe identifier of the grant status.
+        updated:
+          type: string
+          format: date-time
+          description: Date and time when the grant status was last updated.
+      example:
+        created: '2023-04-10T13:33:27Z'
+        description:
+          en_GB: For completed grants
+        grant_count: 6
+        name:
+          en_GB: Completed
+        order: 2
+        slug: VgyLljqj
+        updated: '2024-09-03T11:38:00Z'
+    GrantStatusList:
+      allOf:
+        - $ref: '#/components/schemas/Pagination'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/GrantStatus'
+      example:
+        current_page: 1
+        data:
+          - created: '2023-04-10T13:33:09Z'
+            description:
+              en_GB: <p>For grants that are currently in progress</p>
+            grant_count: 42
+            name:
+              en_GB: In progress
+            order: 1
+            slug: mwGbVggp
+            updated: '2026-01-08T13:10:51Z'
+          - created: '2023-04-10T13:33:27Z'
+            description:
+              en_GB: For completed grants
+            grant_count: 6
+            name:
+              en_GB: Completed
+            order: 2
+            slug: VgyLljqj
+            updated: '2024-09-03T11:38:00Z'
+        first_page_url: https://api.au.cr4ce.com/grant-status?per_page=10&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.au.cr4ce.com/grant-status?per_page=10&page=1
+        next_page_url: ''
+        path: https://api.au.cr4ce.com/grant-status
+        per_page: 10
+        prev_page_url: ''
+        to: 2
+        total: 2
     Leaderboard:
       title: Leaderboard
       description: |-
