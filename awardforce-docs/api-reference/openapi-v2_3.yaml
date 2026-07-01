@@ -36,6 +36,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Account'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -77,6 +80,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AllocationList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AllocationList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -114,6 +120,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Allocation'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Allocation'
         '400':
@@ -156,6 +165,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Allocation'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Allocation'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -193,6 +205,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Allocation'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Allocation'
         '400':
@@ -270,6 +285,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AllocationPaymentList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AllocationPaymentList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -307,6 +325,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationPayment'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/AllocationPayment'
         '400':
@@ -349,6 +370,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AllocationPayment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AllocationPayment'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -386,6 +410,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationPayment'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/AllocationPayment'
         '400':
@@ -459,6 +486,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AllocationPaymentCommentResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AllocationPaymentCommentResult'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -512,6 +542,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/AssignmentList'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/AssignmentList'
         '400':
@@ -586,6 +619,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Assignment'
         '400':
@@ -750,6 +786,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttachmentList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AttachmentList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -788,6 +827,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Attachment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Attachment'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -823,6 +865,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Attachment'
         '400':
@@ -912,6 +957,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttachmentCreateResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AttachmentCreateResult'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -977,6 +1025,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CategoryList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CategoryList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1014,6 +1065,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Category'
         '400':
@@ -1054,6 +1108,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Category'
         '400':
@@ -1097,6 +1154,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Category'
         '400':
@@ -1174,6 +1234,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UploadResult'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1230,6 +1293,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChapterList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ChapterList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1267,6 +1333,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Chapter'
         '400':
@@ -1309,6 +1378,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Chapter'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Chapter'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1346,6 +1418,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Chapter'
         '400':
@@ -1421,6 +1496,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UploadResult'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1484,6 +1562,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContributorList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ContributorList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1521,6 +1602,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Contributor'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Contributor'
         '400':
@@ -1563,6 +1647,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Contributor'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Contributor'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1600,6 +1687,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Contributor'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Contributor'
         '400':
@@ -1679,6 +1769,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DocumentList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1752,6 +1845,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Document'
         '400':
@@ -1843,6 +1939,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntryList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntryList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1878,6 +1977,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Entry'
         '400':
@@ -1922,6 +2024,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Entry'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1958,6 +2063,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Entry'
         '400':
@@ -2043,6 +2151,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UploadResult'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2096,6 +2207,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Entry'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2133,6 +2247,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Entry'
         '400':
@@ -2181,6 +2298,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Entry'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2223,6 +2343,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Entry'
         '400':
@@ -2268,6 +2391,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Entry'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2311,6 +2437,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Entry'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2351,6 +2480,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Attachment'
         '400':
@@ -2397,6 +2529,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Contributor'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Contributor'
         '400':
@@ -2454,6 +2589,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FieldList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FieldList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2491,6 +2629,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Field'
         '400':
@@ -2531,6 +2672,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/File'
         '400':
@@ -2579,6 +2723,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FormList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FormList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2614,6 +2761,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Form'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Form'
         '400':
@@ -2660,6 +2810,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GrantStatusList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GrantStatusList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2695,6 +2848,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/GrantStatus'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/GrantStatus'
         '400':
@@ -2745,6 +2901,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LeaderboardList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/LeaderboardList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2789,6 +2948,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2825,6 +2987,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Order'
         '400':
@@ -2864,6 +3029,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Order'
         '400':
@@ -2910,6 +3078,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderItemList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderItemList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2946,6 +3117,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewTask'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/ReviewTask'
         '400':
@@ -2997,6 +3171,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReviewTaskList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReviewTaskList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3033,6 +3210,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewTask'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/ReviewTask'
         '400':
@@ -3113,6 +3293,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RoundList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RoundList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3149,6 +3332,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Round'
         '400':
@@ -3198,6 +3384,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScoreSetList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ScoreSetList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3234,6 +3423,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreSet'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/ScoreSet'
         '400':
@@ -3278,6 +3470,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SeasonList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SeasonList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3314,6 +3509,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Season'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Season'
         '400':
@@ -3356,6 +3554,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/TaxList'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/TaxList'
         '400':
@@ -3404,6 +3605,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/UserList'
         '400':
@@ -3457,6 +3661,16 @@ paths:
                       message:
                         type: string
                         description: Confirmation that an existing user was added to the account.
+            application/xml:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/User'
+                  - type: object
+                    description: Confirmation returned when an existing user is added to the account.
+                    properties:
+                      message:
+                        type: string
+                        description: Confirmation that an existing user was added to the account.
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3493,6 +3707,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/User'
         '400':
@@ -3534,6 +3751,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/User'
         '400':
@@ -3604,6 +3824,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/AuthToken'
         '400':
@@ -3692,6 +3915,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UploadResult'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3747,6 +3973,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/WebhookList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3783,6 +4012,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Webhook'
         '400':
@@ -3861,6 +4093,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Webhook'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Webhook'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3899,6 +4134,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Webhook'
         '400':
@@ -11137,6 +11375,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/BadRequest'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
     Unauthorized:
       description: Missing `x-api-key` header.
       headers:
@@ -11148,6 +11389,9 @@ components:
           $ref: '#/components/headers/X-RateLimit-Reset'
       content:
         application/json:
+          schema:
+            $ref: '#/components/schemas/Unauthorized'
+        application/xml:
           schema:
             $ref: '#/components/schemas/Unauthorized'
     Forbidden:
@@ -11166,6 +11410,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Forbidden'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Forbidden'
     TooManyRequests:
       description: Rate limit of 60 requests per minute exceeded.
       headers:
@@ -11175,10 +11422,22 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/TooManyRequests'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/TooManyRequests'
     ServiceUnavailable:
       description: Service is temporarily unavailable due to regional maintenance.
       content:
         application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Human-readable maintenance status.
+            example:
+              status: Maintenance in progress
+        application/xml:
           schema:
             type: object
             properties:
@@ -11206,6 +11465,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnprocessableEntity'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/UnprocessableEntity'
     NotFound:
       description: Resource identified by the path slug does not exist. Returned when the slug is well-formed but no record matches it.
       headers:
@@ -11217,6 +11479,9 @@ components:
           $ref: '#/components/headers/X-RateLimit-Reset'
       content:
         application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+        application/xml:
           schema:
             $ref: '#/components/schemas/NotFound'
   requestBodies:
