@@ -2810,6 +2810,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FundList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FundList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2847,6 +2850,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Fund'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Fund'
         '400':
@@ -2889,6 +2895,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Fund'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Fund'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2926,6 +2935,9 @@ paths:
               $ref: '#/components/headers/X-RateLimit-Reset'
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Fund'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/Fund'
         '400':
