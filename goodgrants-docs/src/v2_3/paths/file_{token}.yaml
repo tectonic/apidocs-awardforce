@@ -24,6 +24,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/File.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/File.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':

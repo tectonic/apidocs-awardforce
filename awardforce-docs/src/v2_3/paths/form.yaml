@@ -30,6 +30,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/FormList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/FormList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':

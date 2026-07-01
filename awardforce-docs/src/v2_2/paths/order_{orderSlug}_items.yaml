@@ -26,6 +26,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/OrderItemList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/OrderItemList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':

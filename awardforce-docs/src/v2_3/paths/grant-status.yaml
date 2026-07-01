@@ -28,6 +28,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/GrantStatusList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/GrantStatusList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':

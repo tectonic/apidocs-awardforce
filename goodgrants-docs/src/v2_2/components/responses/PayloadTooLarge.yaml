@@ -10,3 +10,6 @@ content:
   application/json:
     schema:
       $ref: ../schemas/ProblemTypes/PayloadTooLarge.yaml
+  application/xml:
+    schema:
+      $ref: ../schemas/ProblemTypes/PayloadTooLarge.yaml

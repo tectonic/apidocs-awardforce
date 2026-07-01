@@ -13,3 +13,6 @@ content:
   application/json:
     schema:
       $ref: ../schemas/ProblemTypes/Forbidden.yaml
+  application/xml:
+    schema:
+      $ref: ../schemas/ProblemTypes/Forbidden.yaml

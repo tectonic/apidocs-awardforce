@@ -9,3 +9,12 @@ content:
           description: Human-readable maintenance status.
       example:
         status: Maintenance in progress
+  application/xml:
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Human-readable maintenance status.
+      example:
+        status: Maintenance in progress

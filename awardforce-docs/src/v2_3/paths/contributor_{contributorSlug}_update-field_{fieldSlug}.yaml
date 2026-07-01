@@ -26,6 +26,9 @@ put:
         application/json:
           schema:
             $ref: ../components/schemas/Contributor.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/Contributor.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':

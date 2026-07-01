@@ -13,3 +13,6 @@ content:
   application/json:
     schema:
       $ref: ../schemas/ProblemTypes/FilterValidationError.yaml
+  application/xml:
+    schema:
+      $ref: ../schemas/ProblemTypes/FilterValidationError.yaml

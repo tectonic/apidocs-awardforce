@@ -10,3 +10,6 @@ content:
   application/json:
     schema:
       $ref: ../schemas/ProblemTypes/Unauthorized.yaml
+  application/xml:
+    schema:
+      $ref: ../schemas/ProblemTypes/Unauthorized.yaml

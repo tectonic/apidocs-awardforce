@@ -35,6 +35,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/FieldList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/FieldList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
@@ -72,6 +75,9 @@ post:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
       content:
         application/json:
+          schema:
+            $ref: ../components/schemas/Field.yaml
+        application/xml:
           schema:
             $ref: ../components/schemas/Field.yaml
     '400':

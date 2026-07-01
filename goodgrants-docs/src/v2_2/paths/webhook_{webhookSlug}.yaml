@@ -23,6 +23,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/Webhook.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/Webhook.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
@@ -61,6 +64,9 @@ put:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
       content:
         application/json:
+          schema:
+            $ref: ../components/schemas/Webhook.yaml
+        application/xml:
           schema:
             $ref: ../components/schemas/Webhook.yaml
     '400':
