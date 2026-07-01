@@ -28,6 +28,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/FundList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/FundList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
@@ -65,6 +68,9 @@ post:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
       content:
         application/json:
+          schema:
+            $ref: ../components/schemas/Fund.yaml
+        application/xml:
           schema:
             $ref: ../components/schemas/Fund.yaml
     '400':
