@@ -47,6 +47,199 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       description: Retrieves the account associated with the API key.
+  /allocation:
+    get:
+      summary: Retrieve allocations
+      operationId: GetAllocationCollectionV23
+      tags:
+        - Allocation
+      parameters:
+        - $ref: '#/components/parameters/trashedFilter'
+        - $ref: '#/components/parameters/allocationOrder'
+        - $ref: '#/components/parameters/sortDirection'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Allocations retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves allocations.
+    post:
+      summary: Create an allocation
+      operationId: PostAllocationV23
+      tags:
+        - Allocation
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      requestBody:
+        $ref: '#/components/requestBodies/AllocationCreate'
+      responses:
+        '201':
+          description: Allocation created.
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Allocation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Creates an allocation.
+  /allocation/{allocation_slug}:
+    parameters:
+      - $ref: '#/components/parameters/allocationSlug'
+    get:
+      summary: Retrieve an allocation
+      operationId: GetAllocationV23
+      tags:
+        - Allocation
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      responses:
+        '200':
+          description: Allocation retrieved.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Allocation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Retrieves the allocation identified by the specified slug.
+    put:
+      summary: Update an allocation
+      operationId: PutAllocationV23
+      tags:
+        - Allocation
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/X-Api-Language'
+      requestBody:
+        $ref: '#/components/requestBodies/AllocationUpdate'
+      responses:
+        '200':
+          description: Allocation updated.
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Allocation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Updates the allocation identified by the specified slug.
+    delete:
+      summary: Delete an allocation
+      operationId: DeleteAllocationV23
+      tags:
+        - Allocation
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+      responses:
+        '204':
+          description: Allocation deleted.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Deletes the allocation identified by the specified slug.
   /allocation-payment:
     get:
       summary: Retrieve allocation payments
@@ -4052,7 +4245,7 @@ components:
           - only
           - all
           - none
-    allocationPaymentOrder:
+    allocationOrder:
       name: order
       in: query
       required: false
@@ -4063,12 +4256,8 @@ components:
           - amount
           - created
           - currency
-          - date_due
-          - date_paid
-          - external_id
-          - reference
+          - paid
           - slug
-          - status
           - updated
     sortDirection:
       name: dir
@@ -4094,6 +4283,32 @@ components:
       description: Limit the number of items returned to between 1 and 100.
       schema:
         type: string
+    allocationSlug:
+      name: allocation_slug
+      in: path
+      required: true
+      description: Slug of the allocation.
+      schema:
+        type: string
+        pattern: ^[A-Za-z]{8}$
+    allocationPaymentOrder:
+      name: order
+      in: query
+      required: false
+      description: Column name to order by. An unrecognised value falls back to the default sort by `updated`.
+      schema:
+        type: string
+        enum:
+          - amount
+          - created
+          - currency
+          - date_due
+          - date_paid
+          - external_id
+          - reference
+          - slug
+          - status
+          - updated
     allocationPaymentSlug:
       name: allocation_payment_slug
       in: path
@@ -5366,6 +5581,282 @@ components:
         total:
           type: integer
           description: Total number of records across all pages.
+    Allocation:
+      title: Allocation
+      description: |-
+        Award of funds from a fund's budget to an application, forming the application-level grant slot that allocation payments are drawn against.
+
+        Carries the allocated amount and the fund's currency, the outstanding balance due, and references to the related applicant, application, fund, chapter, and season.
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Total amount allocated to the application from the fund, in the fund's currency.
+        applicant:
+          type: object
+          nullable: true
+          description: |-
+            Applicant who owns the application the allocation belongs to.
+
+            Emitted as an empty array when the application has no applicant.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the applicant.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the applicant resource.
+            name:
+              type: string
+              description: Full display name of the applicant.
+            first_name:
+              type: string
+              description: Given name of the applicant.
+            last_name:
+              type: string
+              description: Family name of the applicant.
+        application:
+          type: object
+          nullable: true
+          description: |-
+            Application the allocation belongs to.
+
+            Emitted as an empty array when the allocation has no associated application.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the application.
+            id:
+              type: integer
+              description: Internal numeric identifier of the application.
+            title:
+              type: string
+              description: Title of the application as submitted by the applicant.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the application resource.
+        chapter:
+          type: object
+          description: |-
+            Chapter the application belongs to.
+
+            Emitted as an empty array when the application has no chapter.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the chapter.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the chapter resource.
+            name:
+              type: object
+              description: |-
+                Name of the chapter.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        created:
+          type: string
+          format: date-time
+          description: Date and time when the allocation was created.
+        currency:
+          type: string
+          description: ISO 4217 currency code of the allocation's amounts, drawn from the fund's currency.
+        entry:
+          type: object
+          nullable: true
+          description: |-
+            Application the allocation belongs to, linking to its management view.
+
+            Emitted as an empty array when the allocation has no associated application.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the application.
+            id:
+              type: integer
+              description: Internal numeric identifier of the application.
+            title:
+              type: string
+              description: Title of the application as submitted by the applicant.
+            link:
+              type: string
+              format: uri
+              description: URL of the application's management view.
+        fund:
+          type: object
+          description: Fund the allocation draws from.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the fund.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the fund resource.
+            name:
+              type: object
+              description: |-
+                Name of the fund.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        paid:
+          type: number
+          description: Outstanding amount due on the allocation, in the fund's currency, after deducting payments already made.
+        season:
+          type: object
+          description: Season the allocation belongs to.
+          properties:
+            slug:
+              type: string
+              description: URL-safe identifier of the season.
+            link:
+              type: string
+              format: uri
+              description: Canonical URL of the season resource.
+            name:
+              type: object
+              description: |-
+                Name of the season.
+
+                Map keyed by locale code (for example, `en_GB` or `fr_FR`). Keys are drawn from the languages enabled on the account. Values are the translated string.
+              additionalProperties:
+                type: string
+        slug:
+          type: string
+          description: URL-safe identifier of the allocation.
+        updated:
+          type: string
+          format: date-time
+          description: Date and time when the allocation was last updated.
+      example:
+        amount: 1000
+        applicant:
+          slug: BwXxQawR
+          link: https://api.au.cr4ce.com/user/BwXxQawR
+          name: Rachel Martin
+          first_name: Rachel
+          last_name: Martin
+        application:
+          slug: DeqEWpwO
+          id: 69146
+          title: Project title
+          link: https://api.au.cr4ce.com/entry/DeqEWpwO
+        chapter:
+          slug: VbaERKdP
+          link: https://api.au.cr4ce.com/chapter/VbaERKdP
+          name:
+            en_GB: Glenlivet
+        created: '2026-06-02T13:05:18Z'
+        currency: USD
+        entry:
+          slug: DeqEWpwO
+          id: 69146
+          title: Project title
+          link: https://api.au.cr4ce.com/entry/manager/DeqEWpwO
+        fund:
+          slug: KYEKONwe
+          link: https://api.au.cr4ce.com/fund/KYEKONwe
+          name:
+            en_GB: USD
+        paid: 250
+        season:
+          slug: wboyrBmo
+          link: https://api.au.cr4ce.com/season/wboyrBmo
+          name:
+            en_GB: '2026'
+        slug: NxlGMaaj
+        updated: '2026-06-02T13:05:18Z'
+    AllocationList:
+      allOf:
+        - $ref: '#/components/schemas/Pagination'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Allocation'
+      example:
+        current_page: 1
+        data:
+          - amount: 1000
+            applicant:
+              slug: BwXxQawR
+              link: https://api.au.cr4ce.com/user/BwXxQawR
+              name: Rachel Martin
+              first_name: Rachel
+              last_name: Martin
+            application:
+              slug: DeqEWpwO
+              id: 69146
+              title: Project title
+              link: https://api.au.cr4ce.com/entry/DeqEWpwO
+            chapter:
+              slug: VbaERKdP
+              link: https://api.au.cr4ce.com/chapter/VbaERKdP
+              name:
+                en_GB: Glenlivet
+            created: '2026-06-02T13:05:18Z'
+            currency: USD
+            entry:
+              slug: DeqEWpwO
+              id: 69146
+              title: Project title
+              link: https://api.au.cr4ce.com/entry/manager/DeqEWpwO
+            fund:
+              slug: KYEKONwe
+              link: https://api.au.cr4ce.com/fund/KYEKONwe
+              name:
+                en_GB: USD
+            paid: 250
+            season:
+              slug: wboyrBmo
+              link: https://api.au.cr4ce.com/season/wboyrBmo
+              name:
+                en_GB: '2026'
+            slug: NxlGMaaj
+            updated: '2026-06-02T13:05:18Z'
+        first_page_url: https://api.au.cr4ce.com/allocation?per_page=10&page=1
+        from: 1
+        last_page: 1
+        last_page_url: https://api.au.cr4ce.com/allocation?per_page=10&page=1
+        next_page_url: ''
+        path: https://api.au.cr4ce.com/allocation
+        per_page: 10
+        prev_page_url: ''
+        to: 1
+        total: 1
+    UnprocessableEntity:
+      allOf:
+        - $ref: '#/components/schemas/BaseProblem'
+        - type: object
+          properties:
+            status_code:
+              type: integer
+              minimum: 422
+              maximum: 422
+            errors:
+              type: object
+              description: Map of request field to the list of validation messages for that field. Present only on field-level validation failures; omitted when the 422 was raised by a resource-state precondition.
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+    NotFound:
+      allOf:
+        - $ref: '#/components/schemas/BaseProblem'
+        - type: object
+          properties:
+            status_code:
+              type: integer
+              minimum: 404
+              maximum: 404
     AllocationPaymentSummary:
       type: object
       description: Core allocation payment fields shared by the list and single-payment responses.
@@ -5687,31 +6178,6 @@ components:
         slug: oQKEeNDy
         status: Scheduled
         updated: '2024-03-19T14:00:35Z'
-    UnprocessableEntity:
-      allOf:
-        - $ref: '#/components/schemas/BaseProblem'
-        - type: object
-          properties:
-            status_code:
-              type: integer
-              minimum: 422
-              maximum: 422
-            errors:
-              type: object
-              description: Map of request field to the list of validation messages for that field. Present only on field-level validation failures; omitted when the 422 was raised by a resource-state precondition.
-              additionalProperties:
-                type: array
-                items:
-                  type: string
-    NotFound:
-      allOf:
-        - $ref: '#/components/schemas/BaseProblem'
-        - type: object
-          properties:
-            status_code:
-              type: integer
-              minimum: 404
-              maximum: 404
     AllocationPaymentCommentResult:
       type: object
       description: Result of adding a comment to an allocation payment.
@@ -11120,6 +11586,55 @@ components:
           schema:
             $ref: '#/components/schemas/NotFound'
   requestBodies:
+    AllocationCreate:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - amount
+              - application
+              - fund
+            properties:
+              amount:
+                type: number
+                description: |-
+                  Amount to allocate to the application, in the fund's currency.
+
+                  Cannot exceed the fund's available budget.
+              application:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the application to allocate funds to.
+              fund:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the fund to draw the allocation from.
+      description: Allocation creation payload.
+      required: true
+    AllocationUpdate:
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              amount:
+                type: number
+                description: |-
+                  New amount to allocate, in the fund's currency.
+
+                  Cannot exceed the fund's available budget.
+              fund:
+                type: string
+                pattern: ^[A-Za-z]{8}$
+                description: Slug of the fund to draw the allocation from.
+      description: |-
+        Allocation update payload.
+
+        The application cannot be reassigned. To move an allocation to a different application, delete it and create a new one.
+      required: true
     AllocationPaymentCreate:
       content:
         application/json:
