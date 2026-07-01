@@ -36,6 +36,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/ContributorList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/ContributorList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
@@ -73,6 +76,9 @@ post:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
       content:
         application/json:
+          schema:
+            $ref: ../components/schemas/Contributor.yaml
+        application/xml:
           schema:
             $ref: ../components/schemas/Contributor.yaml
     '400':

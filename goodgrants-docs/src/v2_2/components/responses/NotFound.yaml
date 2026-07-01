@@ -11,3 +11,6 @@ content:
   application/json:
     schema:
       $ref: ../schemas/ProblemTypes/NotFound.yaml
+  application/xml:
+    schema:
+      $ref: ../schemas/ProblemTypes/NotFound.yaml

@@ -32,6 +32,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/LeaderboardList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/LeaderboardList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':

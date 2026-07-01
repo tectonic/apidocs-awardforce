@@ -32,6 +32,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/CategoryList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/CategoryList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
@@ -69,6 +72,9 @@ post:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
       content:
         application/json:
+          schema:
+            $ref: ../components/schemas/Category.yaml
+        application/xml:
           schema:
             $ref: ../components/schemas/Category.yaml
     '400':

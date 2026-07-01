@@ -24,6 +24,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/Order.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/Order.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
@@ -61,6 +64,9 @@ put:
           $ref: ../components/headers/X-RateLimit-Reset.yaml
       content:
         application/json:
+          schema:
+            $ref: ../components/schemas/Order.yaml
+        application/xml:
           schema:
             $ref: ../components/schemas/Order.yaml
     '400':

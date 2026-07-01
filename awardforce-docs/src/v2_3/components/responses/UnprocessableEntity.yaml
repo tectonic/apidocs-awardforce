@@ -16,3 +16,6 @@ content:
   application/json:
     schema:
       $ref: ../schemas/ProblemTypes/UnprocessableEntity.yaml
+  application/xml:
+    schema:
+      $ref: ../schemas/ProblemTypes/UnprocessableEntity.yaml

@@ -6,3 +6,6 @@ content:
   application/json:
     schema:
       $ref: ../schemas/ProblemTypes/TooManyRequests.yaml
+  application/xml:
+    schema:
+      $ref: ../schemas/ProblemTypes/TooManyRequests.yaml

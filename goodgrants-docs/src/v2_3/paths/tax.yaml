@@ -26,6 +26,9 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/TaxList.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/TaxList.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':

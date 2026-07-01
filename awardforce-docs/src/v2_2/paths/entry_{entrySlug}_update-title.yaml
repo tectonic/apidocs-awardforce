@@ -25,6 +25,9 @@ put:
         application/json:
           schema:
             $ref: ../components/schemas/Entry.yaml
+        application/xml:
+          schema:
+            $ref: ../components/schemas/Entry.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '401':
